@@ -10,6 +10,8 @@ public class LoginController {
     
 /*	@Autowired
 	private AdminServiceInterfaceImpl admindaoimpl;*/
-	
+public void login(){
+	System.out.println("login");
+}
 	
 }

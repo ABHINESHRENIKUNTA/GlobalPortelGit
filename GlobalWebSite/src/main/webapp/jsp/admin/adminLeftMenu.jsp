@@ -78,18 +78,24 @@
            <li>
             <a class="accordion-toggle" href="#">
               <span class="fa fa-columns"></span>
-              <span class="sidebar-title">Jobs Info</span>
+              <span class="sidebar-title">User Dash board</span>
               <span class="caret"></span>
             </a>
             <ul class="nav sub-nav">
+            <li>
+                <a href="AdminAddImagesForUser" >
+                  <span class="fa fa fa-arrows-h"></span>
+                  User Dash board Images
+                </a>
+               </li>
               <li>
-                <a class="accordion-toggle" href="#">
+                <a href="test"  >
                   <span class="fa fa fa-arrows-h"></span>
                   Scroll Links
                 </a>
                </li>
                  <li>
-                <a class="accordion-toggle" href="#">
+                <a href="#">
                   <span class="fa fa fa-arrows-h"></span>
                   Popular Links
                 </a>

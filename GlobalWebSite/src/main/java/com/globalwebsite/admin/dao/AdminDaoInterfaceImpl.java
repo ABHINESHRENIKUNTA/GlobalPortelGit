@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.globalwebsite.admin.mapper.AdminDeleteUserImageMapper;
 import com.globalwebsite.admin.mapper.AdminLoginMapper;
+import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.queries.AdminSqlQueries;
 
@@ -44,6 +46,21 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	public int getValidateAdminOTP(AdminLoginModel lmodel) {
 		String sql=AdminSqlQueries.GETVALIDATEADMINOTP_QUERY;
 		return jdbctemplate.queryForInt(sql,new Object[]{lmodel.getUsername(),lmodel.getOtp()});
+	}
+	@Override
+	public int uploadAdminUserDahboardImagesData(AdminAddUserImagesModel adm) {
+		String sql=AdminSqlQueries.UPLOADDASHBOARDIMAGS_QUERY;
+		return jdbctemplate.update(sql,new Object[]{adm.getTitle(),adm.getFilename(),adm.getLinkname(),getDateFromSimpleDateFormat(),getDateFromSimpleDateFormat()});
+	}
+	@Override
+	public List<AdminAddUserImagesModel> getAdminDeleteUserImages() {
+		String sql=AdminSqlQueries.GETADMINDELETEUSERIMAGES_QUERY;
+		return jdbctemplate.query(sql, new AdminDeleteUserImageMapper());
+	}
+	@Override
+	public int deleteAdminSelectedImage(String admid) {
+		String sql=AdminSqlQueries.DELETEADMINSELECTEDIMAGE_QUERY;
+		return jdbctemplate.update(sql,new Object[]{admid});
 	}
 
 	

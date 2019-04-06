@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+  <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
   <meta charset="utf-8">
   <title>Global Website</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -33,6 +35,7 @@
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
+
 </head>
 
 <body>
@@ -74,61 +77,37 @@
         <ol class="carousel-indicators"></ol>
 
         <div class="carousel-inner" role="listbox">
-
+		<c:forEach items="${admdata}" var="admdata" varStatus="loop">
+		${loop.index}
+		<c:if test="${loop.index==0}">
+		
           <div class="carousel-item active">
-            <div class="carousel-background"><img src="${pageContext.request.contextPath}/theme/userhome/img/intro-carousel/1.jpg" alt=""></div>
+            <div class="carousel-background"><img src="${pageContext.request.contextPath}/userDashboardImage?userImage=${admdata.filename}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2>We are professional</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+                
+                <a href="#" class="btn-get-started scrollto"  onclick="forwardToLink('${admdata.linkname}')">Click Here</a>
               </div>
             </div>
           </div>
+            
+          </c:if>
+          <c:if test="${loop.index>0}">
+		
+          <div class="carousel-item ">
+            <div class="carousel-background"><img src="${pageContext.request.contextPath}/userDashboardImage?userImage=${admdata.filename}" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <a href="${admdata.linkname}" class="btn-get-started scrollto">Click Here</a>
+              </div>
+            </div>
+          </div>
+           
+          </c:if>
+       
+		</c:forEach>
+         
 
-          <div class="carousel-item">
-            <div class="carousel-background"><img src="${pageContext.request.contextPath}/theme/userhome/img/intro-carousel/2.jpg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2>At vero eos et accusamus</h2>
-                <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut.</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="carousel-background"><img src="${pageContext.request.contextPath}/theme/userhome/img/intro-carousel/3.jpg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2>Temporibus autem quibusdam</h2>
-                <p>Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt omnis iste natus error sit voluptatem accusantium.</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="carousel-background"><img src="img/intro-carousel/4.jpg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2>Nam libero tempore</h2>
-                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum.</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="carousel-background"><img src="${pageContext.request.contextPath}/theme/userhome/img/intro-carousel/5.jpg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2>Magnam aliquam quaerat</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
-              </div>
-            </div>
-          </div>
 
         </div>
 

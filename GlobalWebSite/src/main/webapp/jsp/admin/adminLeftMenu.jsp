@@ -89,10 +89,32 @@
                 </a>
                </li>
               <li>
-                <a href="test"  >
+                  <a class="accordion-toggle" href="#">
+              <span class="fa fa fa-arrows-h"></span>
+              <span class="sidebar-title">Scroll Links</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+            <li>
+                <a href="addScrollLink" >
                   <span class="fa fa fa-arrows-h"></span>
-                  Scroll Links
+                  Add
                 </a>
+               </li>
+              <li>
+                <a href="editScrollLink">
+                  <span class="fa fa fa-arrows-h"></span>
+                  Edit
+                </a>
+               </li>
+                 <li>
+                <a href="deleteScrollLink">
+                  <span class="fa fa fa-arrows-h"></span>
+                  Delete
+                </a>
+               </li>
+         
+             </ul>
                </li>
                  <li>
                 <a href="#">

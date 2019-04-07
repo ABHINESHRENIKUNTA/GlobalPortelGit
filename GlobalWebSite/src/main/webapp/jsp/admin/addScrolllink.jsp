@@ -42,7 +42,7 @@
 
               <div class="panel heading-border">
                 <div class="panel-body bg-light">
-                  <form:form method="post" action="" id="form-ui" modelAttribute="">
+                  <form:form method="post" action="addLink" modelAttribute="addLink">
                     <div class="section-divider mb40" id="spy1">
                       <span>Add New Site</span>
                     </div>
@@ -53,7 +53,7 @@
                       <div class="col-md-8">
                         <div class="section">
                           <label class="field">
-                            <input type="text" name="from" id="from" class="gui-input" placeholder="Input no icon">
+                            <form:input path="LinkName"  type="text" name="from" id="from" class="gui-input" placeholder="Input no icon" />
                           </label>
                         </div>
                       </div>
@@ -71,13 +71,14 @@
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Input icon left">
+                            <form:input path="LinkAddress" type="text" name="firstname" id="firstname" class="gui-input" placeholder="Input icon left" />
                             <label for="firstname" class="field-icon">
                               <i class="fa fa-user"></i>
                             </label>
                           </label>
                         </div>
                       </div>
+                     
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field append-icon">
@@ -198,7 +199,9 @@
                           </label>
                         </div>
                       </div>
-
+ <div>
+                      <button type="submit">Submit</button>
+                      </div>
                   </form:form>
                 </div>
               </div>

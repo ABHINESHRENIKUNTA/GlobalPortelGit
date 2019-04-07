@@ -69,7 +69,7 @@
           </div>
 
         </header>
-        <!-- End: Sidebar Header -->
+        
 
         <!-- Start: Sidebar Menu -->
         <ul class="nav sidebar-menu">

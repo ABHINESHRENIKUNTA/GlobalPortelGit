@@ -15,7 +15,7 @@ public class ScrollLinksController {
 	}
 	@RequestMapping(value="/editScrollLink",method=RequestMethod.GET)
 	private String editScrollLink() {
-		
+		System.out.println("hai");
 		return "admin/editScrollLink";
 		
 	}

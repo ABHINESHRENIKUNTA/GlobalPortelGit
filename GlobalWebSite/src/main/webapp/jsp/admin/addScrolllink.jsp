@@ -37,7 +37,7 @@
                 </div> -->
                 <div class="panel-body">
                  
-            <!-- Begin: Admin Form -->
+            
             <div class="admin-form">
 
               <div class="panel heading-border">

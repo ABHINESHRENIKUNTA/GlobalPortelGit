@@ -35,37 +35,13 @@
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
+	
 
 </head>
 
 <body>
 
-  <!--==========================
-    Header
-  ============================-->
-  <header id="header">
-    <div class="container-fluid">
-
-      <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">Global Website</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
-      </div>
-
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Subscriptions</a></li>
-          <li><a href="#portfolio">Suggestions</a></li>
-          <li><a href="#team">News</a></li>
-          <li class="menu-has-children"><a href="">Contact Us</a>
-            
-          </li>
-        </ul>
-      </nav><!-- #nav-menu-container -->
-    </div>
-  </header><!-- #header -->
+ <%@include file="userHeader.jsp" %>
 
   <!--==========================
     Intro Section
@@ -73,9 +49,9 @@
   <section id="intro">
     <div class="intro-container">
       <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
-
+	
         <ol class="carousel-indicators"></ol>
-
+		<form:form action="redirectURL" method="GET">
         <div class="carousel-inner" role="listbox">
 		<c:forEach items="${admdata}" var="admdata" varStatus="loop">
 		${loop.index}
@@ -86,7 +62,7 @@
             <div class="carousel-container">
               <div class="carousel-content">
                 
-                <a href="#" class="btn-get-started scrollto"  onclick="forwardToLink('${admdata.linkname}')">Click Here</a>
+                <button class="btn-get-started scrollto" name="redirecturl"  value="${admdata.linkname}">Click Here</button>
               </div>
             </div>
           </div>
@@ -98,7 +74,7 @@
             <div class="carousel-background"><img src="${pageContext.request.contextPath}/userDashboardImage?userImage=${admdata.filename}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <a href="${admdata.linkname}" class="btn-get-started scrollto">Click Here</a>
+                <button class="btn-get-started scrollto" name="redirecturl"  value="${admdata.linkname}">Click Here</button>
               </div>
             </div>
           </div>
@@ -110,7 +86,7 @@
 
 
         </div>
-
+		</form:form>
         <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -512,7 +488,7 @@
 
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
-            <h4 class="title"><a href="">Jobs Info</a></h4>
+            <h4 class="title"><a href="displayDifferentUsers">Jobs Info</a></h4>
             <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
@@ -550,77 +526,7 @@
 
   </main>
 
-  <!--==========================
-    Footer
-  ============================-->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-info">
-            <h3>Global Website</h3>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
-
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
-
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit"  value="Subscribe">
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong>Global Website</strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
-        -->
-       
-      </div>
-    </div>
-  </footer><!-- #footer -->
+  <%@include file="userFooter.jsp" %>
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->

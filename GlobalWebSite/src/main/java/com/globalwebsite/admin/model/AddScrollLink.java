@@ -1,5 +1,6 @@
 package com.globalwebsite.admin.model;
 
+
 import java.util.Date;
 
 import javax.validation.constraints.Max;

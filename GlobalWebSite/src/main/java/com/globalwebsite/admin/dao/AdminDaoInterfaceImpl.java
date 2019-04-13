@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.globalwebsite.admin.mapper.AdminDeleteUserImageMapper;
 import com.globalwebsite.admin.mapper.AdminLoginMapper;
+import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.queries.AdminSqlQueries;
@@ -63,6 +64,12 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		return jdbctemplate.update(sql,new Object[]{admid});
 	}
 
+	@Override
+		public int createNewScrolllink(AddScrollLink addscroll) {
+		String sql=AdminSqlQueries.InsertScrollLink;
+		int returnvalue=jdbctemplate.update(sql, addscroll.getLinkName(),addscroll.getLinkAddress(),addscroll.getAddedBy(),addscroll.getAddedDate(),addscroll.getComments(),addscroll.getEmailID());
+			return returnvalue;
+		}
 	
 	
 }

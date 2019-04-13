@@ -2,16 +2,33 @@ package com.globalwebsite.admin.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Component 
 public class AddScrollLink {
 	
+	@NotEmpty(message="LinkName should not be empty")
 	private String LinkName;
+	@NotEmpty(message="Url should not be empty")
 	private String LinkAddress;
+	@NotEmpty(message="Author should not be empty")
 	private String AddedBy;
-	private Date addedDate;
+	private String addedDate;
+	@NotEmpty(message="Comments should not be empty")
 	private String Comments;
+	@NotEmpty(message="Email should not be empty")
+	private String EmailID;
+	public String getEmailID() {
+		return EmailID;
+	}
+	public void setEmailID(String emailID) {
+		EmailID = emailID;
+	}
+	
 	public String getLinkName() {
 		return LinkName;
 	}
@@ -30,10 +47,10 @@ public class AddScrollLink {
 	public void setAddedBy(String addedBy) {
 		AddedBy = addedBy;
 	}
-	public Date getAddedDate() {
+	public String getAddedDate() {
 		return addedDate;
 	}
-	public void setAddedDate(Date addedDate) {
+	public void setAddedDate(String addedDate) {
 		this.addedDate = addedDate;
 	}
 	public String getComments() {
@@ -45,7 +62,7 @@ public class AddScrollLink {
 	@Override
 	public String toString() {
 		return "AddScrollLink [LinkName=" + LinkName + ", LinkAddress=" + LinkAddress + ", AddedBy=" + AddedBy
-				+ ", addedDate=" + addedDate + ", Comments=" + Comments + "]";
+				+ ", addedDate=" + addedDate + ", Comments=" + Comments + ", EmailID=" + EmailID + "]";
 	}
 	
 

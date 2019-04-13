@@ -2,6 +2,7 @@ package com.globalwebsite.admin.dao;
 
 import java.util.List;
 
+import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
 
@@ -18,6 +19,8 @@ public interface AdminDaoInterface {
 	List<AdminAddUserImagesModel> getAdminDeleteUserImages();
 
 	int deleteAdminSelectedImage(String admid);
+	
+	public int createNewScrolllink(AddScrollLink addscroll);
 
 
 

@@ -8,5 +8,6 @@ public class AdminSqlQueries {
 	public static final String UPLOADDASHBOARDIMAGS_QUERY = "insert into global_userdashb_images(image_title,file_name,file_link,created_date,modified_date) values(?,?,?,?,?) ";
 	public static final String GETADMINDELETEUSERIMAGES_QUERY = "select * from global_userdashb_images";
 	public static final String DELETEADMINSELECTEDIMAGE_QUERY = "delete from global_userdashb_images where global_userdashb_images_id=?";
+	public static final String InsertScrollLink = "insert into mysql.global_userdashb_scrolllinks(link_name,link_address,link_owner,link_addeddate,link_comments,link_emailId) values(?,?,?,?,?,?)";
 
 }

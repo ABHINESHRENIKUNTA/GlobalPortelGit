@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,6 +12,12 @@
   <meta name="author" content="GlobalWebsite">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="adminHeaderLinks.jsp" %>
+<style type="text/css">
+.errorClass{
+	color:red;
+}
+
+</style>
 </head>
 <body class="dashboard-page">
 <%@include file="adminThemeChange.jsp" %>
@@ -46,6 +53,25 @@
                     <div class="section-divider mb40" id="spy1">
                       <span>Add New Site</span>
                     </div>
+                     <c:if test="${smsg!=null && smsg!=''}">
+                   
+	              <div class="alert alert-success alert-dismissable">
+	                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                <i class="fa fa-check pr10"></i>
+	                <strong>Well done!</strong>${smsg}
+	               
+	              </div>
+	           
+                    </c:if>
+                     <c:if test="${emsg!=null && emsg!=''}">
+                    
+		              <div class="alert alert-danger alert-dismissable">
+		                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		                <i class="fa fa-remove pr10"></i>
+		                <strong>Oh snap!</strong> ${emsg}
+		              </div>
+		           
+                    </c:if>
                     <!-- .section-divider -->
 
                     <!-- Basic Inputs -->
@@ -53,7 +79,8 @@
                       <div class="col-md-8">
                         <div class="section">
                           <label class="field">
-                            <form:input path="LinkName"  type="text" name="from" id="from" class="gui-input" placeholder="Input no icon" />
+                            <form:input path="LinkName"  type="text" name="from" id="from" class="gui-input" placeholder="Please Enter Link Name" />
+                            <form:errors path="LinkName" cssClass="errorClass"/>
                           </label>
                         </div>
                       </div>
@@ -71,7 +98,8 @@
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <form:input path="LinkAddress" type="text" name="firstname" id="firstname" class="gui-input" placeholder="Input icon left" />
+                            <form:input path="LinkAddress" type="url" name="LinkAddress" id="firstname" class="gui-input" placeholder="Please Enter Site Url" />
+                            <form:errors path="LinkAddress" cssClass="errorClass" />
                             <label for="firstname" class="field-icon">
                               <i class="fa fa-user"></i>
                             </label>
@@ -82,7 +110,8 @@
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field append-icon">
-                            <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Input icon right">
+                            <form:input path="AddedBy" type="text" name="AddedBy" id="firstname" class="gui-input" placeholder="Enter Link Created Author Name" />
+                            <form:errors path="AddedBy" cssClass="errorClass" />
                             <label for="firstname" class="field-icon">
                               <i class="fa fa-user"></i>
                             </label>
@@ -106,7 +135,8 @@
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <input type="url" name="website" id="website" class="gui-input" placeholder="URL input">
+                            <form:input path="addedDate" type="date" name="addedDate" id="website" class="gui-input"/>
+                            <form:errors path="addedDate" cssClass="errorClass" />
                             <label for="website" class="field-icon">
                               <i class="fa fa-globe"></i>
                             </label>
@@ -116,23 +146,25 @@
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <input type="email" name="email" id="email" class="gui-input" placeholder="Email input">
+                            <form:input path="EmailID" type="email" name="email" id="email" class="gui-input" placeholder="Email input"/>
+                            <form:errors path="EmailID" cssClass="errorClass"/>
                             <label for="email" class="field-icon">
                               <i class="fa fa-envelope"></i>
                             </label>
                           </label>
                         </div>
                       </div>
-                      <div class="col-md-4 hidden">
+                      <%-- <div class="col-md-4">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <input type="tel" name="mobile" id="mobile" class="gui-input" placeholder="Telephone input">
+                            <form:input path="Mobileno" type="tel" name="mobile" id="mobile" class="gui-input" placeholder="Telephone input"/>
+                            <form:errors path="Mobileno"/>
                             <label for="mobile" class="field-icon">
                               <i class="fa fa-phone-square"></i>
                             </label>
                           </label>
                         </div>
-                      </div>
+                      </div> --%>
                       <!-- <div class="col-md-4">
                         <div class="section">
                           <label class="field prepend-icon">
@@ -146,7 +178,7 @@
                     </div>
 
                     <!-- Multi Selects -->
-                    <div class="row">
+<!--                     <div class="row">
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field select">
@@ -171,7 +203,7 @@
                           </label>
                         </div>
                       </div>
-                      <!-- <div class="col-md-4">
+                      <div class="col-md-4">
                         <div class="section">
                           <label class="field select">
                             <select id="selectID" name="selectID" disabled>
@@ -182,20 +214,21 @@
                             <i class="arrow double"></i>
                           </label>
                         </div>
-                      </div> -->
+                      </div>
                     </div>
-
+ -->
                     <!-- Text Areas -->
                     <div class="row">
                       <div class="col-md-8">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <textarea class="gui-textarea" id="comment" name="comment" placeholder="Text area"></textarea>
+                            <form:textarea path="Comments" class="gui-textarea" id="comment" name="comment" placeholder="Please Enter Comments"/>
+ 							<form:errors path="Comments" cssClass="errorClass"/>                         
                             <label for="comment" class="field-icon">
                               <i class="fa fa-comments"></i>
                             </label>
                             <span class="input-footer">
-                              <strong>Hint:</strong>Don't be negative or off topic! just be awesome...</span>
+                              <strong>Hint:</strong>To Know Why Adding Link</span>
                           </label>
                         </div>
                       </div>

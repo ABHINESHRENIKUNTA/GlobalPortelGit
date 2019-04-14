@@ -66,6 +66,7 @@ public class AdminDashboardController {
 				gid=lm.getGlobalid();
 		}
 		String OTP=String.valueOf(generatePin()) ; 
+	
 		mailSenderObj.send(new MimeMessagePreparator() {
             public void prepare(MimeMessage mimeMessage) throws Exception {
             	
@@ -74,6 +75,7 @@ public class AdminDashboardController {
                 mimeMsgHelperObj.setFrom("globalwebsite001@gmail.com");               
                 mimeMsgHelperObj.setText(OTP);
                 mimeMsgHelperObj.setSubject("Verification OTP");
+                
              
                 }
         });

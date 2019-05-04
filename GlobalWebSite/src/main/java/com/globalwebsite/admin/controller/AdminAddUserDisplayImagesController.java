@@ -99,8 +99,7 @@ public class AdminAddUserDisplayImagesController {
 	  @RequestMapping("/userDashboardImage")
 	    public  @ResponseBody byte[] getImage(HttpServletRequest req) throws IOException {
 	        String imageName=req.getParameter("userImage");
-	        System.out.println("imagename:"+imageName);
-		  String rootPath = System.getProperty("catalina.home");
+	        String rootPath = System.getProperty("catalina.home");
 			File file = new File(rootPath + File.separator + "GlobalWebsiteFiles"+File.separator+"UserDashboardImages"+File.separator+imageName);
 	        
 

@@ -59,11 +59,13 @@
         	 <h3 style="margin-left: 50px">STUDENT</h3>
           </div>
             <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-          <img src="${pageContext.request.contextPath}/theme/userhome/img/employeelogin.jpg" alt="" style="margin-top: 30px;">
+            <a href="EmployeLogin">
+          <img src="${pageContext.request.contextPath}/theme/userhome/img/employeelogin.jpg" alt="" style="margin-top: 30px;"></a>
           <h3 style="margin-left: 40px">EMPLOYEE</h3>
           </div>
            <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-          <img src="${pageContext.request.contextPath}/theme/userhome/img/referallogin.jpg" alt="" style="margin-top: 30px;">
+           <a href="ReferalLogin">
+          <img src="${pageContext.request.contextPath}/theme/userhome/img/referallogin.jpg" alt="" style="margin-top: 30px;"></a>
      		<h3 style="margin-left: 45px">REFERAL</h3>
           </div>
           </div>

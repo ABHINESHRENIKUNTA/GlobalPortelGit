@@ -3,16 +3,8 @@ package com.globalwebsite.common.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Hashtable;
 
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.naming.NamingException;
-import javax.naming.directory.Attribute;
-import javax.naming.directory.Attributes;
-import javax.naming.directory.DirContext;
-import javax.naming.directory.InitialDirContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +28,7 @@ public class JobsInfoContoller {
 	
 	@Autowired
 	private UserServiceInterfaceImpl userserviceimpl;
+	
 	
 	@RequestMapping("/displayDifferentUsers")
 	public String displayDifferentUsers(Model model){
@@ -78,14 +71,6 @@ public class JobsInfoContoller {
 		String regsmsg="";
 		String regemsg="";
 		int alreadyexst=userserviceimpl.getCountForAlreadyExistStudent(stud);
-		try{
-		doLookup(stud.getEmailid());
-		 
-		}
-		catch(Exception e ){
-			  System.out.println(stud.getEmailid() + " : " + e.getMessage());
-		}
-		
 		if(alreadyexst==0){
 			String filename=studentUploadResume(file);
 			stud.setUploadresume(filename);
@@ -136,21 +121,24 @@ public class JobsInfoContoller {
 					+ " because the file was empty.";
 		}
 	}
-	 public void doLookup( String hostName ) throws NamingException {
-		 Hashtable env = new Hashtable();
-		 env.put("java.naming.factory.initial",
-		              "com.sun.jndi.dns.DnsContextFactory");
-		 DirContext ictx = new InitialDirContext( env );
-		 Attributes attrs = ictx.getAttributes
-		                        ( hostName, new String[] { "MX" });
-		 Attribute attr = attrs.get( "MX" );
-		 if (( attr == null ) || ( attr.size() == 0 )) {
-		    attrs = ictx.getAttributes( hostName, new String[] { "A" });
-		    attr = attrs.get( "A" );
-		    if( attr == null )
-		          throw new NamingException
-		                   ( "No match for name '" + hostName + "'" );
-		 }
-	 }
+	
+	@RequestMapping("/ValidateOTP")
+	public void validateOTP(HttpServletRequest req){
+		String otp=req.getParameter("code");
+		String emailid=req.getParameter("emailid");
+		mailSenderObj.send(new MimeMessagePreparator() {
+            public void prepare(MimeMessage mimeMessage) throws Exception {
+            	
+                MimeMessageHelper mimeMsgHelperObj = new MimeMessageHelper(mimeMessage, true, "UTF-8");             
+                mimeMsgHelperObj.setTo(emailid);
+                mimeMsgHelperObj.setFrom("globalwebsite001@gmail.com");               
+                mimeMsgHelperObj.setText(otp);
+                mimeMsgHelperObj.setSubject("Verification OTP");
+                
+             
+                }
+        });
+		
+	}
 
 }

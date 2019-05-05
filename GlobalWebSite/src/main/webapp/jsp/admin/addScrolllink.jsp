@@ -135,11 +135,8 @@
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <form:input path="addeddate" type="date" name="addedDate" id="website" class="gui-input"/>
+                            <form:input path="addeddate" type="date" name="addedDate" placeholder="createdDate" id="website" class="gui-input"/>
                             <form:errors path="addeddate" cssClass="errorClass" />
-                            <label for="website" class="field-icon">
-                              <i class="fa fa-globe"></i>
-                            </label>
                           </label>
                         </div>
                       </div>

@@ -23,7 +23,7 @@
 
 <!-- Start: Content-Wrapper -->
 <section id="content_wrapper">
-<form:form method="post" action="editScrollLink" modelAttribute="edit">
+<form:form method="post" action="editLink" modelAttribute="edit">
 <div class="col-md-12">
            
               <div class="panel">
@@ -90,8 +90,8 @@
                 <tr>
                         <td>${linkNames.linkname}</td>
                         <td>${linkNames.linkaddress}</td>
-                        <td><input type="text" /></td>
-                        <td><button class="btn btn-success btn-gradient btn-alt btn-block item-active" name="link" value="${linkNames.linkname}">Edit</button></td>
+                        <td><form:input path="modifiedlink" type="text" /></td>
+                        <td><button class="btn btn-success btn-gradient btn-alt btn-block item-active" name="link" value="${linkNames.linkname}" >Edit</button></td>
                        
                       </tr>
                      </c:forEach>

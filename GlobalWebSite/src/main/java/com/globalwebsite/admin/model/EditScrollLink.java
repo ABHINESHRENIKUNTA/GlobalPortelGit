@@ -11,8 +11,6 @@ public class EditScrollLink {
 	
 	private Date modifieddate;
 	private String modifiedlink;
-	private String author;
-	private String comments;
 	public String getLinktobemodified() {
 		return linktobemodified;
 	}
@@ -31,26 +29,10 @@ public class EditScrollLink {
 	public void setModifiedlink(String modifiedlink) {
 		this.modifiedlink = modifiedlink;
 	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	public String getComments() {
-		return comments;
-	}
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
 	@Override
 	public String toString() {
 		return "EditScrollLink [linktobemodified=" + linktobemodified + ", modifieddate=" + modifieddate
-				+ ", modifiedlink=" + modifiedlink + ", author=" + author + ", comments=" + comments + "]";
+				+ ", modifiedlink=" + modifiedlink + "]";
 	}
 	
-	
-	
-	
-
 }

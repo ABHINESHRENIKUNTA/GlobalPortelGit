@@ -17,6 +17,7 @@ import com.globalwebsite.admin.mapper.ScrollLinksTableMapper;
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
+import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
 import com.globalwebsite.admin.queries.AdminSqlQueries;
 
@@ -84,6 +85,14 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	@Override
 		public int updateScrollLink(EditScrollLink editscrolllink) {
 		System.out.println(editscrolllink);
-			return 1;
+		String sql=AdminSqlQueries.UpdateScrollLink;
+		return jdbctemplate .update(sql, editscrolllink.getModifiedlink(),editscrolllink.getLinktobemodified());
+		
+		}
+	@Override
+		public int deleteScrollLink(DeleteScrollLink deleteScrollLink) {
+			String sql=AdminSqlQueries.deleteScrollLink;
+			return jdbctemplate.update(sql, deleteScrollLink.getLinktobedeleted());
+			
 		}
 }

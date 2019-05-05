@@ -5,6 +5,7 @@ import java.util.List;
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
+import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
 
 public interface AdminDaoInterface {
@@ -26,6 +27,8 @@ public interface AdminDaoInterface {
 	public List<AddScrollLink> getAllScrollLinkNames();
 	
 	public int updateScrollLink(EditScrollLink editscrolllink);
+	
+	public int deleteScrollLink(DeleteScrollLink deleteScrollLink);
 
 
 

@@ -21,15 +21,22 @@ import com.globalwebsite.admin.dao.AdminDaoInterfaceImpl;
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
+import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 
 @Controller
 public class ScrollLinksController {
 	/*@Autowired
 	private AddScrollLink addScrollLinkObj;*/
+	@Autowired
+	private AdminServiceInterfaceImpl adminservices;
+
 	
 	@Autowired(required=true)
 	private AdminDaoInterface daoimpl;
 	
+	public void setAdminservices(AdminServiceInterfaceImpl adminservices) {
+		this.adminservices = adminservices;
+	}
 	public void setDaoimpl(AdminDaoInterface daoimpl) {
 		this.daoimpl = daoimpl;
 	}
@@ -46,7 +53,7 @@ public class ScrollLinksController {
 	@RequestMapping("/editScrollLink")
 	private String editScrollLink(Model model,HttpServletRequest req) {
 		
-		List<AddScrollLink> linkNames=daoimpl.getAllScrollLinkNames();
+		List<AddScrollLink> linkNames=adminservices.getAllScrollLinkNames();
 		
 		model.addAttribute("edit", new EditScrollLink());
 		model.addAttribute("linknames", linkNames);
@@ -57,7 +64,7 @@ public class ScrollLinksController {
 	}
 	@RequestMapping(value="/deleteScrollLink",method=RequestMethod.GET)
 	private String deleteScrollLink(HttpServletRequest req,Model model) {
-	List<AddScrollLink> linkNames=daoimpl.getAllScrollLinkNames();
+	List<AddScrollLink> linkNames=adminservices.getAllScrollLinkNames();
 		System.out.println("links------------->"+linkNames);
 
 		model.addAttribute("deleteLink", new DeleteScrollLink());
@@ -78,7 +85,7 @@ public class ScrollLinksController {
 //			model.addAttribute("addlink", addlink);
 			return "redirect:/addScrolllink";
 		}
-		int returnvalue=daoimpl.createNewScrolllink(addlink);
+		int returnvalue=adminservices.createNewScrolllink(addlink);
 		if(returnvalue>0) {
 		model.addAttribute("smsg", "Link Created Successfully");
 		model.addAttribute("emsg", "");
@@ -95,7 +102,7 @@ public class ScrollLinksController {
 		System.out.println("editlink operation");
 		String linktobeupdated=req.getParameter("link");
 		editLink.setLinktobemodified(linktobeupdated);
-		int returnvalue=daoimpl.updateScrollLink(editLink);
+		int returnvalue=adminservices.updateScrollLink(editLink);
 		if(returnvalue>0) {
 		model.addAttribute("smsg", "Updated Link Successfully");
 		model.addAttribute("emsg", "");
@@ -109,7 +116,7 @@ public class ScrollLinksController {
 	}
 	@RequestMapping(value="refreshScrollLink")
 	private String refreshScrollLink(HttpServletRequest req,Model model) {
-List<AddScrollLink> linkNames=daoimpl.getAllScrollLinkNames();
+List<AddScrollLink> linkNames=adminservices.getAllScrollLinkNames();
 		
 		model.addAttribute("edit", new EditScrollLink());
 		model.addAttribute("linknames", linkNames);
@@ -126,7 +133,7 @@ List<AddScrollLink> linkNames=daoimpl.getAllScrollLinkNames();
 		DeleteScrollLink ds=new DeleteScrollLink();
 		ds.setLinktobedeleted(linktobedeleted);
 		
-		int result=daoimpl.deleteScrollLink(ds);
+		int result=adminservices.deleteScrollLink(ds);
 		if(result>0) {
 			model.addAttribute("smsg", "removed Link Successfully");
 			model.addAttribute("emsg", "");

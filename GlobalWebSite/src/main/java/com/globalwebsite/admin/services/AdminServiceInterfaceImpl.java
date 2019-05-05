@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.globalwebsite.admin.dao.AdminDaoInterfaceImpl;
+import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
+import com.globalwebsite.admin.model.DeleteScrollLink;
+import com.globalwebsite.admin.model.EditScrollLink;
 
 
 @Service("adminservices")
@@ -41,7 +44,26 @@ public class AdminServiceInterfaceImpl implements AdminSerivceInterface {
 		return admindaoimpl.deleteAdminSelectedImage(admid);
 	}
 
-
+@Override
+public int createNewScrolllink(AddScrollLink addscroll) {
+	// TODO Auto-generated method stub
+	return admindaoimpl.createNewScrolllink(addscroll);
+}
+@Override
+public List<AddScrollLink> getAllScrollLinkNames() {
+	// TODO Auto-generated method stub
+	return admindaoimpl.getAllScrollLinkNames();
+}
+@Override
+public int deleteScrollLink(DeleteScrollLink deleteScrollLink) {
+	// TODO Auto-generated method stub
+	return admindaoimpl.deleteScrollLink(deleteScrollLink);
+}
+@Override
+public int updateScrollLink(EditScrollLink editscrolllink) {
+	// TODO Auto-generated method stub
+	return admindaoimpl.updateScrollLink(editscrolllink);
+}
 
 	
 }

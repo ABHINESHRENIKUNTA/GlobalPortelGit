@@ -12,58 +12,61 @@ import org.springframework.stereotype.Component;
 @Component 
 public class AddScrollLink {
 	
-	@NotEmpty(message="LinkName should not be empty")
-	private String LinkName;
-	@NotEmpty(message="Url should not be empty")
-	private String LinkAddress;
-	@NotEmpty(message="Author should not be empty")
-	private String AddedBy;
-	private String addedDate;
-	@NotEmpty(message="Comments should not be empty")
-	private String Comments;
-	@NotEmpty(message="Email should not be empty")
-	private String EmailID;
-	public String getEmailID() {
-		return EmailID;
-	}
-	public void setEmailID(String emailID) {
-		EmailID = emailID;
-	}
 	
-	public String getLinkName() {
-		return LinkName;
+	
+	
+	
+	@NotEmpty(message="Author should not be empty")
+	private String addedby;
+	private String addeddate;
+	@NotEmpty(message="Comments should not be empty")
+	private String comments;
+	@NotEmpty(message="Email should not be empty")
+	private String emailid;
+	@NotEmpty(message="LinkName should not be empty")
+	private String linkname;
+	@NotEmpty(message="Url should not be empty")
+	private String linkaddress;
+	public String getAddedby() {
+		return addedby;
 	}
-	public void setLinkName(String linkName) {
-		LinkName = linkName;
+	public void setAddedby(String addedby) {
+		this.addedby = addedby;
 	}
-	public String getLinkAddress() {
-		return LinkAddress;
+	public String getAddeddate() {
+		return addeddate;
 	}
-	public void setLinkAddress(String linkAddress) {
-		LinkAddress = linkAddress;
-	}
-	public String getAddedBy() {
-		return AddedBy;
-	}
-	public void setAddedBy(String addedBy) {
-		AddedBy = addedBy;
-	}
-	public String getAddedDate() {
-		return addedDate;
-	}
-	public void setAddedDate(String addedDate) {
-		this.addedDate = addedDate;
+	public void setAddeddate(String addeddate) {
+		this.addeddate = addeddate;
 	}
 	public String getComments() {
-		return Comments;
+		return comments;
 	}
 	public void setComments(String comments) {
-		Comments = comments;
+		this.comments = comments;
+	}
+	public String getEmailid() {
+		return emailid;
+	}
+	public void setEmailid(String emailid) {
+		this.emailid = emailid;
+	}
+	public String getLinkname() {
+		return linkname;
+	}
+	public void setLinkname(String linkname) {
+		this.linkname = linkname;
+	}
+	public String getLinkaddress() {
+		return linkaddress;
+	}
+	public void setLinkaddress(String linkaddress) {
+		this.linkaddress = linkaddress;
 	}
 	@Override
 	public String toString() {
-		return "AddScrollLink [LinkName=" + LinkName + ", LinkAddress=" + LinkAddress + ", AddedBy=" + AddedBy
-				+ ", addedDate=" + addedDate + ", Comments=" + Comments + ", EmailID=" + EmailID + "]";
+		return "AddScrollLink [addedby=" + addedby + ", addeddate=" + addeddate + ", comments=" + comments
+				+ ", emailid=" + emailid + ", linkname=" + linkname + ", linkaddress=" + linkaddress + "]";
 	}
 	
 

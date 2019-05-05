@@ -9,5 +9,7 @@ public class AdminSqlQueries {
 	public static final String GETADMINDELETEUSERIMAGES_QUERY = "select * from global_userdashb_images";
 	public static final String DELETEADMINSELECTEDIMAGE_QUERY = "delete from global_userdashb_images where global_userdashb_images_id=?";
 	public static final String InsertScrollLink = "insert into mysql.global_userdashb_scrolllinks(link_name,link_address,link_owner,link_addeddate,link_comments,link_emailId) values(?,?,?,?,?,?)";
+	public static final String GetAllScrollLinks = "select * from mysql.global_userdashb_scrolllinks";
+	public static final String UpdateScrollLink = "select distinct(link_name) from mysql.global_userdashb_scrolllinks";
 
 }

@@ -60,6 +60,8 @@ public class AdminAddUserDisplayImagesController {
 	public String AdminDeleteImagesForUser(Model model,AdminAddUserImagesModel adm,HttpServletRequest req)
 	{
 		List<AdminAddUserImagesModel> admdata= adminservices.getAdminDeleteUserImages();
+		System.out.println("Deleteing image");
+		System.out.println(admdata);
 		model.addAttribute("admdata", admdata);
 		model.addAttribute("adm", adm);
 		model.addAttribute("smsg", req.getParameter("smsg"));

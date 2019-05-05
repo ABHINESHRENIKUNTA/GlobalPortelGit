@@ -22,19 +22,19 @@
 <div class="col-md-12">
             <div class="bs-component">
               <div class="panel">
-                <!-- <div class="panel-heading">
+               <div class="panel-heading">
                   <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
-                    <li class="active">
-                      <a href="scrollLinksHome" active>Add</a>
+                    <li>
+                      <a href="addScrollLink">Add</a>
                     </li>
                     <li>
-                      <a href="view-admindashboard">Edit</a>
+                      <a href="editScrollLink">Edit</a>
                     </li>
-                    <li>
-                      <a href="#tab2_3" data-toggle="tab" disabled>Delete</a>
+                    <li  class="active">
+                      <a href="deleteScrollLink">Delete</a>
                     </li>
                   </ul>
-                </div> -->
+                </div> 
                 <div class="panel-body">
                  
             <!-- Begin: Admin Form -->

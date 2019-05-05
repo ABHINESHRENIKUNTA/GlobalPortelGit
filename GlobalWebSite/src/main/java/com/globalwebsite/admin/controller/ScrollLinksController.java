@@ -2,6 +2,9 @@ package com.globalwebsite.admin.controller;
 
 
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.junit.validator.ValidateWith;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.globalwebsite.admin.dao.AdminDaoInterface;
 import com.globalwebsite.admin.dao.AdminDaoInterfaceImpl;
 import com.globalwebsite.admin.model.AddScrollLink;
+import com.globalwebsite.admin.model.EditScrollLink;
 
 @Controller
 public class ScrollLinksController {
@@ -29,14 +33,24 @@ public class ScrollLinksController {
 		this.daoimpl = daoimpl;
 	}
 	@RequestMapping(value="/addScrollLink",method=RequestMethod.GET)
-	private String addScrollLink(Model model) {
+	private String addScrollLink(Model model,HttpServletRequest req) {
 		model.addAttribute("addLink", new AddScrollLink());
+		if(req.getParameter("smsg")!="" || req.getParameter("emsg")!="") {
+		model.addAttribute("smsg", req.getParameter("smsg"));
+		model.addAttribute("emsg", req.getParameter("emsg"));
+		}
 		return "admin/addScrolllink";
 		
 	}
-	@RequestMapping(value="/editScrollLink",method=RequestMethod.GET)
-	private String editScrollLink() {
+	@RequestMapping("/editScrollLink")
+	private String editScrollLink(Model model) {
 		System.out.println("hai");
+		List<AddScrollLink> linkNames=daoimpl.getAllScrollLinkNames();
+		System.out.println(linkNames);
+		model.addAttribute("edit", new EditScrollLink());
+		model.addAttribute("linknames", linkNames);
+		model.addAttribute("test", "hai");
+		
 		return "admin/editScrollLink";
 		
 	}
@@ -53,11 +67,32 @@ public class ScrollLinksController {
 
 		if(result.hasErrors()) {
 //			model.addAttribute("addlink", addlink);
-			return "admin/addScrolllink";
+			return "redirect:/addScrolllink";
 		}
 		int returnvalue=daoimpl.createNewScrolllink(addlink);
 		if(returnvalue>0) {
 		model.addAttribute("smsg", "Link Created Successfully");
+		model.addAttribute("emsg", "");
+		}
+		else {
+			model.addAttribute("smsg", "");
+			model.addAttribute("emsg", "Failed");
+		}
+		return "redirect:/addScrollLink";
+		
+	}
+	@RequestMapping(value="/editLink",method=RequestMethod.POST)
+	private String editLink(@ModelAttribute("edit") EditScrollLink editLink,Model model) {
+		System.out.println(editLink);
+//		System.out.println(result);
+
+		/*if(result.hasErrors()) {
+//			model.addAttribute("addlink", addlink);
+			return "admin/addScrolllink";
+		}*/
+		int returnvalue=daoimpl.updateScrollLink(editLink);
+		if(returnvalue>0) {
+		model.addAttribute("smsg", "Updated Link Successfully");
 		model.addAttribute("emsg", "");
 		}
 		else {

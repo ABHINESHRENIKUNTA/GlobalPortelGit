@@ -7,46 +7,49 @@ import org.springframework.stereotype.Component;
 @Component
 public class EditScrollLink {
 	
-	private String LinkTobeModified;
-	private Date Modifieddate;
-	private String ModifiedLink;
-	private String Author;
-	private String Comments;
-	public String getLinkTobeModified() {
-		return LinkTobeModified;
+	private String linktobemodified;
+	
+	private Date modifieddate;
+	private String modifiedlink;
+	private String author;
+	private String comments;
+	public String getLinktobemodified() {
+		return linktobemodified;
 	}
-	public void setLinkTobeModified(String linkTobeModified) {
-		LinkTobeModified = linkTobeModified;
+	public void setLinktobemodified(String linktobemodified) {
+		this.linktobemodified = linktobemodified;
 	}
 	public Date getModifieddate() {
-		return Modifieddate;
+		return modifieddate;
 	}
 	public void setModifieddate(Date modifieddate) {
-		Modifieddate = modifieddate;
+		this.modifieddate = modifieddate;
 	}
-	public String getModifiedLink() {
-		return ModifiedLink;
+	public String getModifiedlink() {
+		return modifiedlink;
 	}
-	public void setModifiedLink(String modifiedLink) {
-		ModifiedLink = modifiedLink;
+	public void setModifiedlink(String modifiedlink) {
+		this.modifiedlink = modifiedlink;
 	}
 	public String getAuthor() {
-		return Author;
+		return author;
 	}
 	public void setAuthor(String author) {
-		Author = author;
+		this.author = author;
 	}
 	public String getComments() {
-		return Comments;
+		return comments;
 	}
 	public void setComments(String comments) {
-		Comments = comments;
+		this.comments = comments;
 	}
 	@Override
 	public String toString() {
-		return "EditScrollLink [LinkTobeModified=" + LinkTobeModified + ", Modifieddate=" + Modifieddate
-				+ ", ModifiedLink=" + ModifiedLink + ", Author=" + Author + ", Comments=" + Comments + "]";
+		return "EditScrollLink [linktobemodified=" + linktobemodified + ", modifieddate=" + modifieddate
+				+ ", modifiedlink=" + modifiedlink + ", author=" + author + ", comments=" + comments + "]";
 	}
+	
+	
 	
 	
 

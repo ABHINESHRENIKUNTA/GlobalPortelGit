@@ -29,19 +29,19 @@
 <div class="col-md-12">
             <div class="bs-component">
               <div class="panel">
-                <!-- <div class="panel-heading">
+                 <div class="panel-heading">
                   <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
                     <li class="active">
-                      <a href="scrollLinksHome" active>Add</a>
+                      <a href="addScrollLink">Add</a>
                     </li>
                     <li>
-                      <a href="view-admindashboard">Edit</a>
+                      <a href="editScrollLink">Edit</a>
                     </li>
                     <li>
-                      <a href="#tab2_3" data-toggle="tab" disabled>Delete</a>
+                      <a href="deleteScrollLink" >Delete</a>
                     </li>
                   </ul>
-                </div> -->
+                </div> 
                 <div class="panel-body">
                  
             
@@ -79,8 +79,8 @@
                       <div class="col-md-8">
                         <div class="section">
                           <label class="field">
-                            <form:input path="LinkName"  type="text" name="from" id="from" class="gui-input" placeholder="Please Enter Link Name" />
-                            <form:errors path="LinkName" cssClass="errorClass"/>
+                            <form:input path="linkname"  type="text" name="from" id="from" class="gui-input" placeholder="Please Enter Link Name" />
+                            <form:errors path="linkname" cssClass="errorClass"/>
                           </label>
                         </div>
                       </div>
@@ -98,8 +98,8 @@
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <form:input path="LinkAddress" type="url" name="LinkAddress" id="firstname" class="gui-input" placeholder="Please Enter Site Url" />
-                            <form:errors path="LinkAddress" cssClass="errorClass" />
+                            <form:input path="linkaddress" type="url" name="LinkAddress" id="firstname" class="gui-input" placeholder="Please Enter Site Url" />
+                            <form:errors path="linkaddress" cssClass="errorClass" />
                             <label for="firstname" class="field-icon">
                               <i class="fa fa-user"></i>
                             </label>
@@ -110,8 +110,8 @@
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field append-icon">
-                            <form:input path="AddedBy" type="text" name="AddedBy" id="firstname" class="gui-input" placeholder="Enter Link Created Author Name" />
-                            <form:errors path="AddedBy" cssClass="errorClass" />
+                            <form:input path="addedby" type="text" name="AddedBy" id="firstname" class="gui-input" placeholder="Enter Link Created Author Name" />
+                            <form:errors path="addedby" cssClass="errorClass" />
                             <label for="firstname" class="field-icon">
                               <i class="fa fa-user"></i>
                             </label>
@@ -135,8 +135,8 @@
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <form:input path="addedDate" type="date" name="addedDate" id="website" class="gui-input"/>
-                            <form:errors path="addedDate" cssClass="errorClass" />
+                            <form:input path="addeddate" type="date" name="addedDate" id="website" class="gui-input"/>
+                            <form:errors path="addeddate" cssClass="errorClass" />
                             <label for="website" class="field-icon">
                               <i class="fa fa-globe"></i>
                             </label>
@@ -146,8 +146,8 @@
                       <div class="col-md-4">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <form:input path="EmailID" type="email" name="email" id="email" class="gui-input" placeholder="Email input"/>
-                            <form:errors path="EmailID" cssClass="errorClass"/>
+                            <form:input path="emailid" type="email" name="email" id="email" class="gui-input" placeholder="Email input"/>
+                            <form:errors path="emailid" cssClass="errorClass"/>
                             <label for="email" class="field-icon">
                               <i class="fa fa-envelope"></i>
                             </label>
@@ -222,8 +222,8 @@
                       <div class="col-md-8">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <form:textarea path="Comments" class="gui-textarea" id="comment" name="comment" placeholder="Please Enter Comments"/>
- 							<form:errors path="Comments" cssClass="errorClass"/>                         
+                            <form:textarea path="comments" class="gui-textarea" id="comment" name="comment" placeholder="Please Enter Comments"/>
+ 							<form:errors path="comments" cssClass="errorClass"/>                         
                             <label for="comment" class="field-icon">
                               <i class="fa fa-comments"></i>
                             </label>

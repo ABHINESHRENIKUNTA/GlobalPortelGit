@@ -2,6 +2,7 @@ package com.globalwebsite.admin.dao;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,9 +13,11 @@ import org.springframework.stereotype.Repository;
 
 import com.globalwebsite.admin.mapper.AdminDeleteUserImageMapper;
 import com.globalwebsite.admin.mapper.AdminLoginMapper;
+import com.globalwebsite.admin.mapper.ScrollLinksTableMapper;
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
+import com.globalwebsite.admin.model.EditScrollLink;
 import com.globalwebsite.admin.queries.AdminSqlQueries;
 
 
@@ -67,9 +70,20 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	@Override
 		public int createNewScrolllink(AddScrollLink addscroll) {
 		String sql=AdminSqlQueries.InsertScrollLink;
-		int returnvalue=jdbctemplate.update(sql, addscroll.getLinkName(),addscroll.getLinkAddress(),addscroll.getAddedBy(),addscroll.getAddedDate(),addscroll.getComments(),addscroll.getEmailID());
+		int returnvalue=jdbctemplate.update(sql, addscroll.getLinkname(),addscroll.getLinkaddress(),addscroll.getAddedby(),addscroll.getAddeddate(),addscroll.getComments(),addscroll.getEmailid());
 			return returnvalue;
 		}
-	
-	
+@Override
+		public List<AddScrollLink> getAllScrollLinkNames() {
+		String sql=AdminSqlQueries.GetAllScrollLinks;
+		System.out.println(sql);
+		List<AddScrollLink> listObj=jdbctemplate.query(sql, new ScrollLinksTableMapper());
+		
+			return listObj;
+		}	
+	@Override
+		public int updateScrollLink(EditScrollLink editscrolllink) {
+		System.out.println(editscrolllink);
+			return 1;
+		}
 }

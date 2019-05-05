@@ -85,13 +85,8 @@ var otp="";
 	} 
 
 	function ValidateData(){
-		var pwd=document.getElementById("password1").value;
-		var cnfpwd=document.getElementById("confirmpassword").value;
 		var optval=document.getElementById('otptxt').value;
-		if(pwd!=cnfpwd){
-			alert("Password and Confirm Password are not equal.");
-			return false;
-		}
+	
 		if(String(optval)!=String(otp)){
 			alert("Invalid OTP.");
 			return false;
@@ -110,8 +105,8 @@ var otp="";
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-12">
    					 <div id="login-box" class="col-md-6">
-                        <form:form id="login-form" class="form" modelAttribute="login" action="ValidateStudent" method="post">
-                            <h3 class="text-center text-info">Student Login<i class="fa fa-lock"></i></h3>
+                        <form:form id="login-form" class="form" modelAttribute="login" action="ValidateEmployee" method="post">
+                            <h3 class="text-center text-info">Employee Login<i class="fa fa-lock"></i></h3>
                             <c:if test="${emsg!=null}">
                             <h4 style="color: red">${emsg}</h4>
                             </c:if>
@@ -120,11 +115,11 @@ var otp="";
                             </c:if>
                             <div class="form-group">
                                 <label for="username" class="text-info"><i class="fa fa-user"></i><span style="color:red">*</span>Username:</label><br>
-                                <form:input path="username"  type="email" id="username" required="required" class="form-control"/>
+                                <form:input path="empemail"  type="email" id="username" required="required" class="form-control"/>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info"><i class="fa fa-unlock-alt"></i><span style="color:red">*</span>Password:</label><br>
-                                <form:password path="password" id="password" required="required" class="form-control"/>
+                                <form:password path="emppassword" id="password" required="required" class="form-control"/>
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
@@ -141,8 +136,8 @@ var otp="";
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-12">
     				<div id="login-box" class="col-md-8">
-                        <form:form id="login-form" class="form" modelAttribute="login" action="registerStudent" method="post" enctype="multipart/form-data" onsubmit="return ValidateData()">
-                            <h3 class="text-center text-info">Student Registration</h3>
+                        <form:form id="login-form" class="form" modelAttribute="login" action="registerEmployee" method="post" enctype="multipart/form-data" onsubmit="return ValidateData()">
+                            <h3 class="text-center text-info">Employee Registration</h3>
                               <h4 style="color: green" id="otplabelspan"></h4>
                             <c:if test="${regemsg!=null}">
                             <h4 style="color: red">${regemsg}</h4>
@@ -151,42 +146,43 @@ var otp="";
                             <h4 style="color: green">${regsmsg}</h4>
                             </c:if>
                             <div class="form-group">
-                                <label for="username" class="text-info"><span style="color:red">*</span>Name As Per S.S.C:</label><br>
-                                <form:input path="name"   id="username" required="required" class="form-control"/>
+                                <label for="username" class="text-info"><span style="color:red">*</span>Company Name:</label><br>
+                                <form:input path="companyname"   id="companyname" required="required" class="form-control"/>
                             </div>
                              <div class="form-group">
-                                <label for="mobileno" class="text-info"><span style="color:red">*</span>Mobile No:</label><br>
-                                <form:input path="mobileno" id="phone"  type="tel" required="required" class="form-control" minlength="10" maxlength="10" />
+                                <label for="mobileno" class="text-info"><span style="color:red">*</span>HR Name:</label><br>
+                                <form:input path="hrname"   id="hrname" required="required" class="form-control" />
                             </div>
                               <div class="form-group">
-                                <label for="emailid" class="text-info"><span style="color:red">*</span>Email Id:</label><br>
-                                <form:input path="emailid" type="email"   id="emailid" required="required" class="form-control"/>
+                                <label for="emailid" class="text-info"><span style="color:red">*</span>HR Email Id:</label><br>
+                                <form:input path="hremail" type="email"   id="emailid" required="required" class="form-control"/>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info"><span style="color:red">*</span>Password:</label><br>
                                 <form:password path="password" id="password1" required="required" class="form-control"/>
                             </div>
-                             <div class="form-group">
-                                <label for="confirmpassword" class="text-info"><span style="color:red">*</span>Confirm Password:</label><br>
-                                <form:password path="confirmpassword" id="confirmpassword" required="required" class="form-control"/>
-                            </div>
+                           
                             <div class="form-group">
-                                <label for="passingyear" class="text-info"><span style="color:red">*</span>Highest Qualification:</label><br>
-                                <form:input path="qualification" id="qualification" required="required" class="form-control"/>
+                                <label for="hrcontactnumber" class="text-info"><span style="color:red">*</span>HR Contact No:</label><br>
+                                <form:input  path="hrcontactnumber"  id="phone"  type="tel"  required="required" class="form-control"/>
                             </div>
                               <div class="form-group">
-                                <label for="passingyear" class="text-info"><span style="color:red">*</span>Passing Year:</label><br>
-                                <form:input path="passingyear" type="number" id="passingyear" required="required" minlength="4"	 maxlength="4" class="form-control"/>
+                                <label for="companywebsite" class="text-info"><span style="color:red">*</span>Company Web-site:</label><br>
+                                <form:input path="companywebsite" id="website" required="required"  class="form-control"/>
                             </div>
-                             
-		                        <div class="section">
-		                        <label for="passingyear" class="text-info"><span style="color:red">*</span>Upload Resume:</label><br>
-		                          <label class="field prepend-icon append-button file">
-		                         
-		                            <input type="file" class="btn btn-info btn-md " name="file1" id="file1" required="required" accept=".jpg,.jpeg,.png,.word,.pdf">
-		                            </label>
-		                        </div>
-		                                               
+                              <div class="form-group">
+                                <label for="jobposition" class="text-info"><span style="color:red">*</span>Job Position:</label><br>
+                                <form:input path="jobposition" id="jobposition" required="required"  class="form-control"/>
+                            </div>
+                              <div class="form-group">
+                                <label for="qualification" class="text-info"><span style="color:red">*</span>Minimum Qualification Required:</label><br>
+                                <form:input path="qualification" id="qualification" required="required"  class="form-control"/>
+                            </div>
+                              <div class="form-group">
+                                <label for="jobdescription" class="text-info"><span style="color:red">*</span>Job Description:</label><br>
+                                <form:textarea path="jobdescription" id="jobdescription" required="required"  class="form-control"/>
+                            </div>
+		                                     
 		                      <div class="form-group" id="otplabel" style="display: none">
                                 <label for="passingyear" class="text-info"><span style="color:red">*</span>OTP:</label><br>
 		                        <input type="text" id="otptxt" class="form-control" >

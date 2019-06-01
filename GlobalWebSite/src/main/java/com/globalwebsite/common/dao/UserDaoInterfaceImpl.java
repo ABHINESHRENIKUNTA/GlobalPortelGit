@@ -3,11 +3,13 @@ package com.globalwebsite.common.dao;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.globalwebsite.common.mapper.getJobCategoriesMapper;
 import com.globalwebsite.common.model.EmployeeLoginModel;
 import com.globalwebsite.common.model.ReferalLoginModel;
 import com.globalwebsite.common.model.StudentLoginModel;
@@ -33,7 +35,7 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 	@Override
 	public int insertStudentRegistrationDetails(StudentLoginModel stud) {
 		String sql=UserSqlQueries.INSERTSTUDENTREGISTRATIONDETAILS_QUERY;
-		return jdbctemplate.update(sql,new Object[]{stud.getName(),stud.getMobileno(),stud.getEmailid(),stud.getPassword(),stud.getConfirmpassword(),stud.getQualification(),stud.getPassingyear(),stud.getUploadresume(),getDateFromSimpleDateFormat(),getDateFromSimpleDateFormat()});
+		return jdbctemplate.update(sql,new Object[]{stud.getName(),stud.getMobileno(),stud.getEmailid(),stud.getPassword(),stud.getConfirmpassword(),stud.getQualification(),stud.getPassingyear(),stud.getUploadresume(),stud.getJobcategory(),getDateFromSimpleDateFormat(),getDateFromSimpleDateFormat()});
 	}
 	@Override
 	public int validateStudentDetails(StudentLoginModel stud) {
@@ -69,6 +71,26 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 	public int insertReferalRegistrationDetails(ReferalLoginModel refl) {
 		String sql=UserSqlQueries.INSERTREFERALREGISTRATIONDETAILS_QUERY;
 		return jdbctemplate.update(sql,new Object[]{refl.getCompanyname(),refl.getReferalname(),refl.getReferalemail(),refl.getPassword(),refl.getReferalcontactno(),refl.getPositionoffering(),refl.getQualification(),refl.getJobdescription(),getDateFromSimpleDateFormat(),getDateFromSimpleDateFormat()});
+	}
+	@Override
+	public List<StudentLoginModel> getJobCategoriesDisplay() {
+		String sql=UserSqlQueries.GETJOBCATEGORIESTODISPLAY_QUERY;
+		return jdbctemplate.query(sql, new getJobCategoriesMapper());
+	}
+	@Override
+	public int getDuplicateJobCategory(StudentLoginModel stud) {
+		String sql=UserSqlQueries.GETDUPLICATEJOBCATEGORY_QUERY;
+		return jdbctemplate.queryForInt(sql,new Object[] {stud.getJobcategory()});
+	}
+	@Override
+	public int insertOtherJobCategory(StudentLoginModel stud) {
+		String sql=UserSqlQueries.INSERTOTHERJOBCATEGORY_QUERY;
+		return jdbctemplate.update(sql,new Object[] {stud.getJobcategory()});
+	}
+	@Override
+	public int getmaxjocatid() {
+		String sql=UserSqlQueries.GETMAXJOCATID_QUERY;
+		return jdbctemplate.queryForInt(sql);
 	}
 	
 }

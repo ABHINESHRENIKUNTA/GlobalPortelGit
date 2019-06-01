@@ -1,5 +1,7 @@
 package com.globalwebsite.common.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +51,23 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
 	@Override
 	public int insertReferalRegistrationDetails(ReferalLoginModel refl) {
 		return userdaoimpl.insertReferalRegistrationDetails(refl);
+	}
+	@Override
+	public List<StudentLoginModel> getJobCategoriesDisplay() {
+		return userdaoimpl.getJobCategoriesDisplay();
+	}
+	@Override
+	public int getDuplicateJobCategory(StudentLoginModel stud) {
+		return userdaoimpl.getDuplicateJobCategory(stud);
+	}
+	@Override
+	public int insertOtherJobCategory(StudentLoginModel stud) {
+		return userdaoimpl.insertOtherJobCategory(stud);
+		
+	}
+	@Override
+	public int getmaxjocatid() {
+		return userdaoimpl.getmaxjocatid();
 	}
 
 }

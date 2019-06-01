@@ -166,7 +166,7 @@ var otp="";
                            
                             <div class="form-group">
                                 <label for="referalcontactno" class="text-info"><span style="color:red">*</span>Contact No:</label><br>
-                                <form:input  path="referalcontactno" id="phone"  type="tel" minlength="10"	 maxlength="10"  required="required" class="form-control"/>
+                                <form:input  path="referalcontactno" id="phone"  type="tel"  required="required" class="form-control"/>
                             </div>
                              
                               <div class="form-group">

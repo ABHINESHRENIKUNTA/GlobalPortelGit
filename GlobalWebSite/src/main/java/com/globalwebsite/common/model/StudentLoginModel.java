@@ -12,8 +12,30 @@ public class StudentLoginModel {
 	private String qualification;
 	private String passingyear;
 	private String uploadresume;
+	private int jobcategoryid;
 	
+	private String jobcategory;
+	private String otherjobcategory;
 	
+	public int getJobcategoryid() {
+		return jobcategoryid;
+	}
+	public void setJobcategoryid(int jobcategoryid) {
+		this.jobcategoryid = jobcategoryid;
+	}
+	
+	public String getOtherjobcategory() {
+		return otherjobcategory;
+	}
+	public void setOtherjobcategory(String otherjobcategory) {
+		this.otherjobcategory = otherjobcategory;
+	}
+	public String getJobcategory() {
+		return jobcategory;
+	}
+	public void setJobcategory(String jobcategory) {
+		this.jobcategory = jobcategory;
+	}
 	public String getName() {
 		return name;
 	}

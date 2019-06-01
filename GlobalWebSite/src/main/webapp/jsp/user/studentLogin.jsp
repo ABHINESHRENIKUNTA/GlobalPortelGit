@@ -83,6 +83,15 @@ var otp="";
 	    } 
 	    return OTP; 
 	} 
+	
+	function otherFunction(othervalue){
+		if(othervalue=='Others'){
+			document.getElementById("othercatgr").style.display='block';
+		}
+		else{
+			document.getElementById("othercatgr").style.display='none';
+		}
+	}
 
 	function ValidateData(){
 		var pwd=document.getElementById("password1").value;
@@ -156,7 +165,7 @@ var otp="";
                             </div>
                              <div class="form-group">
                                 <label for="mobileno" class="text-info"><span style="color:red">*</span>Mobile No:</label><br>
-                                <form:input path="mobileno" id="phone"  type="tel" required="required" class="form-control" minlength="10" maxlength="10" />
+                                <form:input path="mobileno" id="phone"  type="tel" required="required" class="form-control" />
                             </div>
                               <div class="form-group">
                                 <label for="emailid" class="text-info"><span style="color:red">*</span>Email Id:</label><br>
@@ -177,6 +186,20 @@ var otp="";
                               <div class="form-group">
                                 <label for="passingyear" class="text-info"><span style="color:red">*</span>Passing Year:</label><br>
                                 <form:input path="passingyear" type="number" id="passingyear" required="required" minlength="4"	 maxlength="4" class="form-control"/>
+                            </div>
+                             <div class="form-group">
+                                <label for="jobcategory" class="text-info"><span style="color:red">*</span>Job Category:</label><br>
+                                <form:select path="jobcategory" type="text" id="jobcategory" required="required" class="form-control" onchange="otherFunction(this.value)">
+                                <c:forEach items="${jobcat}" var="items">
+                                <form:option value="${items.jobcategoryid}">${items.jobcategory}</form:option>
+                                </c:forEach>
+                                <form:option value="Others">Others</form:option>
+                                </form:select>
+                            </div>
+                            
+                             <div class="form-group" id="othercatgr" style="display: none">
+                                <label for="otherjobcategory" class="text-info"><span style="color:red">*</span>Job Category:</label><br>
+                                <form:input path="otherjobcategory" type="text" id="otherjobcategory"  class="form-control"/>
                             </div>
                              
 		                        <div class="section">

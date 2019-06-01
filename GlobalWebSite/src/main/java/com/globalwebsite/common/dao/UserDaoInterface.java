@@ -1,5 +1,7 @@
 package com.globalwebsite.common.dao;
 
+import java.util.List;
+
 import com.globalwebsite.common.model.EmployeeLoginModel;
 import com.globalwebsite.common.model.ReferalLoginModel;
 import com.globalwebsite.common.model.StudentLoginModel;
@@ -23,5 +25,13 @@ public interface UserDaoInterface {
 	int getCountForAlreadyExistReferal(ReferalLoginModel refl);
 
 	int insertReferalRegistrationDetails(ReferalLoginModel refl);
+
+	List<StudentLoginModel> getJobCategoriesDisplay();
+
+	int getDuplicateJobCategory(StudentLoginModel stud);
+
+	int insertOtherJobCategory(StudentLoginModel stud);
+
+	int getmaxjocatid();
 
 }

@@ -3,6 +3,7 @@ package com.globalwebsite.common.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -40,12 +41,21 @@ public class JobsInfoContoller {
 	@RequestMapping("/studentLogin")
 	public String studentLogin(Model model,StudentLoginModel stud,HttpServletRequest req){
 		
+		List<StudentLoginModel> jobcat=userserviceimpl.getJobCategoriesDisplay();
+		
 		model.addAttribute("login", stud);
+		model.addAttribute("jobcat", jobcat);
+		
 		model.addAttribute("regemsg", req.getParameter("regemsg"));
 		model.addAttribute("regsmsg", req.getParameter("regsmsg"));
 		model.addAttribute("smsg", req.getParameter("smsg"));
 		model.addAttribute("emsg", req.getParameter("emsg"));
 		return "user/studentLogin";
+	}
+	
+	public int duplicateJobCategory(StudentLoginModel stud){
+		int duplicate=userserviceimpl.getDuplicateJobCategory(stud);
+		return duplicate;
 	}
 	
 	@RequestMapping("/ValidateStudent")
@@ -74,6 +84,21 @@ public class JobsInfoContoller {
 		if(alreadyexst==0){
 			String filename=studentUploadResume(file);
 			stud.setUploadresume(filename);
+			if(stud.getJobcategory().equals("Others")){
+				stud.setJobcategory(stud.getOtherjobcategory());
+				
+			}
+			int duplicatejobcate=duplicateJobCategory(stud);
+			if(duplicatejobcate>0){
+				regemsg="Duplicate Job Category Select From Job Category.";
+					model.addAttribute("regemsg", regemsg);
+					return "redirect:/studentLogin";
+			}
+			else{
+			userserviceimpl.insertOtherJobCategory(stud);
+			int maxjobcatg=userserviceimpl.getmaxjocatid();
+			stud.setJobcategory(String.valueOf(maxjobcatg));
+			}
 			int insertdata=userserviceimpl.insertStudentRegistrationDetails(stud);
 			if(insertdata>0){
 				regsmsg="You Have Registered Successfully.";
@@ -94,7 +119,6 @@ public class JobsInfoContoller {
 
 		if (!file.isEmpty()) {
 			try {
-				System.out.println(file.getOriginalFilename());
 				byte[] bytes = file.getBytes();
 
 				// Creating the directory to store file

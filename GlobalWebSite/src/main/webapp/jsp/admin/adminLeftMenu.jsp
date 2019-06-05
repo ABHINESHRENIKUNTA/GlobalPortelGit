@@ -77,7 +77,7 @@
           
            <li>
             <a class="accordion-toggle" href="#">
-              <span class="fa fa-columns"></span>
+              <span class="fa fa-user"></span>
               <span class="sidebar-title">User Dash board</span>
               <span class="caret"></span>
             </a>
@@ -103,7 +103,27 @@
                </li>
          
              </ul>
-          </li>         
+          </li>       
+          
+          <li>
+            <a class="accordion-toggle" href="#">
+              <span class="fa fa-child"></span>
+              <span class="sidebar-title">Student Management</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+           
+              <li>
+              <a href="load-adminaddstuinfo" >
+                  <span class="fa fa-university"></span>
+                  Add Student Dash-board
+                </a>
+                 
+               </li>
+            
+         
+             </ul>
+          </li>  
         </ul>
         <!-- End: Sidebar Menu -->
 

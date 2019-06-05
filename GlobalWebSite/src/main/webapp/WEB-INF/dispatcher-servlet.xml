@@ -29,7 +29,16 @@
 			</list>
 		</property>
 	</bean>
-
+	<bean
+	  class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	  <property name="exceptionMappings">
+		<props>
+			<prop key="com.globalwebsite.exception.CustomGenericException">
+				error/generic_error
+			</prop>
+		</props>
+	  </property>
+	</bean>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

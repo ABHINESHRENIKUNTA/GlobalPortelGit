@@ -42,5 +42,46 @@ public class FileUploadToTomcatController {
 		}
 	}
 	
+	/**Common method for save images**/
+	/**
+	 * @param file
+	 * @param imageFolder
+	 * @param tablecnt
+	 * @return
+	 */
+	public String saveImagesInTomcatDirectory(MultipartFile file, String imageFolder, int tablecnt) {
+		
+		if (!file.isEmpty()) {
+			try {
+				System.out.println(file.getOriginalFilename());
+				byte[] bytes = file.getBytes();
+				
+				// Creating the directory to store file
+				String rootPath = System.getProperty("catalina.home");
+				File dir = new File(rootPath + File.separator + "GlobalWebsiteFiles"+File.separator+""+imageFolder);
+				if (!dir.exists())
+					dir.mkdirs();
+				
+				String fileex=file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'),file.getOriginalFilename().length());
+				String fileName=tablecnt+""+""+fileex;
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath()+File.separator+fileName);
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+				
+				
+				
+				return file.getOriginalFilename();
+			} catch (Exception e) {
+				return "You failed to upload " + e.getMessage();
+			}
+		} else {
+			return "You failed to upload " 
+					+ " because the file was empty.";
+		}
+	}
+	
 
 }

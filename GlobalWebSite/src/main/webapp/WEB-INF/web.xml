@@ -59,4 +59,8 @@
     <servlet-name>default</servlet-name>
     <url-pattern>*.pdf</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.scss</url-pattern>
+  </servlet-mapping>
 </web-app>

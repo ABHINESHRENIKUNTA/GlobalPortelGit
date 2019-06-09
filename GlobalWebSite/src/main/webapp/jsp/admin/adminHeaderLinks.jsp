@@ -13,4 +13,6 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/theme/assets/img/favicon.ico">
   
+  <!-- Single search drop-down  -->
+   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/theme/vendor/plugins/select2/css/core.css">
   

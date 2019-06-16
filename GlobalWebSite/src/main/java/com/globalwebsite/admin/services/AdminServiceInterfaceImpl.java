@@ -11,6 +11,7 @@ import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
+import com.gw.student.model.StudentDashboardModel;
 
 
 @Service("adminservices")
@@ -63,6 +64,17 @@ public int deleteScrollLink(DeleteScrollLink deleteScrollLink) {
 public int updateScrollLink(EditScrollLink editscrolllink) {
 	// TODO Auto-generated method stub
 	return admindaoimpl.updateScrollLink(editscrolllink);
+}
+
+//Insert Common Submission Data
+@Override
+public int insertSubmissionData(StudentDashboardModel stdmodel) {
+	return admindaoimpl.insertSubmissionData(stdmodel);
+}
+
+@Override
+public int selectCountForSubmissionData(StudentDashboardModel stdmodel) {
+	return admindaoimpl.selectCountForSubmissionData(stdmodel);
 }
 
 	

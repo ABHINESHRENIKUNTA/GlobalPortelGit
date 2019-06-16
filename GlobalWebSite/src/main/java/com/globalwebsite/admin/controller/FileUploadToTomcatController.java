@@ -4,11 +4,13 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUploadToTomcatController {
 
-	
+	private final static Logger logger = Logger.getLogger(FileUploadToTomcatController.class);
+
 	
 	public String uploadFileHandler(MultipartFile file) {
 
@@ -73,7 +75,7 @@ public class FileUploadToTomcatController {
 				
 				
 				
-				return file.getOriginalFilename();
+				return fileName;
 			} catch (Exception e) {
 				return "You failed to upload " + e.getMessage();
 			}
@@ -81,6 +83,22 @@ public class FileUploadToTomcatController {
 			return "You failed to upload " 
 					+ " because the file was empty.";
 		}
+	}
+	
+	/**
+	 * @param imageFolder
+	 * @param fileName
+	 * @return
+	 */
+	public boolean removeImageFromDirectory(String imageFolder, String fileName) {
+		logger.info("removeImageFromDirectory");
+		// Creating the directory to store file
+		String rootPath = System.getProperty("catalina.home");
+			
+		// Create the file on server
+		File serverFile = new File(rootPath + File.separator + "GlobalWebsiteFiles"+File.separator+""+imageFolder+File.separator+fileName);
+				
+		return serverFile.delete();
 	}
 	
 

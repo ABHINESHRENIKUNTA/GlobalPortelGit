@@ -28,15 +28,19 @@
       <!-- Start: Content-Wrapper -->
       <section id="content_wrapper">
          <div class="col-md-12">
-            <div class="page-header">
+            <!-- <div class="page-header">
                <h4>Student Home Info</h4>
-            </div>
+            </div> -->
             <div class="container">
                <div class="row">
                   <div class="col-md-12">
                      <div class="panel with-nav-tabs">
                         <div class="panel-heading">
-                           <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
+			               <h4>Student Home Info   <span class="pull-right">
+			               <button type="button" class="btn btn-primary">VIEW / EDIT</button></span>
+			               
+			               </h4>
+                           <!-- <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
                               <li class="active">
                                  <a href="#">Add</a>
                               </li>
@@ -46,8 +50,8 @@
                               <li>
                                  <a href="load-admindeletestuinfo">Delete</a>
                               </li>
-                           </ul>
-                        </div>
+                           </ul> -->
+                         </div>
                         <form:form method="post" id="submitform" action="adminaddstudenthomeinfo" modelAttribute="adminaddstuinfo"  enctype="multipart/form-data">
                            <div class="panel-body">
                               <div class="tab-content">
@@ -93,7 +97,7 @@
                                     <div class="form-group">
                                        <label for="uploadimage">Upload Image<span class="text-danger">*</span></label>
                                        <label class="error" for="linkaddress" id="imagepath_error">This field is required.</label>
-                                       <input type="file" name="imagepath" id="imagepath" class="form-control"  accept="image/*" onchange="showMyImage(this)" >
+                                       <input type="file" name="imagepath" id="imagepath" class="btn btn-success fileupload-add form-control"  accept="image/*" onchange="showMyImage(this)" >
                                     </div>
                                  </div>
                                  <div class="col-sm-6">
@@ -115,6 +119,18 @@
                                        <strong>Hint:</strong>To Know Why Adding Link</span>
                                     </div>
                                  </div>
+                                 <div class="form-group">
+					    		    <label for="happy" class="col-sm-5 col-md-5 control-label text-right">Active / In-Active?</label>
+						    		<div class="col-sm-6 col-md-6">
+						    			<div class="input-group">
+						    				<div id="radioBtn" class="btn-group">
+						    					<a class="btn btn-primary btn-sm active" data-toggle="isactive" data-title="true">YES</a>
+						    					<a class="btn btn-primary btn-sm notActive" data-toggle="isactive" data-title="false">NO</a>
+						    				</div>
+						    				<form:hidden path="isactive" />
+						    			</div>
+						    		</div>
+						    	</div>
                                  <div class="col-sm-12">
                                     <div class="col-sm-6" align="left">
                                        <button type="reset" class="btn btn-danger">Clear</button>   
@@ -163,7 +179,12 @@
                                              <div class="col-sm-8"> <span class="commentsclass"></span> </div>
                                           </div>
                                           <div class="col-sm-12">
-                                             <div class="col-sm-3"> <label for="comments">Description</label> </div>
+                                             <div class="col-sm-3"> <label for="actorinacts">Active/In-Active</label> </div>
+                                             <div class="col-sm-1"> <label for="actorinacts">:</label> </div>
+                                             <div class="col-sm-8"> <span class="actorinactsclass"></span> </div>
+                                          </div>
+                                          <div class="col-sm-12">
+                                             <div class="col-sm-3"> <label for="comments">Preview</label> </div>
                                              <div class="col-sm-1"> <label for="comments">:</label> </div>
                                              <div class="col-sm-8"><img id="thumbnil" style="width:25%;" src="" alt="image"/> </div>
                                           </div>
@@ -198,6 +219,7 @@
              	 var linkurl = $("#linkaddress").val();
              	 var emailid = $("#emailid").val();
              	 var comments = $("#comments").val();
+             	 var actorinact =  $("#isactive").val();
          	      
          	      var imgpat = $("#imagepath");
                    var fplg = imgpat[0].files.length;  
@@ -245,6 +267,7 @@
              	  $(".siteurlclass").text(linkurl); 
              	  $(".emailidclass").text(emailid); 
              	  $(".commentsclass").text(comments); 
+             	  $(".actorinactsclass").text(actorinact); 
              });
            });
            
@@ -268,6 +291,12 @@
          	} 
          	}
          
+      </script>
+        <script type="text/javascript">
+      window.onload=function(){
+    	  var sel =  $("#radioBtn a").data('title');
+    	  $("#isactive").val(sel);
+      }
       </script>
    </body>
 </html>

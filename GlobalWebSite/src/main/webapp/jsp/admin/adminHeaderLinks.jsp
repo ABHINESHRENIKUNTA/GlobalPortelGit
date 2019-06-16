@@ -15,4 +15,13 @@
   
   <!-- Single search drop-down  -->
    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/theme/vendor/plugins/select2/css/core.css">
-  
+  <style>
+  #radioBtn .notActive{
+    color: #3276b1;
+    background-color: #fff;
+    
+    /* color: #fff;
+    background-color: red; */
+}
+  </style>
+ 

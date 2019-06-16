@@ -20,6 +20,18 @@ public class StudentDashboardModel {
 	@NotEmpty(message="page should not be empty")
     private String tablename;
     private int totvalintable;
+    private String loggedowner;
+    public boolean isIsactive() {
+		return isactive;
+	}
+
+	public void setIsactive(boolean isactive) {
+		this.isactive = isactive;
+	}
+
+	private boolean isactive;
+
+
 
 	public int getTotvalintable() {
 		return totvalintable;
@@ -97,7 +109,13 @@ public class StudentDashboardModel {
 		this.linkaddress = linkaddress;
 	}
 
+	public String getLoggedowner() {
+		return loggedowner;
+	}
 
+	public void setLoggedowner(String loggedowner) {
+		this.loggedowner = loggedowner;
+	}
 	
 
 }

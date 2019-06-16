@@ -50,22 +50,30 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 	@RequestMapping("/adminaddstudenthomeinfo")
 	public String adminInsertStudentInfoPage(Model model, StudentDashboardModel stdmodel,@RequestParam("imagepath") MultipartFile file) throws Exception{
 	
-		String imageFolder = "studenthomepageimages";
+		String imageFolder = stdmodel.getTablename();
 		model.addAttribute("adminupdatestuinfo", stdmodel);
-		String tablename = searchSelectedTableName(stdmodel.getTablename());
+		Map<String, String> tablevalues = tableReferenceData();
 		String errormsg = "";
 		String susmsg = "";
-		if(!stdmodel.getTablename().equals(tablename)){
-			errormsg = tablename;
-		}else{
-		//Get total count from selected table
-		int tablecnt=1;
-		    tablecnt = tablecnt+1;
+		int succsscnt = 0;
+		stdmodel.setLoggedowner("Prakash Varma");
+		//Get total count from selected table (SQL query)
+		int tablecnt=adminservices.selectCountForSubmissionData(stdmodel);
+		//Create TOMCAT Directory Object    
 		FileUploadToTomcatController fut = new FileUploadToTomcatController();
-		
+		System.out.println(stdmodel.getTablename());
+		//Save Image in TOMCAT directory
 		String imgpath = fut.saveImagesInTomcatDirectory(file, imageFolder, tablecnt);
 		stdmodel.setFilename(imgpath);
-		susmsg = "Student home page data successfully added.";
+		//Insert Data
+		succsscnt = adminservices.insertSubmissionData(stdmodel);
+		if(succsscnt==1){
+		susmsg = tablevalues.get(stdmodel.getTablename())+" data successfully added.";
+		logger.info(susmsg);
+		}else{
+		errormsg = tablevalues.get(stdmodel.getTablename())+" data not added. Please try with valid data or contact support team.";
+		logger.info(errormsg);
+		fut.removeImageFromDirectory(imageFolder, imgpath);
 		}
 		model.addAttribute("emsg", errormsg);
 		model.addAttribute("smsg", susmsg);
@@ -73,7 +81,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		
 	}
 	@RequestMapping("/load-adminupdatestuinfo")
-	public String adminStudentEditInfoPage(Model model, StudentDashboardModel stdmodel,@RequestParam("imagepath") MultipartFile file){
+	public String adminStudentEditInfoPage(Model model, StudentDashboardModel stdmodel){
 		
 		model.addAttribute("adminupdatestuinfo", stdmodel);
 		

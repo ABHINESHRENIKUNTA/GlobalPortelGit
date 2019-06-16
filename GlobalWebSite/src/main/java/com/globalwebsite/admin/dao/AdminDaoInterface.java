@@ -7,6 +7,7 @@ import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
+import com.gw.student.model.StudentDashboardModel;
 
 public interface AdminDaoInterface {
 
@@ -29,6 +30,12 @@ public interface AdminDaoInterface {
 	public int updateScrollLink(EditScrollLink editscrolllink);
 	
 	public int deleteScrollLink(DeleteScrollLink deleteScrollLink);
+
+	//Add Common Submission Data
+	int insertSubmissionData(StudentDashboardModel stdmodel);
+
+	//Select count from common Submission Data
+	int selectCountForSubmissionData(StudentDashboardModel stdmodel);
 
 
 

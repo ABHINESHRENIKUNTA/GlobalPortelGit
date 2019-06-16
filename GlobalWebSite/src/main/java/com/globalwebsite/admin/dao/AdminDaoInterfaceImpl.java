@@ -20,7 +20,7 @@ import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
 import com.globalwebsite.admin.queries.AdminSqlQueries;
-
+import com.gw.student.model.StudentDashboardModel;
 
 @Repository
 public class AdminDaoInterfaceImpl implements AdminDaoInterface {
@@ -95,4 +95,44 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			return jdbctemplate.update(sql, deleteScrollLink.getLinktobedeleted());
 			
 		}
+
+	/* (non-Javadoc)
+	 * @see com.globalwebsite.admin.dao.AdminDaoInterface#insertSubmissionData(com.gw.student.model.StudentDashboardModel)
+	 * Common Submission Data
+	 */
+	@Override
+	public int insertSubmissionData(StudentDashboardModel stdmodel) {
+		int isinserted=0;
+		try {
+			String sql=AdminSqlQueries.insertSubmissionData_Query(stdmodel);
+			isinserted= jdbctemplate.update(sql,new Object[]{stdmodel.getLinkname()
+					,stdmodel.getLinkaddress(),stdmodel.getLoggedowner(),stdmodel.getEmailid(),
+					stdmodel.getFilename(), stdmodel.getComments(),stdmodel.isIsactive(), getDateFromSimpleDateFormat(),getDateFromSimpleDateFormat()});
+			System.out.println("insertSubmissionData: "+sql);
+			logger.info("insertSubmissionData: "+sql);
+		} catch (Exception e) {
+			System.out.println("insertSubmissionData: "+e);
+			logger.info("insertSubmissionData: "+e);
+		}
+	return isinserted;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.globalwebsite.admin.dao.AdminDaoInterface#selectCountForSubmissionData(com.gw.student.model.StudentDashboardModel)
+	 */
+	@Override
+	public int selectCountForSubmissionData(StudentDashboardModel stdmodel){
+		String sql=AdminSqlQueries.selectCountForSubmissionData_Query(stdmodel);
+		int selectcnt = 0;
+      try {
+    	  selectcnt = jdbctemplate.queryForInt(sql);
+    	  logger.info("selectCountForSubmissionData: "+sql);
+		
+	} catch (Exception e) {
+		System.out.println("selectCountForSubmissionData: "+e);
+		logger.info("selectCountForSubmissionData: "+e);
+	}
+      return selectcnt;
+	}
+	
 }

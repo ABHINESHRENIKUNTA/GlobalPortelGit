@@ -24,4 +24,12 @@
     background-color: red; */
 }
   </style>
+  
+    <style type="text/css">
+      
+         .error{
+         color:red;
+         display: none;
+         }
+      </style>
  

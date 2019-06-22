@@ -1,5 +1,6 @@
 package com.globalwebsite.admin.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 import com.globalwebsite.common.controller.DatabaseTableNames;
-import com.gw.student.model.StudentDashboardModel;
+import com.gw.student.model.AdminSubmissionModel;
 
 @Controller
 public class AdminStudentHomeInfoController extends DatabaseTableNames {
@@ -26,7 +27,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 	private AdminServiceInterfaceImpl adminservices;
 
 	@RequestMapping("/load-adminaddstuinfo")
-	public ModelAndView adminStudentAddInfoPage(StudentDashboardModel stdmodel, Model model, HttpServletRequest req) throws Exception{
+	public ModelAndView adminStudentAddInfoPage(AdminSubmissionModel stdmodel, Model model, HttpServletRequest req) throws Exception{
 		Map<String, String> tablevalues = tableReferenceData();
 		logger.info("Admin Student Add Info Page: "+hashCode());
 		model.addAttribute("tablelist", tablevalues);
@@ -48,7 +49,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 
 
 	@RequestMapping("/adminaddstudenthomeinfo")
-	public String adminInsertStudentInfoPage(Model model, StudentDashboardModel stdmodel,@RequestParam("imagepath") MultipartFile file) throws Exception{
+	public String adminInsertStudentInfoPage(Model model, AdminSubmissionModel stdmodel,@RequestParam("imagepath") MultipartFile file) throws Exception{
 	
 		String imageFolder = stdmodel.getTablename();
 		model.addAttribute("adminupdatestuinfo", stdmodel);
@@ -81,19 +82,33 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		
 	}
 	@RequestMapping("/load-adminupdatestuinfo")
-	public String adminStudentEditInfoPage(Model model, StudentDashboardModel stdmodel){
+	public String adminStudentEditInfoPage(Model model, AdminSubmissionModel stdmodel){
 		
 		model.addAttribute("adminupdatestuinfo", stdmodel);
 		
 		return "studentadmin/adminUpdateStudentHomeInfo";
 		
 	}
-	@RequestMapping("/load-admindeletestuinfo")
-	public String adminStudentdeleteInfoPage(Model model, StudentDashboardModel stdmodel){
+	@RequestMapping("/load-selecttoviewdata")
+	public String adminSelectPageToViewDat(Model model, AdminSubmissionModel stdmodel){
 		
-		model.addAttribute("admindeletestuinfo", stdmodel);
+		model.addAttribute("adminselpage", stdmodel);
+		Map<String, String> tablevalues = tableReferenceData();
+		model.addAttribute("tablelist", tablevalues);
+		logger.info("Available tables in drop-down: "+tablevalues);
 		
-		return "studentadmin/adminDeleteStudentHomeInfoss";
+		return "studentadmin/adminSelectPageToView";
+		
+	}
+	@RequestMapping("/load-adminviewcommoninfo")
+	public String adminStudentdeleteInfoPage(Model model, AdminSubmissionModel stdmodel){
+		
+		model.addAttribute("adminviewstuinfo", stdmodel);
+		Map<String, String> tablevalues = tableReferenceData();
+		model.addAttribute("selectedpage", tablevalues.get(stdmodel.getTablename()));
+		List<AdminSubmissionModel> listdata = adminservices.getAllViewSubmissionData(stdmodel.getTablename());
+		model.addAttribute("listdata", listdata);
+		return "studentadmin/adminViewStudentHomeInfo";
 		
 	}
 }

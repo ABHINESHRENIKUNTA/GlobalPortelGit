@@ -2,11 +2,13 @@ package com.gw.student.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class StudentDashboardModel {
+public class AdminSubmissionModel {
 	
 	@NotEmpty(message="Author should not be empty")
 	private String addedby;
 	private String addeddate;
+	private int rowid;
+	private String modifieddate;
 	@NotEmpty(message="Comments should not be empty")
 	private String comments;
 	@NotEmpty(message="Email should not be empty")
@@ -21,6 +23,10 @@ public class StudentDashboardModel {
     private String tablename;
     private int totvalintable;
     private String loggedowner;
+    private boolean isactive;
+    
+    
+    
     public boolean isIsactive() {
 		return isactive;
 	}
@@ -29,7 +35,6 @@ public class StudentDashboardModel {
 		this.isactive = isactive;
 	}
 
-	private boolean isactive;
 
 
 
@@ -56,11 +61,6 @@ public class StudentDashboardModel {
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
-
-	public StudentDashboardModel() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public String getAddedby() {
 		return addedby;
 	}
@@ -115,6 +115,22 @@ public class StudentDashboardModel {
 
 	public void setLoggedowner(String loggedowner) {
 		this.loggedowner = loggedowner;
+	}
+
+	public int getRowid() {
+		return rowid;
+	}
+
+	public void setRowid(int rowid) {
+		this.rowid = rowid;
+	}
+
+	public String getModifieddate() {
+		return modifieddate;
+	}
+
+	public void setModifieddate(String modifieddate) {
+		this.modifieddate = modifieddate;
 	}
 	
 

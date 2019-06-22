@@ -11,7 +11,7 @@ import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
-import com.gw.student.model.StudentDashboardModel;
+import com.gw.student.model.AdminSubmissionModel;
 
 
 @Service("adminservices")
@@ -68,14 +68,18 @@ public int updateScrollLink(EditScrollLink editscrolllink) {
 
 //Insert Common Submission Data
 @Override
-public int insertSubmissionData(StudentDashboardModel stdmodel) {
+public int insertSubmissionData(AdminSubmissionModel stdmodel) {
 	return admindaoimpl.insertSubmissionData(stdmodel);
 }
 
 @Override
-public int selectCountForSubmissionData(StudentDashboardModel stdmodel) {
+public int selectCountForSubmissionData(AdminSubmissionModel stdmodel) {
 	return admindaoimpl.selectCountForSubmissionData(stdmodel);
 }
 
-	
+/*View Common submission Data */
+@Override
+public List<AdminSubmissionModel> getAllViewSubmissionData(String tablename){
+	return admindaoimpl.getAllViewSubmissionData(tablename);
+}
 }

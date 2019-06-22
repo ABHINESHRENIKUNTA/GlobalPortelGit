@@ -1,6 +1,6 @@
 package com.globalwebsite.admin.queries;
 
-import com.gw.student.model.StudentDashboardModel;
+import com.gw.student.model.AdminSubmissionModel;
 
 public class AdminSqlQueries {
 
@@ -17,13 +17,16 @@ public class AdminSqlQueries {
 	/*public static final String INSERTSUBMISSIONDATA_SQL = "insert into ?"
 			+ "(link_name,link_address,link_owner,link_emailId,file_name,link_comments,created_date,modified_date) "
 			+ "values(?,?,?,?,?,?,?,?)";*/
-	public static String insertSubmissionData_Query(StudentDashboardModel stdmodel) {
+	public static String insertSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return  "insert into "+stdmodel.getTablename()+""
 				+ "(link_name,link_address,link_owner,link_emailId,file_name,link_comments,is_active,created_date,modified_date) "
 				+ "values(?,?,?,?,?,?,?,?,?)";
 	}
-	public static String selectCountForSubmissionData_Query(StudentDashboardModel stdmodel) {
+	public static String selectCountForSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return "SELECT if((count(*) is null or count(*)=0),1,count(*)+1) as rowcount FROM "+stdmodel.getTablename()+"";
+	}
+	public static String getAllViewSubmissionData_Query(String tablename) {
+		return "select * from "+tablename+"";
 	}
 
 }

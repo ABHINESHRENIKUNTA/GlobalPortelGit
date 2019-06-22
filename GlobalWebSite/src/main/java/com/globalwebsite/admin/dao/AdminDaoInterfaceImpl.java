@@ -2,7 +2,6 @@ package com.globalwebsite.admin.dao;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.globalwebsite.admin.mapper.AdminDeleteUserImageMapper;
 import com.globalwebsite.admin.mapper.AdminLoginMapper;
+import com.globalwebsite.admin.mapper.AdminViewSubmissionMapper;
 import com.globalwebsite.admin.mapper.ScrollLinksTableMapper;
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
@@ -20,7 +20,7 @@ import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
 import com.globalwebsite.admin.queries.AdminSqlQueries;
-import com.gw.student.model.StudentDashboardModel;
+import com.gw.student.model.AdminSubmissionModel;
 
 @Repository
 public class AdminDaoInterfaceImpl implements AdminDaoInterface {
@@ -101,7 +101,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	 * Common Submission Data
 	 */
 	@Override
-	public int insertSubmissionData(StudentDashboardModel stdmodel) {
+	public int insertSubmissionData(AdminSubmissionModel stdmodel) {
 		int isinserted=0;
 		try {
 			String sql=AdminSqlQueries.insertSubmissionData_Query(stdmodel);
@@ -121,7 +121,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	 * @see com.globalwebsite.admin.dao.AdminDaoInterface#selectCountForSubmissionData(com.gw.student.model.StudentDashboardModel)
 	 */
 	@Override
-	public int selectCountForSubmissionData(StudentDashboardModel stdmodel){
+	public int selectCountForSubmissionData(AdminSubmissionModel stdmodel){
 		String sql=AdminSqlQueries.selectCountForSubmissionData_Query(stdmodel);
 		int selectcnt = 0;
       try {
@@ -133,6 +133,24 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		logger.info("selectCountForSubmissionData: "+e);
 	}
       return selectcnt;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.globalwebsite.admin.dao.AdminDaoInterface#selectViewSubmissionData(com.gw.student.model.AdminSubmissionModel)
+	 */
+	@Override
+	public List<AdminSubmissionModel> getAllViewSubmissionData(String tablename){
+		String sql=AdminSqlQueries.getAllViewSubmissionData_Query(tablename);
+		List<AdminSubmissionModel> selectdata = null;
+		try {
+			selectdata = jdbctemplate.query(sql, new AdminViewSubmissionMapper());
+			logger.info("getAllViewSubmissionData: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("getAllViewSubmissionData: "+e);
+			logger.info("selectViewSubmissionData: "+e);
+		}
+		return selectdata;
 	}
 	
 }

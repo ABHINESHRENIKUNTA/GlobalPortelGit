@@ -2,6 +2,7 @@
    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
    <head>
@@ -12,6 +13,7 @@
       <meta name="author" content="GlobalWebsite">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <%@include file="/jsp/admin/adminHeaderLinks.jsp" %>
+      <%@include file="/jsp/admin/adminDataTableCssLink.jsp" %>
    </head>
    <body class="dashboard-page">
       <%@include file="/jsp/admin/adminThemeChange.jsp" %>
@@ -19,27 +21,17 @@
       <%@include file="/jsp/admin/adminLeftMenu.jsp" %>
       <!-- Start: Content-Wrapper -->
       <section id="content_wrapper">
-         <form:form method="post" action="admindeletestudenthomeinfo" modelAttribute="admindeletestuinfo"  enctype="multipart/form-data">
             <div class="col-md-12">
-               <div class="page-header">
-                  <h4>Update Student Home Info</h4>
-               </div>
+            
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
                         <div class="panel with-nav-tabs">
                            <div class="panel-heading">
-                              <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
-                                 <li>
-                                    <a href="load-adminaddstuinfo">Add</a>
-                                 </li>
-                                 <li>
-                                    <a href="load-adminupdatestuinfo">Edit</a>
-                                 </li>
-                                 <li class="active">
-                                    <a href="#">Delete</a>
-                                 </li>
-                              </ul>
+                             <h4>View ${selectedpage} 
+                              <span class="pull-right">
+			               <button type="button" class="btn btn-danger" onclick="location.href='load-selecttoviewdata'">Back to Select Page</button></span>
+			               </h4>
                            </div>
                            <div class="panel-body">
                               <div class="tab-content">
@@ -57,6 +49,48 @@
                                        <strong>Oh snap!</strong> ${emsg}
                                     </div>
                                  </c:if>
+                               
+                               <div class="table-responsive">  
+                                 <table id="example" class="table table-striped table-hover dt-responsive" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Link Name</th>
+						<th>Created By</th>
+						<th>Created Date</th>
+						<th>Status</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+
+				<tbody>
+				<c:forEach items="${listdata}" var="listdata" varStatus="loop">
+					<tr>
+						<td>${loop.index+1}</td>
+						<td>${listdata.linkname}</td>
+						<td>${listdata.addedby}</td>
+						<td>
+						<fmt:parseDate value="${listdata.addeddate}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>
+						<fmt:formatDate type = "date" value = "${myDate}"  pattern="dd-MMM-yyyy"/></td>
+						<td>
+						<c:choose>
+						<c:when test="${listdata.isactive==true}"> Enabled </c:when>
+						<c:otherwise> Disabled </c:otherwise>
+						</c:choose>
+						
+						</td>
+						<td>
+						<a href="#"><i class="fa fa-eye" aria-hidden="true" style="padding-left: 10px;"></i></a> 
+						<a href="#"><i class="fa fa-edit" aria-hidden="true" style="padding-left: 10px;"></i></a></td>
+					</tr>
+				
+				</c:forEach>
+				
+
+				</tbody>
+			</table>
+             </div>                    
+                                 
                               </div>
                            </div>
                         </div>
@@ -64,8 +98,9 @@
                   </div>
                </div>
             </div>
-         </form:form>
       </section>
       <%@include file="/jsp/admin/adminBodyScriptLinks.jsp" %>
+      <%@include file="/jsp/admin/adminDataTableJsLink.jsp" %>
+     
    </body>
 </html>

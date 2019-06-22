@@ -7,7 +7,7 @@ import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
-import com.gw.student.model.StudentDashboardModel;
+import com.gw.student.model.AdminSubmissionModel;
 
 public interface AdminSerivceInterface {
 
@@ -32,9 +32,12 @@ public interface AdminSerivceInterface {
 	int deleteScrollLink(DeleteScrollLink deleteScrollLink);
 	
 	//Add Common Submission Data
-	int insertSubmissionData(StudentDashboardModel stdmodel);
+	int insertSubmissionData(AdminSubmissionModel stdmodel);
 
 	//Select count from common Submission Data
-	int selectCountForSubmissionData(StudentDashboardModel stdmodel);
+	int selectCountForSubmissionData(AdminSubmissionModel stdmodel);
+
+	/*View Common submission Data */
+	List<AdminSubmissionModel> getAllViewSubmissionData(String tablename);
 
 }

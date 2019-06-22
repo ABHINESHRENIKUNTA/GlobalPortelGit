@@ -33,9 +33,9 @@ public class DatabaseTableNames {
 	 */
 	protected Map<String, String> tableReferenceData() {
 		Map<String,String> tablelist = new LinkedHashMap<String,String>();
-		tablelist.put("global_userdashb_image", "Admin DashBoard Page");
-		tablelist.put("global_student_home_page", "Student Home Page");
-		tablelist.put("global_userdashb_images", "User Home Page");
+		tablelist.put("global_admin_home_page", "Admin DashBoard Page");
+		tablelist.put("global_popular_jobsites_page", "Popular Job Sites");
+		tablelist.put("global_userdashb_page", "User Home Page");
 		return tablelist;
 	}
 

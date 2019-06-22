@@ -120,6 +120,13 @@
                 </a>
                  
                </li>
+              <li>
+              <a href="load-selecttoviewdata" >
+                  <span class="fa fa-university"></span>
+                  Select Page To View/Edit
+                </a>
+                 
+               </li>
             
          
              </ul>

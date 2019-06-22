@@ -12,13 +12,7 @@
       <meta name="author" content="GlobalWebsite">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <%@include file="/jsp/admin/adminHeaderLinks.jsp" %>
-      <style type="text/css">
-      
-         .error{
-         color:red;
-         display: none;
-         }
-      </style>
+    
       
    </head>
    <body class="dashboard-page">
@@ -36,7 +30,7 @@
                   <div class="col-md-12">
                      <div class="panel with-nav-tabs">
                         <div class="panel-heading">
-			               <h4>Student Home Info   <span class="pull-right">
+			               <h4>Add Info   <span class="pull-right">
 			               <button type="button" class="btn btn-primary">VIEW / EDIT</button></span>
 			               
 			               </h4>
@@ -120,7 +114,7 @@
                                     </div>
                                  </div>
                                  <div class="form-group">
-					    		    <label for="happy" class="col-sm-5 col-md-5 control-label text-right">Active / In-Active?</label>
+					    		    <label for="happy" class="col-sm-5 col-md-5 control-label text-right">Enable / Disable?</label>
 						    		<div class="col-sm-6 col-md-6">
 						    			<div class="input-group">
 						    				<div id="radioBtn" class="btn-group">

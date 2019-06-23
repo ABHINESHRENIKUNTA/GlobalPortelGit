@@ -14,6 +14,21 @@ public class AdminSqlQueries {
 	public static final String GetAllScrollLinks = "select * from global_userdashb_scrolllinks";
 	public static final String UpdateScrollLink = "update global_userdashb_scrolllinks set link_address=? where link_name=?";
 	public static final String deleteScrollLink = "delete from global_userdashb_scrolllinks where link_name=?";
+	public static final String GETALLROLES_QUERY = "select * from roles";
+	public static final String GETALLPERMISSIONS_QUERY = "select * from permissions";
+	public static final String GETALLPERMISSIONSBASEDONROLEID_QUERY = "select rp.*,pr.permission_name, pr.description, rl.role_name from permissions pr, roles  rl, role_permission rp"
+			+ " where  pr.permission_id=rp.permission_id"
+			+ " and rl.role_id=rp.role_id"
+			+ " and rl.role_id=?";
+	public static final String GETNOTMAPPERMISSIONSBASEDONROLEID_QUERY = "select * from permissions pr where permission_id not in ("
+			+ "select permission_id from role_permission where role_id=?)";
+	public static final String GETROLENAMEFROMID_QUERY = "select role_name from roles where role_id=?";
+	public static final String CHECKROLEPERMISSIONISAVAILABLE_QUERY = "select if((count(*) is null or count(*)=0),0,count(*)) as rowcount "
+			+ "FROM role_permission where role_id=? and permission_id=?" ;
+	public static final String DELETEROLEPERMISSIONS_QUERY = "delete from role_permission where role_id=? and permission_id not in(?)";
+	public static final String INSERTROLEPERMISSIONS_QUERY = "insert into role_permission (role_id,permission_id) values (?,?)";
+	
+	
 	/*public static final String INSERTSUBMISSIONDATA_SQL = "insert into ?"
 			+ "(link_name,link_address,link_owner,link_emailId,file_name,link_comments,created_date,modified_date) "
 			+ "values(?,?,?,?,?,?,?,?)";*/
@@ -27,6 +42,9 @@ public class AdminSqlQueries {
 	}
 	public static String getAllViewSubmissionData_Query(String tablename) {
 		return "select * from "+tablename+"";
+	}
+	public static String DELETEROLEPERMISSIONS_QUERY(int roleid, String permisid) {
+		return "delete from role_permission where role_id="+roleid+" and permission_id not in("+permisid+")";
 	}
 
 }

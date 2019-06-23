@@ -12,11 +12,15 @@ import org.springframework.stereotype.Repository;
 
 import com.globalwebsite.admin.mapper.AdminDeleteUserImageMapper;
 import com.globalwebsite.admin.mapper.AdminLoginMapper;
+import com.globalwebsite.admin.mapper.AdminPermissionMapper;
+import com.globalwebsite.admin.mapper.AdminRoleMapper;
+import com.globalwebsite.admin.mapper.AdminRolePermissionMapper;
 import com.globalwebsite.admin.mapper.AdminViewSubmissionMapper;
 import com.globalwebsite.admin.mapper.ScrollLinksTableMapper;
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
+import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
 import com.globalwebsite.admin.queries.AdminSqlQueries;
@@ -141,16 +145,138 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	@Override
 	public List<AdminSubmissionModel> getAllViewSubmissionData(String tablename){
 		String sql=AdminSqlQueries.getAllViewSubmissionData_Query(tablename);
-		List<AdminSubmissionModel> selectdata = null;
+		List<AdminSubmissionModel> listdata = null;
 		try {
-			selectdata = jdbctemplate.query(sql, new AdminViewSubmissionMapper());
+			listdata = jdbctemplate.query(sql, new AdminViewSubmissionMapper());
 			logger.info("getAllViewSubmissionData: "+sql);
 			
 		} catch (Exception e) {
 			System.out.println("getAllViewSubmissionData: "+e);
 			logger.info("selectViewSubmissionData: "+e);
 		}
-		return selectdata;
+		return listdata;
 	}
+
+	@Override
+	public List<AdminRolePermissionModel> getAllRoles() {
+		String sql=AdminSqlQueries.GETALLROLES_QUERY;
+		List<AdminRolePermissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new AdminRoleMapper());
+			logger.info("getAllRoles: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("getAllRoles: "+e);
+			logger.info("getAllRoles: "+e);
+		}
+		return listdata;
+	}
+
+	@Override
+	public List<AdminRolePermissionModel> getAllPermissions() {
+		String sql=AdminSqlQueries.GETALLPERMISSIONS_QUERY;
+		List<AdminRolePermissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new AdminPermissionMapper());
+			logger.info("getAllPermissions: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("getAllPermissions: "+e);
+			logger.info("getAllPermissions: "+e);
+		}
+		return listdata;
+	}
+	@Override
+	public List<AdminRolePermissionModel> getNotAssignedRolePermissions(int roleid) {
+		String sql=AdminSqlQueries.GETNOTMAPPERMISSIONSBASEDONROLEID_QUERY;
+		List<AdminRolePermissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql,new Object[]{roleid}, new AdminPermissionMapper());
+			logger.info("getNotAssignedRolePermissions: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("getNotAssignedRolePermissions: "+e);
+			logger.info("getNotAssignedRolePermissions: "+e);
+		}
+		return listdata;
+	}
+
+	@Override
+	public List<AdminRolePermissionModel> getAllPermissionsBasedonRoleId(int loggedroleid) {
+		String sql=AdminSqlQueries.GETALLPERMISSIONSBASEDONROLEID_QUERY;
+		List<AdminRolePermissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{loggedroleid}, new AdminRolePermissionMapper());
+			logger.info("getAllPermissionsBasedonRoleId: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("getAllPermissionsBasedonRoleId: "+e);
+			logger.info("getAllPermissionsBasedonRoleId: "+e);
+		}
+		return listdata;
+	}
+
+	@Override
+	public String getRoleNameFromId(int roleid) {
+		String sql=AdminSqlQueries.GETROLENAMEFROMID_QUERY;
+		String rolename = null;
+		try {
+			rolename = jdbctemplate.queryForObject(sql, new Object[]{roleid}, String.class);
+			logger.info("getRoleNameFromId: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("getRoleNameFromId: "+e);
+			logger.info("getRoleNameFromId: "+e);
+		}
+		return rolename;
+	}
+
+	@Override
+	public int checkRolePermissionisAvailable(int roleid, String plistid) {
+		String sql=AdminSqlQueries.CHECKROLEPERMISSIONISAVAILABLE_QUERY;
+		int updatecnt=0;
+		try {
+			updatecnt = jdbctemplate.queryForInt(sql, new Object[]{roleid,plistid});
+			logger.info("checkRolePermissionisAvailable: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("checkRolePermissionisAvailable: "+e);
+			logger.info("checkRolePermissionisAvailable: "+e);
+		}
+		return updatecnt;
+	}
+
+	@Override
+	public int deleteRolePermissions(int roleid, String permids) {
+		String sql=AdminSqlQueries.DELETEROLEPERMISSIONS_QUERY(roleid, permids);
+		int updatecnt=0;
+		try {
+			updatecnt = jdbctemplate.update(sql);
+			logger.info("deleteRolePermissions: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("deleteRolePermissions: "+e);
+			logger.info("deleteRolePermissions: "+e);
+		}
+		return updatecnt;
+	}
+
+	@Override
+	public int insertRolePermissions(int roleid, String plistid) {
+		String sql=AdminSqlQueries.INSERTROLEPERMISSIONS_QUERY;
+		int updatecnt=0;
+		try {
+			updatecnt = jdbctemplate.update(sql, new Object[]{roleid,plistid});
+			logger.info("insertRolePermissions: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("insertRolePermissions: "+e);
+			logger.info("insertRolePermissions: "+e);
+		}
+		return updatecnt;
+	}
+
+	
+	
 	
 }

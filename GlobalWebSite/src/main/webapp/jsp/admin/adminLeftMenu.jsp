@@ -104,7 +104,23 @@
          
              </ul>
           </li>       
-          
+            <li>
+            <a class="accordion-toggle" href="#">
+              <span class="fa fa-child"></span>
+              <span class="sidebar-title">Map Permissions</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+           
+              <li>
+              <a href="view-rolepermissions" >
+                  <span class="fa fa-university"></span>
+                  Assign Permissions
+                </a>
+                 
+               </li>
+               </ul>
+            </li>
           <li>
             <a class="accordion-toggle" href="#">
               <span class="fa fa-child"></span>

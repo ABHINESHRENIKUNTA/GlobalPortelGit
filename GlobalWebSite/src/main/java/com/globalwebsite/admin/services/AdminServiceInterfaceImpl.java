@@ -9,6 +9,7 @@ import com.globalwebsite.admin.dao.AdminDaoInterfaceImpl;
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
+import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
 import com.gw.student.model.AdminSubmissionModel;
@@ -82,4 +83,38 @@ public int selectCountForSubmissionData(AdminSubmissionModel stdmodel) {
 public List<AdminSubmissionModel> getAllViewSubmissionData(String tablename){
 	return admindaoimpl.getAllViewSubmissionData(tablename);
 }
+@Override
+public List<AdminRolePermissionModel> getAllRoles() {
+	return admindaoimpl.getAllRoles();
+}
+@Override
+public List<AdminRolePermissionModel> getAllPermissions() {
+	return admindaoimpl.getAllPermissions();
+}
+@Override
+public List<AdminRolePermissionModel> getAllPermissionsBasedonRoleId(int loggedroleid) {
+	return admindaoimpl.getAllPermissionsBasedonRoleId(loggedroleid);
+}
+
+@Override
+public List<AdminRolePermissionModel> getNotAssignedRolePermissions(int roleid) {
+	return admindaoimpl.getNotAssignedRolePermissions(roleid);
+}
+@Override
+public String getRoleNameFromId(int roleid) {
+	return admindaoimpl.getRoleNameFromId(roleid);
+}
+@Override
+public int checkRolePermissionisAvailable(int roleid, String plistid) {
+	return admindaoimpl.checkRolePermissionisAvailable(roleid, plistid);
+}
+@Override
+public int deleteRolePermissions(int roleid, String permids) {
+	return admindaoimpl.deleteRolePermissions(roleid, permids);
+}
+@Override
+public int insertRolePermissions(int roleid, String plistid) {
+	return admindaoimpl.insertRolePermissions(roleid, plistid);
+}
+
 }

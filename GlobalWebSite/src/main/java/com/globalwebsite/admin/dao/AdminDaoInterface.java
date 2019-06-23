@@ -5,6 +5,7 @@ import java.util.List;
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
+import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
 import com.gw.student.model.AdminSubmissionModel;
@@ -39,6 +40,24 @@ public interface AdminDaoInterface {
 
 	//View common Submission Data
 	List<AdminSubmissionModel> getAllViewSubmissionData(String tablename);
+
+	List<AdminRolePermissionModel> getAllRoles();
+
+	List<AdminRolePermissionModel> getAllPermissions();
+
+	List<AdminRolePermissionModel> getNotAssignedRolePermissions(int roleid);
+
+	List<AdminRolePermissionModel> getAllPermissionsBasedonRoleId(int loggedroleid);
+
+	String getRoleNameFromId(int roleid);
+	
+	int checkRolePermissionisAvailable(int roleid, String plistid);
+
+	int deleteRolePermissions(int roleid, String permids);
+
+	int insertRolePermissions(int roleid, String plistid);
+
+
 
 
 

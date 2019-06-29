@@ -23,5 +23,10 @@ public class UserHomeController {
 		 
 		 return "user/welcomePage";
 	 }
+	 @RequestMapping("/load-jobcategories")
+	 public String loadJobCategoriesPage(Model model){
+		 
+		 return "user/userJobCategories";
+	 }
 
 }

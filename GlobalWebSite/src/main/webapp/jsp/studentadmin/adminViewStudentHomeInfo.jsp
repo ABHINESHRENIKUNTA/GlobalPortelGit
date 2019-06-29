@@ -7,7 +7,7 @@
 <html>
    <head>
       <meta charset="utf-8">
-      <title>Delete Student Home Info</title>
+      <title>View ${tableval} </title>
       <meta name="keywords" content="GlobalWebsite" />
       <meta name="description" content="GlobalWebsite">
       <meta name="author" content="GlobalWebsite">
@@ -28,9 +28,9 @@
                      <div class="col-md-12">
                         <div class="panel with-nav-tabs">
                            <div class="panel-heading">
-                             <h4>View ${selectedpage} 
+                             <h4>View ${tableval} 
                               <span class="pull-right">
-			               <button type="button" class="btn btn-danger" onclick="location.href='load-selecttoviewdata'">Back to Select Page</button></span>
+			               <button type="button" class="btn btn-success" onclick="location.href='load-adminaddstuinfo?selectedparam=${tablekey}'">Add Information</button></span>
 			               </h4>
                            </div>
                            <div class="panel-body">

@@ -32,4 +32,21 @@
          display: none;
          }
       </style>
- 
+    <script type="text/javascript">
+    
+    
+    var myAjaxFunction = function(tablevalue){
+	    $.ajax({
+	            url : "load-adminaddstuinfo",
+	            
+	            type: "POST",
+	            dataType: "json",
+	            data: jQuery.param({ tablevalues: tablevalue}) ,
+	            success : 
+	            
+	            function(data) { 
+	            	
+	            }
+	    });
+  }
+    </script>

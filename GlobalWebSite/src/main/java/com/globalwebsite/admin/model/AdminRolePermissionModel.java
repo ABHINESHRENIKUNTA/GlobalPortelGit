@@ -8,6 +8,8 @@ public class AdminRolePermissionModel {
 	private int permid;
 	private String permname;
 	private String permdesc;
+	private String permurl;
+	private String permilist;
 	
 	
 	public int getLoginid() {
@@ -45,6 +47,18 @@ public class AdminRolePermissionModel {
 	}
 	public void setPermdesc(String permdesc) {
 		this.permdesc = permdesc;
+	}
+	public String getPermurl() {
+		return permurl;
+	}
+	public void setPermurl(String permurl) {
+		this.permurl = permurl;
+	}
+	public String getPermilist() {
+		return permilist;
+	}
+	public void setPermilist(String permilist) {
+		this.permilist = permilist;
 	}
 	
 	

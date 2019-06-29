@@ -1,6 +1,7 @@
 package com.globalwebsite.admin.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -116,5 +117,9 @@ public int deleteRolePermissions(int roleid, String permids) {
 public int insertRolePermissions(int roleid, String plistid) {
 	return admindaoimpl.insertRolePermissions(roleid, plistid);
 }
+public List<Map<String, Object>> getPermissionIsAvailable(int roleid, String permissionurl) {
+	return admindaoimpl.getPermissionIsAvailable(roleid, permissionurl);
+}
+
 
 }

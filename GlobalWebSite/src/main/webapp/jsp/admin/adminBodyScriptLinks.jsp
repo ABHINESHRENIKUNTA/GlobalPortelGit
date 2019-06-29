@@ -66,7 +66,6 @@
 
     // Init Theme Core    
     Core.init();
-
     // Init Demo JS  
     Demo.init();
 

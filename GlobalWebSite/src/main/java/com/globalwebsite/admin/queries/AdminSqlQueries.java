@@ -16,7 +16,7 @@ public class AdminSqlQueries {
 	public static final String deleteScrollLink = "delete from global_userdashb_scrolllinks where link_name=?";
 	public static final String GETALLROLES_QUERY = "select * from roles";
 	public static final String GETALLPERMISSIONS_QUERY = "select * from permissions";
-	public static final String GETALLPERMISSIONSBASEDONROLEID_QUERY = "select rp.*,pr.permission_name, pr.description, rl.role_name from permissions pr, roles  rl, role_permission rp"
+	public static final String GETALLPERMISSIONSBASEDONROLEID_QUERY = "select rp.*,pr.permission_name, pr.description,pr.permission_url, rl.role_name from permissions pr, roles  rl, role_permission rp"
 			+ " where  pr.permission_id=rp.permission_id"
 			+ " and rl.role_id=rp.role_id"
 			+ " and rl.role_id=?";
@@ -44,7 +44,13 @@ public class AdminSqlQueries {
 		return "select * from "+tablename+"";
 	}
 	public static String DELETEROLEPERMISSIONS_QUERY(int roleid, String permisid) {
-		return "delete from role_permission where role_id="+roleid+" and permission_id not in("+permisid+")";
+	String sql=null;
+		if(permisid!=null){
+			sql= "delete from role_permission where role_id="+roleid+" and permission_id not in("+permisid+")";
+		}else{
+			sql= "delete from role_permission where role_id="+roleid+"";
+		}
+		return sql; 
 	}
 
 }

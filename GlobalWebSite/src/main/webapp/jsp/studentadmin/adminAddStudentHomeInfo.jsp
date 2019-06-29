@@ -12,8 +12,6 @@
       <meta name="author" content="GlobalWebsite">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <%@include file="/jsp/admin/adminHeaderLinks.jsp" %>
-    
-      
    </head>
    <body class="dashboard-page">
       <%@include file="/jsp/admin/adminThemeChange.jsp" %>
@@ -30,8 +28,8 @@
                   <div class="col-md-12">
                      <div class="panel with-nav-tabs">
                         <div class="panel-heading">
-			               <h4>Add Info   <span class="pull-right">
-			               <button type="button" class="btn btn-primary">VIEW / EDIT</button></span>
+			               <h4>${tableval}   <span class="pull-right">
+			               <button type="button" class="btn btn-primary" onclick="location.href='load-adminviewcommoninfo?selectedparam=${tablekey}'">VIEW / EDIT</button></span>
 			               
 			               </h4>
                            <!-- <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
@@ -63,7 +61,7 @@
                                        <strong>Sorry!</strong> ${emsg}
                                     </div>
                                  </c:if>
-                                 <div class="col-sm-12">
+                                 <%-- <div class="col-sm-12">
                                     <div class="form-group">
                                        <label for="tablename">Select Page to Add<span class="text-danger">*</span></label>
                                        <label class="error" for="tablename" id="tablename_error">This field is required.</label>
@@ -72,7 +70,16 @@
                                           <form:options items="${tablelist}" />
                                        </form:select>
                                     </div>
+                                 </div> --%>
+                                 <div class="col-sm-12">
+                                    <div class="form-group">
+                                       <label for="tablename">Select State<span class="text-danger">*</span></label>
+                                       <label class="error" for="states" id="states_error">This field is required.</label>
+                                       <select id="listBox" class="select2-single form-control"><option value="SELECT STATE">SELECT STATE</option><option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option><option value="Daman and Diu">Daman and Diu</option><option value="Delhi">Delhi</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jammu and Kashmir">Jammu and Kashmir</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Orissa">Orissa</option><option value="Puducherry">Puducherry</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="Uttarakhand">Uttarakhand</option><option value="West Bengal">West Bengal</option></select>
+                                    </div>
                                  </div>
+                                 <form:hidden path="tablename" value="${tablekey}"/>
+                                 <form:hidden path="tablekey" value="${tableval}"/>
                                  <div class="col-sm-6">
                                     <div class="form-group">
                                        <label for="linkname">Link Name<span class="text-danger">*</span></label>
@@ -173,7 +180,7 @@
                                              <div class="col-sm-8"> <span class="commentsclass"></span> </div>
                                           </div>
                                           <div class="col-sm-12">
-                                             <div class="col-sm-3"> <label for="actorinacts">Active/In-Active</label> </div>
+                                             <div class="col-sm-3"> <label for="actorinacts">Active</label> </div>
                                              <div class="col-sm-1"> <label for="actorinacts">:</label> </div>
                                              <div class="col-sm-8"> <span class="actorinactsclass"></span> </div>
                                           </div>
@@ -208,7 +215,8 @@
                  $('.error').hide();
          	      // validate and process form here
          	      
-         	     var selpage = $("#tablename").val();
+         	     var selpageval = $("#tablekey").val();
+         	     //var selpage = $("#tablename").val();
          	     var lnkname = $("#linkname").val();
              	 var linkurl = $("#linkaddress").val();
              	 var emailid = $("#emailid").val();
@@ -218,11 +226,11 @@
          	      var imgpat = $("#imagepath");
                    var fplg = imgpat[0].files.length;  
                    
-         	  		if (selpage == "0") {
+         	  		/* if (selpage == "0") {
          	        $("label#tablename_error").show();
          	        $("input#tablename").focus();
          	        return false;
-         	      }
+         	      } */
          	  		if (lnkname == "" || lnkname.trim() == "") {
          	        $("label#linkname_error").show();
          	        $("input#linkname").focus();
@@ -256,7 +264,8 @@
              	
              	$("#myModal").modal('show');
              	
-             	  $(".tablenameclass").text($('#tablename option:selected').html()); 
+             	//  $(".tablenameclass").text($('#tablename option:selected').html()); 
+             	  $(".tablenameclass").text(selpageval); 
              	  $(".lnameclass").text(lnkname); 
              	  $(".siteurlclass").text(linkurl); 
              	  $(".emailidclass").text(emailid); 
@@ -291,6 +300,8 @@
     	  var sel =  $("#radioBtn a").data('title');
     	  $("#isactive").val(sel);
       }
+      
+    
       </script>
    </body>
 </html>

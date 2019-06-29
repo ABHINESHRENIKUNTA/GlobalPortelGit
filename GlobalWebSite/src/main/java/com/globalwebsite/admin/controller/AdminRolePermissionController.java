@@ -2,6 +2,7 @@ package com.globalwebsite.admin.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,17 +53,13 @@ public class AdminRolePermissionController {
 		int updatecnt = 0;
 		String emsg = null;
 		String smsg = null;
-
-		StringJoiner strjoiner = new StringJoiner(",");
-		for (String plistid1 : permilist) {
-			strjoiner.add(plistid1);
-		}
-		System.out.println("dellist:::::::::::::::: " + strjoiner.toString());
-		int deletecnt = adminservices.deleteRolePermissions(arp.getRoleid(), strjoiner.toString());
+      
+		int deletecnt = adminservices.deleteRolePermissions(arp.getRoleid(), arp.getPermilist());
 		if (deletecnt > 0) {
 			updatecnt++;
 		}
 
+		if(arp.getPermilist()!=null){
 		for (String plistid : permilist) {
 			System.out.println("*************: " + plistid);
 			int availabilitycnt = adminservices.checkRolePermissionisAvailable(arp.getRoleid(), plistid);
@@ -72,6 +69,7 @@ public class AdminRolePermissionController {
 					updatecnt++;
 				}
 			}
+		}
 		}
 
 		if (updatecnt == 0) {
@@ -85,6 +83,20 @@ public class AdminRolePermissionController {
 
 		return new ModelAndView("redirect:/edit-rolepermissions", "editpermlist", model);
 
+	}
+	
+	
+	public String adminManagePermissions(int roleid,String permissionurl){
+		/*String permissionurl = req.getServletPath();
+		int roleid=2;
+		permissionurl=permissionurl.replaceFirst("/", "");
+		String permisaccess = adminManagePermissions(roleid, permissionurl);
+		System.out.println("***********************: "+permisaccess);*/
+		String permisaccess="";
+		List<Map<String, Object>> getpermlst = adminservices.getPermissionIsAvailable(roleid,permissionurl);
+		permisaccess = getpermlst.size()==0 ?permisaccess = "accessdenied" : "grantpermission";
+		
+		return permisaccess;
 	}
 
 }

@@ -6,7 +6,7 @@
 <html>
    <head>
       <meta charset="utf-8">
-      <title>Delete Student Home Info</title>
+      <title>Update Permissions</title>
       <meta name="keywords" content="GlobalWebsite" />
       <meta name="description" content="GlobalWebsite">
       <meta name="author" content="GlobalWebsite">
@@ -86,7 +86,7 @@
                                <div class="row"></div>
                                  
                                 <div class="col-md-6">
-                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                 <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="location.href='view-rolepermissions'">Back</button>
                                 </div>
                                 <div class="col-md-4"></div>
                                 <div class="col-md-2">

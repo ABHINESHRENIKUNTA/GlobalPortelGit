@@ -18,6 +18,7 @@ public class AdminRolePermissionMapper implements RowMapper<AdminRolePermissionM
 		arp.setPermid(rs.getInt("permission_id"));
 		arp.setPermname(rs.getString("permission_name"));
 		arp.setPermdesc("description");
+		arp.setPermurl(rs.getString("permission_url"));
 		return arp;
 	}
 

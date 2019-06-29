@@ -104,49 +104,77 @@
          
              </ul>
           </li>       
-            <li>
-            <a class="accordion-toggle" href="#">
-              <span class="fa fa-child"></span>
-              <span class="sidebar-title">Map Permissions</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
+           
            
               <li>
               <a href="view-rolepermissions" >
                   <span class="fa fa-university"></span>
-                  Assign Permissions
+                  <span class="sidebar-title">Assign Permissions</span>
                 </a>
-                 
                </li>
-               </ul>
-            </li>
-          <li>
-            <a class="accordion-toggle" href="#">
-              <span class="fa fa-child"></span>
-              <span class="sidebar-title">Student Management</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-           
-              <li>
-              <a href="load-adminaddstuinfo" >
-                  <span class="fa fa-university"></span>
-                  Add Student Dash-board
-                </a>
-                 
-               </li>
-              <li>
-              <a href="load-selecttoviewdata" >
-                  <span class="fa fa-university"></span>
-                  Select Page To View/Edit
-                </a>
-                 
-               </li>
+              
             
          
-             </ul>
-          </li>  
+             <li>
+              <a href="load-adminviewcommoninfo?selectedparam=global_popular_jobsites_page">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Popular Job Sites</span>
+            </a>
+            </li> 
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_statewisegovt_jobs">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">State-wise Govt. Jobs</span>
+            </a>
+            </li> 
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_centralgov_jobs">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Central Govt. Jobs</span>
+            </a>
+            </li> 
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_it_jobs">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">IT Jobs</span>
+            </a>
+            </li> 
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_nonit_jobs">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Non IT Jobs</span>
+            </a>
+            </li> 
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_jobconsult_jobs">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Job Consultants</span>
+            </a>
+            </li> 
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_refpost_jobs">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Referral Posted Jobs</span>
+            </a>
+            </li> 
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_postedbyadmin_jobs">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Jobs Posted By Admin</span>
+            </a>
+            </li> 
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_trainingandplace_jobs">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Training & Placement Inst.</span>
+            </a>
+            </li> 
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_freejobtraining_jobs">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Free Job Training Inst.</span>
+            </a>
+            </li> 
         </ul>
         <!-- End: Sidebar Menu -->
 

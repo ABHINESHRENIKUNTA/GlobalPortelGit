@@ -21,6 +21,7 @@ public class AdminSubmissionModel {
 	private String filename;
 	@NotEmpty(message="page should not be empty")
     private String tablename;
+	private String tablekey;
     private int totvalintable;
     private String loggedowner;
     private boolean isactive;
@@ -131,6 +132,14 @@ public class AdminSubmissionModel {
 
 	public void setModifieddate(String modifieddate) {
 		this.modifieddate = modifieddate;
+	}
+
+	public String getTablekey() {
+		return tablekey;
+	}
+
+	public void setTablekey(String tablekey) {
+		this.tablekey = tablekey;
 	}
 	
 

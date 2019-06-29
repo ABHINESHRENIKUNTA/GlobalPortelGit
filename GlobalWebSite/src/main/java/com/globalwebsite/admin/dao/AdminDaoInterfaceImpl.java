@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -275,6 +276,15 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		}
 		return updatecnt;
 	}
+
+	public List<Map<String, Object>> getPermissionIsAvailable(int roleid, String permissionurl) {
+		String sql="select * from role_permission where permission_id="
+				+ "(select permission_id from permissions where permission_url='"+permissionurl+"') "
+						+ "and role_id='"+roleid+"'";
+		System.out.println("getPermissionIsAvailable: "+sql);
+		return jdbctemplate.queryForList(sql);
+	}
+
 
 	
 	

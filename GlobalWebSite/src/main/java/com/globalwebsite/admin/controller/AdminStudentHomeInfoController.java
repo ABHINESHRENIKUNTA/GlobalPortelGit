@@ -28,10 +28,14 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 
 	@RequestMapping("/load-adminaddstuinfo")
 	public ModelAndView adminStudentAddInfoPage(AdminSubmissionModel stdmodel, Model model, HttpServletRequest req) throws Exception{
-		Map<String, String> tablevalues = tableReferenceData();
-		logger.info("Admin Student Add Info Page: "+hashCode());
-		model.addAttribute("tablelist", tablevalues);
-		logger.info("Available tables in drop-down: "+tablevalues);
+		Map<String, String> mapvalues = tableReferenceData();
+		String selectpage = req.getParameter("selectedparam");
+		logger.info("Admin Selected Page: "+selectpage);
+		if(!mapvalues.containsKey(selectpage)){
+			return new ModelAndView("admin/somethingError" , "adminaddstuinfo", stdmodel);
+		}
+		model.addAttribute("tablekey", selectpage);
+		model.addAttribute("tableval", mapvalues.get(selectpage));
 		model.addAttribute("smsg", req.getParameter("smsg"));
 		model.addAttribute("emsg",  req.getParameter("emsg"));
 		return new ModelAndView("studentadmin/adminAddStudentHomeInfo" , "adminaddstuinfo", stdmodel);
@@ -78,6 +82,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		}
 		model.addAttribute("emsg", errormsg);
 		model.addAttribute("smsg", susmsg);
+		model.addAttribute("selectedparam", imageFolder);
 		return "redirect:/load-adminaddstuinfo";
 		
 	}
@@ -101,14 +106,22 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		
 	}
 	@RequestMapping("/load-adminviewcommoninfo")
-	public String adminStudentdeleteInfoPage(Model model, AdminSubmissionModel stdmodel){
+	public String adminStudentdeleteInfoPage(Model model, AdminSubmissionModel stdmodel, HttpServletRequest req){
 		
 		model.addAttribute("adminviewstuinfo", stdmodel);
-		Map<String, String> tablevalues = tableReferenceData();
-		model.addAttribute("selectedpage", tablevalues.get(stdmodel.getTablename()));
+		Map<String, String> mapvalues = tableReferenceData();
+		String selectpage = req.getParameter("selectedparam");
+		String retvalue = "studentadmin/adminViewStudentHomeInfo";
+		if(!mapvalues.containsKey(selectpage)){
+			return "admin/somethingError";
+		}
+		stdmodel.setTablename(selectpage);
+		model.addAttribute("tablekey", stdmodel.getTablename());
+		model.addAttribute("tableval", mapvalues.get(stdmodel.getTablename()));
 		List<AdminSubmissionModel> listdata = adminservices.getAllViewSubmissionData(stdmodel.getTablename());
 		model.addAttribute("listdata", listdata);
-		return "studentadmin/adminViewStudentHomeInfo";
+		
+		return retvalue;
 		
 	}
 }

@@ -1,3 +1,4 @@
+<%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -38,11 +39,75 @@
                   </div>
                 </div>
                 <div class="box-body">
-                  
-                 
-                  <div class="box-footer">
-              
-                 </div>
+                  <jsp:useBean id="now" class="java.util.Date" />
+				  <fmt:formatDate var="curDate" value="${now}" pattern="dd MMM. yyyy" />
+				  <fmt:formatDate var="curTime" value="${now}" pattern="HH:MM" />
+			
+                    <div class="input-group add-on">
+				      <input class="searchBox form-control" placeholder="Search State: E.g Telangana" type="text">
+				      <div class="input-group-btn">
+				        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+				      </div>
+				    </div>
+				  <div class="row" style="padding-bottom: 10px;"></div>
+                 <ul class="timeline" id="content">
+
+			    <!-- timeline time label -->
+			    <li class="time-label">
+			        <span class="bg-red">
+			           ${curDate}
+			        </span>
+			    </li>
+			    <!-- /.timeline-label -->
+			
+			    <!-- timeline item -->
+			    <li class="result well">
+			        <!-- timeline icon -->
+			        <i class="fa fa-envelope bg-blue"></i>
+			        <div class="timeline-item">
+			            <span class="time"><i class="fa fa-clock-o"></i>  ${curTime}</span>
+			
+			            <h3 class="timeline-header"><a href="#">Choose your job</a> ...</h3>
+			
+			            <div class="timeline-body">
+			                ...
+			                Content goes here1
+			            </div>
+			
+			            <div class='timeline-footer'>
+			                <a class="btn btn-primary btn-xs">VIEW</a>
+			            </div>
+			        </div>
+			    </li>
+			    <!-- timeline item -->
+			    <li class="result well">
+			        <!-- timeline icon -->
+			        <i class="fa fa-envelope bg-blue"></i>
+			        <div class="timeline-item">
+			            <span class="time"><i class="fa fa-clock-o"></i>  ${curTime}</span>
+			
+			            <h3 class="timeline-header"><a href="#">Choose your job</a> ...</h3>
+			
+			            <div class="timeline-body">
+			                ...
+			                Content goes here
+			            </div>
+			
+			            <div class='timeline-footer'>
+			                <a class="btn btn-primary btn-xs">VIEW</a>
+			            </div>
+			        </div>
+			    </li>
+    <!-- END timeline item -->
+    
+
+</ul>
+
+<div id="pagingControls"></div>
+<div id="showingInfo" class="well" style="margin-top:20px"></div>
+
+
+                
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div>
@@ -55,5 +120,37 @@
     </div><!-- ./wrapper -->
 
    <%@include file="userNewFooterJsLinks.jsp" %>
+      <script src="${pageContext.request.contextPath}/theme/usernewdesign/pagination/Flexible.Pagination.js" type="text/javascript"></script>
+    
+    <script>
+    $(function() {
+
+        var flexiblePagination = $('#content').flexiblePagination({
+            itemsPerPage : 1,
+            itemSelector : 'li.result:visible',
+            pagingControlsContainer : '#pagingControls',
+            showingInfoSelector : '#showingInfo',
+            css: {
+                btnNumberingClass: 'btn btn-sm btn-success',
+                btnFirstClass: 'btn btn-sm btn-success',
+                btnLastClass: 'btn btn-sm btn-success',
+                btnNextClass: 'btn btn-sm btn-success',
+                btnPreviousClass: 'btn btn-sm btn-success'
+            }
+        });
+        flexiblePagination.getController().onPageClick = function(pageNum, e){
+            console.log('You Clicked Page: '+pageNum)
+        };
+
+// Direct JS Object method of using the FlexiblePagination
+//        var pager = new Flexible.Pagination();
+//        pager.itemsPerPage = 1;
+//        pager.pagingContainer = '#content';
+//        pager.itemSelector = 'div.result:visible';  //That is, Select and paginate only the filtered visible '.result' div.
+//        pager.pagingControlsContainer = '#pagingControls';
+//        pager.showCurrentPage();
+    });
+
+    </script>
   </body>
 </html>

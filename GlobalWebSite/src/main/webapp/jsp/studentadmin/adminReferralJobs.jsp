@@ -27,7 +27,7 @@
                                             <div class="col-sm-4 pl-1">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">No.of Positions</label>
-                                                    <form:input  type="text" path="noofpossitions" class="form-control" placeholder="E.g 2"/>
+                                                    <form:input  type="text" path="noofpossitions" class="touchspin1 form-control" placeholder="E.g 2"/>
                                                 </div>
                                             </div>
                                         </div>

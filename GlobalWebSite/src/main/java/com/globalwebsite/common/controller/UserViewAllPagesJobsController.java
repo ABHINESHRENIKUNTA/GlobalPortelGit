@@ -53,6 +53,11 @@ public class UserViewAllPagesJobsController {
 		 
 		 return "user/userViewTrainingPlacInst";
 	 }
+	 @RequestMapping("/view-userreferraljobs")
+	 public String userViewReferralScreen(Model model){
+		 
+		 return "user/userViewReferralJobs";
+	 }
 	
 	 @RequestMapping("/view-userpostedbyadmin")
 	 public String userViewPostedByAdminScreen(Model model){

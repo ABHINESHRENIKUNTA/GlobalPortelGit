@@ -109,7 +109,7 @@
 		                  </p>
 		                </div>
 		                <div class="icon">
-		                  <i class="fa fa-fax" aria-hidden="true"></i>
+		                  <i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i>
 
 		                </div>
 		              </div>
@@ -132,7 +132,7 @@
 		              <!-- small box -->
 		              <div class="small-box bg-teal" onclick="location.href='view-userconsultantsjobs'" style="cursor: pointer;">
 		                <div class="inner">
-		                  <h4>Job Consultants</h4>
+		                  <h4>Jobs Posted By Consultants</h4>
 		                  <p>
 		                   11 Listing
 		                  </p>
@@ -178,15 +178,15 @@
             	    </div>
             	     <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-lime" onclick="location.href='view-usertrainingplacinst'" style="cursor: pointer;">
+		              <div class="small-box bg-lime" onclick="location.href='view-userreferraljobs'" style="cursor: pointer;">
 		                <div class="inner">
-		                 <h4>Training & Placement Institutes</h4>
+		                 <h4>Referral Jobs</h4>
 		                  <p>
 		                   11 Listing
 		                  </p>
 		                </div>
 		                <div class="icon">
-		                 <i class="fa fa-certificate" aria-hidden="true"></i>
+		                 <i class="glyphicon glyphicon-registration-mark" aria-hidden="true"></i>
 
 		                </div>
 		          

@@ -39,7 +39,7 @@ public interface AdminSerivceInterface {
 	int selectCountForSubmissionData(AdminSubmissionModel stdmodel);
 
 	/*View Common submission Data */
-	List<AdminSubmissionModel> getAllViewSubmissionData(String tablename);
+	List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey);
 
 	List<AdminRolePermissionModel> getAllRoles();
 
@@ -56,6 +56,8 @@ public interface AdminSerivceInterface {
 	int deleteRolePermissions(int roleid, String permids);
 
 	int insertRolePermissions(int roleid, String plistid);
+
+	int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel);
 
 
 }

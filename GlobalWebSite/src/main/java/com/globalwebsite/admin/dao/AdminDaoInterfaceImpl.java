@@ -144,8 +144,8 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	 * @see com.globalwebsite.admin.dao.AdminDaoInterface#selectViewSubmissionData(com.gw.student.model.AdminSubmissionModel)
 	 */
 	@Override
-	public List<AdminSubmissionModel> getAllViewSubmissionData(String tablename){
-		String sql=AdminSqlQueries.getAllViewSubmissionData_Query(tablename);
+	public List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey){
+		String sql=AdminSqlQueries.getAllViewSubmissionData_Query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
 		try {
 			listdata = jdbctemplate.query(sql, new AdminViewSubmissionMapper());
@@ -283,6 +283,24 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 						+ "and role_id='"+roleid+"'";
 		System.out.println("getPermissionIsAvailable: "+sql);
 		return jdbctemplate.queryForList(sql);
+	}
+
+	public int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel) {
+		int isinserted=0;
+		try {
+			String sql=AdminSqlQueries.adminAddJobConsultantInfo_Query(stdmodel);
+			isinserted= jdbctemplate.update(sql,new Object[]{stdmodel.getJobtitle()
+					,stdmodel.getIndustry(),stdmodel.getRolecategory(),stdmodel.getSalary(),
+					stdmodel.getNoofpossitions(), stdmodel.getJobresponsibilities(),
+					stdmodel.getSkillreq(),stdmodel.getContactinfo(), stdmodel.isIsactive(), stdmodel.getLoggedowner(),  
+					getDateFromSimpleDateFormat()});
+			System.out.println("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
+			logger.info("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
+		} catch (Exception e) {
+			System.out.println("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+e);
+			logger.info("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+e);
+		}
+	return isinserted;
 	}
 
 

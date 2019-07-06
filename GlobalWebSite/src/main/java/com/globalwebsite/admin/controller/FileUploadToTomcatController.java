@@ -96,7 +96,12 @@ public class FileUploadToTomcatController {
 		String rootPath = System.getProperty("catalina.home");
 			
 		// Create the file on server
-		File serverFile = new File(rootPath + File.separator + "GlobalWebsiteFiles"+File.separator+""+imageFolder+File.separator+fileName);
+		File serverFile = null;
+		try {
+			serverFile = new File(rootPath + File.separator + "GlobalWebsiteFiles"+File.separator+""+imageFolder+File.separator+fileName);
+		} catch (Exception e) {
+			logger.info("Exception occured when deleting file: "+e);
+		}
 				
 		return serverFile.delete();
 	}

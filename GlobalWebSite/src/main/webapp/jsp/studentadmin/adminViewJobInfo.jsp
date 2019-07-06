@@ -55,11 +55,23 @@
 				<thead>
 					<tr>
 						<th>#</th>
+						 <c:choose>
+                          <c:when test="${tablekey == 'global_postedbyadmin_jobs' or tablekey == 'global_refpost_jobs' or tablekey == 'global_jobconsult_jobs'}">
+                          <th>Job Title</th>
+                          <th>Created By</th>
+						  <th>Created Date</th>
+						  <th>Status</th>
+						  <th>Actions</th>
+                          </c:when>
+						<c:otherwise>
+						
 						<th>Link Name</th>
 						<th>Created By</th>
 						<th>Created Date</th>
 						<th>Status</th>
 						<th>Actions</th>
+						</c:otherwise>
+                      </c:choose>
 					</tr>
 				</thead>
 

@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
    <head>
@@ -28,10 +32,13 @@
                   <div class="col-md-12">
                      <div class="panel with-nav-tabs">
                         <div class="panel-heading">
-			               <h4>${tableval}   <span class="pull-right">
+			               <h4>${tableval}
+						    <span class="pull-right">
 			               <button type="button" class="btn btn-primary" onclick="location.href='load-adminviewcommoninfo?selectedparam=${tablekey}'">VIEW / EDIT</button></span>
 			               
 			               </h4>
+			               <jsp:useBean id="now" class="java.util.Date" />
+							<fmt:formatDate var="year" value="${now}" pattern="dd/MMM/yyyy" />
                            <!-- <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
                               <li class="active">
                                  <a href="#">Add</a>
@@ -49,14 +56,14 @@
                               <div class="tab-content">
                                  <c:if test="${smsg!=null && smsg!=''}">
                                     <div class="alert alert-success alert-dismissable">
-                                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">Ã—</button>
                                        <i class="fa fa-check pr10"></i>
                                        <strong>Well done!</strong>${smsg}
                                     </div>
                                  </c:if>
                                  <c:if test="${emsg!=null && emsg!=''}">
                                     <div class="alert alert-danger alert-dismissable">
-                                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">Ã—</button>
                                        <i class="fa fa-remove pr10"></i>
                                        <strong>Sorry!</strong> ${emsg}
                                     </div>
@@ -71,15 +78,26 @@
                                        </form:select>
                                     </div>
                                  </div> --%>
-                                 <div class="col-sm-12">
+                                 <form:hidden path="tablekey" value="${tablekey}"/>
+                                 <form:hidden path="tablename" value="${tableval}"/>
+                                 
+                                 <c:choose>
+                                 <c:when test="${tablekey == 'global_postedbyadmin_jobs' or tablekey == 'global_refpost_jobs' or tablekey == 'global_jobconsult_jobs'}">
+                                 <%@include file="adminReferralJobs.jsp" %>
+                                 </c:when>
+                                    
+                                 <c:otherwise>
+                                  <c:if test="${tablekey == 'global_statewisegovt_jobs'}">
+                                  <div class="col-sm-12">
                                     <div class="form-group">
                                        <label for="tablename">Select State<span class="text-danger">*</span></label>
                                        <label class="error" for="states" id="states_error">This field is required.</label>
                                        <select id="listBox" class="select2-single form-control"><option value="SELECT STATE">SELECT STATE</option><option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option><option value="Daman and Diu">Daman and Diu</option><option value="Delhi">Delhi</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jammu and Kashmir">Jammu and Kashmir</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Orissa">Orissa</option><option value="Puducherry">Puducherry</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="Uttarakhand">Uttarakhand</option><option value="West Bengal">West Bengal</option></select>
                                     </div>
                                  </div>
-                                 <form:hidden path="tablename" value="${tablekey}"/>
-                                 <form:hidden path="tablekey" value="${tableval}"/>
+                                 </c:if>
+                                 
+                                 
                                  <div class="col-sm-6">
                                     <div class="form-group">
                                        <label for="linkname">Link Name<span class="text-danger">*</span></label>
@@ -120,6 +138,8 @@
                                        <strong>Hint:</strong>To Know Why Adding Link</span>
                                     </div>
                                  </div>
+                                 </c:otherwise>
+                                 </c:choose>
                                  <div class="form-group">
 					    		    <label for="happy" class="col-sm-5 col-md-5 control-label text-right">Enable / Disable?</label>
 						    		<div class="col-sm-6 col-md-6">
@@ -137,7 +157,16 @@
                                        <button type="reset" class="btn btn-danger">Clear</button>   
                                     </div>
                                     <div class="col-sm-6" align="right">
+                                    <c:choose>
+                                     <c:when test="${tablekey == 'global_postedbyadmin_jobs' or tablekey == 'global_refpost_jobs' or tablekey == 'global_jobconsult_jobs'}">
+
+                                       <button type="submit" class="btn btn-success">Submit</button>   
+                                     </c:when>
+                                    <c:otherwise>
+                                    
                                        <button type="button" class="btn btn-success sbtbtn">Submit</button>   
+                                    </c:otherwise>
+                                    </c:choose>
                                     </div>
                                  </div>
                               </div>
@@ -214,7 +243,6 @@
              $(".sbtbtn").click(function() {
                  $('.error').hide();
          	      // validate and process form here
-         	      
          	     var selpageval = $("#tablekey").val();
          	     //var selpage = $("#tablename").val();
          	     var lnkname = $("#linkname").val();

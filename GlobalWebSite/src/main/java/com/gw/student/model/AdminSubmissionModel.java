@@ -25,10 +25,86 @@ public class AdminSubmissionModel {
     private int totvalintable;
     private String loggedowner;
     private boolean isactive;
+    private String jobtitle;
+    private String industry;
+    private String jobtype;
+    private String rolecategory;
+    private String salary;
+    private int noofpossitions;
+    private String jobresponsibilities;
+    private String contactinfo;
+    private String skillreq;
     
     
-    
-    public boolean isIsactive() {
+    public String getSkillreq() {
+		return skillreq;
+	}
+
+	public void setSkillreq(String skillreq) {
+		this.skillreq = skillreq;
+	}
+
+	public void setJobresponsibilities(String jobresponsibilities) {
+		this.jobresponsibilities = jobresponsibilities;
+	}
+
+	public String getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(String industry) {
+		this.industry = industry;
+	}
+
+	public String getJobtype() {
+		return jobtype;
+	}
+
+	public void setJobtype(String jobtype) {
+		this.jobtype = jobtype;
+	}
+
+	public String getRolecategory() {
+		return rolecategory;
+	}
+
+	public void setRolecategory(String rolecategory) {
+		this.rolecategory = rolecategory;
+	}
+
+	public String getSalary() {
+		return salary;
+	}
+
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
+
+	public int getNoofpossitions() {
+		return noofpossitions;
+	}
+
+	public void setNoofpossitions(int noofpossitions) {
+		this.noofpossitions = noofpossitions;
+	}
+
+	public String getJobresponsibilities() {
+		return jobresponsibilities;
+	}
+
+	public void setJonresponsibilities(String jobresponsibilities) {
+		this.jobresponsibilities = jobresponsibilities;
+	}
+
+	public String getContactinfo() {
+		return contactinfo;
+	}
+
+	public void setContactinfo(String contactinfo) {
+		this.contactinfo = contactinfo;
+	}
+
+	public boolean isIsactive() {
 		return isactive;
 	}
 
@@ -140,6 +216,14 @@ public class AdminSubmissionModel {
 
 	public void setTablekey(String tablekey) {
 		this.tablekey = tablekey;
+	}
+
+	public String getJobtitle() {
+		return jobtitle;
+	}
+
+	public void setJobtitle(String jobtitle) {
+		this.jobtitle = jobtitle;
 	}
 	
 

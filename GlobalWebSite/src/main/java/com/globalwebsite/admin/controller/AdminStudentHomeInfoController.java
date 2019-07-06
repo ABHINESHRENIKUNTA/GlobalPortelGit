@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 	private AdminServiceInterfaceImpl adminservices;
 
 	@RequestMapping("/load-adminaddstuinfo")
-	public ModelAndView adminStudentAddInfoPage(AdminSubmissionModel stdmodel, Model model, HttpServletRequest req) throws Exception{
+	public ModelAndView adminCommonAddInfoPage(AdminSubmissionModel stdmodel, Model model, HttpServletRequest req) throws Exception{
 		Map<String, String> mapvalues = tableReferenceData();
 		String selectpage = req.getParameter("selectedparam");
 		logger.info("Admin Selected Page: "+selectpage);
@@ -38,7 +39,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		model.addAttribute("tableval", mapvalues.get(selectpage));
 		model.addAttribute("smsg", req.getParameter("smsg"));
 		model.addAttribute("emsg",  req.getParameter("emsg"));
-		return new ModelAndView("studentadmin/adminAddStudentHomeInfo" , "adminaddstuinfo", stdmodel);
+		return new ModelAndView("studentadmin/adminAddJobInfo" , "adminaddstuinfo", stdmodel);
 		
 	}
 	
@@ -53,30 +54,34 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 
 
 	@RequestMapping("/adminaddstudenthomeinfo")
-	public String adminInsertStudentInfoPage(Model model, AdminSubmissionModel stdmodel,@RequestParam("imagepath") MultipartFile file) throws Exception{
+	public String adminCommonSubmitInfoPage(Model model, AdminSubmissionModel stdmodel,
+			@RequestParam("imagepath") MultipartFile file, FileUploadToTomcatController fut) throws Exception{
 	
-		String imageFolder = stdmodel.getTablename();
+		String imageFolder = stdmodel.getTablekey();
 		model.addAttribute("adminupdatestuinfo", stdmodel);
-		Map<String, String> tablevalues = tableReferenceData();
 		String errormsg = "";
 		String susmsg = "";
 		int succsscnt = 0;
 		stdmodel.setLoggedowner("Prakash Varma");
-		//Get total count from selected table (SQL query)
-		int tablecnt=adminservices.selectCountForSubmissionData(stdmodel);
-		//Create TOMCAT Directory Object    
-		FileUploadToTomcatController fut = new FileUploadToTomcatController();
-		System.out.println(stdmodel.getTablename());
-		//Save Image in TOMCAT directory
-		String imgpath = fut.saveImagesInTomcatDirectory(file, imageFolder, tablecnt);
-		stdmodel.setFilename(imgpath);
-		//Insert Data
+		String imgpath="";
+		if(StringUtils.equals(stdmodel.getTablekey(), "global_popular_jobsites_page")){
+		/**Save Image in Selected Folder**/
+		imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder);
+		//Insert Common Data
 		succsscnt = adminservices.insertSubmissionData(stdmodel);
+		}
+		if(StringUtils.equals(stdmodel.getTablekey(), "global_jobconsult_jobs") || 
+				(StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs")) ||
+				(StringUtils.equals(stdmodel.getTablekey(), "global_postedbyadmin_jobs"))
+				){
+			System.out.println("Entered in: "+stdmodel.getTablename());
+			succsscnt =adminservices.adminAddJobConsultantInfo(stdmodel);
+		}
 		if(succsscnt==1){
-		susmsg = tablevalues.get(stdmodel.getTablename())+" data successfully added.";
+		susmsg = stdmodel.getTablename()+" data successfully added.";
 		logger.info(susmsg);
 		}else{
-		errormsg = tablevalues.get(stdmodel.getTablename())+" data not added. Please try with valid data or contact support team.";
+		errormsg = stdmodel.getTablename()+" data not added. Please try with valid data or contact support team.";
 		logger.info(errormsg);
 		fut.removeImageFromDirectory(imageFolder, imgpath);
 		}
@@ -86,42 +91,49 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		return "redirect:/load-adminaddstuinfo";
 		
 	}
+
+	/**Save Image in Selected Folder
+	 **/
+	public String saveImageInSelectedFolder(AdminSubmissionModel stdmodel, MultipartFile file,
+			FileUploadToTomcatController fut, String imageFolder) {
+		//Get total count from selected table (SQL query)
+		int tablecnt=adminservices.selectCountForSubmissionData(stdmodel);
+		//Create TOMCAT Directory Object    
+		System.out.println(stdmodel.getTablename());
+		//Save Image in TOMCAT directory
+		String imgpath = fut.saveImagesInTomcatDirectory(file, imageFolder, tablecnt);
+		stdmodel.setFilename(imgpath);
+		return imgpath;
+	}
+	
 	@RequestMapping("/load-adminupdatestuinfo")
-	public String adminStudentEditInfoPage(Model model, AdminSubmissionModel stdmodel){
+	public String adminCommonEditInfoPage(Model model, AdminSubmissionModel stdmodel){
 		
 		model.addAttribute("adminupdatestuinfo", stdmodel);
 		
-		return "studentadmin/adminUpdateStudentHomeInfo";
+		return "studentadmin/adminUpdateJobInfo";
 		
 	}
-	@RequestMapping("/load-selecttoviewdata")
-	public String adminSelectPageToViewDat(Model model, AdminSubmissionModel stdmodel){
-		
-		model.addAttribute("adminselpage", stdmodel);
-		Map<String, String> tablevalues = tableReferenceData();
-		model.addAttribute("tablelist", tablevalues);
-		logger.info("Available tables in drop-down: "+tablevalues);
-		
-		return "studentadmin/adminSelectPageToView";
-		
-	}
+
 	@RequestMapping("/load-adminviewcommoninfo")
-	public String adminStudentdeleteInfoPage(Model model, AdminSubmissionModel stdmodel, HttpServletRequest req){
+	public String adminCommonViewInfoPage(Model model, AdminSubmissionModel stdmodel, HttpServletRequest req){
 		
 		model.addAttribute("adminviewstuinfo", stdmodel);
 		Map<String, String> mapvalues = tableReferenceData();
 		String selectpage = req.getParameter("selectedparam");
-		String retvalue = "studentadmin/adminViewStudentHomeInfo";
+		String retvalue = "studentadmin/adminViewJobInfo";
 		if(!mapvalues.containsKey(selectpage)){
 			return "admin/somethingError";
 		}
-		stdmodel.setTablename(selectpage);
-		model.addAttribute("tablekey", stdmodel.getTablename());
-		model.addAttribute("tableval", mapvalues.get(stdmodel.getTablename()));
-		List<AdminSubmissionModel> listdata = adminservices.getAllViewSubmissionData(stdmodel.getTablename());
+		stdmodel.setTablekey(selectpage);
+		model.addAttribute("tablekey", selectpage);
+		model.addAttribute("tableval", mapvalues.get(selectpage));
+		List<AdminSubmissionModel> listdata = adminservices.getAllViewSubmissionData(stdmodel.getTablekey());
 		model.addAttribute("listdata", listdata);
 		
 		return retvalue;
 		
 	}
+	
+
 }

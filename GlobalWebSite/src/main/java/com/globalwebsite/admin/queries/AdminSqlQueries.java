@@ -33,15 +33,15 @@ public class AdminSqlQueries {
 			+ "(link_name,link_address,link_owner,link_emailId,file_name,link_comments,created_date,modified_date) "
 			+ "values(?,?,?,?,?,?,?,?)";*/
 	public static String insertSubmissionData_Query(AdminSubmissionModel stdmodel) {
-		return  "insert into "+stdmodel.getTablename()+""
+		return  "insert into "+stdmodel.getTablekey()+""
 				+ "(link_name,link_address,link_owner,link_emailId,file_name,link_comments,is_active,created_date,modified_date) "
 				+ "values(?,?,?,?,?,?,?,?,?)";
 	}
 	public static String selectCountForSubmissionData_Query(AdminSubmissionModel stdmodel) {
-		return "SELECT if((count(*) is null or count(*)=0),1,count(*)+1) as rowcount FROM "+stdmodel.getTablename()+"";
+		return "SELECT if((count(*) is null or count(*)=0),1,count(*)+1) as rowcount FROM "+stdmodel.getTablekey()+"";
 	}
-	public static String getAllViewSubmissionData_Query(String tablename) {
-		return "select * from "+tablename+"";
+	public static String getAllViewSubmissionData_Query(String tablekey) {
+		return "select * from "+tablekey+"";
 	}
 	public static String DELETEROLEPERMISSIONS_QUERY(int roleid, String permisid) {
 	String sql=null;
@@ -51,6 +51,11 @@ public class AdminSqlQueries {
 			sql= "delete from role_permission where role_id="+roleid+"";
 		}
 		return sql; 
+	}
+	public static String adminAddJobConsultantInfo_Query(AdminSubmissionModel stdmodel) {
+		return "INSERT INTO "+stdmodel.getTablekey()+" (job_title, industry, role_category, salary, no_of_positions, "
+				+ "job_responsibilities, skill_set, contact_info, status, created_by, created_date) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	}
 
 }

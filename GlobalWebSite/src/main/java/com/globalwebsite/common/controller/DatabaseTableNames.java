@@ -8,25 +8,7 @@ import java.util.Map;
  *
  */
 public class DatabaseTableNames {
-	
-	/**
-	 * @param tablename
-	 * @return
-	 */
-	protected String searchSelectedTableName(String tablename){
 		
-		switch (tablename) {
-		case "student_home_page":
-			break;
-
-		default:
-			tablename = "Given page is not found in our database! Please contact administrator.";
-			break;
-		}
-		return tablename;
-	}
-	
-	
 	/**
 	 * @return
 	 * @throws Exception

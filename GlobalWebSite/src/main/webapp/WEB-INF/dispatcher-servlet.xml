@@ -75,9 +75,11 @@
 		<property name="locations">
 			<list>
 				<value>classpath:database.properties</value>
+				<value>classpath:application.properties</value>
 			</list>
 		</property>
 	</bean>
+
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <!-- SMTP settings -->
     <property name="host" value="smtp.gmail.com" />

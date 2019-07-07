@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/jsp/studentadmin/adminAddJobInfo.jsp=UTF-8
 encoding//src/main/webapp/jsp/studentadmin/adminReferralJobs.jsp=UTF-8
+encoding//src/main/webapp/jsp/studentadmin/adminViewJobInfo.jsp=UTF-8
 encoding//src/main/webapp/jsp/user/userJobCategories.jsp=UTF-8
 encoding//src/main/webapp/jsp/user/userViewStateWiseJobs.jsp=UTF-8
 encoding//src/main/webapp/jsp/user/welcomePage.jsp=UTF-8

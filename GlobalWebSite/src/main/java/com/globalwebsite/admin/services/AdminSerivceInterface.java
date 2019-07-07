@@ -59,5 +59,7 @@ public interface AdminSerivceInterface {
 
 	int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel);
 
+	List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey);
+
 
 }

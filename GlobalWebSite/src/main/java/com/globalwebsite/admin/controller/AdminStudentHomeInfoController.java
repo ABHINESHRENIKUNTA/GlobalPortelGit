@@ -54,7 +54,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 
 	@RequestMapping("/adminaddstudenthomeinfo")
 	public String adminCommonSubmitInfoPage(Model model, AdminSubmissionModel stdmodel,
-			@RequestParam("imagepath") MultipartFile file, FileUploadToTomcatController fut) throws Exception {
+			@RequestParam(required=false, value="imagepath") MultipartFile file, FileUploadToTomcatController fut) throws Exception {
 
 		String imageFolder = stdmodel.getTablekey();
 		model.addAttribute("adminupdatestuinfo", stdmodel);
@@ -128,8 +128,15 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		stdmodel.setTablekey(selectpage);
 		model.addAttribute("tablekey", selectpage);
 		model.addAttribute("tableval", mapvalues.get(selectpage));
-		List<AdminSubmissionModel> listdata = adminservices.getAllViewSubmissionData(stdmodel.getTablekey());
-		model.addAttribute("listdata", listdata);
+		if (StringUtils.equals(stdmodel.getTablekey(), "global_jobconsult_jobs")
+				|| (StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs"))
+				|| (StringUtils.equals(stdmodel.getTablekey(), "global_postedbyadmin_jobs"))) {
+		List<AdminSubmissionModel> alistdata = adminservices.getAllViewConsuRefAdminPostSubmissionData(stdmodel.getTablekey());
+		model.addAttribute("alistdata", alistdata);
+		}else{
+			List<AdminSubmissionModel> listdata = adminservices.getAllViewSubmissionData(stdmodel.getTablekey());
+			model.addAttribute("listdata", listdata);
+		}
 
 		return retvalue;
 

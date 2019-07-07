@@ -16,6 +16,7 @@ import com.globalwebsite.admin.mapper.AdminLoginMapper;
 import com.globalwebsite.admin.mapper.AdminPermissionMapper;
 import com.globalwebsite.admin.mapper.AdminRoleMapper;
 import com.globalwebsite.admin.mapper.AdminRolePermissionMapper;
+import com.globalwebsite.admin.mapper.AdminViewConsuRefAdminPostSubmissionMapper;
 import com.globalwebsite.admin.mapper.AdminViewSubmissionMapper;
 import com.globalwebsite.admin.mapper.ScrollLinksTableMapper;
 import com.globalwebsite.admin.model.AddScrollLink;
@@ -301,6 +302,21 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			logger.info("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+e);
 		}
 	return isinserted;
+	}
+
+	public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey) {
+		String sql=AdminSqlQueries.getAllViewConsuRefAdminPostSubmissionData_Query(tablekey);
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new AdminViewConsuRefAdminPostSubmissionMapper());
+			System.out.println("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+sql);
+			logger.info("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+sql);
+			logger.info("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+sql);
+		}
+		return listdata;
 	}
 
 

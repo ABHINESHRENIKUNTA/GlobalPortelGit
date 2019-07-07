@@ -175,6 +175,7 @@
               <span class="sidebar-title">Free Job Training Inst.</span>
             </a>
             </li> 
+             
         </ul>
         <!-- End: Sidebar Menu -->
 

@@ -58,12 +58,6 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="col-sm-12" style="display: none;">
-                                    <div class="form-group">
-                                       <label for="uploadimage">Upload Image<span class="text-danger">*</span></label>
-                                       <label class="error" for="linkaddress" id="imagepath_error">This field is required.</label>
-                                       <input type="file" name="imagepath" id="imagepath" class="btn btn-success fileupload-add form-control"  accept="image/*" onchange="showMyImage(this)" >
-                                    </div>
-                                 </div>
+                                      
                                         <div class="clearfix"></div>
                                 </div>

@@ -125,4 +125,8 @@ public List<Map<String, Object>> getPermissionIsAvailable(int roleid, String per
 public int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel){
 	return admindaoimpl.adminAddJobConsultantInfo(stdmodel);
 }
+@Override
+public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey) {
+	return admindaoimpl.getAllViewConsuRefAdminPostSubmissionData(tablekey);
+}
 }

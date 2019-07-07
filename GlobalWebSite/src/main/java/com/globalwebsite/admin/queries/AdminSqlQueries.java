@@ -57,5 +57,10 @@ public class AdminSqlQueries {
 				+ "job_responsibilities, skill_set, contact_info, status, created_by, created_date) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	}
+	
+	public static String getAllViewConsuRefAdminPostSubmissionData_Query(String tablekey) {
+		return "select * from "+tablekey+"";
+	}
+	
 
 }

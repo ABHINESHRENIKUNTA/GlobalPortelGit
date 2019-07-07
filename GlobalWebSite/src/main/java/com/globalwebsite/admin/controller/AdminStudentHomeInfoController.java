@@ -1,5 +1,11 @@
 package com.globalwebsite.admin.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
@@ -116,12 +122,35 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 	}
 
 	@RequestMapping("/load-adminviewcommoninfo")
-	public String adminCommonViewInfoPage(Model model, AdminSubmissionModel stdmodel, HttpServletRequest req) {
+	public String adminCommonViewInfoPage(Model model, AdminSubmissionModel stdmodel, HttpServletRequest req) throws ParseException {
 
 		model.addAttribute("adminviewstuinfo", stdmodel);
 		Map<String, String> mapvalues = tableReferenceData();
 		String selectpage = req.getParameter("selectedparam");
 		String retvalue = "studentadmin/adminViewJobInfo";
+		System.out.println("date range: "+stdmodel.getDaterange());
+		DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat jspfmt = new SimpleDateFormat("dd/MMM/yyyy");
+		String currentdate=null;
+		String prevdate=null;
+		if(null==stdmodel.getDaterange()){
+			    Date date = new Date();
+			    GregorianCalendar cal = new GregorianCalendar();
+				cal.setTime(date);
+				Date curdate =cal.getTime();
+				currentdate = fmt.format(curdate);
+				cal.add(Calendar.DATE, -30);
+			    Date newDate = cal.getTime();
+			    prevdate = fmt.format(newDate);
+		}else{
+			Date dateprev = jspfmt.parse(stdmodel.getDaterange().split("-")[0].trim());
+			Date datecur = jspfmt.parse(stdmodel.getDaterange().split("-")[1].trim()); 
+			prevdate = fmt.format(dateprev);
+			currentdate = fmt.format(datecur);
+		}
+		System.out.println("date range: "+currentdate);
+		System.out.println("date range: "+prevdate);
+		
 		if (!mapvalues.containsKey(selectpage)) {
 			return "admin/somethingError";
 		}
@@ -131,12 +160,14 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_jobconsult_jobs")
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs"))
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_postedbyadmin_jobs"))) {
-		List<AdminSubmissionModel> alistdata = adminservices.getAllViewConsuRefAdminPostSubmissionData(stdmodel.getTablekey());
+		List<AdminSubmissionModel> alistdata = adminservices.getAllViewConsuRefAdminPostSubmissionData(stdmodel.getTablekey(),prevdate, currentdate);
 		model.addAttribute("alistdata", alistdata);
 		}else{
-			List<AdminSubmissionModel> listdata = adminservices.getAllViewSubmissionData(stdmodel.getTablekey());
+			List<AdminSubmissionModel> listdata = adminservices.getAllViewSubmissionData(stdmodel.getTablekey(), prevdate, currentdate);
 			model.addAttribute("listdata", listdata);
 		}
+		model.addAttribute("prevdate",jspfmt.format(fmt.parse(prevdate)));
+		model.addAttribute("presdate",jspfmt.format(fmt.parse(currentdate)));
 
 		return retvalue;
 

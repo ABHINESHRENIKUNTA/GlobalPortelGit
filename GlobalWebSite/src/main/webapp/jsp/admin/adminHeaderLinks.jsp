@@ -15,6 +15,10 @@
   
   <!-- Single search drop-down  -->
    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/theme/vendor/plugins/select2/css/core.css">
+   
+   <!-- Date Range Picker  -->
+<%--   <link href="${pageContext.request.contextPath}/theme/vendor/plugins/daterange/daterangepicker.css" rel="stylesheet" type="text/css" />
+ --%>   
   <style>
   #radioBtn .notActive{
     color: #3276b1;

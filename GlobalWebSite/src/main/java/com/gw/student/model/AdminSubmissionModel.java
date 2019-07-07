@@ -34,7 +34,7 @@ public class AdminSubmissionModel {
     private String jobresponsibilities;
     private String contactinfo;
     private String skillreq;
-    
+    private String daterange;
     
     public String getSkillreq() {
 		return skillreq;
@@ -224,6 +224,14 @@ public class AdminSubmissionModel {
 
 	public void setJobtitle(String jobtitle) {
 		this.jobtitle = jobtitle;
+	}
+
+	public String getDaterange() {
+		return daterange;
+	}
+
+	public void setDaterange(String daterange) {
+		this.daterange = daterange;
 	}
 	
 

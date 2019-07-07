@@ -41,7 +41,7 @@ public class AdminSqlQueries {
 		return "SELECT if((count(*) is null or count(*)=0),1,count(*)+1) as rowcount FROM "+stdmodel.getTablekey()+"";
 	}
 	public static String getAllViewSubmissionData_Query(String tablekey) {
-		return "select * from "+tablekey+"";
+		return "select * from "+tablekey+" where created_date between ? and ?";
 	}
 	public static String DELETEROLEPERMISSIONS_QUERY(int roleid, String permisid) {
 	String sql=null;
@@ -59,7 +59,7 @@ public class AdminSqlQueries {
 	}
 	
 	public static String getAllViewConsuRefAdminPostSubmissionData_Query(String tablekey) {
-		return "select * from "+tablekey+"";
+		return "select * from "+tablekey+" where created_date between ? and ?";
 	}
 	
 

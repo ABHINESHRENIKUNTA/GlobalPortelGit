@@ -32,7 +32,6 @@
   }
 
 }(this, function(root, daterangepicker, moment, $) {
-
     var DateRangePicker = function (element, options, cb) {
 
         // by default, the daterangepicker element is placed at the bottom of HTML body

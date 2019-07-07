@@ -39,7 +39,7 @@ public interface AdminSerivceInterface {
 	int selectCountForSubmissionData(AdminSubmissionModel stdmodel);
 
 	/*View Common submission Data */
-	List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey);
+	List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey, String prevdate, String currentdate);
 
 	List<AdminRolePermissionModel> getAllRoles();
 
@@ -59,7 +59,9 @@ public interface AdminSerivceInterface {
 
 	int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel);
 
-	List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey);
+	List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey, String prevdate,
+			String currentdate);
+
 
 
 }

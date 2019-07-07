@@ -81,8 +81,8 @@ public int selectCountForSubmissionData(AdminSubmissionModel stdmodel) {
 
 /*View Common submission Data */
 @Override
-public List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey){
-	return admindaoimpl.getAllViewSubmissionData(tablekey);
+public List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey, String prevdate, String currentdate){
+	return admindaoimpl.getAllViewSubmissionData(tablekey,prevdate,currentdate);
 }
 @Override
 public List<AdminRolePermissionModel> getAllRoles() {
@@ -126,7 +126,7 @@ public int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel){
 	return admindaoimpl.adminAddJobConsultantInfo(stdmodel);
 }
 @Override
-public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey) {
-	return admindaoimpl.getAllViewConsuRefAdminPostSubmissionData(tablekey);
+public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey, String prevdate, String currentdate) {
+	return admindaoimpl.getAllViewConsuRefAdminPostSubmissionData(tablekey,prevdate,currentdate);
 }
 }

@@ -145,11 +145,11 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	 * @see com.globalwebsite.admin.dao.AdminDaoInterface#selectViewSubmissionData(com.gw.student.model.AdminSubmissionModel)
 	 */
 	@Override
-	public List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey){
+	public List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey, String prevdate, String currentdate){
 		String sql=AdminSqlQueries.getAllViewSubmissionData_Query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
 		try {
-			listdata = jdbctemplate.query(sql, new AdminViewSubmissionMapper());
+			listdata = jdbctemplate.query(sql, new Object[]{prevdate+" 00:00:00", currentdate+" 00:00:00"}, new AdminViewSubmissionMapper());
 			logger.info("getAllViewSubmissionData: "+sql);
 			
 		} catch (Exception e) {
@@ -304,11 +304,11 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	return isinserted;
 	}
 
-	public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey) {
+	public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey, String prevdate, String currentdate) {
 		String sql=AdminSqlQueries.getAllViewConsuRefAdminPostSubmissionData_Query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
 		try {
-			listdata = jdbctemplate.query(sql, new AdminViewConsuRefAdminPostSubmissionMapper());
+			listdata = jdbctemplate.query(sql, new Object[]{prevdate+" 00:00:00", currentdate+" 00:00:00"}, new AdminViewConsuRefAdminPostSubmissionMapper());
 			System.out.println("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+sql);
 			logger.info("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+sql);
 			

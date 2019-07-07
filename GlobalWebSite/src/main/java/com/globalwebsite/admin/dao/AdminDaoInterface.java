@@ -39,7 +39,7 @@ public interface AdminDaoInterface {
 	int selectCountForSubmissionData(AdminSubmissionModel stdmodel);
 
 	//View common Submission Data
-	List<AdminSubmissionModel> getAllViewSubmissionData(String tablename);
+	List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey, String prevdate, String currentdate);
 
 	List<AdminRolePermissionModel> getAllRoles();
 
@@ -56,6 +56,7 @@ public interface AdminDaoInterface {
 	int deleteRolePermissions(int roleid, String permids);
 
 	int insertRolePermissions(int roleid, String plistid);
+
 
 
 

@@ -17,12 +17,15 @@ import com.globalwebsite.admin.mapper.AdminPermissionMapper;
 import com.globalwebsite.admin.mapper.AdminRoleMapper;
 import com.globalwebsite.admin.mapper.AdminRolePermissionMapper;
 import com.globalwebsite.admin.mapper.AdminViewConsuRefAdminPostSubmissionMapper;
-import com.globalwebsite.admin.mapper.AdminViewSubmissionMapper;
+import com.globalwebsite.admin.mapper.CountryMapper;
+import com.globalwebsite.admin.mapper.AdminCommonViewSubmitMapper;
 import com.globalwebsite.admin.mapper.ScrollLinksTableMapper;
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
+import com.globalwebsite.admin.model.AdminOperatorModel;
 import com.globalwebsite.admin.model.AdminRolePermissionModel;
+import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
 import com.globalwebsite.admin.queries.AdminSqlQueries;
@@ -122,6 +125,22 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		}
 	return isinserted;
 	}
+	@Override
+	public int insertAbroadSubmissionData(AdminSubmissionModel stdmodel) {
+		int isinserted=0;
+		try {
+			String sql=AdminSqlQueries.insertAbroadSubmissionData_Query(stdmodel);
+			isinserted= jdbctemplate.update(sql,new Object[]{stdmodel.getCountryiso(), stdmodel.getLinkname()
+					,stdmodel.getLinkaddress(),stdmodel.getLoggedowner(),stdmodel.getEmailid(),
+					stdmodel.getFilename(), stdmodel.getComments(),stdmodel.isIsactive(), getDateFromSimpleDateFormat(),getDateFromSimpleDateFormat()});
+			System.out.println("insertAbroadSubmissionData: "+sql);
+			logger.info("insertAbroadSubmissionData: "+sql);
+		} catch (Exception e) {
+			System.out.println("insertAbroadSubmissionData: "+e);
+			logger.info("insertAbroadSubmissionData: "+e);
+		}
+		return isinserted;
+	}
 	
 	/* (non-Javadoc)
 	 * @see com.globalwebsite.admin.dao.AdminDaoInterface#selectCountForSubmissionData(com.gw.student.model.StudentDashboardModel)
@@ -149,7 +168,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		String sql=AdminSqlQueries.getAllViewSubmissionData_Query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
 		try {
-			listdata = jdbctemplate.query(sql, new Object[]{prevdate+" 00:00:00", currentdate+" 00:00:00"}, new AdminViewSubmissionMapper());
+			listdata = jdbctemplate.query(sql, new Object[]{prevdate+" 00:00:00", currentdate+" 00:00:00"}, new AdminCommonViewSubmitMapper());
 			logger.info("getAllViewSubmissionData: "+sql);
 			
 		} catch (Exception e) {
@@ -321,6 +340,57 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 
 
 	
+	//Fetch Auto Generated Key
+	/*public int create(AdminOperatorModel aom) {
+		KeyHolder holder = new GeneratedKeyHolder();
+		jdbctemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				String INSERT_SQL = null;
+				PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);
+				return ps;
+			}
+		}, holder);
+
+		int newUserId = holder.getKey().intValue();
+		return newUserId;
+	}*/
 	
+	@Override
+	public int insertOperatorSubmissionData(AdminOperatorModel aom){
+		int isinserted=0;
+		try {
+			String sql=AdminSqlQueries.INSERTOPERATORSUBMISSIONDATA_QUERY;
+			isinserted= jdbctemplate.update(sql,new Object[]{ aom.getUsername(), aom.getPassword(), aom.getFullname(),
+					aom.getQualification(), aom.getEmpdob(), aom.getEmail(), aom.getPhonenumber(), aom.getJobdescription(),
+					aom.getAddress(), aom.getReferrarname(), aom.getCompanyname(), aom.getCompanyurl(), aom.getHrname(),
+					aom.getHremail(), aom.getHrphonenumber(), aom.getRoleid(),aom.getCreatedby(), getDateFromSimpleDateFormat(),
+					getDateFromSimpleDateFormat(), aom.isStatus()  
+					});
+			System.out.println("insertOperatorSubmissionData: "+ aom);
+			logger.info("insertOperatorSubmissionData: "+ aom);
+		} catch (Exception e) {
+			System.out.println("insertOperatorSubmissionData: "+ aom+": "+e);
+			logger.info("insertOperatorSubmissionData: "+ aom+": "+e);
+		}
+	return isinserted;
+	}
+	
+	@Override
+	public List<CountryModel> findAllCountries(){
+		String sql=AdminSqlQueries.FINDALLCOUNTRIES_QUERY;
+		List<CountryModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new CountryMapper());
+			System.out.println("findAllCountries: "+listdata);
+			logger.info("findAllCountries: "+ listdata);
+			
+		} catch (Exception e) {
+			System.out.println("findAllCountries: "+ listdata);
+			logger.info("findAllCountries: "+ listdata);
+		}
+		return listdata;
+		
+	}
 	
 }

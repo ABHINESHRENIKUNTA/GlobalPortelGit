@@ -96,5 +96,14 @@ public class AdminRolePermissionController {
 		
 		return permisaccess;
 	}
-
+	
+	public List<AdminRolePermissionModel> getAllPermissionsBasedonRoleId(int roleid){
+		
+		return adminservices.getAllPermissionsBasedonRoleId(roleid);
+		
+	}
+	
+	public List<AdminRolePermissionModel> getAllPermissionsForSuperuser(){
+		return adminservices.getAllPermissions();
+	}
 }

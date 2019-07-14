@@ -108,10 +108,11 @@
 
 
 
-	<!-- <mvc:interceptors>
-	 <bean id="chiselonInterceptor" class="com.chiselon.interceptor.ChiselonInterceptor"> 
-	 </bean> </mvc:interceptors>
- -->
+	<mvc:interceptors>
+	 <bean id="globalInterceptor" class="com.globalwebsite.interceptor.GlobalInterceptor"> 
+	 </bean> 
+	 </mvc:interceptors>
+ 
 
 </beans>
 

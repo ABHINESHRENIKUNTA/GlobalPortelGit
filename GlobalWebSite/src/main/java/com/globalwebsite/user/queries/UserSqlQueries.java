@@ -15,5 +15,6 @@ public class UserSqlQueries {
 	public static final String GETDUPLICATEJOBCATEGORY_QUERY = "SELECT count(*) FROM global_job_category where global_job_category=?";
 	public static final String INSERTOTHERJOBCATEGORY_QUERY = "insert into global_job_category(global_job_category) values(?)";
 	public static final String GETMAXJOCATID_QUERY = "select max(global_job_category_id) from global_job_category ";
+	public static final String GETACTIVEPOPULARJOBS_QUERY = "select * from global_popular_jobsites_page";
 
 }

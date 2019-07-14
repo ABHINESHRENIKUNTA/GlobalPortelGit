@@ -10,7 +10,9 @@ import com.globalwebsite.admin.dao.AdminDaoInterfaceImpl;
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
+import com.globalwebsite.admin.model.AdminOperatorModel;
 import com.globalwebsite.admin.model.AdminRolePermissionModel;
+import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
 import com.gw.student.model.AdminSubmissionModel;
@@ -73,6 +75,11 @@ public int updateScrollLink(EditScrollLink editscrolllink) {
 public int insertSubmissionData(AdminSubmissionModel stdmodel) {
 	return admindaoimpl.insertSubmissionData(stdmodel);
 }
+//Insert Abroad Data
+@Override
+public int insertAbroadSubmissionData(AdminSubmissionModel stdmodel) {
+	return admindaoimpl.insertAbroadSubmissionData(stdmodel);
+}
 
 @Override
 public int selectCountForSubmissionData(AdminSubmissionModel stdmodel) {
@@ -128,5 +135,13 @@ public int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel){
 @Override
 public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey, String prevdate, String currentdate) {
 	return admindaoimpl.getAllViewConsuRefAdminPostSubmissionData(tablekey,prevdate,currentdate);
+}
+@Override
+public int insertOperatorSubmissionData(AdminOperatorModel aom) {
+	return admindaoimpl.insertOperatorSubmissionData(aom);
+}
+@Override
+public List<CountryModel> findAllCountries() {
+	return admindaoimpl.findAllCountries();
 }
 }

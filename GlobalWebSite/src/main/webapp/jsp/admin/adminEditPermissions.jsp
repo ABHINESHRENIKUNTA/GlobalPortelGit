@@ -63,7 +63,7 @@
                     <form:hidden  path="roleid" value="${paramroleid}"/>
                         <div class="panel-body">
                                 <c:forEach items="${listroleperm}" var="permissions">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                 <label class="customcheck"> ${permissions.permname}
 						          <input type="checkbox" name="permilist" value="${permissions.permid}" checked="checked">
 						          <span class="checkmark"></span>
@@ -75,7 +75,7 @@
                                 
                                 <c:forEach items="${notlistperm}" var="notpermissions">
                                
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                 <label class="customcheck"> ${notpermissions.permname}
 						          <input type="checkbox" name="permilist" value="${notpermissions.permid}">
 						          <span class="checkmark"></span>

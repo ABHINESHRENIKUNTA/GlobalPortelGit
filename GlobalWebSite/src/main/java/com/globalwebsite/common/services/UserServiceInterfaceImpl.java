@@ -9,6 +9,7 @@ import com.globalwebsite.common.dao.UserDaoInterfaceImpl;
 import com.globalwebsite.common.model.EmployeeLoginModel;
 import com.globalwebsite.common.model.ReferalLoginModel;
 import com.globalwebsite.common.model.StudentLoginModel;
+import com.gw.student.model.AdminSubmissionModel;
 
 @Service("userServices")
 public class UserServiceInterfaceImpl implements UserServiceInterface {
@@ -68,6 +69,11 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
 	@Override
 	public int getmaxjocatid() {
 		return userdaoimpl.getmaxjocatid();
+	}
+	
+	@Override
+	public List<AdminSubmissionModel> getActivePopularJobs(int activenum) {
+		return userdaoimpl.getActivePopularJobs(activenum);
 	}
 
 }

@@ -5,18 +5,26 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.globalwebsite.admin.dao.AdminDaoInterfaceImpl;
+import com.globalwebsite.admin.mapper.AdminCommonViewSubmitMapper;
+import com.globalwebsite.admin.mapper.AdminRolePermissionMapper;
+import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.common.mapper.getJobCategoriesMapper;
 import com.globalwebsite.common.model.EmployeeLoginModel;
 import com.globalwebsite.common.model.ReferalLoginModel;
 import com.globalwebsite.common.model.StudentLoginModel;
 import com.globalwebsite.user.queries.UserSqlQueries;
+import com.gw.student.model.AdminSubmissionModel;
 
 @Repository
 public class UserDaoInterfaceImpl implements UserDaoInterface {
+
+	private final static Logger logger = Logger.getLogger(UserDaoInterfaceImpl.class);
 
 	@Autowired
 	private JdbcTemplate jdbctemplate;
@@ -91,6 +99,21 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 	public int getmaxjocatid() {
 		String sql=UserSqlQueries.GETMAXJOCATID_QUERY;
 		return jdbctemplate.queryForInt(sql);
+	}
+
+	@Override
+	public List<AdminSubmissionModel> getActivePopularJobs(int activenum) {
+		String sql=UserSqlQueries.GETACTIVEPOPULARJOBS_QUERY;
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql,  new AdminCommonViewSubmitMapper());
+			logger.info("getActivePopularJobs: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("getActivePopularJobs: "+e);
+			logger.info("getActivePopularJobs: "+e);
+		}
+		return listdata;
 	}
 	
 }

@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.gw.student.model.AdminSubmissionModel;
 
-public class AdminViewSubmissionMapper implements RowMapper<AdminSubmissionModel> {
+public class AdminCommonViewSubmitMapper implements RowMapper<AdminSubmissionModel> {
 
 	@Override
 	public AdminSubmissionModel mapRow(ResultSet rs, int rowNum) throws SQLException {

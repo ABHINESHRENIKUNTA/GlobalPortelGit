@@ -5,6 +5,7 @@ import java.util.List;
 import com.globalwebsite.common.model.EmployeeLoginModel;
 import com.globalwebsite.common.model.ReferalLoginModel;
 import com.globalwebsite.common.model.StudentLoginModel;
+import com.gw.student.model.AdminSubmissionModel;
 
 public interface UserServiceInterface {
 
@@ -33,5 +34,7 @@ public interface UserServiceInterface {
 	int insertOtherJobCategory(StudentLoginModel stud);
 
 	int getmaxjocatid();
+
+	List<AdminSubmissionModel> getActivePopularJobs(int activenum);
 
 }

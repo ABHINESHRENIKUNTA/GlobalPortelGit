@@ -74,7 +74,71 @@
         <!-- Start: Sidebar Menu -->
         <ul class="nav sidebar-menu">
           <li class="sidebar-label pt20">Menu</li>
+           <c:set value="nopermission" var="permissions"></c:set>
+           <c:set value="nopermission" var="abroadjobs"></c:set>
+           <c:set value="nopermission" var="popularjobs"></c:set>
+           <c:set value="nopermission" var="statewisejobs"></c:set>
+           <c:set value="nopermission" var="centralgovtjobs"></c:set>
+           <c:set value="nopermission" var="itjobs"></c:set>
+           <c:set value="nopermission" var="nonitjobs"></c:set>
+           <c:set value="nopermission" var="jobconsultants"></c:set>
+           <c:set value="nopermission" var="referralpostjobs"></c:set>
+           <c:set value="nopermission" var="postedbyadminjobs"></c:set>
+           <c:set value="nopermission" var="trainingplacejobs"></c:set>
+           <c:set value="nopermission" var="freetrainingjobs"></c:set>
+           
+          <c:forEach items="${leftMenuList}" var="menulist">
           
+            <c:if test="${menulist.permname == 'VIEW_PERMISSIONS'  or menulist.permname == 'EDIT_PERMISSIONS'}">
+            <c:set value="yespermission" var="permissions"></c:set>
+            </c:if> 
+           
+            <c:if test="${menulist.permname == 'VIEW_ABROAD_JOBS'  or menulist.permname == 'EDIT_ABROAD_JOBS'}">
+            <c:set value="yespermission" var="abroadjobs"></c:set>
+       	    </c:if>
+       	    
+            <c:if test="${menulist.permname == 'VIEW_POPULAR_JOBSITES_PAGE'  or menulist.permname == 'EDIT_POPULAR_JOBSITES_PAGE'}">
+            <c:set value="yespermission" var="popularjobs"></c:set>
+       	    </c:if>
+       	   
+       	    <c:if test="${menulist.permname == 'VIEW_STATEWISEGOVT_JOBS'  or menulist.permname == 'EDIT_STATEWISEGOVT_JOBS'}">
+       	    <c:set value="yespermission" var="statewisejobs"></c:set>
+            </c:if>
+          
+            <c:if test="${menulist.permname == 'VIEW_CENTRALGOV_JOBS'  or menulist.permname == 'EDIT_CENTRALGOV_JOBS'}">
+            <c:set value="yespermission" var="centralgovtjobs"></c:set>
+            </c:if>
+           
+           <c:if test="${menulist.permname == 'VIEW_IT_JOBS'  or menulist.permname == 'EDIT_IT_JOBS'}">
+           <c:set value="yespermission" var="itjobs"></c:set>
+            </c:if>
+            
+            <c:if test="${menulist.permname == 'VIEW_NONIT_JOBS'  or menulist.permname == 'EDIT_NONIT_JOBS'}">
+            <c:set value="yespermission" var="nonitjobs"></c:set>
+            </c:if>
+            
+            <c:if test="${menulist.permname == 'VIEW_JOBCONSULT_JOBS'  or menulist.permname == 'EDIT_JOBCONSULT_JOBS'}">
+            <c:set value="yespermission" var="jobconsultants"></c:set>
+            </c:if>  
+                    
+            <c:if test="${menulist.permname == 'VIEW_REFPOST_JOBS'  or menulist.permname == 'EDIT_REFPOST_JOBS'}">
+            <c:set value="yespermission" var="referralpostjobs"></c:set>
+            </c:if>
+            
+            <c:if test="${menulist.permname == 'VIEW_POSTEDBYADMIN_JOBS'  or menulist.permname == 'EDIT_POSTEDBYADMIN_JOBS'}">
+            <c:set value="yespermission" var="postedbyadminjobs"></c:set>
+            </c:if>
+            
+            <c:if test="${menulist.permname == 'VIEW_TRAININGANDPLACE_JOBS'  or menulist.permname == 'EDIT_TRAININGANDPLACE_JOBS'}">
+             <c:set value="yespermission" var="trainingplacejobs"></c:set>
+            </c:if>  
+                      
+            <c:if test="${menulist.permname == 'VIEW_FREEJOBTRAINING_JOBS'  or menulist.permname == 'EDIT_FREEJOBTRAINING_JOBS'}">
+            <c:set value="yespermission" var="freetrainingjobs"></c:set>
+            </c:if>
+            
+          </c:forEach>  
+         
            <li>
             <a class="accordion-toggle" href="#">
               <span class="fa fa-user"></span>
@@ -104,77 +168,121 @@
          
              </ul>
           </li>       
+          
+              <li>
+                <a href="view-operators" >
+                  <span class="fa fa-university"></span>
+                  <span class="sidebar-title">View Operators</span>
+                </a>
+               </li>
            
-           
+             <c:if test="${permissions == 'yespermission'}">
               <li>
               <a href="view-rolepermissions" >
                   <span class="fa fa-university"></span>
                   <span class="sidebar-title">Assign Permissions</span>
                 </a>
                </li>
-              
+             </c:if> 
             
-         
+           <c:if test="${abroadjobs == 'yespermission'}">
+             <li>
+              <a href="load-adminviewcommoninfo?selectedparam=global_abroad_jobs">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Abroad Jobs</span>
+            </a>
+            </li> 
+       	  </c:if> 
+       	  
+           <c:if test="${popularjobs == 'yespermission'}">
              <li>
               <a href="load-adminviewcommoninfo?selectedparam=global_popular_jobsites_page">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Popular Job Sites</span>
             </a>
             </li> 
+       	  </c:if> 
+       	  
+       	  <c:if test="${statewisejobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_statewisegovt_jobs">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">State-wise Govt. Jobs</span>
             </a>
             </li> 
+            </c:if>
+            
+            <c:if test="${centralgovtjobs== 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_centralgov_jobs">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Central Govt. Jobs</span>
             </a>
             </li> 
+            </c:if>
+            
+            <c:if test="${itjobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_it_jobs">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">IT Jobs</span>
             </a>
             </li> 
+            </c:if>
+            
+            <c:if test="${nonitjobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_nonit_jobs">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Non IT Jobs</span>
             </a>
             </li> 
+            </c:if>
+            
+            <c:if test="${jobconsultants == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_jobconsult_jobs">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Job Consultants</span>
             </a>
             </li> 
+            </c:if>
+            
+            <c:if test="${referralpostjobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_refpost_jobs">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Referral Posted Jobs</span>
             </a>
             </li> 
+            </c:if>
+            
+            <c:if test="${postedbyadminjobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_postedbyadmin_jobs">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Jobs Posted By Admin</span>
             </a>
             </li> 
+            </c:if>
+            
+            <c:if test="${trainingplacejobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_trainingandplace_jobs">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Training & Placement Inst.</span>
             </a>
             </li> 
+            </c:if>
+            
+            <c:if test="${freetrainingjobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_freejobtraining_jobs">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Free Job Training Inst.</span>
             </a>
             </li> 
+            </c:if>
              
         </ul>
         <!-- End: Sidebar Menu -->

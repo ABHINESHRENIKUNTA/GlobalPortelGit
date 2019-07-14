@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 import com.globalwebsite.common.controller.DatabaseTableNames;
 import com.gw.student.model.AdminSubmissionModel;
@@ -42,6 +43,10 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		if (!mapvalues.containsKey(selectpage)) {
 			return new ModelAndView("admin/somethingError", "adminaddstuinfo", stdmodel);
 		}
+		
+		List<CountryModel> countryList = adminservices.findAllCountries();
+		
+		model.addAttribute("countryList", countryList);
 		model.addAttribute("tablekey", selectpage);
 		model.addAttribute("tableval", mapvalues.get(selectpage));
 		model.addAttribute("smsg", req.getParameter("smsg"));
@@ -74,6 +79,12 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder);
 			// Insert Common Data
 			succsscnt = adminservices.insertSubmissionData(stdmodel);
+		}
+		if (StringUtils.equals(stdmodel.getTablekey(), "global_abroad_jobs")) {
+			/** Save Image in Selected Folder **/
+			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder);
+			// Insert Common Data
+			succsscnt = adminservices.insertAbroadSubmissionData(stdmodel);
 		}
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_jobconsult_jobs")
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs"))

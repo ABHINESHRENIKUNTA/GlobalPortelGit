@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -40,7 +42,7 @@
               <!-- Primary box -->
               <div class="box box-solid box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Popular Job Links</h3> <code>Find your best job..</code>
+                  <h3 class="box-title">Popular Job Links</h3> <code>Browse Jobs by Companies..</code>
                   <div class="box-tools pull-right">
                     <button class="btn btn-primary btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
                     <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -52,14 +54,21 @@
                   <section id="main_content" class="inner">
                   	<div id="tabpage_1" class="tabContainer">
                   	<ul id="demoOne" class="demo">
-					<li class="col-sm-6"><a href='#' target="_blank">411 Services</a></li>
+                  	<c:forEach items="${popularList}" var="populardata">
+					<li class="col-sm-4"><a href='${populardata.linkaddress}' target="_blank">${populardata.linkname}</a>
+					<!-- <div class="image-parent">
+              <img src="https://static.naukimg.com/s/4/100/i/naukri_Logo.png" class="img-fluid" alt="quixote">
+          </div> -->
+					</li>
+					
+                  	</c:forEach>
 					</ul>
                   	</div>
                   </section>
-                 
-                  <div class="box-footer">
+                <!--  <div class="row"></div> -->
+                 <!--  <div class="box-footer">
               
-                 </div>
+                 </div> -->
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div>

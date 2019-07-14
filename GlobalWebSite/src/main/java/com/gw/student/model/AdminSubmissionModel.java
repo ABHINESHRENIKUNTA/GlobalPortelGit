@@ -35,8 +35,28 @@ public class AdminSubmissionModel {
     private String contactinfo;
     private String skillreq;
     private String daterange;
+    private String countryiso;
+    private String countryname;
     
-    public String getSkillreq() {
+    
+    
+    public String getCountryiso() {
+		return countryiso;
+	}
+
+	public void setCountryiso(String countryiso) {
+		this.countryiso = countryiso;
+	}
+
+	public String getCountryname() {
+		return countryname;
+	}
+
+	public void setCountryname(String countryname) {
+		this.countryname = countryname;
+	}
+
+	public String getSkillreq() {
 		return skillreq;
 	}
 

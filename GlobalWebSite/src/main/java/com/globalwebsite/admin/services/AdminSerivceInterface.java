@@ -5,7 +5,9 @@ import java.util.List;
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
+import com.globalwebsite.admin.model.AdminOperatorModel;
 import com.globalwebsite.admin.model.AdminRolePermissionModel;
+import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
 import com.gw.student.model.AdminSubmissionModel;
@@ -61,6 +63,13 @@ public interface AdminSerivceInterface {
 
 	List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey, String prevdate,
 			String currentdate);
+
+	int insertOperatorSubmissionData(AdminOperatorModel aom);
+
+	List<CountryModel> findAllCountries();
+
+	//Insert Abroad Data
+	int insertAbroadSubmissionData(AdminSubmissionModel stdmodel);
 
 
 

@@ -27,6 +27,12 @@ public class AdminSqlQueries {
 			+ "FROM role_permission where role_id=? and permission_id=?" ;
 	public static final String DELETEROLEPERMISSIONS_QUERY = "delete from role_permission where role_id=? and permission_id not in(?)";
 	public static final String INSERTROLEPERMISSIONS_QUERY = "insert into role_permission (role_id,permission_id) values (?,?)";
+	public static final String INSERTOPERATORSUBMISSIONDATA_QUERY = "INSERT INTO global_admin_login1 "
+			+ "(username, password, fullname, qualification, empdob, email, phonenumber, jobdescription, "
+			+ "address, referrarname, companyname, companyurl, hrname, hremail, hrphonenumber, roleid, created_by, "
+			+ "created_date, modified_date, status) "
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public static final String FINDALLCOUNTRIES_QUERY = "select * from country";
 	
 	
 	/*public static final String INSERTSUBMISSIONDATA_SQL = "insert into ?"
@@ -36,6 +42,11 @@ public class AdminSqlQueries {
 		return  "insert into "+stdmodel.getTablekey()+""
 				+ "(link_name,link_address,link_owner,link_emailId,file_name,link_comments,is_active,created_date,modified_date) "
 				+ "values(?,?,?,?,?,?,?,?,?)";
+	}
+	public static String insertAbroadSubmissionData_Query(AdminSubmissionModel stdmodel) {
+		return  "insert into "+stdmodel.getTablekey()+""
+				+ "(iso,link_name,link_address,link_owner,link_emailId,file_name,link_comments,is_active,created_date,modified_date) "
+				+ "values(?,?,?,?,?,?,?,?,?,?)";
 	}
 	public static String selectCountForSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return "SELECT if((count(*) is null or count(*)=0),1,count(*)+1) as rowcount FROM "+stdmodel.getTablekey()+"";

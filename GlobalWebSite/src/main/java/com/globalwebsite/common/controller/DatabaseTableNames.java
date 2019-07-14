@@ -16,6 +16,7 @@ public class DatabaseTableNames {
 	protected Map<String, String> tableReferenceData() {
 		Map<String,String> tablelist = new LinkedHashMap<String,String>();
 		tablelist.put("global_admin_home_page", "Admin DashBoard Page");
+		tablelist.put("global_abroad_jobs", "Abroad Job Sites");
 		tablelist.put("global_popular_jobsites_page", "Popular Job Sites");
 		tablelist.put("global_statewisegovt_jobs", "State-Wise Govt. Jobs");
 		tablelist.put("global_centralgov_jobs", "Central Government Jobs");
@@ -28,5 +29,7 @@ public class DatabaseTableNames {
 		tablelist.put("global_freejobtraining_jobs", "Free Job Training Institutions");
 		return tablelist;
 	}
+	
 
 }
+

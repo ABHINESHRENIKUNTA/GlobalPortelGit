@@ -40,12 +40,12 @@
           <section class="content">
            <div class="col-md-12">
               <!-- Primary box -->
-              <div class="box box-solid box-primary">
+              <div class="box box-solid box-info">
                 <div class="box-header">
                   <h3 class="box-title">Popular Job Links</h3> <code>Browse Jobs by Companies..</code>
                   <div class="box-tools pull-right">
-                    <button class="btn btn-primary btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
-                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-info btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
+                    <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
                    <!--  <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button> -->
                   </div>
                 </div>

@@ -37,10 +37,28 @@ public class AdminSubmissionModel {
     private String daterange;
     private String countryiso;
     private String countryname;
+    private int stateid;
+    private String statename;
     
     
     
-    public String getCountryiso() {
+    public int getStateid() {
+		return stateid;
+	}
+
+	public void setStateid(int stateid) {
+		this.stateid = stateid;
+	}
+
+	public String getStatename() {
+		return statename;
+	}
+
+	public void setStatename(String statename) {
+		this.statename = statename;
+	}
+
+	public String getCountryiso() {
 		return countryiso;
 	}
 

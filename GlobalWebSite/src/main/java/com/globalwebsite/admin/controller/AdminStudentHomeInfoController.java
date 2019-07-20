@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.globalwebsite.admin.model.CountryModel;
+import com.globalwebsite.admin.model.StatesModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 import com.globalwebsite.common.controller.DatabaseTableNames;
 import com.gw.student.model.AdminSubmissionModel;
@@ -45,7 +46,9 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		}
 		
 		List<CountryModel> countryList = adminservices.findAllCountries();
+		List<StatesModel> stateList = adminservices.findAllStates();
 		
+		model.addAttribute("stateList", stateList);
 		model.addAttribute("countryList", countryList);
 		model.addAttribute("tablekey", selectpage);
 		model.addAttribute("tableval", mapvalues.get(selectpage));
@@ -73,19 +76,32 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		String susmsg = "";
 		int succsscnt = 0;
 		stdmodel.setLoggedowner("Prakash Varma");
-		String imgpath = "";
-		if (StringUtils.equals(stdmodel.getTablekey(), "global_popular_jobsites_page")) {
+		String imgpath ="";
+		/*popular, central, it and non it insert*/
+		if (StringUtils.equals(stdmodel.getTablekey(), "global_popular_jobsites_page")
+				|| (StringUtils.equals(stdmodel.getTablekey(), "global_centralgov_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_it_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_nonit_jobs"))) {
 			/** Save Image in Selected Folder **/
-			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder);
-			// Insert Common Data
 			succsscnt = adminservices.insertSubmissionData(stdmodel);
+			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder, succsscnt);
+			adminservices.updateImageFileNameInTable(stdmodel.getTablekey(), imgpath, succsscnt);
 		}
+		/*Abroad Jobs insert*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_abroad_jobs")) {
 			/** Save Image in Selected Folder **/
-			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder);
-			// Insert Common Data
 			succsscnt = adminservices.insertAbroadSubmissionData(stdmodel);
+			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder, succsscnt);
+			adminservices.updateImageFileNameInTable(stdmodel.getTablekey(), imgpath, succsscnt);
 		}
+		/*State-Wise Jobs insert*/
+		if (StringUtils.equals(stdmodel.getTablekey(), "global_statewisegovt_jobs")) {
+			/** Save Image in Selected Folder **/
+			succsscnt = adminservices.insertStateSubmissionData(stdmodel);
+			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder, succsscnt);
+			adminservices.updateImageFileNameInTable(stdmodel.getTablekey(), imgpath, succsscnt);
+		}
+		/*Job Consultants, Referral and Posted By Administrator Jobs*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_jobconsult_jobs")
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs"))
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_postedbyadmin_jobs"))) {
@@ -93,7 +109,9 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 			logger.info("Entered in: " + stdmodel.getTablename());
 			succsscnt = adminservices.adminAddJobConsultantInfo(stdmodel);
 		}
-		if (succsscnt == 1) {
+		System.out.println("Image Path::: "+imgpath);
+		logger.info("Image Path::: "+imgpath);
+		if (succsscnt > 0) {
 			susmsg = stdmodel.getTablename() + " data successfully added.";
 			logger.info(susmsg);
 		} else {
@@ -112,13 +130,13 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 	 * Save Image in Selected Folder
 	 **/
 	public String saveImageInSelectedFolder(AdminSubmissionModel stdmodel, MultipartFile file,
-			FileUploadToTomcatController fut, String imageFolder) {
+			FileUploadToTomcatController fut, String imageFolder, int rowid) {
 		// Get total count from selected table (SQL query)
-		int tablecnt = adminservices.selectCountForSubmissionData(stdmodel);
+		//int tablecnt = adminservices.selectCountForSubmissionData(stdmodel);
 		// Create TOMCAT Directory Object
 		System.out.println(stdmodel.getTablename());
 		// Save Image in TOMCAT directory
-		String imgpath = fut.saveImagesInTomcatDirectory(file, imageFolder, tablecnt);
+		String imgpath = fut.saveImagesInTomcatDirectory(file, imageFolder, rowid);
 		stdmodel.setFilename(imgpath);
 		return imgpath;
 	}
@@ -132,6 +150,11 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 
 	}
 
+
+	/**
+	 * View Common Info Method
+	 * 
+	 * **/
 	@RequestMapping("/load-adminviewcommoninfo")
 	public String adminCommonViewInfoPage(Model model, AdminSubmissionModel stdmodel, HttpServletRequest req) throws ParseException {
 
@@ -168,14 +191,31 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		stdmodel.setTablekey(selectpage);
 		model.addAttribute("tablekey", selectpage);
 		model.addAttribute("tableval", mapvalues.get(selectpage));
+		
+		/*Job Consultants, Referral and Posted By Administrator Jobs*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_jobconsult_jobs")
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs"))
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_postedbyadmin_jobs"))) {
 		List<AdminSubmissionModel> alistdata = adminservices.getAllViewConsuRefAdminPostSubmissionData(stdmodel.getTablekey(),prevdate, currentdate);
 		model.addAttribute("alistdata", alistdata);
-		}else{
-			List<AdminSubmissionModel> listdata = adminservices.getAllViewSubmissionData(stdmodel.getTablekey(), prevdate, currentdate);
-			model.addAttribute("listdata", listdata);
+		}
+		/*popular, central, it and non it insert*/
+		if (StringUtils.equals(stdmodel.getTablekey(), "global_popular_jobsites_page")
+				|| (StringUtils.equals(stdmodel.getTablekey(), "global_centralgov_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_it_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_nonit_jobs"))) {
+			List<AdminSubmissionModel> alistdata = adminservices.getAllViewSubmissionData(stdmodel.getTablekey(), prevdate, currentdate);
+			model.addAttribute("alistdata", alistdata);
+		}
+		/*Abroad Jobs insert*/
+		if (StringUtils.equals(stdmodel.getTablekey(), "global_abroad_jobs")) {
+			List<AdminSubmissionModel> alistdata = adminservices.getAllViewAdminAbroadData(stdmodel.getTablekey(), prevdate, currentdate);
+			model.addAttribute("alistdata", alistdata);
+		}
+		/*State-Wise Jobs insert*/
+		if (StringUtils.equals(stdmodel.getTablekey(), "global_statewisegovt_jobs")) {
+			List<AdminSubmissionModel> alistdata = adminservices.getAllViewAdminStateWiseData(stdmodel.getTablekey(), prevdate, currentdate);
+			model.addAttribute("alistdata", alistdata);
 		}
 		model.addAttribute("prevdate",jspfmt.format(fmt.parse(prevdate)));
 		model.addAttribute("presdate",jspfmt.format(fmt.parse(currentdate)));

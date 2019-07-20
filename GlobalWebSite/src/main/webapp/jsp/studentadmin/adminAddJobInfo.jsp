@@ -92,7 +92,12 @@
                                     <div class="form-group">
                                        <label for="tablename">Select State<span class="text-danger">*</span></label>
                                        <label class="error" for="states" id="states_error">This field is required.</label>
-                                       <select id="listBox" name="state" class="select2-single form-control"><option value="SELECT STATE">SELECT STATE</option><option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option><option value="Daman and Diu">Daman and Diu</option><option value="Delhi">Delhi</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jammu and Kashmir">Jammu and Kashmir</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Orissa">Orissa</option><option value="Puducherry">Puducherry</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="Uttarakhand">Uttarakhand</option><option value="West Bengal">West Bengal</option></select>
+                                       <form:select path="stateid" class="select2-single form-control">
+                                          <form:option value="0">SELECT STATE</form:option>
+                                          <c:forEach items="${stateList}" var="listofstates">
+                                          <form:option value="${listofstates.id}">${listofstates.statename}</form:option>
+                                        </c:forEach>
+                                       </form:select>
                                     </div>
                                  </div>
                                  </c:if>
@@ -101,12 +106,12 @@
                                     <div class="form-group">
                                        <label for="tablename">Select Country<span class="text-danger">*</span></label>
                                        <label class="error" for="country" id="states_error">This field is required.</label>
-                                       <select id="countrylistBox" name="countryiso" class="select2-single form-control">
-                                          <option value="0">SELECT COUNTRY</option>
+                                       <form:select path="countryiso" class="select2-single form-control">
+                                          <form:option value="0">SELECT COUNTRY</form:option>
                                         <c:forEach items="${countryList}" var="listofcountries">
-                                          <option value="${listofcountries.iso}">${listofcountries.nicename}</option>
+                                          <form:option value="${listofcountries.iso}">${listofcountries.nicename}</form:option>
                                         </c:forEach>
-                                       </select>
+                                       </form:select>
                                     </div>
                                  </div>
                                  </c:if>

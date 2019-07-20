@@ -73,7 +73,7 @@ public class FileUploadToTomcatController {
 				stream.write(bytes);
 				stream.close();
 				
-				
+				System.out.println("serverFile:::::: "+serverFile);
 				
 				return fileName;
 			} catch (Exception e) {

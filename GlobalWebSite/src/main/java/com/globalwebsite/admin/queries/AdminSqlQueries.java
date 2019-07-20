@@ -32,7 +32,8 @@ public class AdminSqlQueries {
 			+ "address, referrarname, companyname, companyurl, hrname, hremail, hrphonenumber, roleid, created_by, "
 			+ "created_date, modified_date, status) "
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	public static final String FINDALLCOUNTRIES_QUERY = "select * from country";
+	public static final String FINDALLCOUNTRIES_QUERY = "select * from country order by name";
+	public static final String FINDALLSTATES_QUERY = "select * from states where status=? order by statename";
 	
 	
 	/*public static final String INSERTSUBMISSIONDATA_SQL = "insert into ?"
@@ -72,6 +73,20 @@ public class AdminSqlQueries {
 	public static String getAllViewConsuRefAdminPostSubmissionData_Query(String tablekey) {
 		return "select * from "+tablekey+" where created_date between ? and ?";
 	}
+	public static String insertStateSubmissionData_Query(AdminSubmissionModel stdmodel) {
+		return  "insert into "+stdmodel.getTablekey()+""
+				+ "(state_id,link_name,link_address,link_owner,link_emailId,file_name,link_comments,is_active,created_date,modified_date) "
+				+ "values(?,?,?,?,?,?,?,?,?,?)";
+	}
+	
+	public static String getAllViewAdminAbroadData_Query(String tablekey) {
+		return "select aj.*, cn.name, cn.phonecode from "+tablekey+" aj, country cn where aj.iso=cn.iso and created_date between ? and ?";
+	}
+	
+	public static String getAllViewAdminStateWiseData_Query(String tablekey) {
+		return "select sj.*, st.statename from "+tablekey+" sj, states st where sj.state_id = st.id and created_date between ? and ?";
+	}
+	
 	
 
 }

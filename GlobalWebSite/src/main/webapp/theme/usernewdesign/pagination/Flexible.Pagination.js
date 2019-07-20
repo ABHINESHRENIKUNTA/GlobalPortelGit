@@ -36,8 +36,8 @@ Flexible.Pagination = function(options){
     defaultOption.showPrevious = true;
     defaultOption.showNext = true;
     /** all Text can accept an icon using a <span> OR <i> tag. */
-    defaultOption.btnFirstText = "<<";
-    defaultOption.btnLastText = ">>";
+    defaultOption.btnFirstText = "First";
+    defaultOption.btnLastText = "Last";
     defaultOption.btnNextText = "<";
     defaultOption.btnPreviousText = ">";
     /**CSS properties */

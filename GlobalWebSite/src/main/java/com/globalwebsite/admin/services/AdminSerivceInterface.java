@@ -10,6 +10,7 @@ import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
+import com.globalwebsite.admin.model.StatesModel;
 import com.gw.student.model.AdminSubmissionModel;
 
 public interface AdminSerivceInterface {
@@ -70,6 +71,14 @@ public interface AdminSerivceInterface {
 
 	//Insert Abroad Data
 	int insertAbroadSubmissionData(AdminSubmissionModel stdmodel);
+
+	List<StatesModel> findAllStates();
+
+	int insertStateSubmissionData(AdminSubmissionModel stdmodel);
+
+	List<AdminSubmissionModel> getAllViewAdminAbroadData(String tablekey, String prevdate, String currentdate);
+
+	List<AdminSubmissionModel> getAllViewAdminStateWiseData(String tablekey, String prevdate, String currentdate);
 
 
 

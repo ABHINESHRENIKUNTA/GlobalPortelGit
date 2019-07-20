@@ -1,6 +1,7 @@
 package com.globalwebsite.admin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
@@ -10,6 +11,7 @@ import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
+import com.globalwebsite.admin.model.StatesModel;
 import com.gw.student.model.AdminSubmissionModel;
 
 public interface AdminDaoInterface {
@@ -64,6 +66,23 @@ public interface AdminDaoInterface {
 	List<CountryModel> findAllCountries();
 
 	int insertAbroadSubmissionData(AdminSubmissionModel stdmodel);
+
+	List<StatesModel> findAllStates();
+
+	int insertStateSubmissionData(AdminSubmissionModel stdmodel);
+
+	List<Map<String, Object>> getPermissionIsAvailable(int roleid, String permissionurl);
+
+	int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel);
+
+	List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey, String prevdate,
+			String currentdate);
+
+	List<AdminSubmissionModel> getAllViewAdminAbroadData(String tablekey, String prevdate, String currentdate);
+
+	List<AdminSubmissionModel> getAllViewAdminStateWiseData(String tablekey, String prevdate, String currentdate);
+
+	int updateImageFileNameInTable(String tablename, String filename, int rowid);
 
 
 

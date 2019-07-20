@@ -15,6 +15,7 @@ import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
+import com.globalwebsite.admin.model.StatesModel;
 import com.gw.student.model.AdminSubmissionModel;
 
 
@@ -74,6 +75,10 @@ public int updateScrollLink(EditScrollLink editscrolllink) {
 @Override
 public int insertSubmissionData(AdminSubmissionModel stdmodel) {
 	return admindaoimpl.insertSubmissionData(stdmodel);
+}
+
+public int updateImageFileNameInTable(String tablename, String filename, int rowid){
+	return admindaoimpl.updateImageFileNameInTable(tablename, filename, rowid);
 }
 //Insert Abroad Data
 @Override
@@ -144,4 +149,25 @@ public int insertOperatorSubmissionData(AdminOperatorModel aom) {
 public List<CountryModel> findAllCountries() {
 	return admindaoimpl.findAllCountries();
 }
+
+@Override
+public List<StatesModel> findAllStates() {
+	return admindaoimpl.findAllStates();
+}
+
+@Override
+public int insertStateSubmissionData(AdminSubmissionModel stdmodel) {
+	return admindaoimpl.insertStateSubmissionData(stdmodel);
+}
+@Override
+public List<AdminSubmissionModel> getAllViewAdminAbroadData(String tablekey, String prevdate, String currentdate) {
+	return admindaoimpl.getAllViewAdminAbroadData(tablekey, prevdate, currentdate);
+}
+@Override
+public List<AdminSubmissionModel> getAllViewAdminStateWiseData(String tablekey, String prevdate, String currentdate) {
+	return admindaoimpl.getAllViewAdminStateWiseData(tablekey, prevdate, currentdate);
+}
+
+
+
 }

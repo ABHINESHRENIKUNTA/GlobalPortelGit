@@ -1,3 +1,5 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
@@ -5,6 +7,7 @@
     <meta charset="UTF-8">
     <title>State-Wise Jobs</title>
   <%@include file="userNewHeader.jsp" %>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/theme/vendor/plugins/select2/css/core.css">
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
   <body class="skin-green layout-top-nav">
@@ -24,7 +27,7 @@
               <li class="active">State-Wise Job Links</li>
             </ol>
           </section>
-
+		  <form:form action="#" commandName="statewise" >
           <!-- Main content -->
           <section class="content">
            <div class="col-md-12">
@@ -33,8 +36,8 @@
                 <div class="box-header">
                   <h3 class="box-title"> <span class="glyphicon glyphicon-list"></span> State-Wise Job Links</h3> <code>Find your best job..</code>
                   <div class="box-tools pull-right">
-                    <button class="btn btn-primary btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
-                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-primary btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
+                    <button type="button" class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
                    <!--  <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button> -->
                   </div>
                 </div>
@@ -42,13 +45,17 @@
                   <jsp:useBean id="now" class="java.util.Date" />
 				  <fmt:formatDate var="curDate" value="${now}" pattern="dd MMM. yyyy" />
 				  <fmt:formatDate var="curTime" value="${now}" pattern="HH:MM" />
-			
-                    <div class="input-group add-on">
-				      <input class="searchBox form-control" placeholder="Search State: E.g Telangana" type="text">
-				      <div class="input-group-btn">
-				        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
-				      </div>
-				    </div>
+			 <div class="col-sm-12 inputGroupContainer" style="right: 0px; left:-15px;">
+        		<div class="input-group">
+		           <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+		            <form:select path="statename" class="searchBoxList select2-single form-control">
+                       <form:option value="">Search Your Job By Selecting State</form:option>
+                       <c:forEach items="${stateList}" var="listofstates">
+                       <form:option value="${listofstates.statename}">${listofstates.statename}</form:option>
+                     </c:forEach>
+                    </form:select>
+		        </div>
+		     </div>
 				  <div class="row" style="padding-bottom: 10px;"></div>
                  <ul class="timeline" id="content">
 
@@ -71,7 +78,7 @@
 			
 			            <div class="timeline-body">
 			                ...
-			                Content goes here1
+			                ANDHRA PRADESH
 			            </div>
 			
 			            <div class='timeline-footer'>
@@ -103,17 +110,18 @@
 
 </ul>
 
-<div id="pagingControls"></div>
+<div id="pagingControls" class="text-right"></div>
 <div id="showingInfo" class="well" style="margin-top:20px"></div>
 
 
-                
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
+              
             </div>
          
 
           </section><!-- /.content -->
+          </form:form>
         </div><!-- /.container -->
       </div><!-- /.content-wrapper -->
       <%@include file="userNewFooter.jsp" %>
@@ -131,17 +139,18 @@
             pagingControlsContainer : '#pagingControls',
             showingInfoSelector : '#showingInfo',
             css: {
-                btnNumberingClass: 'btn btn-sm btn-success',
-                btnFirstClass: 'btn btn-sm btn-success',
-                btnLastClass: 'btn btn-sm btn-success',
-                btnNextClass: 'btn btn-sm btn-success',
-                btnPreviousClass: 'btn btn-sm btn-success'
+            	  btnNumberingClass: 'btn btn-sm btn-default',
+                  btnFirstClass: 'btn btn-sm btn-default',
+                  btnLastClass: 'btn btn-sm btn-default',
+                  btnNextClass: 'btn btn-sm btn-default',
+                  btnPreviousClass: 'btn btn-sm btn-default',
+                  btnActiveClass: 'btn btn-sm btn-primary'
             }
         });
         flexiblePagination.getController().onPageClick = function(pageNum, e){
             console.log('You Clicked Page: '+pageNum)
         };
-
+        
 // Direct JS Object method of using the FlexiblePagination
 //        var pager = new Flexible.Pagination();
 //        pager.itemsPerPage = 1;
@@ -152,5 +161,10 @@
     });
 
     </script>
+    <!-- Select2 Plugin Plugin -->
+  <script src="${pageContext.request.contextPath}/theme/vendor/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript">
+         $(".select2-single").select2();
+       </script>
   </body>
 </html>

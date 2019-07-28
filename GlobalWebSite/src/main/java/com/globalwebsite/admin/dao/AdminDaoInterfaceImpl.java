@@ -27,7 +27,7 @@ import com.globalwebsite.admin.mapper.AdminRolePermissionMapper;
 import com.globalwebsite.admin.mapper.AdminStateWiseMapper;
 import com.globalwebsite.admin.mapper.AdminViewConsuRefAdminPostSubmissionMapper;
 import com.globalwebsite.admin.mapper.CountryMapper;
-import com.globalwebsite.admin.mapper.AdminAboradMapper;
+import com.globalwebsite.admin.mapper.AdminAbroadMapper;
 import com.globalwebsite.admin.mapper.AdminCommonViewSubmitMapper;
 import com.globalwebsite.admin.mapper.ScrollLinksTableMapper;
 import com.globalwebsite.admin.mapper.StateMapper;
@@ -199,15 +199,16 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 					String INSERT_SQL = AdminSqlQueries.insertAbroadSubmissionData_Query(stdmodel);
 					PreparedStatement ps = connection.prepareStatement(INSERT_SQL,  Statement.RETURN_GENERATED_KEYS);
 					ps.setString(1, stdmodel.getCountryiso());
-					ps.setString(2, stdmodel.getLinkname());
-					ps.setString(3, stdmodel.getLinkaddress());
-					ps.setString(4, stdmodel.getLoggedowner());
-					ps.setString(5, stdmodel.getEmailid());
-					ps.setString(6, stdmodel.getFilename());
-					ps.setString(7, stdmodel.getComments());
-					ps.setBoolean(8, stdmodel.isIsactive());
-					ps.setString(9, getDateFromSimpleDateFormat());
+					ps.setString(2, stdmodel.getCountrystate());
+					ps.setString(3, stdmodel.getLinkname());
+					ps.setString(4, stdmodel.getLinkaddress());
+					ps.setString(5, stdmodel.getLoggedowner());
+					ps.setString(6, stdmodel.getEmailid());
+					ps.setString(7, stdmodel.getFilename());
+					ps.setString(8, stdmodel.getComments());
+					ps.setBoolean(9, stdmodel.isIsactive());
 					ps.setString(10, getDateFromSimpleDateFormat());
+					ps.setString(11, getDateFromSimpleDateFormat());
 					return ps;
 				}
 			}, holder);
@@ -458,10 +459,12 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		try {
 			String sql=AdminSqlQueries.adminAddJobConsultantInfo_Query(stdmodel);
 			isinserted= jdbctemplate.update(sql,new Object[]{stdmodel.getJobtitle()
-					,stdmodel.getIndustry(),stdmodel.getRolecategory(),stdmodel.getSalary(),
+					,stdmodel.getIndustry(), stdmodel.getCompany(), stdmodel.getExperience(),
+					stdmodel.getQualification(), stdmodel.getRolecategory(),stdmodel.getSalary(),
 					stdmodel.getNoofpossitions(), stdmodel.getJobresponsibilities(),
-					stdmodel.getSkillreq(),stdmodel.getContactinfo(), stdmodel.isIsactive(), stdmodel.getLoggedowner(),  
-					getDateFromSimpleDateFormat()});
+					stdmodel.getSkillreq(),stdmodel.getEmailid(), stdmodel.getContactnum(), 
+					stdmodel.getLocation(), stdmodel.isIsactive(), stdmodel.getLoggedowner(),  
+					getDateFromSimpleDateFormat(), stdmodel.getNoticeperiod(), stdmodel.getOtherinfo()});
 			System.out.println("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
 			logger.info("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
 		} catch (Exception e) {
@@ -494,7 +497,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		String sql=AdminSqlQueries.getAllViewAdminAbroadData_Query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
 		try {
-			listdata = jdbctemplate.query(sql, new Object[]{prevdate+" 00:00:00", currentdate+" 23:59:59"}, new AdminAboradMapper());
+			listdata = jdbctemplate.query(sql, new Object[]{prevdate+" 00:00:00", currentdate+" 23:59:59"}, new AdminAbroadMapper());
 			System.out.println("getAllViewAdminAbroadData: "+ tablekey+": "+sql);
 			logger.info("getAllViewAdminAbroadData: "+ tablekey+": "+sql);
 			

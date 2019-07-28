@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.globalwebsite.admin.dao.AdminDaoInterfaceImpl;
 import com.globalwebsite.admin.mapper.AdminCommonViewSubmitMapper;
 import com.globalwebsite.admin.mapper.AdminRolePermissionMapper;
+import com.globalwebsite.admin.mapper.AdminViewConsuRefAdminPostSubmissionMapper;
 import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.common.mapper.getJobCategoriesMapper;
 import com.globalwebsite.common.model.EmployeeLoginModel;
@@ -106,12 +107,41 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 		String sql=UserSqlQueries.GETACTIVEPOPULARJOBS_QUERY;
 		List<AdminSubmissionModel> listdata = null;
 		try {
-			listdata = jdbctemplate.query(sql,  new AdminCommonViewSubmitMapper());
+			listdata = jdbctemplate.query(sql, new Object[]{activenum},  new AdminCommonViewSubmitMapper());
 			logger.info("getActivePopularJobs: "+sql);
 			
 		} catch (Exception e) {
 			System.out.println("getActivePopularJobs: "+e);
 			logger.info("getActivePopularJobs: "+e);
+		}
+		return listdata;
+	}
+	
+	@Override
+	public List<AdminSubmissionModel> findAllViewJobInfo(int activenum, String tablekey) {
+		String sql=UserSqlQueries.findAllViewJobInfo_query(tablekey);
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{activenum},  new AdminViewConsuRefAdminPostSubmissionMapper());
+			logger.info("findAllViewJobInfo: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("findAllViewJobInfo: "+e);
+			logger.info("findAllViewJobInfo: "+e);
+		}
+		return listdata;
+	}
+	@Override
+	public List<AdminSubmissionModel> findSelectedViewJobInfo(int seljobid, String tablekey) {
+		String sql=UserSqlQueries.findSelectedViewJobInfo_query(tablekey);
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{seljobid},  new AdminViewConsuRefAdminPostSubmissionMapper());
+			logger.info("findSelectedViewJobInfo: "+sql);
+			
+		} catch (Exception e) {
+			System.out.println("findSelectedViewJobInfo: "+e);
+			logger.info("findSelectedViewJobInfo: "+e);
 		}
 		return listdata;
 	}

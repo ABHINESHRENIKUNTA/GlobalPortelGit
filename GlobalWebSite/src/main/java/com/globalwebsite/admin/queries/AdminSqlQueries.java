@@ -4,9 +4,9 @@ import com.gw.student.model.AdminSubmissionModel;
 
 public class AdminSqlQueries {
 
-	public static final String GETADMINLOGINSQL_QUERY = "select * from global_admin_login where username=? and password=?";
-	public static final String GETADMINUPDATEDOTP_QUERY = "update global_admin_login set OTP=? where global_login_id=?";
-	public static final String GETVALIDATEADMINOTP_QUERY = "select count(*) from global_admin_login where username=? and OTP=?";
+	public static final String GETADMINLOGINSQL_QUERY = "select * from global_admin_login1 where username=? and password=?";
+	public static final String GETADMINUPDATEDOTP_QUERY = "update global_admin_login1 set OTP=? where global_login_id=?";
+	public static final String GETVALIDATEADMINOTP_QUERY = "select count(*) from global_admin_login1 where username=? and OTP=?";
 	public static final String UPLOADDASHBOARDIMAGS_QUERY = "insert into global_userdashb_images(image_title,file_name,file_link,created_date,modified_date) values(?,?,?,?,?) ";
 	public static final String GETADMINDELETEUSERIMAGES_QUERY = "select * from global_userdashb_images";
 	public static final String DELETEADMINSELECTEDIMAGE_QUERY = "delete from global_userdashb_images where global_userdashb_images_id=?";
@@ -65,9 +65,11 @@ public class AdminSqlQueries {
 		return sql; 
 	}
 	public static String adminAddJobConsultantInfo_Query(AdminSubmissionModel stdmodel) {
-		return "INSERT INTO "+stdmodel.getTablekey()+" (job_title, industry, role_category, salary, no_of_positions, "
-				+ "job_responsibilities, skill_set, contact_info, status, created_by, created_date) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		return "INSERT INTO "+stdmodel.getTablekey()+" (job_title, industry, company,experience,qualification,"
+				+ " role_category, salary, no_of_positions, "
+				+ "job_responsibilities, skill_set, email_id,contact_num,location, status, created_by, "
+				+ "created_date,notice_period, other_info) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	}
 	
 	public static String getAllViewConsuRefAdminPostSubmissionData_Query(String tablekey) {

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+   pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,16 +15,16 @@
   <meta name="description" content="GlobalWebsite">
   <meta name="author" content="GlobalWebsite">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%@include file="adminHeaderLinks.jsp" %>
+<%@include file="/jsp/admin/adminHeaderLinks.jsp" %>
 </head>
 <body class="dashboard-page">
-<%@include file="adminThemeChange.jsp" %>
-<%@include file="adminTopMenu.jsp" %>
-<%@include file="adminLeftMenu.jsp" %>
+      <%@include file="/jsp/admin/adminThemeChange.jsp" %>
+      <%@include file="/jsp/admin/adminTopMenu.jsp" %>
+      <%@include file="/jsp/admin/adminLeftMenu.jsp" %>
 
 <!-- Start: Content-Wrapper -->
-<section id="content_wrapper">
-<div class="col-md-12">
+ <section id="content_wrapper">
+         <div class="col-md-12">
             <div class="bs-component">
               <div class="panel">
                 <div class="panel-heading">
@@ -113,6 +119,6 @@
 		</section>
 </section>
 
-<%@include file="adminBodyScriptLinks.jsp" %>
+ <%@include file="/jsp/admin/adminBodyScriptLinks.jsp" %>
 </body>
 </html>

@@ -15,6 +15,7 @@ public class AdminLoginMapper implements RowMapper<AdminLoginModel> {
 		adm.setUsername(rs.getString("username"));
 		adm.setPassword(rs.getString("password"));
 		adm.setGlobalid(rs.getInt("global_login_id"));
+		adm.setRoleid(rs.getString("roleid"));
 		return adm;
 	}
 

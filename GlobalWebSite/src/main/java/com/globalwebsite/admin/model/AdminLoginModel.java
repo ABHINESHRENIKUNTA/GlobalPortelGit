@@ -6,6 +6,8 @@ public class AdminLoginModel {
 	private String password;
 	private String otp;
 	private int globalid;
+	private String roleid;
+	
 	
 	public int getGlobalid() {
 		return globalid;
@@ -30,6 +32,12 @@ public class AdminLoginModel {
 	}
 	public void setOtp(String otp) {
 		this.otp = otp;
+	}
+	public String getRoleid() {
+		return roleid;
+	}
+	public void setRoleid(String roleid) {
+		this.roleid = roleid;
 	}
 
 }

@@ -77,19 +77,36 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		int succsscnt = 0;
 		stdmodel.setLoggedowner("Prakash Varma");
 		String imgpath ="";
+		
+		/*Job Consultants, Referral and Posted By Administrator Jobs*/
+		if (StringUtils.equals(stdmodel.getTablekey(), "global_jobconsult_jobs")
+				|| (StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs"))
+				|| (StringUtils.equals(stdmodel.getTablekey(), "global_postedbyadmin_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_empposted_jobs"))) {
+				System.out.println("Entered in: " + stdmodel.getTablename());
+				logger.info("Entered in: " + stdmodel.getTablename());
+				succsscnt = adminservices.adminAddJobConsultantInfo(stdmodel);
+		}
 		/*popular, central, it and non it insert*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_popular_jobsites_page")
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_centralgov_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_it_jobs"))
-			    || (StringUtils.equals(stdmodel.getTablekey(), "global_nonit_jobs"))) {
-			/** Save Image in Selected Folder **/
-			succsscnt = adminservices.insertSubmissionData(stdmodel);
-			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder, succsscnt);
-			adminservices.updateImageFileNameInTable(stdmodel.getTablekey(), imgpath, succsscnt);
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_nonit_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_trainingandplace_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_freejobtraining_jobs"))) {
+				
+			    System.out.println("Entered in: " + stdmodel.getTablename());
+				logger.info("Entered in: " + stdmodel.getTablename());
+				/** Save Image in Selected Folder **/
+				succsscnt = adminservices.insertSubmissionData(stdmodel);
+				imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder, succsscnt);
+				adminservices.updateImageFileNameInTable(stdmodel.getTablekey(), imgpath, succsscnt);
 		}
 		/*Abroad Jobs insert*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_abroad_jobs")) {
 			/** Save Image in Selected Folder **/
+			System.out.println("Entered in: " + stdmodel.getTablename());
+			logger.info("Entered in: " + stdmodel.getTablename());
 			succsscnt = adminservices.insertAbroadSubmissionData(stdmodel);
 			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder, succsscnt);
 			adminservices.updateImageFileNameInTable(stdmodel.getTablekey(), imgpath, succsscnt);
@@ -97,18 +114,13 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		/*State-Wise Jobs insert*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_statewisegovt_jobs")) {
 			/** Save Image in Selected Folder **/
+			System.out.println("Entered in: " + stdmodel.getTablename());
+			logger.info("Entered in: " + stdmodel.getTablename());
 			succsscnt = adminservices.insertStateSubmissionData(stdmodel);
 			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder, succsscnt);
 			adminservices.updateImageFileNameInTable(stdmodel.getTablekey(), imgpath, succsscnt);
 		}
-		/*Job Consultants, Referral and Posted By Administrator Jobs*/
-		if (StringUtils.equals(stdmodel.getTablekey(), "global_jobconsult_jobs")
-				|| (StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs"))
-				|| (StringUtils.equals(stdmodel.getTablekey(), "global_postedbyadmin_jobs"))) {
-			System.out.println("Entered in: " + stdmodel.getTablename());
-			logger.info("Entered in: " + stdmodel.getTablename());
-			succsscnt = adminservices.adminAddJobConsultantInfo(stdmodel);
-		}
+		
 		System.out.println("Image Path::: "+imgpath);
 		logger.info("Image Path::: "+imgpath);
 		if (succsscnt > 0) {
@@ -195,7 +207,8 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		/*Job Consultants, Referral and Posted By Administrator Jobs*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_jobconsult_jobs")
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs"))
-				|| (StringUtils.equals(stdmodel.getTablekey(), "global_postedbyadmin_jobs"))) {
+				|| (StringUtils.equals(stdmodel.getTablekey(), "global_postedbyadmin_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_empposted_jobs"))) {
 		List<AdminSubmissionModel> alistdata = adminservices.getAllViewConsuRefAdminPostSubmissionData(stdmodel.getTablekey(),prevdate, currentdate);
 		model.addAttribute("alistdata", alistdata);
 		}
@@ -203,7 +216,9 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_popular_jobsites_page")
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_centralgov_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_it_jobs"))
-			    || (StringUtils.equals(stdmodel.getTablekey(), "global_nonit_jobs"))) {
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_nonit_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_trainingandplace_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_freejobtraining_jobs"))) {
 			List<AdminSubmissionModel> alistdata = adminservices.getAllViewSubmissionData(stdmodel.getTablekey(), prevdate, currentdate);
 			model.addAttribute("alistdata", alistdata);
 		}

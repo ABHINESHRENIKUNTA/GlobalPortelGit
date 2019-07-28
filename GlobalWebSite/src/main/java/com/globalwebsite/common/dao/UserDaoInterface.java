@@ -37,4 +37,8 @@ public interface UserDaoInterface {
 
 	List<AdminSubmissionModel> getActivePopularJobs(int activenum);
 
+	List<AdminSubmissionModel> findAllViewJobInfo(int activenum, String tablekey);
+
+	List<AdminSubmissionModel> findSelectedViewJobInfo(int seljobid, String tablekey);
+
 }

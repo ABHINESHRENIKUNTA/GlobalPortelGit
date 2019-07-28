@@ -36,10 +36,11 @@
          display: none;
          }
       </style>
+         
     <script type="text/javascript">
     
     
-    var myAjaxFunction = function(tablevalue){
+  /* var myAjaxFunction = function(tablevalue){
 	    $.ajax({
 	            url : "load-adminaddstuinfo",
 	            
@@ -52,5 +53,5 @@
 	            	
 	            }
 	    });
-  }
+  }  */
     </script>

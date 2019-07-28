@@ -2,63 +2,57 @@
     pageEncoding="ISO-8859-1"%>
   <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
   <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #17a2b8;
-  height: 100vh;
-}
-#login .container #login-row #login-column #login-box {
-  margin-top: 120px;
-  max-width: 600px;
-  height: 320px;
-  border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
-}
-#login .container #login-row #login-column #login-box #login-form {
-  padding: 20px;
-}
-#login .container #login-row #login-column #login-box #login-form #register-link {
-  margin-top: -85px;
-}
-</style>
+<title>Jobseeker's Find & Contact to Latest Jobs Online || Global Job Portal</title>
+<%@include file="/jsp/user/userNewHeader.jsp" %>
 </head>
-<body>
-    <div id="login">
-        <h3 class="text-center text-white pt-5">Global Web Site</h3>
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form:form id="login-form" class="form" modelAttribute="lmodel" action="ValidateAdminOTP" method="post">
-                            <h3 class="text-center text-info">Admin Verification</h3>
-                            <c:if test="${ermsg!=null}">
-                            <h4 style="color: red">${ermsg}</h4>
-                            </c:if>
-                            <div class="form-group">
-                                <label for="otp" class="text-info">OTP:Enter OTP Shared with your mail id.</label><br>
-                                <form:input path="otp"   id="username" required="required" maxlength="6" minlength="6" class="form-control" autocomplete="off"/>
-                            </div>
-                          
-                            <div class="form-group">
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                                <input type="hidden" name="usernameval" value="${username}">
-                            </div>
-                         
-                        </form:form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+ <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+  <body class="layout-top-nav skin-purple">
+    <div class="wrapper">
+      <!-- header logo: style can be found in header.less -->
+       <%@include file="/jsp/user/userTopMenu.jsp" %>
+      <!-- Full Width Column -->
+      <div class="content-wrapper">
+        <div class="container-fluid">
+         <div class="login-box">
+      <div class="login-logo">
+       <b>GJB </b>Login</a>
+      </div><!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+         <form:form id="login-form" class="form" modelAttribute="lmodel" action="ValidateAdminOTP" method="post">
+          <c:if test="${ermsg!=null}">
+           <h4 style="color: red">${ermsg}</h4>
+           </c:if>
+          <div class="form-group has-feedback">
+            <form:input path="otp"   id="username" required="required" maxlength="6" minlength="6" class="form-control" autocomplete="off" placeholder="Enter OTP shared with your mail id"/>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+    
+          <div class="row">
+
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+               <input type="hidden" name="usernameval" value="${username}">
+            </div><!-- /.col -->
+          </div>
+        </form:form>
+
+  
+      </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+        
+        
+   
     </div>
+    </div>
+    </div>
+    
 </body>
+    <%@include file="/jsp/user/userNewFooterLoginJsLinks.jsp" %>
 </html>

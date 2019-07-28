@@ -1,3 +1,7 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -216,9 +220,9 @@
             <!-- title end --> 
            </div>
               <div class="box box-solid">
-                <div class="box-header with-border">
+                <!-- <div class="box-header with-border">
                   <h3 class="box-title">Labels</h3>
-                </div>
+                </div> --> 
                 <div class="box-body no-padding">
                   <div class="widget">
             <h4 class="widget-title">Jobs By Industry</h4>
@@ -266,23 +270,28 @@
                 <div class="box-body no-padding">
                 <ul class="searchList" id="content">
           <!-- job start -->
+          <c:forEach items="${listData}" var="jobDetails" varStatus="loop">
           <li class="content-result">
             <div class="row">
               <div class="col-md-8 col-sm-8">
                 <div class="jobimg"><i class="fa fa-black-tie fa-5x" aria-hidden="true" style="color:#DDDDDD;"></i></div>
                 <div class="jobinfo">
-                  <h3><a href="#.">Technical Database Engineer</a></h3>
-                  <div class="companyName"><a href="#.">Datebase Management Company</a></div>
-                  <div class="location"><label class="fulltime">Full Time</label>   - <span>New York</span></div>
+                  <h3><a href="#.">${jobDetails.jobtitle}</a></h3>
+                  <div class="companyName"><a href="#.">${jobDetails.company}</a></div>
+                  <div class="location"><label class="fulltime">${jobDetails.jobtype}</label>   - <span>${jobDetails.location}</span></div>
                 </div>
                 <div class="clearfix"></div>
               </div>
               <div class="col-md-4 col-sm-4">
+                <form:form action="" commandName="jobdetails">
                 <div class="listbtn"><a href="#.">View More</a></div>
+                <form:hidden path="tablekey" value="${jobDetails.rowid}"/>
+                </form:form>
               </div>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce venenatis arcu est. Phasellus vel dignissim tellus. Aenean fermentum fermentum convallis.</p>
+            <p style="white-space: nowrap; width: 99%; overflow: hidden; text-overflow: ellipsis;">${jobDetails.skillreq}</p>
           </li>
+          </c:forEach>
           <!-- job end --> 
           
           <!-- job start -->
@@ -470,13 +479,17 @@
                 </div><!-- /.box-body -->
      
               </div><!-- /. box -->
+               <div class="box-footer">
+               <div class="col-md-4 col-sm-4"><div id="showingInfo" ></div></div>
+               <div class="col-md-8 col-sm-8 text-right"> <div  id="pagination"></div></div>
+             
+
+                 </div>
             </div><!-- /.col -->
+            
           </div>
                  
-                  <div class="box-footer">
-              <div class="pagination" id="pagination"></div>
-<div id="showingInfo" class="well" style="margin-top:20px"></div>
-                 </div>
+                 
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div>
@@ -500,11 +513,12 @@
             pagingControlsContainer : '#pagination',
             showingInfoSelector : '#showingInfo',
             css: {
-                btnNumberingClass: 'btn btn-sm btn-success',
-                btnFirstClass: 'btn btn-sm btn-success',
-                btnLastClass: 'btn btn-sm btn-success',
-                btnNextClass: 'btn btn-sm btn-success',
-                btnPreviousClass: 'btn btn-sm btn-success'
+                btnNumberingClass: 'btn btn-sm btn-default',
+                btnFirstClass: 'btn btn-sm btn-default',
+                btnLastClass: 'btn btn-sm btn-default',
+                btnNextClass: 'btn btn-sm btn-default',
+                btnPreviousClass: 'btn btn-sm btn-default',
+                btnActiveClass: 'btn btn-sm btn-primary'
             }
         });
         flexiblePagination.getController().onPageClick = function(pageNum, e){
@@ -521,5 +535,6 @@
     });
 
     </script>
+    
   </body>
 </html>

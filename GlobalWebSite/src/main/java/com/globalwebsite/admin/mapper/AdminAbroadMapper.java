@@ -7,13 +7,14 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.gw.student.model.AdminSubmissionModel;
 
-public class AdminAboradMapper implements RowMapper<AdminSubmissionModel> {
+public class AdminAbroadMapper implements RowMapper<AdminSubmissionModel> {
 
 	@Override
 	public AdminSubmissionModel mapRow(ResultSet rs, int rowNum) throws SQLException {
 		AdminSubmissionModel asm = new AdminSubmissionModel();
 		asm.setRowid(rs.getInt("id"));
 		asm.setCountryiso(rs.getString("iso"));
+		asm.setCountrystate(rs.getString("statename"));
 		asm.setCountryname(rs.getString("name"));
 		asm.setLinkname(rs.getString("link_name"));
 		asm.setLinkaddress(rs.getString("link_address"));

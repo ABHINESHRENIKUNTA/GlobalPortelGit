@@ -26,6 +26,7 @@ Flexible.Pagination = function(options){
     defaultOption.itemsPerPage = 1;
     defaultOption.currentPage = 1;
     defaultOption.searchBoxSelector = '.searchBox';
+    defaultOption.searchBoxChange = '.searchBoxList';
     defaultOption.searchPhrase = '';
     defaultOption.showingInfoSelector = '.showingInfo';
     /** How many Page Number should be visible while navigating. Minimum allowed is 3  (previous, current & next) */
@@ -88,6 +89,7 @@ Flexible.Pagination = function(options){
     this.displayedPages = getOption('displayedPages');
     this.numOfPages = 0;
     this.searchBoxSelector = getOption('searchBoxSelector');
+    this.searchBoxChange =  getOption('searchBoxChange');
     this.searchPhrase = getOption('searchPhrase');
     this.showGotoFirst = getOption('showGotoFirst');
     this.showGotoLast = getOption('showGotoLast');
@@ -375,6 +377,12 @@ Flexible.PaginationController = function(pager){
     body.on("keyup", pager.searchBoxSelector, function(e){
         pager.searchPhrase = $(this).val();
         controller.showFirstPage();
+    });
+    /**@search Text field control */
+    body.on("change", pager.searchBoxChange, function(e){
+    	pager.searchPhrase="";
+    	pager.searchPhrase = $(this).val();
+    	controller.showFirstPage();
     });
 
     /**@dropDown for selecting Items Per Page */

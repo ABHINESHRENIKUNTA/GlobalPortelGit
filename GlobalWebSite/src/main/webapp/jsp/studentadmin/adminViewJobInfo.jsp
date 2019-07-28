@@ -92,7 +92,10 @@ ${tableval}</button>
     class="table table-striped table-hover dt-responsive"
     cellspacing="0" width="100%">
     <c:choose>
-<c:when test="${tablekey == 'global_postedbyadmin_jobs' or tablekey == 'global_refpost_jobs' or tablekey == 'global_jobconsult_jobs'}">
+<c:when test="${tablekey == 'global_postedbyadmin_jobs' or 
+                tablekey == 'global_refpost_jobs' or 
+                tablekey == 'global_jobconsult_jobs' or 
+                tablekey == 'global_empposted_jobs'}">
 <thead>
   <tr>
     <th>#</th>

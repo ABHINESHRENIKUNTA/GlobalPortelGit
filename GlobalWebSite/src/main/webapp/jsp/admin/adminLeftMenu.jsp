@@ -75,6 +75,7 @@
         <ul class="nav sidebar-menu">
           <li class="sidebar-label pt20">Menu</li>
            <c:set value="nopermission" var="permissions"></c:set>
+           <c:set value="nopermission" var="operators"></c:set>
            <c:set value="nopermission" var="abroadjobs"></c:set>
            <c:set value="nopermission" var="popularjobs"></c:set>
            <c:set value="nopermission" var="statewisejobs"></c:set>
@@ -84,6 +85,7 @@
            <c:set value="nopermission" var="jobconsultants"></c:set>
            <c:set value="nopermission" var="referralpostjobs"></c:set>
            <c:set value="nopermission" var="postedbyadminjobs"></c:set>
+           <c:set value="nopermission" var="employerpostedjobs"></c:set>
            <c:set value="nopermission" var="trainingplacejobs"></c:set>
            <c:set value="nopermission" var="freetrainingjobs"></c:set>
            
@@ -91,6 +93,10 @@
           
             <c:if test="${menulist.permname == 'VIEW_PERMISSIONS'  or menulist.permname == 'EDIT_PERMISSIONS'}">
             <c:set value="yespermission" var="permissions"></c:set>
+            </c:if> 
+            
+            <c:if test="${menulist.permname == 'VIEW_OPERATORS'  or menulist.permname == 'EDIT_OPERATORS'}">
+            <c:set value="yespermission" var="operators"></c:set>
             </c:if> 
            
             <c:if test="${menulist.permname == 'VIEW_ABROAD_JOBS'  or menulist.permname == 'EDIT_ABROAD_JOBS'}">
@@ -129,6 +135,10 @@
             <c:set value="yespermission" var="postedbyadminjobs"></c:set>
             </c:if>
             
+            <c:if test="${menulist.permname == 'VIEW_EMPLOYEE_POSTED_JOBS'  or menulist.permname == 'EDIT_EMPLOYEE_POSTED_JOBS'}">
+            <c:set value="yespermission" var="employerpostedjobs"></c:set>
+            </c:if>
+            
             <c:if test="${menulist.permname == 'VIEW_TRAININGANDPLACE_JOBS'  or menulist.permname == 'EDIT_TRAININGANDPLACE_JOBS'}">
              <c:set value="yespermission" var="trainingplacejobs"></c:set>
             </c:if>  
@@ -142,7 +152,7 @@
            <li>
             <a class="accordion-toggle" href="#">
               <span class="fa fa-user"></span>
-              <span class="sidebar-title">User Dash board</span>
+              <span class="sidebar-title">Dash board</span>
               <span class="caret"></span>
             </a>
             <ul class="nav sub-nav">
@@ -168,14 +178,14 @@
          
              </ul>
           </li>       
-          
+           <c:if test="${operators == 'yespermission'}">
               <li>
                 <a href="view-operators" >
                   <span class="fa fa-university"></span>
                   <span class="sidebar-title">View Operators</span>
                 </a>
                </li>
-           
+           </c:if>
              <c:if test="${permissions == 'yespermission'}">
               <li>
               <a href="view-rolepermissions" >
@@ -262,6 +272,15 @@
                <a href="load-adminviewcommoninfo?selectedparam=global_postedbyadmin_jobs">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Jobs Posted By Admin</span>
+            </a>
+            </li> 
+            </c:if>
+            
+            <c:if test="${employerpostedjobs == 'yespermission'}">
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_empposted_jobs">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Employer Posted Jobs</span>
             </a>
             </li> 
             </c:if>

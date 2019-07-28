@@ -401,7 +401,7 @@
                 var html = [];
                 for (var i = 1; i < letters.length; i++) {
                     if (html.length === 0) {
-                        html.push('<a class="all" href="#">'+ opts.allText + '</a><a class="_  " href="#">0-9</a>');
+                        html.push('<a class="all" href="#">'+ opts.allText + '</a><a class="_    btn btn-default" href="#">0-9</a>');
                     }
                     html.push('<a class="' + letters[i] +  ' btn btn-default" href="#">' + ((letters[i] === '-') ? '...' : letters[i].toUpperCase()) + '</a>');
                 }

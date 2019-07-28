@@ -32,17 +32,55 @@ public class AdminSubmissionModel {
     private String salary;
     private int noofpossitions;
     private String jobresponsibilities;
-    private String contactinfo;
+    private String contactnum;
     private String skillreq;
     private String daterange;
     private String countryiso;
     private String countryname;
     private int stateid;
     private String statename;
+    private String countrystate;
+    private String location;
+    private String experience;
+    private String company;
+    private String qualification;
+    private String noticeperiod;
+    private String otherinfo;
     
     
-    
-    public int getStateid() {
+    public String getOtherinfo() {
+		return otherinfo;
+	}
+
+	public void setOtherinfo(String otherinfo) {
+		this.otherinfo = otherinfo;
+	}
+
+	public String getQualification() {
+		return qualification;
+	}
+
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getExperience() {
+		return experience;
+	}
+
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+
+	public int getStateid() {
 		return stateid;
 	}
 
@@ -134,14 +172,7 @@ public class AdminSubmissionModel {
 		this.jobresponsibilities = jobresponsibilities;
 	}
 
-	public String getContactinfo() {
-		return contactinfo;
-	}
-
-	public void setContactinfo(String contactinfo) {
-		this.contactinfo = contactinfo;
-	}
-
+	
 	public boolean isIsactive() {
 		return isactive;
 	}
@@ -152,6 +183,14 @@ public class AdminSubmissionModel {
 
 
 
+
+	public String getContactnum() {
+		return contactnum;
+	}
+
+	public void setContactnum(String contactnum) {
+		this.contactnum = contactnum;
+	}
 
 	public int getTotvalintable() {
 		return totvalintable;
@@ -270,6 +309,30 @@ public class AdminSubmissionModel {
 
 	public void setDaterange(String daterange) {
 		this.daterange = daterange;
+	}
+
+	public String getCountrystate() {
+		return countrystate;
+	}
+
+	public void setCountrystate(String countrystate) {
+		this.countrystate = countrystate;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getNoticeperiod() {
+		return noticeperiod;
+	}
+
+	public void setNoticeperiod(String noticeperiod) {
+		this.noticeperiod = noticeperiod;
 	}
 	
 

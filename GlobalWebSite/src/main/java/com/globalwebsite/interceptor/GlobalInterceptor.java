@@ -48,9 +48,13 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 		String apndQryStr = getQueryStringFromURL(request);
 		String permissionurl = request.getServletPath();
 		
-		int roleid=1;
+		int roleid=0;
 		
 		boolean rolenotnull = request.getSession().getAttribute("roleid") != null;
+		if(rolenotnull==true){
+			String ssroleid = (String) request.getSession().getAttribute("roleid");
+			roleid = Integer.valueOf(ssroleid);
+		}
 		List<AdminRolePermissionModel> leftMenuList = null;
 		if(roleid==1){
 			leftMenuList = apr.getAllPermissionsForSuperuser();

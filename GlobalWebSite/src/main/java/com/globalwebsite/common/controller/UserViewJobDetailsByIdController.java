@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.globalwebsite.common.services.UserServiceInterfaceImpl;
 import com.gw.student.model.AdminSubmissionModel;
@@ -21,52 +22,48 @@ public class UserViewJobDetailsByIdController {
 	private final String errorPage="user/userErrorPage";
 	
 	 @RequestMapping("/view-userconsultantsjobsbyid")
-	 public String userViewConsultantJobScreenById(Model model, AdminSubmissionModel stdmodel){
+	 public ModelAndView userViewConsultantJobScreenById(Model model, AdminSubmissionModel stdmodel){
 		 String tablekey="global_jobconsult_jobs";
-		 boolean selectflag = stdmodel.getTablekey()!=null;
-		 if(selectflag==false){
-			 return errorPage;
+		 if(stdmodel.getRowid()==0){
+			 return new ModelAndView(errorPage, "listjobdetails", stdmodel);
 		 }
-		 int jobdetailid=Integer.valueOf(stdmodel.getTablekey().trim());
+		 int jobdetailid=stdmodel.getRowid();
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
 		 model.addAttribute("listData", listData);
-		 return "user/userViewConsultantJobs";
+		 return new ModelAndView("user/userViewConsultantJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-userreferraljobsid")
-	 public String userViewReferralScreenId(Model model, AdminSubmissionModel stdmodel){
+	 public ModelAndView userViewReferralScreenId(Model model, AdminSubmissionModel stdmodel){
 		 String tablekey="global_refpost_jobs";
-		 boolean selectflag = stdmodel.getTablekey()!=null;
-		 if(selectflag==false){
-			 return errorPage;
+		 if(stdmodel.getRowid()==0){
+			 return new ModelAndView(errorPage, "listjobdetails", stdmodel);
 		 }
-		 int jobdetailid=Integer.valueOf(stdmodel.getTablekey().trim());
+		 int jobdetailid=stdmodel.getRowid();
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
 		 model.addAttribute("listData", listData);
-		 return "user/userViewReferralJobs";
+		 return new ModelAndView("user/userViewReferralJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-userpostedbyadminid")
-	 public String userViewPostedByAdminScreenId(Model model, AdminSubmissionModel stdmodel){
+	 public ModelAndView userViewPostedByAdminScreenId(Model model, AdminSubmissionModel stdmodel){
 		 String tablekey="global_postedbyadmin_jobs";
-		 boolean selectflag = stdmodel.getTablekey()!=null;
-		 if(selectflag==false){
-			 return errorPage;
+		 if(stdmodel.getRowid()==0){
+			 return new ModelAndView(errorPage, "listjobdetails", stdmodel);
 		 }
-		 int jobdetailid=Integer.valueOf(stdmodel.getTablekey().trim());
+		 int jobdetailid=stdmodel.getRowid();
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
 		 model.addAttribute("listData", listData);
-		 return "user/userViewJobsPostedByAdmin";
+		 return new ModelAndView("user/userViewJobsPostedByAdmin", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-useremployeepostedjobsid")
-	 public String userViewEmployerPostedJobsScreenId(Model model, AdminSubmissionModel stdmodel){
+	 public ModelAndView userViewEmployerPostedJobsScreenId(Model model, AdminSubmissionModel stdmodel){
 		 String tablekey="global_empposted_jobs";
-		 boolean selectflag = stdmodel.getTablekey()!=null;
-		 if(selectflag==false){
-			 return errorPage;
+		 if(stdmodel.getRowid()==0){
+			 return new ModelAndView(errorPage, "listjobdetails", stdmodel);
 		 }
-		 int jobdetailid=Integer.valueOf(stdmodel.getTablekey().trim());
+		 int jobdetailid=stdmodel.getRowid();
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
 		 model.addAttribute("listData", listData);
-		 return "user/userViewEmployerPostedJobs";
+		 return new ModelAndView("user/userViewEmployerPostedJobsById", "listjobdetails", stdmodel);
 	 }
 
 }

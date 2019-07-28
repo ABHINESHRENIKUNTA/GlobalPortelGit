@@ -464,7 +464,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 					stdmodel.getNoofpossitions(), stdmodel.getJobresponsibilities(),
 					stdmodel.getSkillreq(),stdmodel.getEmailid(), stdmodel.getContactnum(), 
 					stdmodel.getLocation(), stdmodel.isIsactive(), stdmodel.getLoggedowner(),  
-					getDateFromSimpleDateFormat(), stdmodel.getNoticeperiod(), stdmodel.getOtherinfo()});
+					getDateFromSimpleDateFormat(), stdmodel.getNoticeperiod(), stdmodel.getOtherinfo(), stdmodel.getJobtype()});
 			System.out.println("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
 			logger.info("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
 		} catch (Exception e) {

@@ -151,6 +151,57 @@
 	color: #999;
 	font-weight: 400;
 }
+.btn-share {
+    background-color: #BEBEBE;
+    border-color: #CCCCCC;
+    color: #333333;
+}
+
+.btn-twitter {
+    background-color: #3399CC !important;
+    width: 10px;
+    color:#FFFFFF!important;
+}
+
+.btn-facebook {
+    background-color: #3D5B96 !important;
+    width: 10px;
+    color:#FFFFFF!important;
+}
+
+.btn-facebook {
+    background-color: #3D5B96 !important;
+    width: 10px;
+    color:#FFFFFF!important;
+}
+
+.btn-google {
+    background-color: #DD3F34 !important;
+    width: 10px;
+    color:#FFFFFF!important;
+}
+
+.btn-linkedin {
+    background-color: #1884BB !important;
+    width: 10px;
+    color:#FFFFFF!important;
+}
+
+.btn-pinterest {
+    background-color: #CC1E2D !important;
+    width: 10px;
+    color:#FFFFFF!important;
+}
+
+.btn-mail {
+    background-color: #FFC90E !important;
+    width: 10px;
+    color:#FFFFFF!important;
+}
+
+
+
+
   </style>
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
@@ -187,76 +238,8 @@
                 </div>
                 <div class="box-body">
                   <div class="row">
-            <div class="col-md-3">
-              <a href="#" class="btn btn-primary btn-block margin-bottom">Search Jobs</a>
-            <div class="widget">
-            <h4 class="widget-title">Jobs By Title</h4>
-            <ul class="optionlist">
-              <li>
-                <input type="checkbox" name="checkname" id="webdesigner">
-                <label for="webdesigner"></label>
-                Web Designer <span>12</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="3dgraphic">
-                <label for="3dgraphic"></label>
-                3D Graphic Designer <span>33</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="graphic">
-                <label for="graphic"></label>
-                Graphic Designer <span>33</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="electronicTech">
-                <label for="electronicTech"></label>
-                Electronics Technician <span>33</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="webgraphic">
-                <label for="webgraphic"></label>
-                Web / Graphic Designer <span>33</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="brandmanager">
-                <label for="brandmanager"></label>
-                Brand Manager <span>33</span> </li>
-            </ul>
-            <!-- title end --> 
-           </div>
-              <div class="box box-solid">
-                <!-- <div class="box-header with-border">
-                  <h3 class="box-title">Labels</h3>
-                </div> --> 
-                <div class="box-body no-padding">
-                  <div class="widget">
-            <h4 class="widget-title">Jobs By Industry</h4>
-            <ul class="optionlist">
-              <li>
-                <input type="checkbox" name="checkname" id="infotech">
-                <label for="infotech"></label>
-                Information Technology <span>22</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="advertise">
-                <label for="advertise"></label>
-                Advertising/PR <span>45</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="services">
-                <label for="services"></label>
-                Services <span>44</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="health">
-                <label for="health"></label>
-                Health &amp; Fitness <span>88</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="mediacomm">
-                <label for="mediacomm"></label>
-                Media/Communications <span>22</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="fashion">
-                <label for="fashion"></label>
-                Fashion <span>11</span> </li>
-            </ul>
-             </div>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-            <div class="col-md-9">
+            
+            <div class="col-md-12">
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">Jobs Inbox</h3>
@@ -279,44 +262,78 @@
                 <div class="jobinfo">
                   <h3><a href="#.">${jobDetails.jobtitle}</a></h3>
                   <div class="companyName"><a href="#.">${jobDetails.company}</a></div>
-                  <div class="location"><label class="fulltime">${jobDetails.jobtype}</label>   - <span>${jobDetails.location}</span></div>
+                  <div class="location"><label class="fulltime">${jobDetails.jobtype}</label>   - <span>${jobDetails.location}, </span>
+                  <label class="fulltime"> Notice Period: </label>   - <span>${jobDetails.noticeperiod}, </span>
+                  </div>
+                </div>
+        		 <div class="clearfix"></div>
+                <div class="jobinfo">
+                  <div class="location">
+                   <label class="fulltime"> Experience Required: </label>   - <span>${jobDetails.experience}, </span>
+                  <label class="fulltime"> Number Of Positions: </label>   - <span>${jobDetails.noofpossitions}, </span>
+                  </div>
+                </div>
+                 <div class="clearfix"></div>
+                <div class="jobinfo">
+                  <div class="location">
+                  <label class="fulltime"> Salary: </label>   - <span>${jobDetails.salary}, </span>
+                  <label class="fulltime"> Industry: </label>   - <span>${jobDetails.industry}, </span>
+                  </div>
+                </div>
+                 <div class="clearfix"></div>
+                <div class="jobinfo">
+                  <div class="location">
+                  <label class="fulltime"> Role / Designation: </label>   - <span>${jobDetails.rolecategory}</span>
+                  </div>
                 </div>
                 <div class="clearfix"></div>
               </div>
               <div class="col-md-4 col-sm-4">
-                <form action="view-useremployeepostedjobsid" >
-                <div class="listbtn"><button class="btn btn-primary">View More</button></div>
-                <input type="hidden" name="rowid" value="${jobDetails.rowid}"/>
-                </form>
+                <form:form action="" commandName="listjobdetails">
+                
+                 <div class="listbtn">
+                  
+    				<button href="#" data-toggle="dropdown" class="btn btn-info dropdown-toggle share">
+    					<i class="fa fa-share-alt" aria-hidden="true"></i><!-- <span class="caret"></span> -->
+    				</button>
+    				<ul class="dropdown-menu" style="border: none; max-height: 10px;">
+    				<li >
+        				<span onclick="twitterFun();">
+								<i class="fa fa-twitter" style="color:#00acee; padding: 5px;cursor: pointer;font-size: 25px; "></i>
+							</span> 
+        					<span onclick="facebookFun();">
+								<i class="fa fa-facebook" style="color:#3b5998; padding: 5px;cursor: pointer;font-size: 25px; "></i>
+        					</span>
+        					<span onclick="googlePlusFun();">
+								<i class="fa fa-google-plus fa-3px" style="color:#CC3333; padding: 5px;cursor: pointer;font-size: 25px; "></i>
+							</span>
+							<span onclick="linkedinFun();">							
+								<i class="fa fa-linkedin fa-3px" style="color:#0077B5; padding: 5px;cursor: pointer;font-size: 25px; "></i>
+							</span>
+							
+							<span onclick="mailToFun();">
+								<i class="fa fa-envelope fa-3px" style="color:#f1d592; padding: 5px;cursor: pointer;font-size: 25px; "></i>
+							</span>
+        				</li>
+                    </ul>
+                   <button class="btn btn-primary">Apply Now</button></div> 
+                <form:hidden path="rowid" value="${jobDetails.rowid}"/>
+                </form:form>
               </div>
             </div>
-            <p style="white-space: nowrap; width: 99%; overflow: hidden; text-overflow: ellipsis;">${jobDetails.skillreq}</p>
+             <h4><a href="#.">Skill Requirement</a></h4>
+            <p>${jobDetails.skillreq}</p>
+             <h4><a href="#.">Job Responsibilities</a></h4>
+            <p>${jobDetails.jobresponsibilities}</p>
+            <h4><a href="#.">Other Information</a></h4>
+            <p>${jobDetails.otherinfo}</p>
+            <h4><a href="#.">Contact Information</a></h4>
+            <p>Email: ${jobDetails.emailid}</p>
+            <p>Contact: ${jobDetails.contactnum}</p>
+            
           </li>
           </c:forEach>
           <!-- job end --> 
-          
-         
-          
-          <!-- job start -->
-          <!--  <li class="content-result">
-            <div class="row">
-              <div class="col-md-8 col-sm-8">
-                <div class="jobimg"><i class="fa fa-black-tie fa-5x" aria-hidden="true" style="color:#DDDDDD;"></i></div>
-                <div class="jobinfo">
-                  <h3><a href="#.">Technical Database Engineer</a></h3>
-                  <div class="companyName"><a href="#.">Datebase Management Company</a></div>
-                  <div class="location"><label class="partTime">Part Time</label>   - <span>New York</span></div>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <div class="listbtn"><a href="#.">View More</a></div>
-              </div>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce venenatis arcu est. Phasellus vel dignissim tellus. Aenean fermentum fermentum convallis.</p>
-          </li> -->
-          <!-- job end -->
-          
         </ul>
                   
                 </div><!-- /.box-body -->
@@ -377,6 +394,43 @@
 //        pager.showCurrentPage();
     });
 
+    function socialWindow(url) {
+        var left = (screen.width - 570) / 2;
+        var top = (screen.height - 570) / 2;
+        var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
+        window.open(url,"NewWindow",params);
+    }
+
+        var pageUrl = encodeURIComponent(document.URL);
+        var tweet = encodeURIComponent(jQuery("meta[property='og:description']").attr("content"));
+        
+       function facebookFun() {
+            url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
+            alert(url);
+            socialWindow(url);
+        }
+
+        function twitterFun() {
+            url = "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + tweet;
+            socialWindow(url);
+        }
+        function googlePlusFun() {
+            url = "https://plus.google.com/share?url=" + pageUrl + "&text=" + tweet;
+            socialWindow(url);
+        }
+
+        function linkedinFun() {
+            url = "https://www.linkedin.com/shareArticle?mini=true&url=" + pageUrl;
+            socialWindow(url);
+        }
+        var pageTitle = encodeURIComponent(page.title);
+        var body_message = $('#content-result').html();
+        var email = 'test@mail.com';
+        var subject = pageTitle;
+        var mailto_link = 'mailto:' + email + '?subject=' + subject + '&body=' + body_message;
+        function mailToFun() {
+        	socialWindow(mailto_link);
+        }
     </script>
     
   </body>

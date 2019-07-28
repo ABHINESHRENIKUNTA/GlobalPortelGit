@@ -16,8 +16,9 @@
       <meta name="author" content="GlobalWebsite">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <%@include file="/jsp/admin/adminHeaderLinks.jsp" %>
-      
-   </head>
+       <%-- <link href="${pageContext.request.contextPath}/theme/usernewdesign/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" /> --%>
+<%--        <link href="${pageContext.request.contextPath}/theme/vendor/plugins/xeditable/inputs/wysihtml5/bootstrap-wysihtml5-0.0.2/wysiwyg-color.css" rel="stylesheet" type="text/css" />
+ --%>   </head>
    <body class="dashboard-page theme-danger">
       <%@include file="/jsp/admin/adminThemeChange.jsp" %>
       <%@include file="/jsp/admin/adminTopMenu.jsp" %>
@@ -209,5 +210,15 @@
          </div>
       </section>
       <%@include file="/jsp/admin/adminBodyScriptLinks.jsp" %>
+    <%-- <script src="${pageContext.request.contextPath}/theme/usernewdesign/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script> --%>
+    <%-- <script src="${pageContext.request.contextPath}/theme/vendor/plugins/xeditable/inputs/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/theme/vendor/plugins/xeditable/inputs/wysihtml5/wysihtml5.js" type="text/javascript"></script>
+     --%>
+      <script>
+      $(function () {
+          //Add text editor
+          $(".textarea").wysihtml5();
+        });
+</script>
    </body>
 </html>

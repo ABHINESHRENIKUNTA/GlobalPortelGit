@@ -31,7 +31,7 @@ public class UserViewAllPagesJobsController {
 		 
 		 List<AdminSubmissionModel> popularList = userserviceimpl.getActivePopularJobs(activenum);
 		 model.addAttribute("popularList", popularList);
-		 return new ModelAndView("user/userViewPopularJobs", "jobdetails", stdmodel);
+		 return new ModelAndView("user/userViewPopularJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-userstatewisejobs")
 	 public ModelAndView userViewStateWiseJobScreen(Model model, AdminSubmissionModel stdmodel){
@@ -43,34 +43,34 @@ public class UserViewAllPagesJobsController {
 	 @RequestMapping("/view-usercentralgovjobs")
 	 public ModelAndView userViewCentralGovJobScreen(Model model, AdminSubmissionModel stdmodel){
 		
-		 return new ModelAndView("user/userViewCentralGovJobs", "jobdetails", stdmodel);
+		 return new ModelAndView("user/userViewCentralGovJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-userViewAbroadJobs")
 	 public ModelAndView userViewAbroadJobScreen(Model model, AdminSubmissionModel stdmodel){
 		 
-		 return new ModelAndView("user/userViewAbroadJobs", "jobdetails", stdmodel);
+		 return new ModelAndView("user/userViewAbroadJobs", "listjobdetails", stdmodel);
 	 }
 	
 	 @RequestMapping("/view-useritjobs")
 	 public ModelAndView userViewItJobScreen(Model model, AdminSubmissionModel stdmodel){
 		 
-		 return new ModelAndView("user/userViewITJobs", "jobdetails", stdmodel);
+		 return new ModelAndView("user/userViewITJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-usernonitjobs")
 	 public ModelAndView userViewNonJobScreen(Model model, AdminSubmissionModel stdmodel){
 		 
-		 return new ModelAndView("user/userNonITJobs", "jobdetails", stdmodel);
+		 return new ModelAndView("user/userNonITJobs", "listjobdetails", stdmodel);
 	 }
 	
 	 @RequestMapping("/view-userfreejobtraininginst")
 	 public ModelAndView userViewFreeJobTrainingInstScreen(Model model, AdminSubmissionModel stdmodel){
 		 
-		 return new ModelAndView("user/userViewFreeTrainingInstJobs", "jobdetails", stdmodel);
+		 return new ModelAndView("user/userViewFreeTrainingInstJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-usertrainingplacinst")
 	 public ModelAndView userViewTrainingAndPlacementInstScreen(Model model, AdminSubmissionModel stdmodel){
 		 
-		 return new ModelAndView("user/userViewTrainingPlacInst", "jobdetails", stdmodel);
+		 return new ModelAndView("user/userViewTrainingPlacInst", "listjobdetails", stdmodel);
 	 }
 	 
 	 @RequestMapping("/view-userconsultantsjobs")
@@ -78,7 +78,7 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_jobconsult_jobs";
 		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
 		 model.addAttribute("listData", listData);
-		 return new ModelAndView("user/userViewConsultantJobs", "jobdetails", stdmodel);
+		 return new ModelAndView("user/userViewConsultantJobs", "listjobdetails", stdmodel);
 	 }
 	 
 	 @RequestMapping("/view-userreferraljobs")
@@ -86,7 +86,7 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_refpost_jobs";
 		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
 		 model.addAttribute("listData", listData);
-		 return new ModelAndView("user/userViewReferralJobs", "jobdetails", stdmodel);
+		 return new ModelAndView("user/userViewReferralJobs", "listjobdetails", stdmodel);
 	 }
 	
 	 @RequestMapping("/view-userpostedbyadmin")
@@ -94,14 +94,14 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_postedbyadmin_jobs";
 		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
 		 model.addAttribute("listData", listData);
-		 return new ModelAndView("user/userViewJobsPostedByAdmin", "jobdetails", stdmodel);
+		 return new ModelAndView("user/userViewJobsPostedByAdmin", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-useremployeepostedjobs")
 	 public ModelAndView userViewEmployerPostedJobsScreen(Model model, AdminSubmissionModel stdmodel){
 		 String tablekey="global_empposted_jobs";
 		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
 		 model.addAttribute("listData", listData);
-		 return new ModelAndView("user/userViewEmployerPostedJobs", "jobdetails", stdmodel);
+		 return new ModelAndView("user/userViewEmployerPostedJobs", "listjobdetails", listData);
 	 }
 	
 }

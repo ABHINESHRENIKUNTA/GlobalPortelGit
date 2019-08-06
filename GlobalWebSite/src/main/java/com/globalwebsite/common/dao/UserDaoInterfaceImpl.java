@@ -10,11 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.globalwebsite.admin.dao.AdminDaoInterfaceImpl;
+import com.globalwebsite.admin.mapper.AdminAbroadMapper;
 import com.globalwebsite.admin.mapper.AdminCommonViewSubmitMapper;
-import com.globalwebsite.admin.mapper.AdminRolePermissionMapper;
+import com.globalwebsite.admin.mapper.AdminStateWiseMapper;
 import com.globalwebsite.admin.mapper.AdminViewConsuRefAdminPostSubmissionMapper;
-import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.common.mapper.getJobCategoriesMapper;
 import com.globalwebsite.common.model.EmployeeLoginModel;
 import com.globalwebsite.common.model.ReferalLoginModel;
@@ -103,20 +102,47 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 	}
 
 	@Override
-	public List<AdminSubmissionModel> getActivePopularJobs(int activenum) {
-		String sql=UserSqlQueries.GETACTIVEPOPULARJOBS_QUERY;
+	public List<AdminSubmissionModel> getActivePopularJobs(String tablekey, int activenum) {
+		String sql=UserSqlQueries.getActivePopularJobs_query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
 		try {
 			listdata = jdbctemplate.query(sql, new Object[]{activenum},  new AdminCommonViewSubmitMapper());
 			logger.info("getActivePopularJobs: "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("getActivePopularJobs: "+e);
+			//System.out.println("getActivePopularJobs: "+e);
 			logger.info("getActivePopularJobs: "+e);
 		}
 		return listdata;
 	}
-	
+	@Override
+	public List<AdminSubmissionModel> getActiveStatewiseJobs(int activenum) {
+		String sql=UserSqlQueries.GETACTIVESTATEWISEJOBS_QUERY;
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{activenum},  new AdminStateWiseMapper());
+			logger.info("getActiveStatewiseJobs: "+sql);
+			
+		} catch (Exception e) {
+			//System.out.println("getActiveStatewiseJobs: "+e);
+			logger.info("getActiveStatewiseJobs: "+e);
+		}
+		return listdata;
+	}
+	@Override
+	public List<AdminSubmissionModel> getActiveAbroadJobs(int activenum) {
+		String sql=UserSqlQueries.GETACTIVEABROADJOBS_QUERY;
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{activenum},  new AdminAbroadMapper());
+			logger.info("getActiveAbroadJobs: "+sql);
+			
+		} catch (Exception e) {
+			//System.out.println("getActiveAbroadJobs: "+e);
+			logger.info("getActiveAbroadJobs: "+e);
+		}
+		return listdata;
+	}
 	@Override
 	public List<AdminSubmissionModel> findAllViewJobInfo(int activenum, String tablekey) {
 		String sql=UserSqlQueries.findAllViewJobInfo_query(tablekey);
@@ -126,7 +152,7 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 			logger.info("findAllViewJobInfo: "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("findAllViewJobInfo: "+e);
+			//System.out.println("findAllViewJobInfo: "+e);
 			logger.info("findAllViewJobInfo: "+e);
 		}
 		return listdata;
@@ -140,7 +166,7 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 			logger.info("findSelectedViewJobInfo: "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("findSelectedViewJobInfo: "+e);
+			//System.out.println("findSelectedViewJobInfo: "+e);
 			logger.info("findSelectedViewJobInfo: "+e);
 		}
 		return listdata;

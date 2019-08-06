@@ -72,8 +72,8 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
 	}
 	
 	@Override
-	public List<AdminSubmissionModel> getActivePopularJobs(int activenum) {
-		return userdaoimpl.getActivePopularJobs(activenum);
+	public List<AdminSubmissionModel> getActivePopularJobs(String tablekey, int activenum) {
+		return userdaoimpl.getActivePopularJobs(tablekey,activenum);
 	}
 	@Override
 	public List<AdminSubmissionModel> findAllViewJobInfo(int activenum, String tablekey) {
@@ -82,6 +82,14 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
 	@Override
 	public List<AdminSubmissionModel> findSelectedViewJobInfo(int jobdetailid, String tablekey) {
 		return userdaoimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
+	}
+	@Override
+	public List<AdminSubmissionModel> getActiveStatewiseJobs(int activenum) {
+		return userdaoimpl.getActiveStatewiseJobs(activenum);
+	}
+	@Override
+	public List<AdminSubmissionModel> getActiveAbroadJobs(int activenum) {
+		return userdaoimpl.getActiveAbroadJobs(activenum);
 	}
 
 }

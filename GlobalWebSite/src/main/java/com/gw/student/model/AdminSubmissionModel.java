@@ -3,6 +3,7 @@ package com.gw.student.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class AdminSubmissionModel {
+	private static final long serialversionUID =  129348938L; 
 	
 	@NotEmpty(message="Author should not be empty")
 	private String addedby;
@@ -334,6 +335,23 @@ public class AdminSubmissionModel {
 	public void setNoticeperiod(String noticeperiod) {
 		this.noticeperiod = noticeperiod;
 	}
+
+	@Override
+	public String toString() {
+		return "AdminSubmissionModel [addedby=" + addedby + ", addeddate=" + addeddate + ", rowid=" + rowid
+				+ ", modifieddate=" + modifieddate + ", comments=" + comments + ", emailid=" + emailid + ", linkname="
+				+ linkname + ", linkaddress=" + linkaddress + ", filename=" + filename + ", tablename=" + tablename
+				+ ", tablekey=" + tablekey + ", totvalintable=" + totvalintable + ", loggedowner=" + loggedowner
+				+ ", isactive=" + isactive + ", jobtitle=" + jobtitle + ", industry=" + industry + ", jobtype="
+				+ jobtype + ", rolecategory=" + rolecategory + ", salary=" + salary + ", noofpossitions="
+				+ noofpossitions + ", jobresponsibilities=" + jobresponsibilities + ", contactnum=" + contactnum
+				+ ", skillreq=" + skillreq + ", daterange=" + daterange + ", countryiso=" + countryiso
+				+ ", countryname=" + countryname + ", stateid=" + stateid + ", statename=" + statename
+				+ ", countrystate=" + countrystate + ", location=" + location + ", experience=" + experience
+				+ ", company=" + company + ", qualification=" + qualification + ", noticeperiod=" + noticeperiod
+				+ ", otherinfo=" + otherinfo + "]";
+	}
+	
 	
 
 }

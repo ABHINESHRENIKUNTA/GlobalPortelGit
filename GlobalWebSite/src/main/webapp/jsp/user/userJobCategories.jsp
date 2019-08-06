@@ -6,7 +6,7 @@
   <%@include file="userNewHeader.jsp" %>
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-  <body class="skin-green layout-top-nav">
+  <body class="skin-purple layout-top-nav">
     <div class="wrapper">
       <!-- header logo: style can be found in header.less -->
        <%@include file="userTopMenu.jsp" %>

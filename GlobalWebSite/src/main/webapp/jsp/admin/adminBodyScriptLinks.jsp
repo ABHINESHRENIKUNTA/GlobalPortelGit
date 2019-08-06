@@ -69,7 +69,6 @@
     // Init Demo JS  
     Demo.init();
 
-
     // Form Switcher
     $('#form-switcher > button').on('click', function() {
       var btnData = $(this).data('form-layout');

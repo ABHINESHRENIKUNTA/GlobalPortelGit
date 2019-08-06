@@ -189,7 +189,7 @@
                                      				 tablekey == 'global_jobconsult_jobs' or 
                                      				 tablekey == 'global_empposted_jobs'}">
 
-                                       <button type="submit" class="btn btn-success info-sbtbtn">Submit</button>   
+                                       <button type="submit" class="btn btn-success info-sbtbtn" id="jobinfosbtbtn">Submit</button>   
                                      </c:when>
                                     <c:otherwise>
                                     
@@ -210,15 +210,14 @@
          </div>
       </section>
       <%@include file="/jsp/admin/adminBodyScriptLinks.jsp" %>
-    <%-- <script src="${pageContext.request.contextPath}/theme/usernewdesign/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script> --%>
-    <%-- <script src="${pageContext.request.contextPath}/theme/vendor/plugins/xeditable/inputs/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/theme/vendor/plugins/xeditable/inputs/wysihtml5/wysihtml5.js" type="text/javascript"></script>
-     --%>
-      <script>
-      $(function () {
-          //Add text editor
-          $(".textarea").wysihtml5();
-        });
-</script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/theme/validations/adminValidations.js"></script>
+   <script type="text/javascript">
+   $(document).keypress(
+		   function(event){
+		     if (event.which == '13') {
+		       event.preventDefault();
+		     }
+		 });
+   </script>
    </body>
 </html>

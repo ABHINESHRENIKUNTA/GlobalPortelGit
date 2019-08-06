@@ -49,7 +49,7 @@
                                        </div>
                                        <div class="modal-footer bg-success">
                                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                          <button type="submit" class="btn btn-primary">Submit Data</button>
+                                          <button type="submit" class="btn btn-primary" id="commonsbtbtn">Submit Data</button>
                                        </div>
                                     </div>
                                  </div>

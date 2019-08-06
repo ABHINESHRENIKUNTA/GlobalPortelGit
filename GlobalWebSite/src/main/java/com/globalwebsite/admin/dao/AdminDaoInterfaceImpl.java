@@ -12,6 +12,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -50,6 +51,13 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	
 	@Autowired
 	private JdbcTemplate jdbctemplate;
+	
+	@Value("${admin.viewtype}")
+	private String adminViewType;
+	
+	@Value("${user.viewtype}")
+	private String userViewType;
+	
 	
 	public String getDateFromSimpleDateFormat(){
 		DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -95,17 +103,19 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		int returnvalue=jdbctemplate.update(sql, addscroll.getLinkname(),addscroll.getLinkaddress(),addscroll.getAddedby(),addscroll.getAddeddate(),addscroll.getComments(),addscroll.getEmailid());
 			return returnvalue;
 		}
-@Override
+		@Override
 		public List<AddScrollLink> getAllScrollLinkNames() {
 		String sql=AdminSqlQueries.GetAllScrollLinks;
-		System.out.println(sql);
+		//System.out.println(sql);
+		logger.info("getAllScrollLinkNames:: "+sql);
 		List<AddScrollLink> listObj=jdbctemplate.query(sql, new ScrollLinksTableMapper());
 		
 			return listObj;
 		}	
 	@Override
 		public int updateScrollLink(EditScrollLink editscrolllink) {
-		System.out.println(editscrolllink);
+		//System.out.println(editscrolllink);
+		logger.info(editscrolllink);
 		String sql=AdminSqlQueries.UpdateScrollLink;
 		return jdbctemplate .update(sql, editscrolllink.getModifiedlink(),editscrolllink.getLinktobemodified());
 		
@@ -148,25 +158,24 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 				public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 					String INSERT_SQL = AdminSqlQueries.insertSubmissionData_Query(stdmodel);
 					PreparedStatement ps = connection.prepareStatement(INSERT_SQL,  Statement.RETURN_GENERATED_KEYS);
-					ps.setString(2, stdmodel.getLinkname());
-					ps.setString(3, stdmodel.getLinkaddress());
-					ps.setString(4, stdmodel.getLoggedowner());
-					ps.setString(5, stdmodel.getEmailid());
-					ps.setString(6, stdmodel.getFilename());
-					ps.setString(7, stdmodel.getComments());
-					ps.setBoolean(8, stdmodel.isIsactive());
-					ps.setString(9, getDateFromSimpleDateFormat());
-					ps.setString(10, getDateFromSimpleDateFormat());
+					ps.setString(1, stdmodel.getLinkname());
+					ps.setString(2, stdmodel.getLinkaddress());
+					ps.setString(3, stdmodel.getLoggedowner());
+					ps.setString(4, stdmodel.getEmailid());
+					ps.setString(5, stdmodel.getComments());
+					ps.setBoolean(6, stdmodel.isIsactive());
+					ps.setString(7, getDateFromSimpleDateFormat());
+					ps.setString(8, getDateFromSimpleDateFormat());
 					return ps;
 				}
 			}, holder);
 
 			 isinserted = holder.getKey().intValue();
-			System.out.println("insertSubmissionData: "+isinserted);
+			//System.out.println("insertSubmissionData: "+isinserted);
 			logger.info("insertSubmissionData: "+isinserted);
 			}
 			 catch (Exception e) {
-				System.out.println("insertSubmissionData: "+e);
+				//System.out.println("insertSubmissionData: "+e);
 				logger.info("insertSubmissionData: "+e);
 			}
 		    return isinserted;
@@ -214,11 +223,11 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			}, holder);
 
 			 isinserted = holder.getKey().intValue();
-			System.out.println("insertAbroadSubmissionData_Query: "+isinserted);
+			//System.out.println("insertAbroadSubmissionData_Query: "+isinserted);
 			logger.info("insertAbroadSubmissionData_Query: "+isinserted);
 			}
 			 catch (Exception e) {
-				System.out.println("insertAbroadSubmissionData_Query: "+e);
+				//System.out.println("insertAbroadSubmissionData_Query: "+e);
 				logger.info("insertAbroadSubmissionData_Query: "+e);
 			}
 		    return isinserted;
@@ -231,7 +240,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 				String updatesql ="update "+tablename+" set file_name=? where id=?";
 				updatepath = jdbctemplate.update(updatesql, new Object[]{filename, rowid});
 			} catch (DataAccessException e) {
-				System.out.println("updateImageFileNameInTable: "+e);
+				//System.out.println("updateImageFileNameInTable: "+e);
 				logger.info("updateImageFileNameInTable: "+e);
 			}
 			return updatepath;
@@ -279,11 +288,11 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		}, holder);
 
 		 isinserted = holder.getKey().intValue();
-		System.out.println("insertStateSubmissionData_Query: "+isinserted);
+		//System.out.println("insertStateSubmissionData_Query: "+isinserted);
 		logger.info("insertStateSubmissionData_Query: "+isinserted);
 		}
 		 catch (Exception e) {
-			System.out.println("insertStateSubmissionData_Query: "+e);
+			//System.out.println("insertStateSubmissionData_Query: "+e);
 			logger.info("insertStateSubmissionData_Query: "+e);
 		}
 	    return isinserted;
@@ -300,7 +309,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
     	  logger.info("selectCountForSubmissionData: "+sql);
 		
 	} catch (Exception e) {
-		System.out.println("selectCountForSubmissionData: "+e);
+		//System.out.println("selectCountForSubmissionData: "+e);
 		logger.info("selectCountForSubmissionData: "+e);
 	}
       return selectcnt;
@@ -310,7 +319,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	 * @see com.globalwebsite.admin.dao.AdminDaoInterface#selectViewSubmissionData(com.gw.student.model.AdminSubmissionModel)
 	 */
 	@Override
-	public List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey, String prevdate, String currentdate){
+	public List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey, String prevdate, String currentdate, String viewType){
 		String sql=AdminSqlQueries.getAllViewSubmissionData_Query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
 		try {
@@ -318,7 +327,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			logger.info("getAllViewSubmissionData: "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("getAllViewSubmissionData: "+e);
+			//System.out.println("getAllViewSubmissionData: "+e);
 			logger.info("selectViewSubmissionData: "+e);
 		}
 		return listdata;
@@ -333,7 +342,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			logger.info("getAllRoles: "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("getAllRoles: "+e);
+			//System.out.println("getAllRoles: "+e);
 			logger.info("getAllRoles: "+e);
 		}
 		return listdata;
@@ -348,7 +357,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			logger.info("getAllPermissions: "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("getAllPermissions: "+e);
+			//System.out.println("getAllPermissions: "+e);
 			logger.info("getAllPermissions: "+e);
 		}
 		return listdata;
@@ -362,7 +371,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			logger.info("getNotAssignedRolePermissions: "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("getNotAssignedRolePermissions: "+e);
+			//System.out.println("getNotAssignedRolePermissions: "+e);
 			logger.info("getNotAssignedRolePermissions: "+e);
 		}
 		return listdata;
@@ -377,7 +386,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			logger.info("getAllPermissionsBasedonRoleId: "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("getAllPermissionsBasedonRoleId: "+e);
+			//System.out.println("getAllPermissionsBasedonRoleId: "+e);
 			logger.info("getAllPermissionsBasedonRoleId: "+e);
 		}
 		return listdata;
@@ -392,7 +401,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			logger.info("getRoleNameFromId: "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("getRoleNameFromId: "+e);
+			//System.out.println("getRoleNameFromId: "+e);
 			logger.info("getRoleNameFromId: "+e);
 		}
 		return rolename;
@@ -407,7 +416,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			logger.info("checkRolePermissionisAvailable: "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("checkRolePermissionisAvailable: "+e);
+			//System.out.println("checkRolePermissionisAvailable: "+e);
 			logger.info("checkRolePermissionisAvailable: "+e);
 		}
 		return updatecnt;
@@ -437,7 +446,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			logger.info("insertRolePermissions: "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("insertRolePermissions: "+e);
+			//System.out.println("insertRolePermissions: "+e);
 			logger.info("insertRolePermissions: "+e);
 		}
 		return updatecnt;
@@ -448,7 +457,8 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		String sql="select * from role_permission where permission_id="
 				+ "(select permission_id from permissions where permission_url='"+permissionurl+"') "
 						+ "and role_id='"+roleid+"'";
-		System.out.println("getPermissionIsAvailable: "+sql);
+		//System.out.println("getPermissionIsAvailable: "+sql);
+		logger.info("getPermissionIsAvailable: "+sql);
 		return jdbctemplate.queryForList(sql);
 	}
 
@@ -465,10 +475,10 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 					stdmodel.getSkillreq(),stdmodel.getEmailid(), stdmodel.getContactnum(), 
 					stdmodel.getLocation(), stdmodel.isIsactive(), stdmodel.getLoggedowner(),  
 					getDateFromSimpleDateFormat(), stdmodel.getNoticeperiod(), stdmodel.getOtherinfo(), stdmodel.getJobtype()});
-			System.out.println("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
+			//System.out.println("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
 			logger.info("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
 		} catch (Exception e) {
-			System.out.println("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+e);
+			//System.out.println("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+e);
 			logger.info("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+e);
 		}
 	return isinserted;
@@ -481,11 +491,11 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		List<AdminSubmissionModel> listdata = null;
 		try {
 			listdata = jdbctemplate.query(sql, new Object[]{prevdate+" 00:00:00", currentdate+" 23:59:59"}, new AdminViewConsuRefAdminPostSubmissionMapper());
-			System.out.println("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+sql);
+			//System.out.println("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+sql);
 			logger.info("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+e);
+			//System.out.println("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+e);
 			logger.info("getAllViewConsuRefAdminPostSubmissionData: "+ tablekey+": "+e);
 		}
 		return listdata;
@@ -498,11 +508,11 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		List<AdminSubmissionModel> listdata = null;
 		try {
 			listdata = jdbctemplate.query(sql, new Object[]{prevdate+" 00:00:00", currentdate+" 23:59:59"}, new AdminAbroadMapper());
-			System.out.println("getAllViewAdminAbroadData: "+ tablekey+": "+sql);
+			//System.out.println("getAllViewAdminAbroadData: "+ tablekey+": "+sql);
 			logger.info("getAllViewAdminAbroadData: "+ tablekey+": "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("getAllViewAdminAbroadData: "+ tablekey+": "+e);
+			//System.out.println("getAllViewAdminAbroadData: "+ tablekey+": "+e);
 			logger.info("getAllViewAdminAbroadData: "+ tablekey+": "+e);
 		}
 		return listdata;
@@ -515,11 +525,11 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		List<AdminSubmissionModel> listdata = null;
 		try {
 			listdata = jdbctemplate.query(sql, new Object[]{prevdate+" 00:00:00", currentdate+" 23:59:59"}, new AdminStateWiseMapper());
-			System.out.println("getAllViewAdminStateWiseData: "+ tablekey+": "+sql);
+			//System.out.println("getAllViewAdminStateWiseData: "+ tablekey+": "+sql);
 			logger.info("getAllViewAdminStateWiseData: "+ tablekey+": "+sql);
 			
 		} catch (Exception e) {
-			System.out.println("getAllViewAdminStateWiseData: "+ tablekey+": "+e);
+			//System.out.println("getAllViewAdminStateWiseData: "+ tablekey+": "+e);
 			logger.info("getAllViewAdminStateWiseData: "+ tablekey+": "+e);
 		}
 		return listdata;
@@ -554,10 +564,10 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 					aom.getHremail(), aom.getHrphonenumber(), aom.getRoleid(),aom.getCreatedby(), getDateFromSimpleDateFormat(),
 					getDateFromSimpleDateFormat(), aom.isStatus()  
 					});
-			System.out.println("insertOperatorSubmissionData: "+ aom);
+			//System.out.println("insertOperatorSubmissionData: "+ aom);
 			logger.info("insertOperatorSubmissionData: "+ aom);
 		} catch (Exception e) {
-			System.out.println("insertOperatorSubmissionData: "+ aom+": "+e);
+			//System.out.println("insertOperatorSubmissionData: "+ aom+": "+e);
 			logger.info("insertOperatorSubmissionData: "+ aom+": "+e);
 		}
 	return isinserted;
@@ -569,12 +579,12 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		List<CountryModel> listdata = null;
 		try {
 			listdata = jdbctemplate.query(sql, new CountryMapper());
-			System.out.println("findAllCountries: "+listdata);
-			logger.info("findAllCountries: "+ listdata);
+			//System.out.println("findAllCountries: "+listdata);
+			logger.info("findAllCountries: "+ sql);
 			
 		} catch (Exception e) {
-			System.out.println("findAllCountries: "+ listdata);
-			logger.info("findAllCountries: "+ listdata);
+			//System.out.println("findAllCountries: "+ listdata);
+			logger.info("findAllCountries: "+ sql);
 		}
 		return listdata;
 		
@@ -586,12 +596,13 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		boolean statestatus=true;
 		try {
 			listdata = jdbctemplate.query(sql, new Object[]{statestatus}, new StateMapper());
-			System.out.println("findAllStates: "+listdata);
-			logger.info("findAllStates: "+ listdata);
+			//System.out.println("findAllStates: "+listdata);
+			logger.info("findAllStates: "+ sql);
 			
 		} catch (Exception e) {
-			System.out.println("findAllStates: "+ listdata);
-			logger.info("findAllStates: "+ listdata);
+			//System.out.println("findAllStates: "+ listdata);
+			logger.info("findAllStates: "+ e);
+			logger.info("findAllStates: "+ sql);
 		}
 		return listdata;
 		

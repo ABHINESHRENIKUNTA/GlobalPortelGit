@@ -35,10 +35,14 @@ public interface UserDaoInterface {
 
 	int getmaxjocatid();
 
-	List<AdminSubmissionModel> getActivePopularJobs(int activenum);
-
 	List<AdminSubmissionModel> findAllViewJobInfo(int activenum, String tablekey);
 
 	List<AdminSubmissionModel> findSelectedViewJobInfo(int seljobid, String tablekey);
+
+	List<AdminSubmissionModel> getActiveStatewiseJobs(int activenum);
+
+	List<AdminSubmissionModel> getActiveAbroadJobs(int activenum);
+
+	List<AdminSubmissionModel> getActivePopularJobs(String tablekey, int activenum);
 
 }

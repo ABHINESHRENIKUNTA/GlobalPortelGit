@@ -62,6 +62,7 @@ public class UserViewJobDetailsByIdController {
 		 }
 		 int jobdetailid=stdmodel.getRowid();
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
+		 logger.info("userViewEmployerPostedJobsScreenId: "+listData);
 		 model.addAttribute("listData", listData);
 		 return new ModelAndView("user/userViewEmployerPostedJobsById", "listjobdetails", stdmodel);
 	 }

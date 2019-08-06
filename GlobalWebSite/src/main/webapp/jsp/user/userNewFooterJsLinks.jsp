@@ -9,4 +9,4 @@
     <!-- AdminLTE App -->
     <script src="${pageContext.request.contextPath}/theme/usernewdesign/dist/js/app.min.js" type="text/javascript"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="${pageContext.request.contextPath}/theme/usernewdesign/dist/js/demo.js" type="text/javascript"></script>
+<%--     <script src="${pageContext.request.contextPath}/theme/usernewdesign/dist/js/demo.js" type="text/javascript"></script> --%>

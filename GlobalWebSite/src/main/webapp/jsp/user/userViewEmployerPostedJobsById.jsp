@@ -8,204 +8,11 @@
     <meta charset="UTF-8">
     <title>Employer Posted Jobs</title>
   <%@include file="userNewHeader.jsp" %>
-  <style type="text/css">
-  /* width */
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;
-}
+  <%@include file="jobDetailsCss.jsp" %>
  
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: green; 
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
-}
-.optionlist {
-	list-style: none;
-	max-height: 250px;
-	scroll-direction: horizontal;
-	 overflow-y: auto;
-  overflow-x: hidden;
-}
-.optionlist li {
-	margin-bottom: 10px;
-	padding: 5px 0;
-	position: relative;
-	padding-left: 30px;
-}
-.optionlist li span {
-	position: absolute;
-	right: 0;
-	top: 6px;
-}
-.optionlist li input[type=checkbox] {
-	display: none;
-}
-.optionlist li input[type=checkbox] + label {
-	width: 20px;
-	height: 20px;
-	border: 1px solid #e0e0e0;
-	background: #f5f5f5;
-	cursor: pointer;
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-.optionlist li input[type=checkbox]:checked + label:before {
-	content: '\f00c';
-	font-family: 'FontAwesome';
-	color: #4ece00;
-	padding-left: 2px;
-	position: relative;
-	top: 2px;
-}
-
-.searchList {
-	list-style: none;
-	
-}
-.searchList li {
-	background: #fff;
-	border: 1px solid #e4e4e4;
-	padding: 10px;
-	margin-bottom: 30px;
-	
-}
-.searchList li:hover {
-	box-shadow: 0 0 10px rgba(0,0,0,0.1);
-	border: 1px solid #263bd6;
-}
-.searchList li .jobimg {
-	float: left;
-	width: 70px;
-	margin-right: 15px;
-}
-.searchList li h3 a {
-	font-size: 18px;
-	font-weight: 600;
-	color: #00a8ff;
-}
-.searchList li .companyName {
-	margin: 10px 0;
-	color: #969595;
-}
-.searchList li .companyName a {
-	color: #969595;
-}
-.searchList li a:hover {
-	color: #333;
-}
-.searchList li .location {
-	color: #000;
-}
-.searchList li .location span {
-	color: #333;
-}
-.searchList li .listbtn {
-	margin-top: 20px;
-}
-.searchList li .listbtn a {
-	background: #fff;
-	display: block;
-	border-radius: 0;
-	width: 100%;
-	color: #263bd6;
-	text-transform: uppercase;
-	font-weight: 700;
-	padding: 10px 15px;
-	text-align: center;
-	border:1px solid #263bd6;
-}
-.searchList li .listbtn a:hover {
-	background: #263bd6;
-	color:#fff;
-	text-decoration: none;
-}
-.searchList li p {
-	line-height: 22px;
-	color: #333;
-	margin: 10px 0 0 0;
-}
-.searchList li .cateinfo {
-	color: #263bd6;
-	margin: 10px 0;
-}
-.searchList li .minsalary {
-	font-size: 22px;
-	font-weight: 700;
-	text-align: center;
-	margin-top: 25px;
-	color: #a8d815;
-}
-.searchList li .minsalary span {
-	color: #999;
-	font-weight: 400;
-}
-.btn-share {
-    background-color: #BEBEBE;
-    border-color: #CCCCCC;
-    color: #333333;
-}
-
-.btn-twitter {
-    background-color: #3399CC !important;
-    width: 10px;
-    color:#FFFFFF!important;
-}
-
-.btn-facebook {
-    background-color: #3D5B96 !important;
-    width: 10px;
-    color:#FFFFFF!important;
-}
-
-.btn-facebook {
-    background-color: #3D5B96 !important;
-    width: 10px;
-    color:#FFFFFF!important;
-}
-
-.btn-google {
-    background-color: #DD3F34 !important;
-    width: 10px;
-    color:#FFFFFF!important;
-}
-
-.btn-linkedin {
-    background-color: #1884BB !important;
-    width: 10px;
-    color:#FFFFFF!important;
-}
-
-.btn-pinterest {
-    background-color: #CC1E2D !important;
-    width: 10px;
-    color:#FFFFFF!important;
-}
-
-.btn-mail {
-    background-color: #FFC90E !important;
-    width: 10px;
-    color:#FFFFFF!important;
-}
-
-
-
-
-  </style>
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-  <body class="skin-green layout-top-nav">
+  <body class="skin-purple layout-top-nav">
     <div class="wrapper">
       <%@include file="userTopMenu.jsp" %>
       <!-- Full Width Column -->
@@ -257,66 +64,77 @@
           <c:forEach items="${listData}" var="jobDetails" varStatus="loop">
           <li class="content-result">
             <div class="row">
-              <div class="col-md-8 col-sm-8">
+              <div class="col-md-10 col-sm-10">
                 <div class="jobimg"><i class="fa fa-black-tie fa-5x" aria-hidden="true" style="color:#DDDDDD;"></i></div>
                 <div class="jobinfo">
                   <h3><a href="#.">${jobDetails.jobtitle}</a></h3>
                   <div class="companyName"><a href="#.">${jobDetails.company}</a></div>
-                  <div class="location"><label class="fulltime">${jobDetails.jobtype}</label>   - <span>${jobDetails.location}, </span>
-                  <label class="fulltime"> Notice Period: </label>   - <span>${jobDetails.noticeperiod}, </span>
+                  <div class="location">
+                  
+                   <div class="col-sm-2"> <label class="fulltime">Job Type - Location</label></div>
+        		   <div class="col-sm-4">${jobDetails.jobtype} - ${jobDetails.location},</div>
+                   <div class="col-sm-2"> <label class="fulltime">Notice Period</label></div>
+        		   <div class="col-sm-4">${jobDetails.noticeperiod},</div>
+      
+                 <%--  <label class="fulltime">${jobDetails.jobtype}</label>   - <span>${jobDetails.location}, </span>
+                  <label class="fulltime"> Notice Period: </label>   - <span>${jobDetails.noticeperiod}, </span> --%>
                   </div>
                 </div>
         		 <div class="clearfix"></div>
                 <div class="jobinfo">
                   <div class="location">
-                   <label class="fulltime"> Experience Required: </label>   - <span>${jobDetails.experience}, </span>
-                  <label class="fulltime"> Number Of Positions: </label>   - <span>${jobDetails.noofpossitions}, </span>
+                   <div class="col-sm-2"> <label class="fulltime">Experience Required</label></div>
+        		   <div class="col-sm-4">${jobDetails.experience},</div>
+                   <div class="col-sm-2"> <label class="fulltime">Number Of Positions</label></div>
+        		   <div class="col-sm-4">${jobDetails.noofpossitions},</div>
                   </div>
                 </div>
                  <div class="clearfix"></div>
                 <div class="jobinfo">
                   <div class="location">
-                  <label class="fulltime"> Salary: </label>   - <span>${jobDetails.salary}, </span>
-                  <label class="fulltime"> Industry: </label>   - <span>${jobDetails.industry}, </span>
+                   <div class="col-sm-2"> <label class="fulltime">Salary</label></div>
+        		   <div class="col-sm-4">${jobDetails.salary},</div>
+                   <div class="col-sm-2"> <label class="fulltime">Industry</label></div>
+        		   <div class="col-sm-4">${jobDetails.industry},</div>
                   </div>
                 </div>
                  <div class="clearfix"></div>
                 <div class="jobinfo">
                   <div class="location">
-                  <label class="fulltime"> Role / Designation: </label>   - <span>${jobDetails.rolecategory}</span>
+                   <div class="col-sm-2"> <label class="fulltime">Role / Designation</label></div>
+        		   <div class="col-sm-4">${jobDetails.rolecategory}</div>
                   </div>
                 </div>
                 <div class="clearfix"></div>
               </div>
-              <div class="col-md-4 col-sm-4">
+              <div class="col-md-2 col-sm-2">
                 <form:form action="" commandName="listjobdetails">
                 
                  <div class="listbtn">
-                  
-    				<button href="#" data-toggle="dropdown" class="btn btn-info dropdown-toggle share">
+    				<button href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle share">
     					<i class="fa fa-share-alt" aria-hidden="true"></i><!-- <span class="caret"></span> -->
     				</button>
     				<ul class="dropdown-menu" style="border: none; max-height: 10px;">
     				<li >
         				<span onclick="twitterFun();">
-								<i class="fa fa-twitter" style="color:#00acee; padding: 5px;cursor: pointer;font-size: 25px; "></i>
+								<i class="fa fa-twitter" style="color:#00acee; padding: 2px;cursor: pointer;font-size: 25px; "></i>
 							</span> 
         					<span onclick="facebookFun();">
-								<i class="fa fa-facebook" style="color:#3b5998; padding: 5px;cursor: pointer;font-size: 25px; "></i>
+								<i class="fa fa-facebook" style="color:#3b5998; padding: 2px;cursor: pointer;font-size: 25px; "></i>
         					</span>
         					<span onclick="googlePlusFun();">
-								<i class="fa fa-google-plus fa-3px" style="color:#CC3333; padding: 5px;cursor: pointer;font-size: 25px; "></i>
+								<i class="fa fa-google-plus fa-3px" style="color:#CC3333; padding: 2px;cursor: pointer;font-size: 25px; "></i>
 							</span>
 							<span onclick="linkedinFun();">							
-								<i class="fa fa-linkedin fa-3px" style="color:#0077B5; padding: 5px;cursor: pointer;font-size: 25px; "></i>
+								<i class="fa fa-linkedin fa-3px" style="color:#0077B5; padding: 2px;cursor: pointer;font-size: 25px; "></i>
 							</span>
 							
 							<span onclick="mailToFun();">
-								<i class="fa fa-envelope fa-3px" style="color:#f1d592; padding: 5px;cursor: pointer;font-size: 25px; "></i>
+								<i class="fa fa-envelope fa-3px" style="color:#f1d592; padding: 2px;cursor: pointer;font-size: 25px; "></i>
 							</span>
         				</li>
                     </ul>
-                   <button class="btn btn-primary">Apply Now</button></div> 
+                   <button class="btn btn-warning"><i class="glyphicon glyphicon-thumbs-up" style="padding-right: 3px;"></i> Apply Now</button></div> 
                 <form:hidden path="rowid" value="${jobDetails.rowid}"/>
                 </form:form>
               </div>

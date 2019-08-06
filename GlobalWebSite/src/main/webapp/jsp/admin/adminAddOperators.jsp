@@ -37,7 +37,7 @@
    
 <div class = "panel-body">
 <div class="tab-content">
-<form:form action="process-operatorinfo" commandName="addoperator" autocomplete="false">
+<form:form action="process-operatorinfo" commandName="addoperator" autocomplete="off">
       <c:if test="${smsg!=null && smsg!=''}">
 	<div class="alert alert-success alert-dismissable">
 	   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -113,7 +113,7 @@
             <label class="col-sm-12 control-label text-left">Email</label>
             <div class="col-sm-12 inputGroupContainer">
                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-               <form:input path="email" placeholder="Employee Email" class="form-control" required="true" type="text"/></div>
+               <form:input path="email" placeholder="Employee Email" class="form-control" required="true" type="text" data-inputmask="'alias': 'email'"/></div>
             </div>
          </div>
          <div class="form-group">
@@ -188,14 +188,14 @@
          <label class="col-sm-12 control-label text-left">HR Email</label>
          <div class="col-sm-12 inputGroupContainer">
             <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <form:input path="hremail" placeholder="HR Email" class="form-control" required="true"  type="text"/></div>
+            <form:input path="hremail" placeholder="HR Email" class="form-control" required="true"  type="text" data-inputmask="'alias': 'email'" autocomplete="off"/></div>
          </div>
       </div>
       <div class="form-group">
          <label class="col-sm-12 control-label text-left">HR Phone Number</label>
          <div class="col-sm-12 inputGroupContainer">
             <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-            <form:input path="hrphonenumber" placeholder="HR Phone Number" class="form-control" required="true"  type="text"/></div>
+            <form:input path="hrphonenumber" placeholder="HR Phone Number" class="form-control" required="true"  type="text" autocomplete="off"/></div>
          </div>
       </div>
        <div class="form-group">
@@ -223,10 +223,8 @@
   </form:form>
 </div>
 </div>
-
-
 </div>
-             
+</div>             
 
 
 </section>
@@ -251,9 +249,9 @@
       window.onload=function(){
     	  var sel =  $("#radioBtn a").data('title');
     	  $("#status").val(sel);
+    	  $("#hrphonenumber").mask('99999-99999');
+    	
       }
-      
-    
       </script>
 </body>
 </html>

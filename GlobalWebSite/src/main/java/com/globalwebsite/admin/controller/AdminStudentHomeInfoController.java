@@ -15,6 +15,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,9 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 	private final static Logger logger = Logger.getLogger(AdminStudentHomeInfoController.class);
 	@Autowired
 	private AdminServiceInterfaceImpl adminservices;
+	
+	@Value("${admin.viewtype}")
+	private String viewType;
 
 	@RequestMapping("/load-adminaddstuinfo")
 	public ModelAndView adminCommonAddInfoPage(AdminSubmissionModel stdmodel, Model model, HttpServletRequest req)
@@ -95,7 +99,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_trainingandplace_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_freejobtraining_jobs"))) {
 				
-			    System.out.println("Entered in: " + stdmodel.getTablename());
+			    //System.out.println("Entered in: " + stdmodel.getTablename());
 				logger.info("Entered in: " + stdmodel.getTablename());
 				/** Save Image in Selected Folder **/
 				succsscnt = adminservices.insertSubmissionData(stdmodel);
@@ -105,7 +109,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		/*Abroad Jobs insert*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_abroad_jobs")) {
 			/** Save Image in Selected Folder **/
-			System.out.println("Entered in: " + stdmodel.getTablename());
+			//System.out.println("Entered in: " + stdmodel.getTablename());
 			logger.info("Entered in: " + stdmodel.getTablename());
 			succsscnt = adminservices.insertAbroadSubmissionData(stdmodel);
 			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder, succsscnt);
@@ -114,7 +118,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		/*State-Wise Jobs insert*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_statewisegovt_jobs")) {
 			/** Save Image in Selected Folder **/
-			System.out.println("Entered in: " + stdmodel.getTablename());
+			//System.out.println("Entered in: " + stdmodel.getTablename());
 			logger.info("Entered in: " + stdmodel.getTablename());
 			succsscnt = adminservices.insertStateSubmissionData(stdmodel);
 			imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder, succsscnt);
@@ -219,7 +223,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_nonit_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_trainingandplace_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_freejobtraining_jobs"))) {
-			List<AdminSubmissionModel> alistdata = adminservices.getAllViewSubmissionData(stdmodel.getTablekey(), prevdate, currentdate);
+			List<AdminSubmissionModel> alistdata = adminservices.getAllViewSubmissionData(stdmodel.getTablekey(), prevdate, currentdate, viewType);
 			model.addAttribute("alistdata", alistdata);
 		}
 		/*Abroad Jobs insert*/

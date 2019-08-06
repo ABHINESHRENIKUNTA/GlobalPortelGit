@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/jsp/admin/adminHeaderLinks.jsp" %>
 </head>
-<body class="dashboard-page">
+<body class="theme-success">
       <%@include file="/jsp/admin/adminThemeChange.jsp" %>
       <%@include file="/jsp/admin/adminTopMenu.jsp" %>
       <%@include file="/jsp/admin/adminLeftMenu.jsp" %>

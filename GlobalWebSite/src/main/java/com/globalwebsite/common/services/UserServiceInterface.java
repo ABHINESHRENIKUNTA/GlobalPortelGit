@@ -35,10 +35,14 @@ public interface UserServiceInterface {
 
 	int getmaxjocatid();
 
-	List<AdminSubmissionModel> getActivePopularJobs(int activenum);
-
 	List<AdminSubmissionModel> findAllViewJobInfo(int activenum, String tablekey);
 
 	List<AdminSubmissionModel> findSelectedViewJobInfo(int jobdetailid, String tablekey);
+
+	List<AdminSubmissionModel> getActivePopularJobs(String tablekey, int activenum);
+
+	List<AdminSubmissionModel> getActiveStatewiseJobs(int activenum);
+
+	List<AdminSubmissionModel> getActiveAbroadJobs(int activenum);
 
 }

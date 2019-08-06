@@ -15,13 +15,18 @@ public class UserSqlQueries {
 	public static final String GETDUPLICATEJOBCATEGORY_QUERY = "SELECT count(*) FROM global_job_category where global_job_category=?";
 	public static final String INSERTOTHERJOBCATEGORY_QUERY = "insert into global_job_category(global_job_category) values(?)";
 	public static final String GETMAXJOCATID_QUERY = "select max(global_job_category_id) from global_job_category ";
-	public static final String GETACTIVEPOPULARJOBS_QUERY = "select * from global_popular_jobsites_page where is_active=?";
 	public static final String GETALLVIEWJOBINFO_QUERY = "select * from global_jobconsult_jobs where status=?";
+	public static final String GETACTIVESTATEWISEJOBS_QUERY = "select sj.*, st.statename from "
+			+ "global_statewisegovt_jobs sj, states st where sj.state_id=st.id and sj.is_active=?";
+	public static final String GETACTIVEABROADJOBS_QUERY = "select aj.*, cn.name, cn.nicename,cn.iso3,cn.numcode,cn.phonecode "
+			+ "from global_abroad_jobs aj, country cn where aj.iso=cn.iso and aj.is_active=?";
 	public static String findAllViewJobInfo_query(String tablekey) {
 		return "select * from "+tablekey+" where status=?";
 	}
 	public static String findSelectedViewJobInfo_query(String tablekey) {
 		return "select * from "+tablekey+" where id=?";
 	}
-
+	public static String getActivePopularJobs_query(String tablekey) {
+		return "select * from "+tablekey+" where is_active=?";
+	}
 }

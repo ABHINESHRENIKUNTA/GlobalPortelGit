@@ -41,13 +41,13 @@ public class AdminSqlQueries {
 			+ "values(?,?,?,?,?,?,?,?)";*/
 	public static String insertSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return  "insert into "+stdmodel.getTablekey()+""
-				+ "(link_name,link_address,link_owner,link_emailId,file_name,link_comments,is_active,created_date,modified_date) "
-				+ "values(?,?,?,?,?,?,?,?,?)";
+				+ "(link_name,link_address,link_owner,link_emailId,link_comments,is_active,created_date,modified_date) "
+				+ "values(?,?,?,?,?,?,?,?)";
 	}
 	public static String insertAbroadSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return  "insert into "+stdmodel.getTablekey()+""
-				+ "(iso,link_name,link_address,link_owner,link_emailId,file_name,link_comments,is_active,created_date,modified_date) "
-				+ "values(?,?,?,?,?,?,?,?,?,?)";
+				+ "(iso,statename,link_name,link_address,link_owner,link_emailId,file_name,link_comments,is_active,created_date,modified_date) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
 	}
 	public static String selectCountForSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return "SELECT if((count(*) is null or count(*)=0),1,count(*)+1) as rowcount FROM "+stdmodel.getTablekey()+"";

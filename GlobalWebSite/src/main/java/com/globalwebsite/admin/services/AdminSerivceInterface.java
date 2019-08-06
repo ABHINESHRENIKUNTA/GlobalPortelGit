@@ -42,7 +42,7 @@ public interface AdminSerivceInterface {
 	int selectCountForSubmissionData(AdminSubmissionModel stdmodel);
 
 	/*View Common submission Data */
-	List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey, String prevdate, String currentdate);
+	List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey, String prevdate, String currentdate, String viewType);
 
 	List<AdminRolePermissionModel> getAllRoles();
 

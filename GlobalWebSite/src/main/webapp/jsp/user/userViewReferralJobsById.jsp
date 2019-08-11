@@ -6,7 +6,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title><spring:eval expression="@viewPropertyConfigurer.getProperty('employee.jobs')" /></title>
+    <title><spring:eval expression="@viewPropertyConfigurer.getProperty('refpost.jobs')" /></title>
   <%@include file="userNewHeader.jsp" %>
   <%@include file="jobDetailsCss.jsp" %>
  
@@ -24,10 +24,10 @@
               Find your link
               <small>There is a way to do it better...find it</small>
             </h1>
-            <ol class="breadcrumb">
+           <!--  <ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
               <li class="active">Employer Posted Job Links</li>
-            </ol>
+            </ol> -->
           </section>
 
           <!-- Main content -->
@@ -36,7 +36,7 @@
               <!-- Primary box -->
               <div class="box box-solid box-primary">
                 <div class="box-header">
-                  <h3 class="box-title"><spring:eval expression="@viewPropertyConfigurer.getProperty('employee.jobs')" /></h3> <code>Find your best job..</code>
+                  <h3 class="box-title"><spring:eval expression="@viewPropertyConfigurer.getProperty('refpost.jobs')" /></h3> <code>Find your best job..</code>
                   <div class="box-tools pull-right">
                     <button class="btn btn-primary btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
                     <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -182,7 +182,6 @@
    <%@include file="userNewFooterJsLinks.jsp" %>
     
     <script>
-  
 
     function socialWindow(url) {
         var left = (screen.width - 570) / 2;

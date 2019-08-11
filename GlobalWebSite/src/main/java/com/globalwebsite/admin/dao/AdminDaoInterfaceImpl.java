@@ -28,6 +28,7 @@ import com.globalwebsite.admin.mapper.AdminRolePermissionMapper;
 import com.globalwebsite.admin.mapper.AdminStateWiseMapper;
 import com.globalwebsite.admin.mapper.AdminViewConsuRefAdminPostSubmissionMapper;
 import com.globalwebsite.admin.mapper.CountryMapper;
+import com.globalwebsite.admin.mapper.IndustryTypeMapper;
 import com.globalwebsite.admin.mapper.AdminAbroadMapper;
 import com.globalwebsite.admin.mapper.AdminCommonViewSubmitMapper;
 import com.globalwebsite.admin.mapper.ScrollLinksTableMapper;
@@ -40,6 +41,7 @@ import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
+import com.globalwebsite.admin.model.IndustryTypeModel;
 import com.globalwebsite.admin.model.StatesModel;
 import com.globalwebsite.admin.queries.AdminSqlQueries;
 import com.gw.student.model.AdminSubmissionModel;
@@ -51,13 +53,6 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	
 	@Autowired
 	private JdbcTemplate jdbctemplate;
-	
-	@Value("${admin.viewtype}")
-	private String adminViewType;
-	
-	@Value("${user.viewtype}")
-	private String userViewType;
-	
 	
 	public String getDateFromSimpleDateFormat(){
 		DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -332,6 +327,21 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		}
 		return listdata;
 	}
+	@Override
+	public List<AdminSubmissionModel> getAllViewSubmissionDataForUser(String tablekey, String prevdate, String currentdate, String viewType){
+		String sql=AdminSqlQueries.getAllViewSubmissionDataForUser_Query(tablekey);
+		int activecode=1;
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{activecode}, new AdminCommonViewSubmitMapper());
+			logger.info("getAllViewSubmissionDataForUser_Query: "+sql);
+			
+		} catch (Exception e) {
+			//System.out.println("getAllViewSubmissionData: "+e);
+			logger.info("getAllViewSubmissionDataForUser_Query: "+e);
+		}
+		return listdata;
+	}
 
 	@Override
 	public List<AdminRolePermissionModel> getAllRoles() {
@@ -464,22 +474,22 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 
 	/*Job Consultants, Referral and Posted By Administrator Jobs*/
 	@Override
-	public int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel) {
+	public int insertAdminAddJobAllJobDetailsInfo(AdminSubmissionModel stdmodel) {
 		int isinserted=0;
 		try {
-			String sql=AdminSqlQueries.adminAddJobConsultantInfo_Query(stdmodel);
+			String sql=AdminSqlQueries.insertAdminAddJobAllJobDetailsInfo_Query(stdmodel);
 			isinserted= jdbctemplate.update(sql,new Object[]{stdmodel.getJobtitle()
-					,stdmodel.getIndustry(), stdmodel.getCompany(), stdmodel.getExperience(),
+					,stdmodel.getIndustryid(), stdmodel.getCompany(), stdmodel.getExperience(),
 					stdmodel.getQualification(), stdmodel.getRolecategory(),stdmodel.getSalary(),
 					stdmodel.getNoofpossitions(), stdmodel.getJobresponsibilities(),
 					stdmodel.getSkillreq(),stdmodel.getEmailid(), stdmodel.getContactnum(), 
 					stdmodel.getLocation(), stdmodel.isIsactive(), stdmodel.getLoggedowner(),  
 					getDateFromSimpleDateFormat(), stdmodel.getNoticeperiod(), stdmodel.getOtherinfo(), stdmodel.getJobtype()});
 			//System.out.println("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
-			logger.info("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
+			logger.info("insertAdminAddJobAllJobDetailsInfo_Query: "+ stdmodel.getTablekey()+": "+sql);
 		} catch (Exception e) {
 			//System.out.println("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+e);
-			logger.info("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+e);
+			logger.info("insertAdminAddJobAllJobDetailsInfo_Query: "+ stdmodel.getTablekey()+": "+e);
 		}
 	return isinserted;
 	}
@@ -607,5 +617,76 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		return listdata;
 		
 	}
+	@Override
+	public List<IndustryTypeModel> findAllIndustryTypes(){
+		String sql=AdminSqlQueries.FINDALLINDUSTRYTYPES_QUERY;
+		List<IndustryTypeModel> listdata = null;
+		boolean industrystatus=true;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{industrystatus}, new IndustryTypeMapper());
+			//System.out.println("findAllStates: "+listdata);
+			logger.info("TRY FINDALLINDUSTRYTYPES_QUERY: "+ sql);
+			
+		} catch (Exception e) {
+			//System.out.println("findAllStates: "+ listdata);
+			logger.info("FINDALLINDUSTRYTYPES_QUERY: "+ e);
+			logger.info("FINDALLINDUSTRYTYPES_QUERY: "+ sql);
+		}
+		return listdata;
+		
+	}
+
+	public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionDataById(String tablekey, int rowId) {
+		String sql=AdminSqlQueries.getAllViewConsuRefAdminPostSubmissionDataById_Query(tablekey);
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{rowId}, new AdminViewConsuRefAdminPostSubmissionMapper());
+			logger.info("getAllViewConsuRefAdminPostSubmissionDataById: "+ tablekey+": "+sql);
+			
+		} catch (Exception e) {
+			logger.info("getAllViewConsuRefAdminPostSubmissionDataById: "+ tablekey+": "+e);
+		}
+		return listdata;
+	}
+	public List<AdminSubmissionModel> getAllViewSubmissionDataById(String tablekey, int rowId) {
+		String sql=AdminSqlQueries.getAllViewSubmissionDataById_Query(tablekey);
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{rowId}, new AdminCommonViewSubmitMapper());
+			logger.info("getAllViewSubmissionDataById: "+sql);
+			
+		} catch (Exception e) {
+			logger.info("getAllViewSubmissionDataById: "+e);
+		}
+		return listdata;
+	}
+
+	public List<AdminSubmissionModel> getAllViewAdminAbroadDataById(String tablekey, int rowId) {
+		String sql=AdminSqlQueries.getAllViewAdminAbroadDataById_Query(tablekey);
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{rowId}, new AdminAbroadMapper());
+			logger.info("getAllViewAdminAbroadDataById: "+ tablekey+": "+sql);
+			
+		} catch (Exception e) {
+			logger.info("getAllViewAdminAbroadDataById: "+ tablekey+": "+e);
+		}
+		return listdata;
+	}
+
+	public List<AdminSubmissionModel> getAllViewAdminStateWiseDataById(String tablekey, int rowId) {
+		String sql=AdminSqlQueries.getAllViewAdminStateWiseDataById_Query(tablekey);
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{rowId}, new AdminStateWiseMapper());
+			logger.info("getAllViewAdminStateWiseDataById: "+ tablekey+": "+sql);
+			
+		} catch (Exception e) {
+			logger.info("getAllViewAdminStateWiseDataById: "+ tablekey+": "+e);
+		}
+		return listdata;
+	}
+
+	
 	
 }

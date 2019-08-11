@@ -6,12 +6,12 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Employer Posted Jobs</title>
+    <title><spring:eval expression="@viewPropertyConfigurer.getProperty('employee.jobs')" /></title>
   <%@include file="userNewHeader.jsp" %>
 <%@include file="jobDetailsCss.jsp" %>
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-  <body class="skin-purple layout-top-nav">
+  <body class="<spring:eval expression="@viewPropertyConfigurer.getProperty('topmenu.color')" /> layout-top-nav">
     <div class="wrapper">
       <%@include file="userTopMenu.jsp" %>
       <!-- Full Width Column -->
@@ -23,10 +23,10 @@
               Find your link
               <small>There is a way to do it better...find it</small>
             </h1>
-            <ol class="breadcrumb">
+           <!--  <ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
               <li class="active">Employer Posted Job Links</li>
-            </ol>
+            </ol> -->
           </section>
 
           <!-- Main content -->
@@ -35,7 +35,7 @@
               <!-- Primary box -->
               <div class="box box-solid box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Employer Posted Job Links</h3> <code>Find your best job..</code>
+                  <h3 class="box-title"><spring:eval expression="@viewPropertyConfigurer.getProperty('employee.jobs')" /></h3> <code>Find your best job..</code>
                   <div class="box-tools pull-right">
                     <button class="btn btn-primary btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
                     <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -202,39 +202,7 @@
     </div><!-- ./wrapper -->
 
    <%@include file="userNewFooterJsLinks.jsp" %>
-      <script src="${pageContext.request.contextPath}/theme/usernewdesign/pagination/Flexible.Pagination.js" type="text/javascript"></script>
-    
-    <script>
-    $(function() {
-
-        var flexiblePagination = $('#content').flexiblePagination({
-            itemsPerPage : 5,
-            itemSelector : 'li.content-result:visible',
-            pagingControlsContainer : '#pagination',
-            showingInfoSelector : '#showingInfo',
-            css: {
-                btnNumberingClass: 'btn btn-sm btn-default',
-                btnFirstClass: 'btn btn-sm btn-default',
-                btnLastClass: 'btn btn-sm btn-default',
-                btnNextClass: 'btn btn-sm btn-default',
-                btnPreviousClass: 'btn btn-sm btn-default',
-                btnActiveClass: 'btn btn-sm btn-primary'
-            }
-        });
-        flexiblePagination.getController().onPageClick = function(pageNum, e){
-            console.log('You Clicked Page: '+pageNum)
-        };
-
-// Direct JS Object method of using the FlexiblePagination
-//        var pager = new Flexible.Pagination();
-//        pager.itemsPerPage = 1;
-//        pager.pagingContainer = '#content';
-//        pager.itemSelector = 'div.result:visible';  //That is, Select and paginate only the filtered visible '.result' div.
-//        pager.pagingControlsContainer = '#pagingControls';
-//        pager.showCurrentPage();
-    });
-
-    </script>
+       <%@include file="jobDetailsPaginationJS.jsp" %>
     
   </body>
 </html>

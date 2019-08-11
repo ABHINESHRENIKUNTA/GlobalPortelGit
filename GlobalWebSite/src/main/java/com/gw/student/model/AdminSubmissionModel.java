@@ -1,26 +1,17 @@
 package com.gw.student.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class AdminSubmissionModel {
 	private static final long serialversionUID =  129348938L; 
 	
-	@NotEmpty(message="Author should not be empty")
 	private String addedby;
 	private String addeddate;
 	private int rowid;
 	private String modifieddate;
-	@NotEmpty(message="Comments should not be empty")
 	private String comments;
-	@NotEmpty(message="Email should not be empty")
 	private String emailid;
-	@NotEmpty(message="LinkName should not be empty")
 	private String linkname;
-	@NotEmpty(message="Url should not be empty")
 	private String linkaddress;
-	@NotEmpty(message="Image should not be empty")
 	private String filename;
-	@NotEmpty(message="page should not be empty")
     private String tablename;
 	private String tablekey;
     private int totvalintable;
@@ -28,6 +19,7 @@ public class AdminSubmissionModel {
     private boolean isactive;
     private String jobtitle;
     private String industry;
+    private int industryid;
     private String jobtype;
     private String rolecategory;
     private String salary;
@@ -336,17 +328,25 @@ public class AdminSubmissionModel {
 		this.noticeperiod = noticeperiod;
 	}
 
+	public int getIndustryid() {
+		return industryid;
+	}
+
+	public void setIndustryid(int industryid) {
+		this.industryid = industryid;
+	}
+
 	@Override
 	public String toString() {
 		return "AdminSubmissionModel [addedby=" + addedby + ", addeddate=" + addeddate + ", rowid=" + rowid
 				+ ", modifieddate=" + modifieddate + ", comments=" + comments + ", emailid=" + emailid + ", linkname="
 				+ linkname + ", linkaddress=" + linkaddress + ", filename=" + filename + ", tablename=" + tablename
 				+ ", tablekey=" + tablekey + ", totvalintable=" + totvalintable + ", loggedowner=" + loggedowner
-				+ ", isactive=" + isactive + ", jobtitle=" + jobtitle + ", industry=" + industry + ", jobtype="
-				+ jobtype + ", rolecategory=" + rolecategory + ", salary=" + salary + ", noofpossitions="
-				+ noofpossitions + ", jobresponsibilities=" + jobresponsibilities + ", contactnum=" + contactnum
-				+ ", skillreq=" + skillreq + ", daterange=" + daterange + ", countryiso=" + countryiso
-				+ ", countryname=" + countryname + ", stateid=" + stateid + ", statename=" + statename
+				+ ", isactive=" + isactive + ", jobtitle=" + jobtitle + ", industry=" + industry + ", industryid="
+				+ industryid + ", jobtype=" + jobtype + ", rolecategory=" + rolecategory + ", salary=" + salary
+				+ ", noofpossitions=" + noofpossitions + ", jobresponsibilities=" + jobresponsibilities
+				+ ", contactnum=" + contactnum + ", skillreq=" + skillreq + ", daterange=" + daterange + ", countryiso="
+				+ countryiso + ", countryname=" + countryname + ", stateid=" + stateid + ", statename=" + statename
 				+ ", countrystate=" + countrystate + ", location=" + location + ", experience=" + experience
 				+ ", company=" + company + ", qualification=" + qualification + ", noticeperiod=" + noticeperiod
 				+ ", otherinfo=" + otherinfo + "]";

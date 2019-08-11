@@ -1,0 +1,2 @@
+<script src="${pageContext.request.contextPath}/theme/userhome/js/jquery-listnav.js" type="text/javascript"></script>
+             <script src="${pageContext.request.contextPath}/theme/userhome/js/vendor.js" type="text/javascript"></script>

@@ -116,7 +116,7 @@
       	     var selpageval = $("#tablekey").val();	
       	     //var selpage = $("#tablename").val();
       	     var jobtitle = $("#jobtitle").val();
-          	 var industry = $("#industry").val();
+          	 var industry = $("#industryid").val();
           	 var company = $("#company").val();
           	 var qualification = $("#qualification").val();
           	 var experience =  $("#experience").val();
@@ -137,7 +137,7 @@
       	  		  $("input#jobtitle").focus();
       	  		  return false;
       	  	  }
-      	  	  if (industry == "" || industry.trim() == "") {
+      	  	  if (industry == "0" || industry.trim() == "") {
       	  		  $("label#industry_error").show();
       	  		  $("input#industry").focus();
       	  		  return false;

@@ -3,7 +3,9 @@ package com.globalwebsite.admin.services;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.globalwebsite.admin.dao.AdminDaoInterfaceImpl;
@@ -15,6 +17,7 @@ import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
+import com.globalwebsite.admin.model.IndustryTypeModel;
 import com.globalwebsite.admin.model.StatesModel;
 import com.gw.student.model.AdminSubmissionModel;
 
@@ -25,6 +28,12 @@ public class AdminServiceInterfaceImpl implements AdminSerivceInterface {
 	@Autowired
 	private AdminDaoInterfaceImpl admindaoimpl;
 
+	@Value("${admin.viewtype}")
+	private String adminViewType;
+	
+	@Value("${user.viewtype}")
+	private String userViewType;
+	
 	@Override
 	public List<AdminLoginModel> getAdminLoginDetails(AdminLoginModel lmodel) {
 		return admindaoimpl.getAdminLoginDetails(lmodel);
@@ -94,7 +103,7 @@ public int selectCountForSubmissionData(AdminSubmissionModel stdmodel) {
 /*View Common submission Data */
 @Override
 public List<AdminSubmissionModel> getAllViewSubmissionData(String tablekey, String prevdate, String currentdate, String viewType){
-	return admindaoimpl.getAllViewSubmissionData(tablekey,prevdate,currentdate, viewType);
+		return admindaoimpl.getAllViewSubmissionData(tablekey,prevdate,currentdate, viewType);
 }
 @Override
 public List<AdminRolePermissionModel> getAllRoles() {
@@ -134,8 +143,8 @@ public List<Map<String, Object>> getPermissionIsAvailable(int roleid, String per
 }
 
 @Override
-public int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel){
-	return admindaoimpl.adminAddJobConsultantInfo(stdmodel);
+public int insertAdminAddJobAllJobDetailsInfo(AdminSubmissionModel stdmodel){
+	return admindaoimpl.insertAdminAddJobAllJobDetailsInfo(stdmodel);
 }
 @Override
 public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey, String prevdate, String currentdate) {
@@ -154,6 +163,10 @@ public List<CountryModel> findAllCountries() {
 public List<StatesModel> findAllStates() {
 	return admindaoimpl.findAllStates();
 }
+@Override
+public List<IndustryTypeModel> findAllIndustryTypes() {
+	return admindaoimpl.findAllIndustryTypes();
+}
 
 @Override
 public int insertStateSubmissionData(AdminSubmissionModel stdmodel) {
@@ -167,6 +180,19 @@ public List<AdminSubmissionModel> getAllViewAdminAbroadData(String tablekey, Str
 public List<AdminSubmissionModel> getAllViewAdminStateWiseData(String tablekey, String prevdate, String currentdate) {
 	return admindaoimpl.getAllViewAdminStateWiseData(tablekey, prevdate, currentdate);
 }
+public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionDataById(String tablekey, int rowId) {
+	return admindaoimpl.getAllViewConsuRefAdminPostSubmissionDataById(tablekey, rowId);
+}
+public List<AdminSubmissionModel> getAllViewSubmissionDataById(String tablekey, int rowId) {
+	return admindaoimpl.getAllViewSubmissionDataById(tablekey, rowId);
+}
+public List<AdminSubmissionModel> getAllViewAdminAbroadDataById(String tablekey, int rowId) {
+	return admindaoimpl.getAllViewAdminAbroadDataById(tablekey, rowId);
+}
+public List<AdminSubmissionModel> getAllViewAdminStateWiseDataById(String tablekey, int rowId) {
+	return admindaoimpl.getAllViewAdminStateWiseDataById(tablekey, rowId);
+}
+
 
 
 

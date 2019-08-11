@@ -34,6 +34,7 @@ public class AdminSqlQueries {
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	public static final String FINDALLCOUNTRIES_QUERY = "select * from country order by name";
 	public static final String FINDALLSTATES_QUERY = "select * from states where status=? order by statename";
+	public static final String FINDALLINDUSTRYTYPES_QUERY = "select * from industry_type where status=? order by industry_name";
 	
 	
 	/*public static final String INSERTSUBMISSIONDATA_SQL = "insert into ?"
@@ -55,6 +56,12 @@ public class AdminSqlQueries {
 	public static String getAllViewSubmissionData_Query(String tablekey) {
 		return "select * from "+tablekey+" where created_date between ? and ?";
 	}
+	public static String getAllViewSubmissionDataById_Query(String tablekey) {
+		return "select * from "+tablekey+" where id=?";
+	}
+	public static String getAllViewSubmissionDataForUser_Query(String tablekey) {
+		return "select * from "+tablekey+" where is_active=?";
+	}
 	public static String DELETEROLEPERMISSIONS_QUERY(int roleid, String permisid) {
 	String sql=null;
 		if(permisid!=null){
@@ -64,29 +71,45 @@ public class AdminSqlQueries {
 		}
 		return sql; 
 	}
-	public static String adminAddJobConsultantInfo_Query(AdminSubmissionModel stdmodel) {
-		return "INSERT INTO "+stdmodel.getTablekey()+" (job_title, industry, company,experience,qualification,"
+	public static String insertAdminAddJobAllJobDetailsInfo_Query(AdminSubmissionModel stdmodel) {
+		return "INSERT INTO "+stdmodel.getTablekey()+" (job_title, industry_id, company,experience,qualification,"
 				+ " role_category, salary, no_of_positions, "
 				+ "job_responsibilities, skill_set, email_id,contact_num,location, status, created_by, "
-				+ "created_date,notice_period, other_info) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "created_date,notice_period, other_info,jobtype) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 	}
 	
 	public static String getAllViewConsuRefAdminPostSubmissionData_Query(String tablekey) {
-		return "select * from "+tablekey+" where created_date between ? and ?";
+		return "select jd.*, it.industry_name from "+tablekey+" jd, industry_type it where "
+				+ "jd.industry_id=it.id and jd.created_date between ? and ?";
+	}
+	public static String getAllViewConsuRefAdminPostSubmissionDataById_Query(String tablekey) {
+		return "select jd.*, it.industry_name from "+tablekey+" jd, industry_type it "
+				+ "where jd.industry_id=it.id and jd.id=?";
 	}
 	public static String insertStateSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return  "insert into "+stdmodel.getTablekey()+""
-				+ "(state_id,link_name,link_address,link_owner,link_emailId,file_name,link_comments,is_active,created_date,modified_date) "
+				+ "(state_id,link_name,link_address,link_owner,link_emailId,file_name,link_comments,"
+				+ "is_active,created_date,modified_date) "
 				+ "values(?,?,?,?,?,?,?,?,?,?)";
 	}
 	
 	public static String getAllViewAdminAbroadData_Query(String tablekey) {
-		return "select aj.*, cn.name, cn.phonecode from "+tablekey+" aj, country cn where aj.iso=cn.iso and created_date between ? and ?";
+		return "select aj.*, cn.name, cn.phonecode from "+tablekey+" aj, country cn where "
+				+ "aj.iso=cn.iso and aj.created_date between ? and ?";
+	}
+	public static String getAllViewAdminAbroadDataById_Query(String tablekey) {
+		return "select aj.*, cn.name, cn.phonecode from "+tablekey+" aj, country cn where "
+				+ "aj.iso=cn.iso and aj.id=?";
 	}
 	
 	public static String getAllViewAdminStateWiseData_Query(String tablekey) {
-		return "select sj.*, st.statename from "+tablekey+" sj, states st where sj.state_id = st.id and created_date between ? and ?";
+		return "select sj.*, st.statename from "+tablekey+" sj, states st where "
+				+ "sj.state_id = st.id and sj.created_date between ? and ?";
+	}
+	public static String getAllViewAdminStateWiseDataById_Query(String tablekey) {
+		return "select sj.*, st.statename from "+tablekey+" sj, states st where "
+				+ "sj.state_id = st.id and sj.id= ?";
 	}
 	
 	

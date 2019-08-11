@@ -11,24 +11,11 @@
                                                 <div class="form-group">
                                                     <label>Industry</label><span class="text-danger">*</span>
                                                      <label class="error" for="industry" id="industry_error">This field is required.</label>
-                                                     <form:select path="industry" class="form-control">
-										                <form:option value="">Select-Industry</form:option>
-										                <form:option value="Aerospace / Defense">Aerospace / Defense</form:option>
-										                <form:option value="Education">Education</form:option>
-										                <form:option value="Financial Services">Financial Services</form:option>
-										                <form:option value="Government">Government</form:option>
-										                <form:option value="Healthcare / Pharma">Healthcare / Pharma</form:option>
-										                <form:option value="Manufacturing">Manufacturing</form:option>
-										                <form:option value="Media &amp; Entertainment">Media &amp; Entertainment</form:option>
-										                <form:option value="Mining &amp; Natural Resources">Mining &amp; Natural Resources</form:option>
-										                <form:option value="Retail">Retail</form:option>
-										                <form:option value="IT-Software /  Software Services">IT-Software /  Software Services</form:option>
-										                <form:option value="IT-Hardware / Networking">IT-Hardware / Networking</form:option>
-														<form:option value="Real Estate">Real Estate</form:option>
-										                <form:option value="Telecom">Telecom</form:option>
-										                <form:option value="Transport">Transport</form:option>
-										                <form:option value="Travel &amp; Hospitality">Travel &amp; Hospitality</form:option>
-										                <form:option value="Web: E-commerce &amp; Social">Web: E-commerce &amp; Social</form:option>
+                                                     <form:select path="industryid" class="form-control">
+										                <form:option value="0">Select-Industry</form:option>
+										                 <c:forEach items="${industryList}" var="listofindustries">
+						                                    <form:option value="${listofindustries.id}">${listofindustries.indusryname}</form:option>
+						                                  </c:forEach>
 												 </form:select>
                                                 </div>
                                             </div>

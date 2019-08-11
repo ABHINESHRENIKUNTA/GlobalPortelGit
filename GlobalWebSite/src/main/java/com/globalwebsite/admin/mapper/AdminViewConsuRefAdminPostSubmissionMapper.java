@@ -14,7 +14,7 @@ public class AdminViewConsuRefAdminPostSubmissionMapper implements RowMapper<Adm
 		AdminSubmissionModel asm = new AdminSubmissionModel();
 		asm.setRowid(rs.getInt("id"));
 		asm.setJobtitle(rs.getString("job_title"));
-		asm.setIndustry(rs.getString("industry"));
+		asm.setIndustry(rs.getString("industry_name"));
 		asm.setCompany(rs.getString("company"));
 		asm.setExperience(rs.getString("experience"));
 		asm.setQualification(rs.getString("qualification"));

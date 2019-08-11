@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.globalwebsite.admin.model.CountryModel;
+import com.globalwebsite.admin.model.IndustryTypeModel;
 import com.globalwebsite.admin.model.StatesModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 import com.globalwebsite.common.controller.DatabaseTableNames;
@@ -51,7 +52,12 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		
 		List<CountryModel> countryList = adminservices.findAllCountries();
 		List<StatesModel> stateList = adminservices.findAllStates();
+		List<IndustryTypeModel> industryList = adminservices.findAllIndustryTypes();
+		logger.info("countryList::: "+countryList);
+		logger.info("stateList::: "+stateList);
+		logger.info("industryList::: "+industryList);
 		
+		model.addAttribute("industryList", industryList);
 		model.addAttribute("stateList", stateList);
 		model.addAttribute("countryList", countryList);
 		model.addAttribute("tablekey", selectpage);
@@ -89,7 +95,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_empposted_jobs"))) {
 				System.out.println("Entered in: " + stdmodel.getTablename());
 				logger.info("Entered in: " + stdmodel.getTablename());
-				succsscnt = adminservices.adminAddJobConsultantInfo(stdmodel);
+				succsscnt = adminservices.insertAdminAddJobAllJobDetailsInfo(stdmodel);
 		}
 		/*popular, central, it and non it insert*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_popular_jobsites_page")

@@ -27,7 +27,7 @@ public class DatabaseTableNames {
 		tablelist.put("global_postedbyadmin_jobs", "Jobs Posted By Admin");
 		tablelist.put("global_empposted_jobs", "Employer Posted Jobs");
 		tablelist.put("global_trainingandplace_jobs", "Training & Placement Institutions");
-		tablelist.put("global_freejobtraining_jobs", "Free Job Training Institutions");
+		tablelist.put("global_freejobtraining_jobs", "Free Job Training & Institute Links");
 		return tablelist;
 	}
 	

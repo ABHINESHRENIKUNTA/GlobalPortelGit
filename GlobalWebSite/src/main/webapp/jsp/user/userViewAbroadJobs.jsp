@@ -1,13 +1,16 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Abroad Jobs</title>
+    <title><spring:eval expression="@viewPropertyConfigurer.getProperty('abroad.jobs')" /></title>
   <%@include file="userNewHeader.jsp" %>
   
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-  <body class="skin-green layout-top-nav">
+  <body class="<spring:eval expression="@viewPropertyConfigurer.getProperty('topmenu.color')" /> layout-top-nav">
     <div class="wrapper">
       <%@include file="userTopMenu.jsp" %>
       <!-- Full Width Column -->
@@ -19,10 +22,10 @@
               Find your link
               <small>There is a way to do it better...find it</small>
             </h1>
-            <ol class="breadcrumb">
+            <!-- <ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
               <li class="active">Abroad Job Links</li>
-            </ol>
+            </ol> -->
           </section>
 
           <!-- Main content -->

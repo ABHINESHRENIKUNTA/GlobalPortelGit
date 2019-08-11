@@ -51,20 +51,12 @@ public class CountryModel {
 	public void setPhonecode(int phonecode) {
 		this.phonecode = phonecode;
 	}
-	public CountryModel(int id, String iso, String name, String nicename, String iso3, int numcode, int phonecode) {
-		super();
-		this.id = id;
-		this.iso = iso;
-		this.name = name;
-		this.nicename = nicename;
-		this.iso3 = iso3;
-		this.numcode = numcode;
-		this.phonecode = phonecode;
+	@Override
+	public String toString() {
+		return "CountryModel [id=" + id + ", iso=" + iso + ", name=" + name + ", nicename=" + nicename + ", iso3="
+				+ iso3 + ", numcode=" + numcode + ", phonecode=" + phonecode + "]";
 	}
-	public CountryModel() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+
 	
 	
 	

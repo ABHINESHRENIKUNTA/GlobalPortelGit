@@ -39,7 +39,7 @@ public interface UserServiceInterface {
 
 	List<AdminSubmissionModel> findSelectedViewJobInfo(int jobdetailid, String tablekey);
 
-	List<AdminSubmissionModel> getActivePopularJobs(String tablekey, int activenum);
+	List<AdminSubmissionModel> getCommonSubmissionJobsList(String tablekey, int activenum);
 
 	List<AdminSubmissionModel> getActiveStatewiseJobs(int activenum);
 

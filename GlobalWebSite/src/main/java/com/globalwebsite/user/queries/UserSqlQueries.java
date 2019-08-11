@@ -21,12 +21,12 @@ public class UserSqlQueries {
 	public static final String GETACTIVEABROADJOBS_QUERY = "select aj.*, cn.name, cn.nicename,cn.iso3,cn.numcode,cn.phonecode "
 			+ "from global_abroad_jobs aj, country cn where aj.iso=cn.iso and aj.is_active=?";
 	public static String findAllViewJobInfo_query(String tablekey) {
-		return "select * from "+tablekey+" where status=?";
+		return "select jd.*,it.industry_name from "+tablekey+" jd, industry_type it where jd.industry_id=it.id and jd.status=? ";
 	}
 	public static String findSelectedViewJobInfo_query(String tablekey) {
-		return "select * from "+tablekey+" where id=?";
+		return "select jd.*,it.industry_name from "+tablekey+" jd, industry_type it where jd.id=? and jd.industry_id=it.id";
 	}
-	public static String getActivePopularJobs_query(String tablekey) {
+	public static String getCommonSubmissionJobsList_query(String tablekey) {
 		return "select * from "+tablekey+" where is_active=?";
 	}
 }

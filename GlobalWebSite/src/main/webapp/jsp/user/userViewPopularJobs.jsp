@@ -1,24 +1,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>View Popular Jobs</title>
-  <%@include file="userNewHeader.jsp" %>
-      <link href="${pageContext.request.contextPath}/theme/userhome/css/listnav.css" rel="stylesheet" type="text/css" />
-  <style>
-  
-  .direct-chat-messages1 {
-	  .translate(0, 0);
-	  padding: 10px;
-	  height: auto;
-	  overflow: auto;
-	}
-  </style>
+    <title><spring:eval expression="@viewPropertyConfigurer.getProperty('popular.jobs')" /></title>
+    <%@include file="userNewHeader.jsp" %>
+    <%@include file="alphabetsPaginationCSS.jsp" %>
+   
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-  <body class="skin-green layout-top-nav">
+  <body class="<spring:eval expression="@viewPropertyConfigurer.getProperty('topmenu.color')" /> layout-top-nav">
     <div class="wrapper">
       <%@include file="userTopMenu.jsp" %>
       <!-- Full Width Column -->
@@ -32,7 +26,7 @@
             </h1>
             <ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li class="active">Popular Job Links</li>
+              <li class="active"><spring:eval expression="@viewPropertyConfigurer.getProperty('popular.jobs')" /></li>
             </ol>
           </section>
 
@@ -54,11 +48,11 @@
                   <section id="main_content" class="inner">
                   	<div id="tabpage_1" class="tabContainer">
                   	<ul id="demoOne" class="demo">
-                  	<c:forEach items="${popularList}" var="populardata">
+                  	<c:forEach items="${jobsList}" var="populardata">
 					<li class="col-sm-4"><a href='${populardata.linkaddress}' target="_blank">${populardata.linkname}</a>
 					<!-- <div class="image-parent">
-              <img src="https://static.naukimg.com/s/4/100/i/naukri_Logo.png" class="img-fluid" alt="quixote">
-          </div> -->
+		              <img src="https://static.naukimg.com/s/4/100/i/naukri_Logo.png" class="img-fluid" alt="quixote">
+		          </div> -->
 					</li>
 					
                   	</c:forEach>
@@ -81,8 +75,8 @@
     </div><!-- ./wrapper -->
 
      <%@include file="userNewFooterJsLinks.jsp" %>
-         <script src="${pageContext.request.contextPath}/theme/userhome/js/jquery-listnav.js" type="text/javascript"></script>
-             <script src="${pageContext.request.contextPath}/theme/userhome/js/vendor.js" type="text/javascript"></script>
+     <%@include file="alphabetsPaginationJS.jsp" %>
+         
   <script>
 $(function(){
 	$('#demoOne').listnav();

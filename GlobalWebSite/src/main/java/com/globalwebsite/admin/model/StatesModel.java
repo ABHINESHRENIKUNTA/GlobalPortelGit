@@ -24,6 +24,10 @@ public class StatesModel {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	@Override
+	public String toString() {
+		return "StatesModel [id=" + id + ", statename=" + statename + ", status=" + status + "]";
+	}
 	
 
 }

@@ -1,9 +1,11 @@
 package com.globalwebsite.common.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,63 +28,67 @@ public class UserViewAllPagesJobsController {
 	
 	private final int activenum =1;
 	
+	@Value("${user.viewtype}")
+	private String viewType;
+	
 	 @RequestMapping("/view-userpopularjobs")
 	 public ModelAndView userViewPopularJobScreen(Model model, AdminSubmissionModel stdmodel){
 		 String tablekey="global_popular_jobsites_page";
-		 List<AdminSubmissionModel> popularList = userserviceimpl.getActivePopularJobs(tablekey,activenum);
-		 model.addAttribute("popularList", popularList);
+		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
+		 model.addAttribute("jobsList", jobsList);
 		 return new ModelAndView("user/userViewPopularJobs", "listjobdetails", stdmodel);
 	 }
 	
 	 @RequestMapping("/view-usercentralgovjobs")
 	 public ModelAndView userViewCentralGovJobScreen(Model model, AdminSubmissionModel stdmodel){
 		 String tablekey="global_centralgov_jobs";
-		 List<AdminSubmissionModel> popularList = userserviceimpl.getActivePopularJobs(tablekey,activenum);
-		 model.addAttribute("popularList", popularList);
+		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
+		 model.addAttribute("jobsList", jobsList);
 		 return new ModelAndView("user/userViewCentralGovJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-userstatewisejobs")
 	 public ModelAndView userViewStateWiseJobScreen(Model model, AdminSubmissionModel stdmodel){
 		 List<StatesModel> stateList = adminservices.findAllStates();
 		 model.addAttribute("stateList", stateList);
-		 List<AdminSubmissionModel> stateJobList = userserviceimpl.getActiveStatewiseJobs(activenum);
-		 model.addAttribute("stateJobList", stateJobList);
+		 List<AdminSubmissionModel> jobsList = userserviceimpl.getActiveStatewiseJobs(activenum);
+		 logger.info("State List Size::: "+jobsList.size());
+		 model.addAttribute("jobsList", jobsList);
 		 return new ModelAndView("user/userViewStateWiseJobs", "statewise", stdmodel);
 	 }
 	 @RequestMapping("/view-userViewAbroadJobs")
 	 public ModelAndView userViewAbroadJobScreen(Model model, AdminSubmissionModel stdmodel){
-		 List<AdminSubmissionModel> abroadList = userserviceimpl.getActiveAbroadJobs(activenum);
-		 model.addAttribute("abroadList", abroadList);
+		 List<AdminSubmissionModel> jobsList = userserviceimpl.getActiveAbroadJobs(activenum);
+		 model.addAttribute("jobsList", jobsList);
 		 return new ModelAndView("user/userViewAbroadJobs", "listjobdetails", stdmodel);
 	 }
 	
 	 @RequestMapping("/view-useritjobs")
 	 public ModelAndView userViewItJobScreen(Model model, AdminSubmissionModel stdmodel){
 		 String tablekey="global_it_jobs";
-		 List<AdminSubmissionModel> popularList = userserviceimpl.getActivePopularJobs(tablekey,activenum);
-		 model.addAttribute("popularList", popularList);
+		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
+		 model.addAttribute("jobsList", jobsList);
 		 return new ModelAndView("user/userViewITJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-usernonitjobs")
 	 public ModelAndView userViewNonJobScreen(Model model, AdminSubmissionModel stdmodel){
 		 String tablekey="global_nonit_jobs";
-		 List<AdminSubmissionModel> popularList = userserviceimpl.getActivePopularJobs(tablekey,activenum);
-		 model.addAttribute("popularList", popularList);
+		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
+		 model.addAttribute("jobsList", jobsList);
 		 return new ModelAndView("user/userNonITJobs", "listjobdetails", stdmodel);
 	 }
 	
 	 @RequestMapping("/view-userfreejobtraininginst")
 	 public ModelAndView userViewFreeJobTrainingInstScreen(Model model, AdminSubmissionModel stdmodel){
 		 String tablekey="global_freejobtraining_jobs";
-		 List<AdminSubmissionModel> popularList = userserviceimpl.getActivePopularJobs(tablekey,activenum);
-		 model.addAttribute("popularList", popularList);
+		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
+		 model.addAttribute("jobsList", jobsList);
 		 return new ModelAndView("user/userViewFreeTrainingInstJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-usertrainingplacinst")
 	 public ModelAndView userViewTrainingAndPlacementInstScreen(Model model, AdminSubmissionModel stdmodel){
 		 String tablekey="global_trainingandplace_jobs";
-		 List<AdminSubmissionModel> popularList = userserviceimpl.getActivePopularJobs(tablekey,activenum);
-		 model.addAttribute("popularList", popularList);
+		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
+		 model.addAttribute("jobsList", jobsList);
 		 return new ModelAndView("user/userViewTrainingPlacInst", "listjobdetails", stdmodel);
 	 }
 	 

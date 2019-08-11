@@ -10,6 +10,7 @@ import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
+import com.globalwebsite.admin.model.IndustryTypeModel;
 import com.globalwebsite.admin.model.StatesModel;
 import com.gw.student.model.AdminSubmissionModel;
 
@@ -60,7 +61,7 @@ public interface AdminSerivceInterface {
 
 	int insertRolePermissions(int roleid, String plistid);
 
-	int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel);
+	int insertAdminAddJobAllJobDetailsInfo(AdminSubmissionModel stdmodel);
 
 	List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey, String prevdate,
 			String currentdate);
@@ -79,6 +80,8 @@ public interface AdminSerivceInterface {
 	List<AdminSubmissionModel> getAllViewAdminAbroadData(String tablekey, String prevdate, String currentdate);
 
 	List<AdminSubmissionModel> getAllViewAdminStateWiseData(String tablekey, String prevdate, String currentdate);
+
+	List<IndustryTypeModel> findAllIndustryTypes();
 
 
 

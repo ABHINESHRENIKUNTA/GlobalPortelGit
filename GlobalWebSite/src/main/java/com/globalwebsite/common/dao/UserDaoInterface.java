@@ -43,6 +43,6 @@ public interface UserDaoInterface {
 
 	List<AdminSubmissionModel> getActiveAbroadJobs(int activenum);
 
-	List<AdminSubmissionModel> getActivePopularJobs(String tablekey, int activenum);
+	List<AdminSubmissionModel> getCommonSubmissionJobsList(String tablekey, int activenum);
 
 }

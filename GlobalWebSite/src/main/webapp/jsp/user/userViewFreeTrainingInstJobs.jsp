@@ -1,9 +1,13 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Free Job Training & Institute</title>
+    <title><spring:eval expression="@viewPropertyConfigurer.getProperty('freejobtraining.jobs')" /></title>
   <%@include file="userNewHeader.jsp" %>
+  <%@include file="alphabetsPaginationCSS.jsp" %>
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
   <body class="skin-green layout-top-nav">
@@ -18,10 +22,10 @@
               Find your link
               <small>There is a way to do it better...find it</small>
             </h1>
-            <ol class="breadcrumb">
+            <!-- <ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
               <li class="active">Free Job Training & Institute Links</li>
-            </ol>
+            </ol> -->
           </section>
 
           <!-- Main content -->
@@ -30,7 +34,7 @@
               <!-- Primary box -->
               <div class="box box-solid box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Free Job Training & Institute Links</h3> <code>Find your best job..</code>
+                  <h3 class="box-title"><spring:eval expression="@viewPropertyConfigurer.getProperty('freejobtraining.jobs')" /></h3> <code>Find your best job..</code>
                   <div class="box-tools pull-right">
                     <button class="btn btn-primary btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
                     <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -39,7 +43,27 @@
                 </div>
                 <div class="box-body">
                   
-                 
+                 <div class="direct-chat-messages1">
+
+                  <section id="main_content" class="inner">
+                  	<div id="tabpage_1" class="tabContainer">
+                  	<ul id="demoOne" class="demo">
+                  	<c:forEach items="${jobsList}" var="jobsListData">
+					<li class="col-sm-4"><a href='${jobsListData.linkaddress}' target="_blank">${jobsListData.linkname}</a>
+					<!-- <div class="image-parent">
+		              <img src="https://static.naukimg.com/s/4/100/i/naukri_Logo.png" class="img-fluid" alt="quixote">
+		          </div> -->
+					</li>
+					
+                  	</c:forEach>
+					</ul>
+                  	</div>
+                  </section>
+                <!--  <div class="row"></div> -->
+                 <!--  <div class="box-footer">
+              
+                 </div> -->
+                </div><!-- /.box-body -->
                   <div class="box-footer">
               
                  </div>
@@ -55,5 +79,16 @@
     </div><!-- ./wrapper -->
 
    <%@include file="userNewFooterJsLinks.jsp" %>
+     <%@include file="alphabetsPaginationJS.jsp" %>
+         
+  <script>
+$(function(){
+	$('#demoOne').listnav();
+
+	/* $('.demo a').click(function(e) {
+		e.preventDefault();
+	}); */
+});
+</script>
   </body>
 </html>

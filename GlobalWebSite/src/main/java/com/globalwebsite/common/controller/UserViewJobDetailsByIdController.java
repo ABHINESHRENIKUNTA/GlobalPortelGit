@@ -30,7 +30,7 @@ public class UserViewJobDetailsByIdController {
 		 int jobdetailid=stdmodel.getRowid();
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
 		 model.addAttribute("listData", listData);
-		 return new ModelAndView("user/userViewConsultantJobs", "listjobdetails", stdmodel);
+		 return new ModelAndView("user/userViewConsultantJobsById", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-userreferraljobsid")
 	 public ModelAndView userViewReferralScreenId(Model model, AdminSubmissionModel stdmodel){
@@ -41,7 +41,7 @@ public class UserViewJobDetailsByIdController {
 		 int jobdetailid=stdmodel.getRowid();
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
 		 model.addAttribute("listData", listData);
-		 return new ModelAndView("user/userViewReferralJobs", "listjobdetails", stdmodel);
+		 return new ModelAndView("user/userViewReferralJobsById", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-userpostedbyadminid")
 	 public ModelAndView userViewPostedByAdminScreenId(Model model, AdminSubmissionModel stdmodel){
@@ -52,7 +52,7 @@ public class UserViewJobDetailsByIdController {
 		 int jobdetailid=stdmodel.getRowid();
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
 		 model.addAttribute("listData", listData);
-		 return new ModelAndView("user/userViewJobsPostedByAdmin", "listjobdetails", stdmodel);
+		 return new ModelAndView("user/userViewJobsPostedByAdminById", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-useremployeepostedjobsid")
 	 public ModelAndView userViewEmployerPostedJobsScreenId(Model model, AdminSubmissionModel stdmodel){

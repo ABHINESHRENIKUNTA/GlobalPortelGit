@@ -102,16 +102,16 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 	}
 
 	@Override
-	public List<AdminSubmissionModel> getActivePopularJobs(String tablekey, int activenum) {
-		String sql=UserSqlQueries.getActivePopularJobs_query(tablekey);
+	public List<AdminSubmissionModel> getCommonSubmissionJobsList(String tablekey, int activenum) {
+		String sql=UserSqlQueries.getCommonSubmissionJobsList_query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
 		try {
 			listdata = jdbctemplate.query(sql, new Object[]{activenum},  new AdminCommonViewSubmitMapper());
-			logger.info("getActivePopularJobs: "+sql);
+			logger.info("getCommonSubmissionJobsList: "+sql);
 			
 		} catch (Exception e) {
 			//System.out.println("getActivePopularJobs: "+e);
-			logger.info("getActivePopularJobs: "+e);
+			logger.info("getCommonSubmissionJobsList: "+e);
 		}
 		return listdata;
 	}

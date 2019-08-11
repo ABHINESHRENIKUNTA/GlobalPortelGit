@@ -11,6 +11,7 @@ import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
+import com.globalwebsite.admin.model.IndustryTypeModel;
 import com.globalwebsite.admin.model.StatesModel;
 import com.gw.student.model.AdminSubmissionModel;
 
@@ -73,7 +74,7 @@ public interface AdminDaoInterface {
 
 	List<Map<String, Object>> getPermissionIsAvailable(int roleid, String permissionurl);
 
-	int adminAddJobConsultantInfo(AdminSubmissionModel stdmodel);
+	int insertAdminAddJobAllJobDetailsInfo(AdminSubmissionModel stdmodel);
 
 	List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey, String prevdate,
 			String currentdate);
@@ -83,6 +84,11 @@ public interface AdminDaoInterface {
 	List<AdminSubmissionModel> getAllViewAdminStateWiseData(String tablekey, String prevdate, String currentdate);
 
 	int updateImageFileNameInTable(String tablename, String filename, int rowid);
+
+	List<AdminSubmissionModel> getAllViewSubmissionDataForUser(String tablekey, String prevdate, String currentdate,
+			String viewType);
+
+	List<IndustryTypeModel> findAllIndustryTypes();
 
 
 

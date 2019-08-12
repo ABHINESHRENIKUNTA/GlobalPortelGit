@@ -1,5 +1,8 @@
  <!-- Start: Sidebar -->
-    <aside id="sidebar_left" class="nano nano-light affix">
+    <%@page import="com.globalwebsite.admin.model.AdminRolePermissionModel"%>
+<%@page import="java.util.ArrayList"%>
+
+<aside id="sidebar_left" class="nano nano-light affix">
 
       <!-- Start: Sidebar Left Content -->
       <div class="sidebar-left-content nano-content">
@@ -88,7 +91,13 @@
            <c:set value="nopermission" var="employerpostedjobs"></c:set>
            <c:set value="nopermission" var="trainingplacejobs"></c:set>
            <c:set value="nopermission" var="freetrainingjobs"></c:set>
-           
+           <%
+           @SuppressWarnings("unchecked")
+           ArrayList<AdminRolePermissionModel> list = (ArrayList<AdminRolePermissionModel>)request.getSession().getAttribute("leftMenuList");
+		   request.setAttribute("leftMenuListjsp", list);
+		   
+           %>
+           <c:set var="leftMenuList" value="${leftMenuListjsp}"></c:set>
           <c:forEach items="${leftMenuList}" var="menulist">
           
             <c:if test="${menulist.permname == 'VIEW_PERMISSIONS'  or menulist.permname == 'EDIT_PERMISSIONS'}">

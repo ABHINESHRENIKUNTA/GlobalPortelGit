@@ -1,7 +1,5 @@
 package com.globalwebsite.interceptor;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.globalwebsite.admin.controller.AdminRolePermissionController;
-import com.globalwebsite.admin.model.AdminRolePermissionModel;
 
 public class GlobalInterceptor extends HandlerInterceptorAdapter {
 	private static final Logger logger = Logger.getLogger(HandlerInterceptorAdapter.class);
@@ -25,7 +22,7 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 
 		long startTime = System.currentTimeMillis();
 		request.setAttribute("startTime", startTime);
-		System.out.println("preHandle - > startTime::: "+startTime);
+		logger.info("preHandle - > startTime::: "+startTime);
 
 		return true;
 	}
@@ -42,32 +39,24 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 
 		// modified the existing modelAndView
 		modelAndView.addObject("executeTime", executeTime);
-		System.out.println("postHandle - > executeTime::: "+executeTime);
 		logger.info("postHandle - > executeTime::: "+executeTime);
 		
 		String apndQryStr = getQueryStringFromURL(request);
 		String permissionurl = request.getServletPath();
 		
 		int roleid=0;
-		
 		boolean rolenotnull = request.getSession().getAttribute("roleid") != null;
 		if(rolenotnull==true){
 			String ssroleid = (String) request.getSession().getAttribute("roleid");
 			roleid = Integer.valueOf(ssroleid);
 		}
-		List<AdminRolePermissionModel> leftMenuList = null;
-		if(roleid==1){
-			leftMenuList = apr.getAllPermissionsForSuperuser();
-		}else{
-			leftMenuList = apr.getAllPermissionsBasedonRoleId(roleid);
-		}
-		modelAndView.addObject("leftMenuList", leftMenuList);
+		
 		
 		permissionurl=permissionurl.replaceFirst("/", "");
 		permissionurl = permissionurl+""+apndQryStr;
-		System.out.println("permissionurl:::::::: "+permissionurl);
+		logger.info("permissionurl:::::::: "+permissionurl);
 		String permisaccess = apr.adminManagePermissions(roleid, permissionurl);
-		System.out.println("***********************: "+permisaccess);
+		logger.info("***********************: "+permisaccess);
 		
 		
 		// log it
@@ -86,7 +75,6 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 			}
 		} catch (Exception e) {
 			logger.info("Query String is not found in the URL::"+request.getServletPath());
-			System.out.println("Query String is not found in the URL::"+request.getServletPath());
 			apndQryStr="";
 		}
 		return apndQryStr;

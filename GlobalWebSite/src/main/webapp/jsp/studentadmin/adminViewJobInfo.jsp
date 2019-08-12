@@ -151,10 +151,15 @@
                               </c:forEach>
                             </tbody>
                           </c:when>
-                          <c:when test="${tablekey == 'global_popular_jobsites_page' or 
+                           <c:when test="${tablekey == 'global_popular_jobsites_page' or 
                             tablekey == 'global_centralgov_jobs' or 
                             tablekey == 'global_it_jobs' or 
-                            tablekey == 'global_nonit_jobs'}">
+                            tablekey == 'global_nonit_jobs' or
+                            tablekey == 'global_trainingandplace_jobs' or
+                            tablekey == 'global_freejobtraining_jobs' or
+                            tablekey == 'global_abroad_jobs' or
+                            tablekey == 'global_statewisegovt_jobs' 
+                            }">
                             <thead>
                               <tr>
                                 <th>#</th>
@@ -212,65 +217,7 @@
                             </tbody>
                           </c:when>
                           <c:otherwise>
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Link Name</th>
-                                <th>Created By</th>
-                                <th>Created Date</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <c:forEach items="${alistdata}" var="listdata"  varStatus="loop">
-                                <tr>
-                                  <td>${loop.index+1}</td>
-                                  <td>${listdata.linkname}</td>
-                                  <td>${listdata.addedby}</td>
-                                  <td>
-                                    <fmt:parseDate value="${listdata.addeddate}"
-                                      pattern="yyyy-MM-dd HH:mm:ss" var="myDate" />
-                                    <fmt:formatDate
-                                      type="date" value="${myDate}" pattern="dd-MMM-yyyy" />
-                                  </td>
-                                  <td>
-                                    <c:choose>
-                                      <c:when test="${listdata.isactive==true}"> 
-                                        <span class="badge badge-success arrowed"> Enabled </span> 
-                                      </c:when>
-                                      <c:otherwise> 
-                                        <span class="badge badge-danger arrowed"> Disabled </span> 
-                                      </c:otherwise>
-                                    </c:choose>
-                                  </td>
-                                  <td>
-                                 
-                                  <div class="col-sm-12">
-                                    <form:form action="load-adminviewallcommoninfo" commandName="adminviewstuinfo">
-                                    <div class="col-sm-6">
-                                        <form:hidden path="rowid" value="${listdata.rowid}"/>
-	                                    <form:hidden path="tablekey" value="${tablekey}"/>
-	                                    <button class="btn btn-info" title="VIEW">
-	                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-	                                    </button>
-	                                  </div> 
-                                    </form:form>
-                                    <form:form action="load-adminviewallcommoninfo" commandName="adminviewstuinfo">
-                                    <div class="col-sm-6">
-                                        <form:hidden path="rowid" value="${listdata.rowid}"/>
-	                                    <form:hidden path="tablekey" value="${tablekey}"/>
-	                                    <button class="btn btn-warning" title="EDIT">
-	                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-	                                    </button>
-	                                    </div>
-                                    </form:form>
-                                    </div>
-                                    
-                                    </td>
-                                </tr>
-                              </c:forEach>
-                            </tbody>
+                            Contact Support Team
                           </c:otherwise>
                         </c:choose>
                       </table>

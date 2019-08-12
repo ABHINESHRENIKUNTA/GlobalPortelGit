@@ -69,10 +69,10 @@
   </div>
   <div class="col-sm-6">
          <div class="form-group">
-            <label class="col-sm-12 control-label text-left">User Name</label>
+            <label class="col-sm-12 control-label text-left">User Name / Email</label>
             <div class="col-sm-12 inputGroupContainer">
                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-               <form:input  path="username" placeholder="Username" class="form-control" required="true" type="text" autocomplete="true"/></div>
+               <form:input  path="username" placeholder="Username" class="form-control" required="true" type="text" autocomplete="true" /></div>
             </div>
          </div>
 </div>
@@ -113,9 +113,9 @@
             <label class="col-sm-12 control-label text-left">Email</label>
             <div class="col-sm-12 inputGroupContainer">
                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-               <form:input path="email" placeholder="Employee Email" class="form-control" required="true" type="text" data-inputmask="'alias': 'email'"/></div>
+               <form:input path="email" placeholder="Employee Email" class="form-control" required="true" type="text" readonly="true"/></div>
             </div>
-         </div>
+         </div> 
          <div class="form-group">
             <label class="col-sm-12 control-label text-left">Phone Number</label>
             <div class="col-sm-12 inputGroupContainer">
@@ -160,21 +160,21 @@
          <label class="col-sm-12 control-label text-left">Referrar Name</label>
          <div class="col-sm-12 inputGroupContainer">
             <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <form:input path="referrarname" placeholder="Referrar Name" class="form-control" required="true" type="text"/></div>
+            <form:input path="referrarname" placeholder="Referrar Name" class="form-control" type="text"/></div>
          </div>
       </div>
       <div class="form-group">
          <label class="col-sm-12 control-label text-left">Company Name</label>
          <div class="col-sm-12 inputGroupContainer">
             <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <form:input path="companyname" placeholder="Company Name" class="form-control" required="true" type="text"/></div>
+            <form:input path="companyname" placeholder="Company Name" class="form-control"  type="text"/></div>
          </div>
       </div>
       <div class="form-group">
          <label class="col-sm-12 control-label text-left">Company URL</label>
          <div class="col-sm-12 inputGroupContainer">
             <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-            <form:input path="companyurl" placeholder="Company URL" class="form-control" required="true"  type="text"/></div>
+            <form:input path="companyurl" placeholder="Company URL" class="form-control" type="text"/></div>
          </div>
       </div>
       <div class="form-group">
@@ -188,21 +188,21 @@
          <label class="col-sm-12 control-label text-left">HR Email</label>
          <div class="col-sm-12 inputGroupContainer">
             <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <form:input path="hremail" placeholder="HR Email" class="form-control" required="true"  type="text" data-inputmask="'alias': 'email'" autocomplete="off"/></div>
+            <form:input path="hremail" placeholder="HR Email" class="form-control"  type="text" data-inputmask="'alias': 'email'" autocomplete="off"/></div>
          </div>
       </div>
       <div class="form-group">
          <label class="col-sm-12 control-label text-left">HR Phone Number</label>
          <div class="col-sm-12 inputGroupContainer">
             <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-            <form:input path="hrphonenumber" placeholder="HR Phone Number" class="form-control" required="true"  type="text" autocomplete="off"/></div>
+            <form:input path="hrphonenumber" placeholder="HR Phone Number" class="form-control"  type="text" autocomplete="off"/></div>
          </div>
       </div>
        <div class="form-group">
          <label class="col-sm-12 control-label text-left">Comments</label>
          <div class="col-sm-12 inputGroupContainer">
             <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-            <textarea path="comments" placeholder="Comments" class="form-control" required="true" rows="5"></textarea></div>
+            <textarea path="comments" placeholder="Comments" class="form-control" rows="5"></textarea></div>
          </div>
       </div>
       
@@ -216,7 +216,7 @@
    </div>
    <div class="col-sm-6" align="right">
 
-      <button type="submit" class="btn btn-success">Submit</button>   
+      <button type="submit" class="btn btn-success submitdata">Submit</button>   
    </div>
 </div>
 
@@ -244,14 +244,43 @@
       });
       
       $(".select2-single").select2();
-    </script>
-     <script type="text/javascript">
+    
       window.onload=function(){
     	  var sel =  $("#radioBtn a").data('title');
     	  $("#status").val(sel);
     	  $("#hrphonenumber").mask('99999-99999');
     	
       }
+      
+      $(function() {
+          $(".submitdata").click(function() {
+      	      // validate and process form here
+      	     var selroleid = $("#roleid").val();	
+      	     var username = $("#username").val();	
+      	     var password = $("#password").val();	
+      	     if(selroleid=="0"){
+      	    	 alert("Please select role")
+      	    	 return false;
+      	     }
+      	     if(username == "" || username.trim()==""){
+      	    	 alert("Please enter username")
+      	    	 return false;
+      	     }
+      	     if(password=="" || password.trim()==""){
+      	    	 alert("Please enter password")
+      	    	 return false;
+      	     }
+          });
+         
+      });
+      $(function() {
+      $("#username").change(function() {
+    	  
+      	var username = $("#username").val();	
+			$("#email").val(username);
+      });
+      
+      });
       </script>
 </body>
 </html>

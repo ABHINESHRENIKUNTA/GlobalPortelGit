@@ -58,7 +58,7 @@
          	        $("input#emailid").focus();
          	        return false;
          	      } */
-         	  		if (fplg == 0) {
+         	  		/*if (fplg == 0) {
          	        $("label#imagepath_error").show();
          	        $("input#emailid").focus();
          	        return false;
@@ -68,7 +68,7 @@
          	        $("label#comments_error").show();
          	        $("input#comments").focus();
          	        return false;
-         	      }
+         	      }*/
          
              	 
              	

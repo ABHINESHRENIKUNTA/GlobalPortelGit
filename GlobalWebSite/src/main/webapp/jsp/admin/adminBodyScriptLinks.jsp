@@ -176,3 +176,7 @@
 	})
   </script>
   <!-- END: PAGE SCRIPTS -->
+  
+   <!-- Session-timeout -->
+   <!-- <script src="http://themedesigner.in/demo/admin-press/assets/plugins/session-timeout/jquery.sessionTimeout.min.js"></script>
+    <script src="http://themedesigner.in/demo/admin-press/assets/plugins/session-timeout/session-timeout-init.js"></script> -->

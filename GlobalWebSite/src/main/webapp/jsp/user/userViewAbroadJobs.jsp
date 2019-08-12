@@ -42,28 +42,28 @@
                   </div>
                 </div>
                 <div class="box-body">
-                  
-                 <div class="row">
+                  <h3>The page is under construction.. Please contact support team.</h3>
+                 <!-- <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
                 <span class="info-box-icon bg-aqua"><i class="fa fa-flag"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">United Kingdom</span>
                   <span class="info-box-number">90<small>jobs</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
+                </div>/.info-box-content
+              </div>/.info-box
+            </div>/.col
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
                 <span class="info-box-icon bg-red"><i class="fa fa-flag"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">United States</span>
                   <span class="info-box-number">20<small>jobs</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
+                </div>/.info-box-content
+              </div>/.info-box
+            </div>/.col
 
-            <!-- fix for small devices only -->
+            fix for small devices only
             <div class="clearfix visible-sm-block"></div>
 
             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -72,19 +72,19 @@
                 <div class="info-box-content">
                   <span class="info-box-text">Canada</span>
                   <span class="info-box-number">760<small>jobs</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
+                </div>/.info-box-content
+              </div>/.info-box
+            </div>/.col
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
                 <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Germeny</span>
                   <span class="info-box-number">15<small>jobs</small></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-          </div>
+                </div>/.info-box-content
+              </div>/.info-box
+            </div>/.col
+          </div> -->
           
           
                   <div class="box-footer">

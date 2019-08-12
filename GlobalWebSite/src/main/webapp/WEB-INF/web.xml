@@ -63,4 +63,5 @@
     <servlet-name>default</servlet-name>
     <url-pattern>*.scss</url-pattern>
   </servlet-mapping>
+ 
 </web-app>

@@ -14,6 +14,7 @@
     <meta name="author" content="GlobalWebsite">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@include file="/jsp/admin/adminHeaderLinks.jsp" %>
+
   </head>
   <body class="dashboard-page theme-danger">
     <%@include file="/jsp/admin/adminThemeChange.jsp" %>
@@ -27,7 +28,7 @@
             <div class="col-md-12">
               <div class="panel with-nav-tabs">
                 <div class="panel-heading">
-                  <h4>${tableval}
+                  <h4>${tableval} 
                     <span class="pull-right">
                     <button type="button" class="btn btn-primary" onclick="location.href='load-adminviewcommoninfo?selectedparam=${tablekey}'">VIEW / EDIT</button></span>
                   </h4>
@@ -126,26 +127,26 @@
                             <div class="form-group">
                               <label for="siteurl">Site URL<span class="text-danger">*</span></label>
                               <label class="error" for="linkaddress" id="linkaddress_error">This field is required.</label>
-                              <form:input type="text" path="linkaddress" placeholder="Enter sie URL" class="form-control" maxlength="255"/>
+                              <form:input type="text" path="linkaddress" placeholder="https://Enter sie URL" class="form-control" maxlength="255"/>
                             </div>
                           </div>
-                          <div class="col-sm-6">
-                            <div class="form-group">
+                          <div class="col-sm-6" style="display: none;">
+                             <div class="form-group">
                               <label for="uploadimage">Upload Image<span class="text-danger">*</span></label>
                               <label class="error" for="linkaddress" id="imagepath_error">This field is required.</label>
                               <input type="file" name="imagepath" id="imagepath" class="btn btn-success fileupload-add form-control"  accept="image/*" onchange="showMyImage(this)" >
                             </div>
                           </div>
-                          <div class="col-sm-6">
+                          <div class="col-sm-6" style="display: none;">
                             <div class="form-group">
                               <label for="emailid">Email#<span class="text-danger"></span></label>
                               <label class="error" for="emailid" id="emailid_error">This field is required.</label>
                               <form:input type="text" path="emailid"  placeholder="Enter email id" class="form-control"/>
                             </div>
-                          </div>
+                          </div> 
                           <div class="col-sm-12">
                             <div class="form-group">
-                              <label for="comments">Comments / Description<span class="text-danger">*</span></label>
+                              <label for="comments">Comments / Description<span class="text-danger"></span></label>
                               <label class="error" for="comments" id="comments_error">This field is required.</label>
                               <form:textarea path="comments" class="form-control"  placeholder="Please Enter Comments" rows="6"/>
                               <label for="comment" class="field-icon">

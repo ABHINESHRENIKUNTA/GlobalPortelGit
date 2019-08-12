@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.globalwebsite.admin.model.AdminLoginModel;
+import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 
 @Controller
@@ -30,6 +31,9 @@ public class AdminDashboardController {
 	
 	 @Autowired
 	 private JavaMailSender mailSenderObj;
+	 
+	 @Autowired
+	 AdminRolePermissionController apr;
 	
 	@RequestMapping("/view-admindashboard")
 	public String viewAdminDashboardWindow(Model model) {
@@ -67,7 +71,19 @@ public class AdminDashboardController {
 				gid=lm.getGlobalid();
 		}
 		String OTP=String.valueOf(generatePin()) ; 
-	
+		int roleid=0;
+		boolean rolenotnull = req.getSession().getAttribute("roleid") != null;
+		if(rolenotnull==true){
+			String ssroleid = (String) req.getSession().getAttribute("roleid");
+			roleid = Integer.valueOf(ssroleid);
+		}
+		List<AdminRolePermissionModel> leftMenuList = null;
+		if(roleid==1){
+			leftMenuList = apr.getAllPermissionsForSuperuser();
+		}else{
+			leftMenuList = apr.getAllPermissionsBasedonRoleId(roleid);
+		}
+		ses.setAttribute("leftMenuList", leftMenuList);
 		mailSenderObj.send(new MimeMessagePreparator() {
             public void prepare(MimeMessage mimeMessage) throws Exception {
             	

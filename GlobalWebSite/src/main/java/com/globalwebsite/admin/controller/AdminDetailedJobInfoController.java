@@ -57,6 +57,8 @@ public class AdminDetailedJobInfoController extends DatabaseTableNames {
 			logger.info("Selected Table: "+selectpage +" AND Selected Row: "+rowId );
 		List<AdminSubmissionModel> alistdata = adminservices.getAllViewConsuRefAdminPostSubmissionDataById(stdmodel.getTablekey(),rowId);
 		model.addAttribute("alistdata", alistdata);
+		model.addAttribute("rowId", rowId);
+		return "studentadmin/adminViewDetailedJobInfoById";
 		}
 		/*popular, central, it and non it view*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_popular_jobsites_page")
@@ -67,19 +69,23 @@ public class AdminDetailedJobInfoController extends DatabaseTableNames {
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_freejobtraining_jobs"))) {
 			logger.info("Selected Table: "+selectpage +" AND Selected Row: "+rowId );
 			List<AdminSubmissionModel> alistdata = adminservices.getAllViewSubmissionDataById(stdmodel.getTablekey(), rowId);
+			logger.info("Selected Table Data: "+selectpage +" in: "+alistdata );
 			model.addAttribute("alistdata", alistdata);
+			model.addAttribute("rowId", rowId);
 		}
 		/*Abroad Jobs view*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_abroad_jobs")) {
 			logger.info("Selected Table: "+selectpage +" AND Selected Row: "+rowId );
 			List<AdminSubmissionModel> alistdata = adminservices.getAllViewAdminAbroadDataById(stdmodel.getTablekey(), rowId);
 			model.addAttribute("alistdata", alistdata);
+			model.addAttribute("rowId", rowId);
 		}
 		/*State-Wise Jobs view*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_statewisegovt_jobs")) {
 			logger.info("Selected Table: "+selectpage +" AND Selected Row: "+rowId );
 			List<AdminSubmissionModel> alistdata = adminservices.getAllViewAdminStateWiseDataById(stdmodel.getTablekey(), rowId);
 			model.addAttribute("alistdata", alistdata);
+			model.addAttribute("rowId", rowId);
 		}
 
 		return retvalue;

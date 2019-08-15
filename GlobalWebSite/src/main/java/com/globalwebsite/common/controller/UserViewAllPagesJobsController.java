@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.globalwebsite.admin.model.StatesModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
+import com.globalwebsite.common.model.JobDetailCountModel;
 import com.globalwebsite.common.services.UserServiceInterfaceImpl;
 import com.gw.student.model.AdminSubmissionModel;
 
@@ -30,6 +31,7 @@ public class UserViewAllPagesJobsController {
 	
 	@Value("${user.viewtype}")
 	private String viewType;
+	
 	
 	 @RequestMapping("/view-userpopularjobs")
 	 public ModelAndView userViewPopularJobScreen(Model model, AdminSubmissionModel stdmodel){
@@ -97,6 +99,8 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_jobconsult_jobs";
 		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
 		 model.addAttribute("listData", listData);
+		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
+		 model.addAttribute("industryList", industryList);
 		 return new ModelAndView("user/userViewConsultantJobs", "listjobdetails", stdmodel);
 	 }
 	 
@@ -105,6 +109,8 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_refpost_jobs";
 		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
 		 model.addAttribute("listData", listData);
+		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
+		 model.addAttribute("industryList", industryList);
 		 return new ModelAndView("user/userViewReferralJobs", "listjobdetails", stdmodel);
 	 }
 	
@@ -113,6 +119,8 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_postedbyadmin_jobs";
 		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
 		 model.addAttribute("listData", listData);
+		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
+		 model.addAttribute("industryList", industryList);
 		 return new ModelAndView("user/userViewJobsPostedByAdmin", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-useremployeepostedjobs")
@@ -120,6 +128,8 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_empposted_jobs";
 		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
 		 model.addAttribute("listData", listData);
+		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
+		 model.addAttribute("industryList", industryList);
 		 return new ModelAndView("user/userViewEmployerPostedJobs", "listjobdetails", listData);
 	 }
 	

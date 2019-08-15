@@ -10,7 +10,7 @@
   <%@include file="alphabetsPaginationCSS.jsp" %>
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-  <body class="skin-green layout-top-nav">
+  <body class="<spring:eval expression="@viewPropertyConfigurer.getProperty('topmenu.color')" /> layout-top-nav">
     <div class="wrapper">
       <%@include file="userTopMenu.jsp" %>
       <!-- Full Width Column -->

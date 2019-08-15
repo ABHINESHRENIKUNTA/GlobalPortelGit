@@ -47,32 +47,24 @@
             <div class="col-md-3">
               <a href="#" class="btn btn-primary btn-block margin-bottom">Search Jobs</a>
             <div class="widget">
-            <h4 class="widget-title">Jobs By Title</h4>
+             <h4 class="widget-title">Jobs By Type</h4>
             <ul class="optionlist">
+                <li>
+                <input type="checkbox" name="jobtype" id="Contractor">
+                <label for="Contractor"></label>
+               	Contractor <span></span> </li>
               <li>
-                <input type="checkbox" name="checkname" id="webdesigner">
-                <label for="webdesigner"></label>
-                Web Designer <span>12</span> </li>
+                <input type="checkbox" name="jobtype" id="Full-time">
+                <label for="Full-time"></label>
+               	Full-time <span></span> </li>
               <li>
-                <input type="checkbox" name="checkname" id="3dgraphic">
+                <input type="checkbox" name="jobtype" id="Internship">
+                <label for="Internship"></label>
+               	Internship <span></span> </li>
+              <li>
+                <input type="checkbox" name="jobtype" id="Part-time">
                 <label for="3dgraphic"></label>
-                3D Graphic Designer <span>33</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="graphic">
-                <label for="graphic"></label>
-                Graphic Designer <span>33</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="electronicTech">
-                <label for="electronicTech"></label>
-                Electronics Technician <span>33</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="webgraphic">
-                <label for="webgraphic"></label>
-                Web / Graphic Designer <span>33</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="brandmanager">
-                <label for="brandmanager"></label>
-                Brand Manager <span>33</span> </li>
+                3D Graphic Designer <span></span> </li>
             </ul>
             <!-- title end --> 
            </div>
@@ -84,30 +76,12 @@
                   <div class="widget">
             <h4 class="widget-title">Jobs By Industry</h4>
             <ul class="optionlist">
+            <c:forEach items="${industryList}" var="industrydata">
               <li>
-                <input type="checkbox" name="checkname" id="infotech">
-                <label for="infotech"></label>
-                Information Technology <span>22</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="advertise">
-                <label for="advertise"></label>
-                Advertising/PR <span>45</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="services">
-                <label for="services"></label>
-                Services <span>44</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="health">
-                <label for="health"></label>
-                Health &amp; Fitness <span>88</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="mediacomm">
-                <label for="mediacomm"></label>
-                Media/Communications <span>22</span> </li>
-              <li>
-                <input type="checkbox" name="checkname" id="fashion">
-                <label for="fashion"></label>
-                Fashion <span>11</span> </li>
+                <input type="checkbox" name="industryid" id="${industrydata.jobname}">
+                <label for="${industrydata.jobname}"></label>
+                ${industrydata.jobname} <span style="padding-right: 10px;">${industrydata.jobscount}</span> </li>
+            </c:forEach>
             </ul>
              </div>
                 </div><!-- /.box-body -->

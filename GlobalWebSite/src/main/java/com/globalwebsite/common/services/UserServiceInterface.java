@@ -3,6 +3,7 @@ package com.globalwebsite.common.services;
 import java.util.List;
 
 import com.globalwebsite.common.model.EmployeeLoginModel;
+import com.globalwebsite.common.model.JobDetailCountModel;
 import com.globalwebsite.common.model.ReferalLoginModel;
 import com.globalwebsite.common.model.StudentLoginModel;
 import com.gw.student.model.AdminSubmissionModel;
@@ -44,5 +45,8 @@ public interface UserServiceInterface {
 	List<AdminSubmissionModel> getActiveStatewiseJobs(int activenum);
 
 	List<AdminSubmissionModel> getActiveAbroadJobs(int activenum);
+	
+	List<JobDetailCountModel> getTotalIndustryCount(int activenum, String tablekey);
+
 
 }

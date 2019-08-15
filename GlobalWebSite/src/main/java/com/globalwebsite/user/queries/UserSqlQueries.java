@@ -29,4 +29,10 @@ public class UserSqlQueries {
 	public static String getCommonSubmissionJobsList_query(String tablekey) {
 		return "select * from "+tablekey+" where is_active=?";
 	}
+	public static String getTotalIndustryCount_query(String tablekey) {
+		return "SELECT  industry_type.id as jobid, industry_type.industry_name as jobname, "
+				+ "COUNT(jb.industry_id) AS jobscount FROM  industry_type "
+				+ "LEFT JOIN "+tablekey+" jb ON industry_type.id = jb.industry_id "
+				+ "and industry_type.status=? GROUP BY industry_type.id,industry_type.industry_name";
+	}
 }

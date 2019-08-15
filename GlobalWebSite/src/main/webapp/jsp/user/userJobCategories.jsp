@@ -22,18 +22,18 @@
               Find your Jobs
               <small>There is a way to do it better...find it</small>
             </h1>
-            <ol class="breadcrumb">
+            <!-- <ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
               <li class="active">Job Categories</li>
-            </ol>
+            </ol> -->
           </section>
 
           <!-- Main content -->
           <section class="content">
            <div class="col-md-12">
               <!-- Primary box -->
-              <div class="box box-solid box-primary">
-                <div class="box-header">
+              <div class="box box-solid box-primary" style="box-shadow: #CCCFFF 20px 30px 10px;">
+                <div class="box-header" style=" border-radius: 15px;">
                   <h3 class="box-title">Job Categories</h3> <code>Find your best job..</code>
                   <div class="box-tools pull-right">
                     <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -42,9 +42,9 @@
                 </div>
                 <div class="box-body">
                   <div class="row">
-                   <div class="col-lg-3 col-xs-6">
+                   <div class="col-lg-3 col-xs-6" >
 		              <!-- small box -->
-		              <div class="small-box bg-aqua" onclick="location.href='view-userpopularjobs'" style="cursor: pointer;">
+		              <div class="small-box bg-aqua" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('popular.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                  <h4>
 		                    Popular Job Sites
@@ -60,7 +60,7 @@
             	    </div>
                    <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-green" onclick="location.href='view-userstatewisejobs'" style="cursor: pointer;">
+		              <div class="small-box bg-green" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('statewisejobs.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                 <h4>State Wise Government Jobs</h4>
 		                  <p>
@@ -75,7 +75,7 @@
             	    </div>
                    <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-yellow" onclick="location.href='view-usercentralgovjobs'" style="cursor: pointer;">
+		              <div class="small-box bg-yellow" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('centralgov.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                  <h4>Central Government Jobs</h4>
 		                  <p>
@@ -90,7 +90,7 @@
             	    </div>
                    <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-red" onclick="location.href='view-userViewAbroadJobs'" style="cursor: pointer;">
+		              <div class="small-box bg-red" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('abroadjobs.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                 <h4>Abroad Jobs</h4>
 		                  <p>
@@ -104,7 +104,7 @@
             	    </div>
                    <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-blue" onclick="location.href='view-useritjobs'" style="cursor: pointer;">
+		              <div class="small-box bg-blue" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('itjobs.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                 <h4>IT Jobs</h4>
 		                  <p>
@@ -119,7 +119,7 @@
             	    </div>
                    <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-purple" onclick="location.href='view-usernonitjobs'" style="cursor: pointer;">
+		              <div class="small-box bg-purple" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('nonitjobs.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                  <h4>Non IT Jobs</h4>
 		                  <p>
@@ -131,24 +131,10 @@
 		                </div>
 		              </div>
             	    </div>
-                   <div class="col-lg-3 col-xs-6">
-		              <!-- small box -->
-		              <div class="small-box bg-teal" onclick="location.href='view-userconsultantsjobs'" style="cursor: pointer;">
-		                <div class="inner">
-		                  <h4>Jobs Posted By Consultants</h4>
-		                  <p>
-		                   11 Listing
-		                  </p>
-		                </div>
-		                <div class="icon">
-		                  <i class="fa fa-envelope-open" aria-hidden="true"></i>
-
-		                </div>
-		              </div>
-            	    </div>
+                   
                   <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-maroon" onclick="location.href='view-userfreejobtraininginst'" style="cursor: pointer;">
+		              <div class="small-box bg-maroon" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('freejobtraining.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                 <h4>Free Job Training Institutes</h4>
 		                  <p>
@@ -157,16 +143,13 @@
 		                </div>
 		                <div class="icon">
 		                  <i class="fa fa-users" aria-hidden="true"></i>
-
 		                </div>
-		          
 		              </div>
             	    </div>
-                  </div>
-                  <div class="row">
-                   <div class="col-lg-3 col-xs-6">
+            	    
+            	    <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-olive" onclick="location.href='view-usertrainingplacinst'" style="cursor: pointer;">
+		              <div class="small-box bg-olive" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('trainingplacmnt.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                 <h4>Training & Placement Institutes</h4>
 		                  <p>
@@ -179,9 +162,27 @@
 		          
 		              </div>
             	    </div>
+            	    
+                  </div>
+                  <div class="row">
+            	    <div class="col-lg-3 col-xs-6">
+		              <!-- small box -->
+		              <div class="small-box bg-teal" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('postedbyconsultants.url')" />'" style="cursor: pointer;">
+		                <div class="inner">
+		                  <h4>Jobs Posted By Consultants</h4>
+		                  <p>
+		                   11 Listing
+		                  </p>
+		                </div>
+		                <div class="icon">
+		                  <i class="fa fa-envelope-open" aria-hidden="true"></i>
+
+		                </div>
+		              </div>
+            	    </div>
             	     <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-lime" onclick="location.href='view-userreferraljobs'" style="cursor: pointer;">
+		              <div class="small-box bg-lime" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('postedbyreferral.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                 <h4>Referral Jobs</h4>
 		                  <p>
@@ -197,7 +198,7 @@
             	    </div>
             	    <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-orange" onclick="location.href='view-userpostedbyadmin'" style="cursor: pointer;">
+		              <div class="small-box bg-orange" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('postedbyadmin.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                 <h4>Jobs Posted By Admin</h4>
 		                  <p>
@@ -212,7 +213,7 @@
             	    </div>
             	    <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-fuchsia" onclick="location.href='view-useremployeepostedjobs'" style="cursor: pointer;">
+		              <div class="small-box bg-fuchsia" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('postedbyemp.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                 <h4>Employer Posted Jobs</h4>
 		                  <p>

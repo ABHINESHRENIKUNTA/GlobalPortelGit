@@ -14,8 +14,10 @@ import com.globalwebsite.admin.mapper.AdminAbroadMapper;
 import com.globalwebsite.admin.mapper.AdminCommonViewSubmitMapper;
 import com.globalwebsite.admin.mapper.AdminStateWiseMapper;
 import com.globalwebsite.admin.mapper.AdminViewConsuRefAdminPostSubmissionMapper;
+import com.globalwebsite.common.mapper.JobDetailCountMapper;
 import com.globalwebsite.common.mapper.getJobCategoriesMapper;
 import com.globalwebsite.common.model.EmployeeLoginModel;
+import com.globalwebsite.common.model.JobDetailCountModel;
 import com.globalwebsite.common.model.ReferalLoginModel;
 import com.globalwebsite.common.model.StudentLoginModel;
 import com.globalwebsite.user.queries.UserSqlQueries;
@@ -168,6 +170,19 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 		} catch (Exception e) {
 			//System.out.println("findSelectedViewJobInfo: "+e);
 			logger.info("findSelectedViewJobInfo: "+e);
+		}
+		return listdata;
+	}
+	@Override
+	public List<JobDetailCountModel> getTotalIndustryCount(int activenum, String tablekey) {
+		String sql=UserSqlQueries.getTotalIndustryCount_query(tablekey);
+		List<JobDetailCountModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{activenum},  new JobDetailCountMapper());
+			logger.info("getTotalIndustryCount: "+sql);
+			
+		} catch (Exception e) {
+			logger.info("getTotalIndustryCount: "+"Table Name: "+tablekey+" Exception: "+e);
 		}
 		return listdata;
 	}

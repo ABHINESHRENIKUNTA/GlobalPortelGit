@@ -23,9 +23,17 @@
 	list-style: none;
 	max-height: 250px;
 	scroll-direction: horizontal;
-	 overflow-y: auto;
-  overflow-x: hidden;
+	overflow: hidden;
+	
+	/* overflow-y: auto;
+    overflow-x: hidden; */
 }
+ .optionlist:hover {
+        overflow-y: auto;
+        overflow-x: hidden;
+ padding-right: 0px;
+ cursor: pointer;
+     }
 .optionlist li {
 	margin-bottom: 10px;
 	padding: 5px 0;

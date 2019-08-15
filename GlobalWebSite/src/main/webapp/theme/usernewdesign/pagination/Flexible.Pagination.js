@@ -1,18 +1,3 @@
-/**
- * @Created By: Ademola Aina
- * @Email:  aina.ademolac@gmail.com
- * @Year :  2018 Production
- *
- * DOCUMENTATION:
- * ==============
- * www.noahsarkeducation.com/code-lab/js/flexible-pagination
- *
- * LICENSE:
- * ========
- *
- * TERMS OF USE - Flexible Pagination
- *
- */
 
 var Flexible = (typeof Flexible === 'undefined') ? {} : Flexible;
 

@@ -1,12 +1,6 @@
 @import
 	url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic)
-	; /*!
- *   AdminLTE v1.2
- *   Author: Almsaeed Studio
- *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
- *   License: Open source - MIT
- *           Please visit http://opensource.org/licenses/MIT for more information
-!*/
+	; 
 html, body {
 	min-height: 100%
 }
@@ -1313,7 +1307,7 @@ transform
 	border-top: 3px solid #d2d6de;
 	margin-bottom: 20px;
 	width: 100%;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05)
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05)
 }
 
 .box.box-primary {
@@ -1338,6 +1332,9 @@ transform
 
 .box.box-default {
 	border-top-color: #d2d6de
+}
+.box.box-purple {
+	border-top-color: #4B0082
 }
 
 .box .nav-stacked>li {
@@ -1453,14 +1450,26 @@ transform
 .box.box-solid.box-success {
 	border: 1px solid #00a65a
 }
+.box.box-solid.box-purple {
+	border: 1px solid #4B0082
+}
 
 .box.box-solid.box-success>.box-header {
 	color: #fff;
 	background: #00a65a;
 	background-color: #00a65a
 }
+.box.box-solid.box-purple>.box-header {
+	color: #fff;
+	background: #4B0082;
+	background-color: #4B0082
+}
 
 .box.box-solid.box-success>.box-header a, .box.box-solid.box-success>.box-header .btn
+	{
+	color: #fff
+}
+.box.box-solid.box-purple>.box-header a, .box.box-solid.box-purple>.box-header .btn
 	{
 	color: #fff
 }
@@ -2064,9 +2073,16 @@ transform
 	background-color: #00a65a;
 	border-color: #008d4c
 }
+.btn-purple {
+	background-color: #4B0082;
+	border-color: #4B0081
+}
 
 .btn-success:hover, .btn-success:active, .btn-success.hover {
 	background-color: #008d4c
+}
+.btn-purple:hover, .btn-purple:active, .btn-purple.hover {
+	background-color: #4B0082
 }
 
 .btn-info {

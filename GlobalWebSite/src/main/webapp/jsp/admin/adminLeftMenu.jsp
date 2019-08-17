@@ -18,7 +18,7 @@
               </a>
               <div class="media-body">
                 <div class="media-links">
-                   <a href="#" class="sidebar-menu-toggle">Welcome Admin</a>
+                   <a href="#" class="sidebar-menu-toggle">Welcome</a>
                 </div>
                 <div class="media-author"><%=session.getAttribute("username")%></div>
               </div>
@@ -95,7 +95,6 @@
            @SuppressWarnings("unchecked")
            ArrayList<AdminRolePermissionModel> list = (ArrayList<AdminRolePermissionModel>)request.getSession().getAttribute("leftMenuList");
 		   request.setAttribute("leftMenuListjsp", list);
-		   
            %>
            <c:set var="leftMenuList" value="${leftMenuListjsp}"></c:set>
           <c:forEach items="${leftMenuList}" var="menulist">
@@ -159,12 +158,13 @@
           </c:forEach>  
          
            <li>
-            <a class="accordion-toggle" href="#">
+            <!-- <a class="accordion-toggle" href="#"> -->
+            <a class="" href="view-admindashboard">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Dash board</span>
               <span class="caret"></span>
             </a>
-            <ul class="nav sub-nav">
+            <!-- <ul class="nav sub-nav">
             <li>
                 <a href="AdminAddImagesForUser" >
                   <span class="fa fa fa-arrows-h"></span>
@@ -185,7 +185,7 @@
                 </a>
                </li>
          
-             </ul>
+             </ul> -->
           </li>       
            <c:if test="${operators == 'yespermission'}">
               <li>

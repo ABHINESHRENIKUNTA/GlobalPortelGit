@@ -1,5 +1,7 @@
 package com.globalwebsite.interceptor;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.globalwebsite.admin.controller.AdminRolePermissionController;
+import com.globalwebsite.admin.model.AdminRolePermissionModel;
 
 public class GlobalInterceptor extends HandlerInterceptorAdapter {
 	private static final Logger logger = Logger.getLogger(HandlerInterceptorAdapter.class);
@@ -50,8 +53,17 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 			String ssroleid = (String) request.getSession().getAttribute("roleid");
 			roleid = Integer.valueOf(ssroleid);
 		}
-		
-		
+		if(roleid!=0){
+		if(null==request.getSession().getAttribute("leftMenuListjsp")){
+			List<AdminRolePermissionModel> leftMenuList;
+			if(roleid==1){
+				leftMenuList = apr.getAllPermissionsForSuperuser();
+			}else{
+				leftMenuList = apr.getAllPermissionsBasedonRoleId(roleid);
+			}
+			request.getSession().setAttribute("leftMenuList", leftMenuList);
+		}
+	}
 		permissionurl=permissionurl.replaceFirst("/", "");
 		permissionurl = permissionurl+""+apndQryStr;
 		logger.info("permissionurl:::::::: "+permissionurl);

@@ -14,7 +14,8 @@
                                                      <form:select path="industryid" class="form-control">
 										                <form:option value="0">Select-Industry</form:option>
 										                 <c:forEach items="${industryList}" var="listofindustries">
-						                                    <form:option value="${listofindustries.id}">${listofindustries.indusryname}</form:option>
+						                                    <form:option value="${listofindustries.id}" >
+						                                    ${listofindustries.indusryname}</form:option>
 						                                  </c:forEach>
 												 </form:select>
                                                 </div>

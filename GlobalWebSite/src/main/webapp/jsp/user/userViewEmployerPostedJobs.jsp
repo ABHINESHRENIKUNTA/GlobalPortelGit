@@ -45,7 +45,7 @@
                 <div class="box-body">
                   <div class="row">
             <div class="col-md-3">
-              <a href="#" class="btn btn-primary btn-block margin-bottom">Search Jobs</a>
+              <a href="#" class="btn btn-primary btn-block margin-bottom">Select & Click Here to Filter Jobs</a>
             <div class="widget">
              <h4 class="widget-title">Jobs By Type</h4>
             <ul class="optionlist">

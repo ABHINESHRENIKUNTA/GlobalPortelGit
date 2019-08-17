@@ -90,6 +90,8 @@ public interface AdminDaoInterface {
 
 	List<IndustryTypeModel> findAllIndustryTypes();
 
+	int updateAdminAddJobAllJobDetailsInfo(AdminSubmissionModel stdmodel);
+
 
 
 

@@ -8,7 +8,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Add Job Info</title>
+    <title>Update Job Info</title>
     <meta name="keywords" content="GlobalWebsite" />
     <meta name="description" content="GlobalWebsite">
     <meta name="author" content="GlobalWebsite">
@@ -48,19 +48,19 @@
                     </li>
                     </ul> -->
                 </div>
-                <form:form method="post" id="submitform" action="adminaddstudenthomeinfo" modelAttribute="adminaddstuinfo"  enctype="multipart/form-data">
+                <form:form method="post" id="submitform" action="adminupdatestudenthomeinfo" modelAttribute="adminupdatestuinfo"  enctype="multipart/form-data">
                   <div class="panel-body">
                     <div class="tab-content">
                       <c:if test="${smsg!=null && smsg!=''}">
                         <div class="alert alert-success alert-dismissable">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">Ã—</button>
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                           <i class="fa fa-check pr10"></i>
                           <strong>Well done!</strong>${smsg}
                         </div>
                       </c:if>
                       <c:if test="${emsg!=null && emsg!=''}">
                         <div class="alert alert-danger alert-dismissable">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">Ã—</button>
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                           <i class="fa fa-remove pr10"></i>
                           <strong>Sorry!</strong> ${emsg}
                         </div>
@@ -77,6 +77,7 @@
                         </div> --%>
                       <form:hidden path="tablekey" value="${tablekey}"/>
                       <form:hidden path="tablename" value="${tableval}"/>
+                      <form:hidden path="rowid" value="${rowId}"/>
                       <c:choose>
                         <c:when test="${tablekey == 'global_postedbyadmin_jobs' or tablekey == 'global_refpost_jobs' 
                           or tablekey == 'global_jobconsult_jobs' or tablekey == 'global_empposted_jobs'}">
@@ -164,11 +165,10 @@
                         <label for="happy" class="col-sm-5 col-md-5 control-label text-right">Enable / Disable?</label>
                         <div class="col-sm-6 col-md-6">
                           <div class="input-group">
-                            <div id="radioBtn" class="btn-group">
-                              <a class="btn btn-primary btn-sm active" data-toggle="isactive" data-title="true">YES</a>
-                              <a class="btn btn-primary btn-sm notActive" data-toggle="isactive" data-title="false">NO</a>
+                            <div id="" class="btn-group">
+                            <label><form:radiobutton path="isactive" value="true"/>Enabled</label>
+                             <label><form:radiobutton path="isactive" value="false"/>Disabled</label>
                             </div>
-                            <form:hidden path="isactive" />
                           </div>
                         </div>
                       </div>
@@ -182,10 +182,10 @@
                               tablekey == 'global_refpost_jobs' or 
                               tablekey == 'global_jobconsult_jobs' or 
                               tablekey == 'global_empposted_jobs'}">
-                              <button type="submit" class="btn btn-success info-sbtbtn" id="jobinfosbtbtn">Submit</button>   
+                              <button type="submit" class="btn btn-success info-sbtbtn" id="jobinfosbtbtn">Update</button>   
                             </c:when>
                             <c:otherwise>
-                              <button type="button" class="btn btn-success sbtbtn">Submit</button>   
+                              <button type="button" class="btn btn-success sbtbtn">Update</button>   
                             </c:otherwise>
                           </c:choose>
                         </div>
@@ -210,6 +210,7 @@
             event.preventDefault();
           }
       });
+    
     </script>
   </body>
 </html>

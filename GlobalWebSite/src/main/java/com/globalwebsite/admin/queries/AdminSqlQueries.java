@@ -45,10 +45,21 @@ public class AdminSqlQueries {
 				+ "(link_name,link_address,link_owner,link_emailId,link_comments,is_active,created_date,modified_date) "
 				+ "values(?,?,?,?,?,?,?,?)";
 	}
+	public static String updateSubmissionData_Query(AdminSubmissionModel stdmodel) {
+		return  "update "+stdmodel.getTablekey()+" set "
+				+ "link_name=?,link_address=?,link_owner=?,link_emailId=?,link_comments=?,is_active=?,modified_date=?  "
+				+ "where id=?";
+	}
 	public static String insertAbroadSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return  "insert into "+stdmodel.getTablekey()+""
 				+ "(iso,statename,link_name,link_address,link_owner,link_emailId,file_name,link_comments,is_active,created_date,modified_date) "
 				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
+	}
+	public static String updateAbroadSubmissionData_Query(AdminSubmissionModel stdmodel) {
+		return  "update "+stdmodel.getTablekey()+" set "
+				+ "iso=?,statename=?,link_name=?,link_address=?,link_owner=?,link_emailId=?,"
+				+ "file_name=?,link_comments=?,is_active=?,modified_date=? "
+				+ "where id=?";
 	}
 	public static String selectCountForSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return "SELECT if((count(*) is null or count(*)=0),1,count(*)+1) as rowcount FROM "+stdmodel.getTablekey()+"";
@@ -78,6 +89,15 @@ public class AdminSqlQueries {
 				+ "created_date,notice_period, other_info,jobtype) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 	}
+	public static String updateAdminAddJobAllJobDetailsInfo_Query(AdminSubmissionModel stdmodel) {
+		return "update "+stdmodel.getTablekey()+" set job_title=?, industry_id=?, company=?,experience=?,"
+				+ "qualification=?, "
+				+ " role_category=?, salary=?, no_of_positions=?, "
+				+ "job_responsibilities=?, skill_set=?, email_id=?, "
+				+ "contact_num=?,location=?, status=?, created_by=?, "
+				+ "modified_date=?,notice_period=?, other_info=?,jobtype=? "
+				+ "where id=?";
+	}
 	
 	public static String getAllViewConsuRefAdminPostSubmissionData_Query(String tablekey) {
 		return "select jd.*, it.industry_name from "+tablekey+" jd, industry_type it where "
@@ -92,6 +112,13 @@ public class AdminSqlQueries {
 				+ "(state_id,link_name,link_address,link_owner,link_emailId,file_name,link_comments,"
 				+ "is_active,created_date,modified_date) "
 				+ "values(?,?,?,?,?,?,?,?,?,?)";
+	}
+	public static String updateStateSubmissionData_Query(AdminSubmissionModel stdmodel) {
+		return  "update "+stdmodel.getTablekey()+" set "
+				+ "state_id=?,link_name=?,link_address=?,link_owner=?,link_emailId=?,"
+				+ "file_name=?,link_comments=?,"
+				+ "is_active=?,modified_date=? "
+				+ "where id=?";
 	}
 	
 	public static String getAllViewAdminAbroadData_Query(String tablekey) {

@@ -1,7 +1,7 @@
  <!-- Start: Header -->
     <header class="navbar navbar-fixed-top navbar-shadow">
       <div class="navbar-branding">
-        <a class="navbar-brand" href="dashboard.html">
+        <a class="navbar-brand" href="view-admindashboard">
           <b>Global </b>Website
         </a>
         <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
@@ -556,7 +556,7 @@
           </a>
           <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
             <li class="dropdown-header clearfix">
-              <div class="pull-left ml10">
+              <div class=" ml10">
                 <select id="user-status">
                   <optgroup label="Current Status:">
                     <option value="1-1">Away</option>
@@ -566,7 +566,7 @@
                 </select>
               </div>
 
-              <div class="pull-right mr10">
+             <!--  <div class="pull-right mr10">
                 <select id="user-role">
                   <optgroup label="Logged in As:">
                     <option value="1-1">Client</option>
@@ -574,7 +574,7 @@
                     <option value="1-3" selected="selected">Admin</option>
                   </optgroup>
                 </select>
-              </div>
+              </div> -->
             </li>
             <!-- <li class="list-group-item">
               <a href="#" class="animated animated-short fadeInUp">

@@ -178,5 +178,5 @@
   <!-- END: PAGE SCRIPTS -->
   
    <!-- Session-timeout -->
-   <!-- <script src="http://themedesigner.in/demo/admin-press/assets/plugins/session-timeout/jquery.sessionTimeout.min.js"></script>
-    <script src="http://themedesigner.in/demo/admin-press/assets/plugins/session-timeout/session-timeout-init.js"></script> -->
+   <script src="${pageContext.request.contextPath}/theme/validations/session-time-out.js"></script>
+    <script src="${pageContext.request.contextPath}/theme/validations/session-timeout-init.js"></script>

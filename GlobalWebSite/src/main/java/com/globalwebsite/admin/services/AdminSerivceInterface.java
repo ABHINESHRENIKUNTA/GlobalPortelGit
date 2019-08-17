@@ -38,7 +38,9 @@ public interface AdminSerivceInterface {
 	
 	//Add Common Submission Data
 	int insertSubmissionData(AdminSubmissionModel stdmodel);
-
+	
+	int updateSubmissionData(AdminSubmissionModel stdmodel);
+	
 	//Select count from common Submission Data
 	int selectCountForSubmissionData(AdminSubmissionModel stdmodel);
 
@@ -72,16 +74,23 @@ public interface AdminSerivceInterface {
 
 	//Insert Abroad Data
 	int insertAbroadSubmissionData(AdminSubmissionModel stdmodel);
+	
+	//Update Abroad Data
+	int updateAbroadSubmissionData(AdminSubmissionModel stdmodel);
 
 	List<StatesModel> findAllStates();
 
 	int insertStateSubmissionData(AdminSubmissionModel stdmodel);
+
+	int updateStateSubmissionData(AdminSubmissionModel stdmodel);
 
 	List<AdminSubmissionModel> getAllViewAdminAbroadData(String tablekey, String prevdate, String currentdate);
 
 	List<AdminSubmissionModel> getAllViewAdminStateWiseData(String tablekey, String prevdate, String currentdate);
 
 	List<IndustryTypeModel> findAllIndustryTypes();
+
+	int updateAdminAddJobAllJobDetailsInfo(AdminSubmissionModel stdmodel);
 
 
 

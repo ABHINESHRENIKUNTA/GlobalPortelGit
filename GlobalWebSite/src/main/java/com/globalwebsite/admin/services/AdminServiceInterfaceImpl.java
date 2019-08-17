@@ -86,6 +86,12 @@ public int insertSubmissionData(AdminSubmissionModel stdmodel) {
 	return admindaoimpl.insertSubmissionData(stdmodel);
 }
 
+//Update Common Submission Data
+@Override
+public int updateSubmissionData(AdminSubmissionModel stdmodel) {
+	return admindaoimpl.insertSubmissionData(stdmodel);
+}
+
 public int updateImageFileNameInTable(String tablename, String filename, int rowid){
 	return admindaoimpl.updateImageFileNameInTable(tablename, filename, rowid);
 }
@@ -93,6 +99,11 @@ public int updateImageFileNameInTable(String tablename, String filename, int row
 @Override
 public int insertAbroadSubmissionData(AdminSubmissionModel stdmodel) {
 	return admindaoimpl.insertAbroadSubmissionData(stdmodel);
+}
+//Update Abroad Data
+@Override
+public int updateAbroadSubmissionData(AdminSubmissionModel stdmodel) {
+	return admindaoimpl.updateAbroadSubmissionData(stdmodel);
 }
 
 @Override
@@ -147,6 +158,10 @@ public int insertAdminAddJobAllJobDetailsInfo(AdminSubmissionModel stdmodel){
 	return admindaoimpl.insertAdminAddJobAllJobDetailsInfo(stdmodel);
 }
 @Override
+public int updateAdminAddJobAllJobDetailsInfo(AdminSubmissionModel stdmodel){
+	return admindaoimpl.updateAdminAddJobAllJobDetailsInfo(stdmodel);
+}
+@Override
 public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionData(String tablekey, String prevdate, String currentdate) {
 	return admindaoimpl.getAllViewConsuRefAdminPostSubmissionData(tablekey,prevdate,currentdate);
 }
@@ -171,6 +186,11 @@ public List<IndustryTypeModel> findAllIndustryTypes() {
 @Override
 public int insertStateSubmissionData(AdminSubmissionModel stdmodel) {
 	return admindaoimpl.insertStateSubmissionData(stdmodel);
+}
+
+@Override
+public int updateStateSubmissionData(AdminSubmissionModel stdmodel) {
+	return admindaoimpl.updateStateSubmissionData(stdmodel);
 }
 @Override
 public List<AdminSubmissionModel> getAllViewAdminAbroadData(String tablekey, String prevdate, String currentdate) {

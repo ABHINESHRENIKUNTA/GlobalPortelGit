@@ -2,6 +2,7 @@
    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
    <head>
@@ -47,10 +48,10 @@
                                        <strong>Oh snap!</strong> ${emsg}
                                     </div>
                                  </c:if>
-                  
         <div class="col-md-12">
             <div class="panel-group" id="accordion">
             <c:forEach items="${listallroles}" var="roleids" varStatus="mainloop">
+               <c:if test="${roleids.roleid!=superadminid}">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="heading${mainloop.index}">
                         <h4 class="panel-title">
@@ -74,6 +75,7 @@
                         </div>
                     </div>
                 </div>
+               </c:if>
             </c:forEach>
                 
                 

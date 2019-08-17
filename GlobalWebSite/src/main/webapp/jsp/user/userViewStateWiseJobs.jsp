@@ -33,9 +33,10 @@
           <section class="content">
            <div class="col-md-12">
               <!-- Primary box -->
-              <div class="box box-solid box-primary">
+              <div class="box box-solid box-primary" >
                 <div class="box-header">
-                  <h3 class="box-title"> <span class="glyphicon glyphicon-list"></span> <spring:eval expression="@viewPropertyConfigurer.getProperty('state.jobs')" /> </h3> <code>Find your best job..</code>
+                  <h3 class="box-title"> <span class="glyphicon glyphicon-th"></span> <spring:eval expression="@viewPropertyConfigurer.getProperty('state.jobs')" /> </h3> 
+                  <code>Find your best job..</code>
                   <div class="box-tools pull-right">
                     <button type="button" class="btn btn-primary btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
                     <button type="button" class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -58,7 +59,7 @@
 		        </div>
 		     </div>
 		      <div class="col-sm-1" style="right: 0px;margin-right: -10px; float: right;">
-		      <button type="button" class="btn btn-danger" id="clear">CLEAR</button>
+		      <button type="button" class="btn btn-danger" id="clear"><span class="glyphicon glyphicon-hourglass"></span> CLEAR</button>
 		      </div>
 				  <div class="row" style="padding-bottom: 10px;"></div>
                  <ul class="timeline" id="content">

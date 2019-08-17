@@ -32,11 +32,11 @@
           <section class="content">
            <div class="col-md-12">
               <!-- Primary box -->
-              <div class="box box-solid box-primary" style="box-shadow: #CCCFFF 20px 30px 10px;">
+              <div class="box box-solid bg-purple" style="box-shadow: #CCCFFF 20px 30px 10px;border-radius: 15px;">
                 <div class="box-header" style=" border-radius: 15px;">
-                  <h3 class="box-title">Job Categories</h3> <code>Find your best job..</code>
+                  <h3 class="box-title"><span class="glyphicon glyphicon-th"></span> Job Categories</h3> <code>Find your best job..</code>
                   <div class="box-tools pull-right">
-                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-purple btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
                    <!--  <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button> -->
                   </div>
                 </div>
@@ -119,7 +119,7 @@
             	    </div>
                    <div class="col-lg-3 col-xs-6">
 		              <!-- small box -->
-		              <div class="small-box bg-purple" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('nonitjobs.url')" />'" style="cursor: pointer;">
+		              <div class="small-box bg-teal" style=" border-radius: 15px 25px ;" onclick="location.href='<spring:eval expression="@viewPropertyConfigurer.getProperty('nonitjobs.url')" />'" style="cursor: pointer;">
 		                <div class="inner">
 		                  <h4>Non IT Jobs</h4>
 		                  <p>

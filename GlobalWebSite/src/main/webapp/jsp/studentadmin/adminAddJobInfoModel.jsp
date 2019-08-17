@@ -25,7 +25,7 @@
                                              <div class="col-sm-1"> <label for="siteurl">:</label> </div>
                                              <div class="col-sm-8"> <span class="siteurlclass"></span> </div>
                                           </div>
-                                          <div class="col-sm-12">
+                                          <div class="col-sm-12" style="display: none;">
                                              <div class="col-sm-3"> <label for="emailid">Email#</label> </div>
                                              <div class="col-sm-1"> <label for="emailid">:</label> </div>
                                              <div class="col-sm-8"> <span class="emailidclass"></span> </div>
@@ -35,12 +35,12 @@
                                              <div class="col-sm-1"> <label for="comments">:</label> </div>
                                              <div class="col-sm-8"> <span class="commentsclass"></span> </div>
                                           </div>
-                                          <div class="col-sm-12">
+                                          <div class="col-sm-12" style="display: none;">
                                              <div class="col-sm-3"> <label for="actorinacts">Active</label> </div>
                                              <div class="col-sm-1"> <label for="actorinacts">:</label> </div>
                                              <div class="col-sm-8"> <span class="actorinactsclass"></span> </div>
                                           </div>
-                                          <div class="col-sm-12">
+                                          <div class="col-sm-12" style="display: none;">
                                              <div class="col-sm-3"> <label for="comments">Preview</label> </div>
                                              <div class="col-sm-1"> <label for="comments">:</label> </div>
                                              <div class="col-sm-8"><img id="thumbnil" style="width:25%;" src="" alt="image"/> </div>

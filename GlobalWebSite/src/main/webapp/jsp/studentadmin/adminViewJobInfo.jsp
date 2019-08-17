@@ -135,7 +135,7 @@
 	                                    </button>
 	                                  </div> 
                                     </form:form>
-                                    <form:form action="load-adminviewallcommoninfo" commandName="adminviewstuinfo">
+                                    <form:form action="edit-typeonedetails" commandName="adminviewstuinfo">
                                     <div class="col-sm-6">
                                         <form:hidden path="rowid" value="${listdata.rowid}"/>
 	                                    <form:hidden path="tablekey" value="${tablekey}"/>
@@ -201,7 +201,7 @@
 	                                    </button>
 	                                  </div> 
                                     </form:form>
-                                    <form:form action="load-adminviewallcommoninfo" commandName="adminviewstuinfo">
+                                    <form:form action="edit-typeonedetails" commandName="adminviewstuinfo">
                                     <div class="col-sm-6">
                                         <form:hidden path="rowid" value="${listdata.rowid}"/>
 	                                    <form:hidden path="tablekey" value="${tablekey}"/>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +22,14 @@ public class AdminRolePermissionController {
 	private final static Logger logger = Logger.getLogger(AdminRolePermissionController.class);
 	@Autowired
 	private AdminServiceInterfaceImpl adminservices;
-
+	
+	@Value("${superadmin.roleid}")
+	private int superadminid;
+	
 	@RequestMapping("/view-rolepermissions")
-	public ModelAndView viewReolePermissionPage() {
+	public ModelAndView viewReolePermissionPage(Model model) {
 		List<AdminRolePermissionModel> listallroles = adminservices.getAllRoles();
+		model.addAttribute("superadminid", superadminid);
 		return new ModelAndView("admin/adminAddPermissions", "listallroles", listallroles);
 	}
 

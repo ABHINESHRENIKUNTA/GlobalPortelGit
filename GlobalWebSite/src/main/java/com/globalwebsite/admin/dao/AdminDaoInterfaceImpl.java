@@ -175,6 +175,21 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			}
 		    return isinserted;
 		}
+		// updateSubmissionData
+		public int updateSubmissionData(AdminSubmissionModel stdmodel) {
+			int isupdated=0;
+			String update_sql = AdminSqlQueries.updateSubmissionData_Query(stdmodel);
+			try {
+						isupdated = jdbctemplate.update(update_sql, new Object[]{stdmodel.getLinkname(),
+						stdmodel.getLinkaddress(), stdmodel.getLoggedowner(), stdmodel.getEmailid(),
+						stdmodel.getComments(), stdmodel.isIsactive(), getDateFromSimpleDateFormat()});
+				logger.info("updateSubmissionData: "+isupdated);
+			}
+			catch (Exception e) {
+				logger.info("updateSubmissionData: "+e);
+			}
+			return isupdated;
+		}
 	/*@Override
 	public int insertAbroadSubmissionData(AdminSubmissionModel stdmodel) {
 		int isinserted=0;
@@ -226,6 +241,25 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 				logger.info("insertAbroadSubmissionData_Query: "+e);
 			}
 		    return isinserted;
+		}
+		
+		//updateAbroadSubmissionData
+		public int updateAbroadSubmissionData(AdminSubmissionModel stdmodel) {
+		    int isupdated=0;
+		    String UPDATE_SQL = AdminSqlQueries.updateAbroadSubmissionData_Query(stdmodel);
+		    try {
+		
+				isupdated = jdbctemplate.update(UPDATE_SQL, new Object[]{stdmodel.getCountryiso(), stdmodel.getCountrystate(),
+				stdmodel.getLinkname(), stdmodel.getLinkaddress(), stdmodel.getLoggedowner(), 
+				stdmodel.getEmailid(), stdmodel.getFilename(), stdmodel.getComments(), 
+				stdmodel.isIsactive(), getDateFromSimpleDateFormat(), stdmodel.getRowid()});
+		
+				logger.info("insertAbroadSubmissionData_Query: "+isupdated);
+			}
+			 catch (Exception e) {
+				logger.info("insertAbroadSubmissionData_Query: "+e);
+			}
+		    return isupdated;
 		}
 		
 		@Override
@@ -292,6 +326,25 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		}
 	    return isinserted;
 	}
+	
+	//update
+		public int updateStateSubmissionData(AdminSubmissionModel stdmodel) {
+		    int isupdated=0;
+		    try {
+				String UPDATE_SQL = AdminSqlQueries.updateStateSubmissionData_Query(stdmodel);
+				isupdated = jdbctemplate.update(UPDATE_SQL,  new Object[] {stdmodel.getStateid(),
+				stdmodel.getLinkname(), stdmodel.getLinkaddress(), stdmodel.getLoggedowner(), 
+				stdmodel.getEmailid(), stdmodel.getFilename(), stdmodel.getComments(),
+				stdmodel.isIsactive(), getDateFromSimpleDateFormat(), stdmodel.getRowid()});
+		
+				logger.info("updateStateSubmissionData_Query: "+isupdated);
+			}
+			 catch (Exception e) {
+				logger.info("updateStateSubmissionData_Query: "+e);
+			}
+		    return isupdated;
+		}
+		
 	/* (non-Javadoc)
 	 * @see com.globalwebsite.admin.dao.AdminDaoInterface#selectCountForSubmissionData(com.gw.student.model.StudentDashboardModel)
 	 */
@@ -492,6 +545,26 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			logger.info("insertAdminAddJobAllJobDetailsInfo_Query: "+ stdmodel.getTablekey()+": "+e);
 		}
 	return isinserted;
+	}
+	/*Job Consultants, Referral and Posted By Administrator Jobs*/
+	@Override
+	public int updateAdminAddJobAllJobDetailsInfo(AdminSubmissionModel stdmodel) {
+		int update=0;
+		try {
+			
+			String sql=AdminSqlQueries.updateAdminAddJobAllJobDetailsInfo_Query(stdmodel);
+			update= jdbctemplate.update(sql,new Object[]{stdmodel.getJobtitle()
+					,stdmodel.getIndustryid(), stdmodel.getCompany(), stdmodel.getExperience(),
+					stdmodel.getQualification(), stdmodel.getRolecategory(),stdmodel.getSalary(),
+					stdmodel.getNoofpossitions(), stdmodel.getJobresponsibilities(),
+					stdmodel.getSkillreq(),stdmodel.getEmailid(), stdmodel.getContactnum(), 
+					stdmodel.getLocation(), stdmodel.isIsactive(), stdmodel.getLoggedowner(),  
+					getDateFromSimpleDateFormat(), stdmodel.getNoticeperiod(), stdmodel.getOtherinfo(), stdmodel.getJobtype(), stdmodel.getRowid()});
+			logger.info("insertAdminAddJobAllJobDetailsInfo_Query: "+ stdmodel.getTablekey()+": "+sql);
+		} catch (Exception e) {
+			logger.info("insertAdminAddJobAllJobDetailsInfo_Query: "+ stdmodel.getTablekey()+": "+e);
+		}
+		return update;
 	}
 
 	/*Job Consultants, Referral and Posted By Administrator Jobs*/

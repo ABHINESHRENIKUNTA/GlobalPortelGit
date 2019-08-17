@@ -31,9 +31,9 @@ import com.globalwebsite.common.controller.DatabaseTableNames;
 import com.gw.student.model.AdminSubmissionModel;
 
 @Controller
-public class AdminStudentHomeInfoController extends DatabaseTableNames {
+public class AdminAddJobLinksController extends DatabaseTableNames {
 
-	private final static Logger logger = Logger.getLogger(AdminStudentHomeInfoController.class);
+	private final static Logger logger = Logger.getLogger(AdminAddJobLinksController.class);
 	@Autowired
 	private AdminServiceInterfaceImpl adminservices;
 	
@@ -81,7 +81,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 			@RequestParam(required=false, value="imagepath") MultipartFile file, FileUploadToTomcatController fut) throws Exception {
 
 		String imageFolder = stdmodel.getTablekey();
-		model.addAttribute("adminupdatestuinfo", stdmodel);
+		model.addAttribute("adminaddstuinfo", stdmodel);
 		String errormsg = "";
 		String susmsg = "";
 		int succsscnt = 0;
@@ -206,7 +206,7 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		}
 		System.out.println("date range: "+currentdate);
 		System.out.println("date range: "+prevdate);
-		
+		logger.info("Selected Page is:::::::: "+selectpage);
 		if (!mapvalues.containsKey(selectpage)) {
 			return "admin/somethingError";
 		}
@@ -244,6 +244,8 @@ public class AdminStudentHomeInfoController extends DatabaseTableNames {
 		}
 		model.addAttribute("prevdate",jspfmt.format(fmt.parse(prevdate)));
 		model.addAttribute("presdate",jspfmt.format(fmt.parse(currentdate)));
+		model.addAttribute("smsg", req.getParameter("smsg"));
+		model.addAttribute("emsg", req.getParameter("emsg"));
 
 		return retvalue;
 

@@ -34,7 +34,7 @@
           <section class="content">
            <div class="col-md-12">
               <!-- Primary box -->
-              <div class="box box-solid box-info">
+              <div class="box box-solid box-info" >
                 <div class="box-header">
                   <h3 class="box-title">Popular Job Links</h3> <code>Browse Jobs by Companies..</code>
                   <div class="box-tools pull-right">

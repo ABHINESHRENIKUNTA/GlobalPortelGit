@@ -19,7 +19,7 @@ import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 @Controller
 public class AdminOperatorController {
 	
-	private final static Logger logger = Logger.getLogger(AdminStudentHomeInfoController.class);
+	private final static Logger logger = Logger.getLogger(AdminAddJobLinksController.class);
 	@Autowired
 	private AdminServiceInterfaceImpl adminservices;
 	

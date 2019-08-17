@@ -33,7 +33,7 @@
           <section class="content">
            <div class="col-md-12">
               <!-- Primary box -->
-              <div class="box box-solid box-primary">
+              <div class="box box-solid box-primary" >
                 <div class="box-header">
                   <h3 class="box-title"><spring:eval expression="@viewPropertyConfigurer.getProperty('postedbyadmin.jobs')" /></h3> <code>Find your best job..</code>
                   <div class="box-tools pull-right">
@@ -45,7 +45,7 @@
                 <div class="box-body">
                   <div class="row">
             <div class="col-md-3">
-              <a href="#" class="btn btn-primary btn-block margin-bottom">Search Jobs</a>
+              <a href="#" class="btn btn-primary btn-block margin-bottom">Select & Click Here to Filter Jobs</a>
             <div class="widget">
             <h4 class="widget-title">Jobs By Type</h4>
             <ul class="optionlist">

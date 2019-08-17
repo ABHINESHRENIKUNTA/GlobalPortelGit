@@ -32,7 +32,7 @@
           <section class="content">
            <div class="col-md-12">
               <!-- Primary box -->
-              <div class="box box-solid box-primary">
+              <div class="box box-solid box-primary" >
                 <div class="box-header">
                   <h3 class="box-title"><spring:eval expression="@viewPropertyConfigurer.getProperty('trainingandplace.jobs')" /></h3> <code>Find your best job..</code>
                   <div class="box-tools pull-right">

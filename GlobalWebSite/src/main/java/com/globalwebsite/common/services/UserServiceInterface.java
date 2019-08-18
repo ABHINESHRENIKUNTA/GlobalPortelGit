@@ -47,6 +47,30 @@ public interface UserServiceInterface {
 	List<AdminSubmissionModel> getActiveAbroadJobs(int activenum);
 	
 	List<JobDetailCountModel> getTotalIndustryCount(int activenum, String tablekey);
+	
+	int getPopulaJobsCount(int activenum);
+
+	int getStatewiseGovtJobsCount(int activenum);
+
+	int getCentralGovJobsCount(int activenum);
+
+	int getAbroadJobsCount(int activenum);
+
+	int getItJobsCount(int activenum);
+
+	int getNonItJobsCount(int activenum);
+
+	int getFreeJobsCount(int activenum);
+
+	int getPlacementJobsCount(int activenum);
+
+	int getPostedByConsultantsjobscount(int activenum);
+
+	int getPostedByReferralsJobsCount(int activenum);
+
+	int getPostedByAdminJobsCount(int activenum);
+
+	int getPostedbyEmpJobsCount(int activenum);
 
 
 }

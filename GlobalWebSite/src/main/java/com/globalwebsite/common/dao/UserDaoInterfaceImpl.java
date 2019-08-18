@@ -187,4 +187,161 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 		return listdata;
 	}
 	
+	@Override
+	public int getPopulaJobsCount(int activenum){
+		String sql = UserSqlQueries.GETPOPULAJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("getPopulaJobsCount: "+totalcount);
+		} catch (Exception e) {
+			logger.info("getPopulaJobsCount: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	@Override
+	public int getStatewiseGovtJobsCount(int activenum){
+		String sql = UserSqlQueries.GETSTATEWISEGOVTJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("GETSTATEWISEGOVTJOBSCOUNT_QUERY: "+totalcount);
+		} catch (Exception e) {
+			logger.info("GETSTATEWISEGOVTJOBSCOUNT_QUERY: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	@Override
+	public int getCentralGovJobsCount(int activenum){
+		String sql = UserSqlQueries.GETCENTRALGOVJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("GETCENTRALGOVJOBSCOUNT_QUERY: "+totalcount);
+		} catch (Exception e) {
+			logger.info("GETCENTRALGOVJOBSCOUNT_QUERY: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	@Override
+	public int getAbroadJobsCount(int activenum){
+		String sql = UserSqlQueries.GETABROADJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("GETABROADJOBSCOUNT_QUERY: "+totalcount);
+		} catch (Exception e) {
+			logger.info("GETABROADJOBSCOUNT_QUERY: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	@Override
+	public int getItJobsCount(int activenum){
+		String sql = UserSqlQueries.GETITJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("GETITJOBSCOUNT_QUERY: "+totalcount);
+		} catch (Exception e) {
+			logger.info("GETITJOBSCOUNT_QUERY: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	@Override
+	public int getNonItJobsCount(int activenum){
+		String sql = UserSqlQueries.GETNONITJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("GETNONITJOBSCOUNT_QUERY: "+totalcount);
+		} catch (Exception e) {
+			logger.info("GETNONITJOBSCOUNT_QUERY: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	@Override
+	public int getFreeJobsCount(int activenum){
+		String sql = UserSqlQueries.GETFREEJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("GETFREEJOBSCOUNT_QUERY: "+totalcount);
+		} catch (Exception e) {
+			logger.info("GETFREEJOBSCOUNT_QUERY: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	@Override
+	public int getPlacementJobsCount(int activenum){
+		String sql = UserSqlQueries.GETPLACEMENTJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("GETPLACEMENTJOBSCOUNT_QUERY: "+totalcount);
+		} catch (Exception e) {
+			logger.info("GETPLACEMENTJOBSCOUNT_QUERY: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	@Override
+	public int getPostedByConsultantsjobscount(int activenum){
+		String sql = UserSqlQueries.GETPOSTEDBYCONSULTANTSJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("GETPOSTEDBYCONSULTANTSJOBSCOUNT_QUERY: "+totalcount);
+		} catch (Exception e) {
+			logger.info("GETPOSTEDBYCONSULTANTSJOBSCOUNT_QUERY: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	@Override
+	public int getPostedByReferralsJobsCount(int activenum){
+		String sql = UserSqlQueries.GETPOSTEDBYREFERRALSJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("GETPOSTEDBYREFERRALSJOBSCOUNT_QUERY: "+totalcount);
+		} catch (Exception e) {
+			logger.info("GETPOSTEDBYREFERRALSJOBSCOUNT_QUERY: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	@Override
+	public int getPostedByAdminJobsCount(int activenum){
+		String sql = UserSqlQueries.GETPOSTEDBYAADMINJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("GETPOSTEDBYAADMINJOBSCOUNT_QUERY: "+totalcount);
+		} catch (Exception e) {
+			logger.info("GETPOSTEDBYAADMINJOBSCOUNT_QUERY: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	@Override
+	public int getPostedbyEmpJobsCount(int activenum){
+		String sql = UserSqlQueries.GETPOSTEDBYEMPJOBSCOUNT_QUERY;
+		int totalcount=0;
+		try {
+			totalcount = jdbctemplate.queryForInt(sql, new Object[]{activenum});
+			logger.info("GETPOSTEDBYEMPJOBSCOUNT_QUERY: "+totalcount);
+		} catch (Exception e) {
+			logger.info("GETPOSTEDBYEMPJOBSCOUNT_QUERY: Exception: "+e);
+		}
+		
+		return totalcount;
+	}
+	
 }

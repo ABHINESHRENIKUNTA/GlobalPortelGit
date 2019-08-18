@@ -50,7 +50,7 @@
 		                    Popular Job Sites
 		                  </h4>
 		                  <p>
-		                    11 Listing
+		                    ${popularcnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon"><i class="fa fa-address-card-o" aria-hidden="true"></i>
@@ -64,7 +64,7 @@
 		                <div class="inner">
 		                 <h4>State Wise Government Jobs</h4>
 		                  <p>
-		                   11 Listing
+		                   ${statecnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon">
@@ -79,7 +79,7 @@
 		                <div class="inner">
 		                  <h4>Central Government Jobs</h4>
 		                  <p>
-		                   11 Listing
+		                   ${centralcnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon">
@@ -94,7 +94,7 @@
 		                <div class="inner">
 		                 <h4>Abroad Jobs</h4>
 		                  <p>
-		                   11 Listing
+		                   ${abroadcnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon">
@@ -108,7 +108,7 @@
 		                <div class="inner">
 		                 <h4>IT Jobs</h4>
 		                  <p>
-		                   11 Listing
+		                   ${itcnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon">
@@ -123,7 +123,7 @@
 		                <div class="inner">
 		                  <h4>Non IT Jobs</h4>
 		                  <p>
-		                   11 Listing
+		                   ${nonitcnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon">
@@ -138,7 +138,7 @@
 		                <div class="inner">
 		                 <h4>Free Job Training Institutes</h4>
 		                  <p>
-		                   11 Listing
+		                   ${freecnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon">
@@ -153,7 +153,7 @@
 		                <div class="inner">
 		                 <h4>Training & Placement Institutes</h4>
 		                  <p>
-		                   11 Listing
+		                   ${placementcnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon">
@@ -171,7 +171,7 @@
 		                <div class="inner">
 		                  <h4>Jobs Posted By Consultants</h4>
 		                  <p>
-		                   11 Listing
+		                   ${consultantcnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon">
@@ -186,7 +186,7 @@
 		                <div class="inner">
 		                 <h4>Referral Jobs</h4>
 		                  <p>
-		                   11 Listing
+		                   ${referralcnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon">
@@ -202,7 +202,7 @@
 		                <div class="inner">
 		                 <h4>Jobs Posted By Admin</h4>
 		                  <p>
-		                   11 Listing
+		                   ${admincnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon">
@@ -217,7 +217,7 @@
 		                <div class="inner">
 		                 <h4>Employer Posted Jobs</h4>
 		                  <p>
-		                   11 Listing
+		                   ${empcnt} Listing
 		                  </p>
 		                </div>
 		                <div class="icon">

@@ -35,4 +35,22 @@ public class UserSqlQueries {
 				+ "LEFT JOIN "+tablekey+" jb ON industry_type.id = jb.industry_id "
 				+ "and industry_type.status=? GROUP BY industry_type.id,industry_type.industry_name";
 	}
+	
+	/*******************Job Categories Count*******************/
+	public static final String GETPOPULAJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_popular_jobsites_page where is_active=?";
+	public static final String GETSTATEWISEGOVTJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_statewisegovt_jobs where is_active=?";
+	public static final String GETCENTRALGOVJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_centralgov_jobs where is_active=?";
+	public static final String GETABROADJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_abroad_jobs where is_active=?";
+	public static final String GETITJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_it_jobs where is_active=?";
+	public static final String GETNONITJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_nonit_jobs where is_active=?";
+	public static final String GETFREEJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_freejobtraining_jobs where is_active=?";
+	public static final String GETPLACEMENTJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_trainingandplace_jobs where is_active=?";
+	public static final String GETPOSTEDBYCONSULTANTSJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_jobconsult_jobs where status=?";
+	public static final String GETPOSTEDBYREFERRALSJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_refpost_jobs where status=?";
+	public static final String GETPOSTEDBYAADMINJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_postedbyadmin_jobs where status=?";
+	public static final String GETPOSTEDBYEMPJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_empposted_jobs where status=?";
+	
+	
+	
+	
 }

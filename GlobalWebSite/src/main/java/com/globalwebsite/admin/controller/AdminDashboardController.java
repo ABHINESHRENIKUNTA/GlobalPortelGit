@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
+import com.globalwebsite.common.controller.UserHomeController;
 
 @Controller
 public class AdminDashboardController {
@@ -26,6 +27,7 @@ public class AdminDashboardController {
 	private final static Logger logger = Logger.getLogger(AdminDashboardController.class);
 	public int data=0;
 	int gid=0;
+	
 	@Autowired
 	private AdminServiceInterfaceImpl adminservices;
 	
@@ -34,12 +36,15 @@ public class AdminDashboardController {
 	 
 	 @Autowired
 	 AdminRolePermissionController apr;
+	 
+	 @Autowired
+	 UserHomeController uhc;
 	
 	@RequestMapping("/view-admindashboard")
 	public String viewAdminDashboardWindow(Model model) {
 		
 		logger.info("Entry of Admin Dashboard method....");
-		
+		uhc.avilableLinksCount(model);
 		logger.info("End  of Admin Dashboard method....");
 		return "admin/adminDashboard";
 	}

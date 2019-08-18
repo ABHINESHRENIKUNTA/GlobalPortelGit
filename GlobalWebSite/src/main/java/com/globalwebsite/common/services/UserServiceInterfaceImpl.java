@@ -97,5 +97,53 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
 		return userdaoimpl.getTotalIndustryCount(activenum,tablekey);
 
 	}
+	@Override
+	public int getPopulaJobsCount(int activenum) {
+		return userdaoimpl.getPopulaJobsCount(activenum);
+	}
+	@Override
+	public int getStatewiseGovtJobsCount(int activenum) {
+		return userdaoimpl.getStatewiseGovtJobsCount(activenum);
+	}
+	@Override
+	public int getCentralGovJobsCount(int activenum) {
+		return userdaoimpl.getCentralGovJobsCount(activenum);
+	}
+	@Override
+	public int getAbroadJobsCount(int activenum) {
+		return userdaoimpl.getAbroadJobsCount(activenum);
+	}
+	@Override
+	public int getItJobsCount(int activenum) {
+		return userdaoimpl.getItJobsCount(activenum);
+	}
+	@Override
+	public int getNonItJobsCount(int activenum) {
+		return userdaoimpl.getNonItJobsCount(activenum);
+	}
+	@Override
+	public int getFreeJobsCount(int activenum) {
+		return userdaoimpl.getFreeJobsCount(activenum);
+	}
+	@Override
+	public int getPlacementJobsCount(int activenum) {
+		return userdaoimpl.getPlacementJobsCount(activenum);
+	}
+	@Override
+	public int getPostedByConsultantsjobscount(int activenum) {
+		return userdaoimpl.getPostedByConsultantsjobscount(activenum);
+	}
+	@Override
+	public int getPostedByReferralsJobsCount(int activenum) {
+		return userdaoimpl.getPostedByReferralsJobsCount(activenum);
+	}
+	@Override
+	public int getPostedByAdminJobsCount(int activenum) {
+		return userdaoimpl.getPostedByAdminJobsCount(activenum);
+	}
+	@Override
+	public int getPostedbyEmpJobsCount(int activenum) {
+		return userdaoimpl.getPostedbyEmpJobsCount(activenum);
+	}
 
 }

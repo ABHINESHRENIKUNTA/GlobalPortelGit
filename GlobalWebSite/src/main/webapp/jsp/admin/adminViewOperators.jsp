@@ -76,29 +76,29 @@
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th>Job Title</th>
+                                <th>UserName</th>
+                                <th>Role</th>
                                 <th>Created By</th>
-                                <th>Created Date</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                               </tr>
                             </thead>
                             <tbody>
+                            <c:forEach items="${listofOperators}" var="operatorList" varStatus="loop">
+                              <c:if test="${operatorList.roleid!=superadminid}">
                                 <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td>
-                                   
-                                  </td>
-                                  <td>
-                                   
-                                  </td>
+                                  <td> ${loop.index} </td>
+                                  <td> ${operatorList.username} </td>
+                                  <td> ${operatorList.rolename} </td>
+                                  <td> ${operatorList.createdby} </td>
+                                  <td> ${operatorList.status} </td>
                                   <td><a href="#"><i class="fa fa-eye"
                                     aria-hidden="true" style="padding-left: 10px;"></i></a> <a
                                     href="#"><i class="fa fa-edit" aria-hidden="true"
                                     style="padding-left: 10px;"></i></a></td>
                                 </tr>
+                                </c:if>
+                             </c:forEach>
                             </tbody>
                       </table>
                     </div>

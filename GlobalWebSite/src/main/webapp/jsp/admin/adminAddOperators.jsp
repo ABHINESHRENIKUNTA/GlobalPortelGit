@@ -106,7 +106,7 @@
             <label class="col-sm-12 control-label text-left">Employee DOB</label>
             <div class="col-sm-12 inputGroupContainer">
                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                <form:input type="text" path="empdob" placeholder="YYYY/MM/DD" class="form-control pull-right" id="reservation" readonly="readonly"/> </div>
+                <form:input type="text" path="empdob" placeholder="YYYY/MM/DD" class="form-control pull-right" id="reservation" readonly="true"/> </div>
             </div>
          </div>
          <div class="form-group">
@@ -125,20 +125,14 @@
          </div>
          
          
-         <div class="form-group">
+         <div class="form-group" style="display: none;">
             <label class="col-sm-12 control-label text-left">Job Description</label>
             <div class="col-sm-12 inputGroupContainer">
                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-               <textarea path="jobdescription" placeholder="Job Description" class="form-control" required="true" rows="3"></textarea></div>
+               <textarea path="jobdescription" placeholder="Job Description" class="form-control"  rows="3"></textarea></div>
             </div>
          </div>
-         <div class="form-group">
-            <label class="col-sm-12 control-label text-left">Address</label>
-            <div class="col-sm-12 inputGroupContainer">
-               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-               <textarea path="address" placeholder="Employee Address" class="form-control" required="true" rows="3"></textarea></div>
-            </div>
-         </div>
+         
          
    		<div class="col-sm-12 ">
          <div class="form-group">
@@ -198,7 +192,7 @@
             <form:input path="hrphonenumber" placeholder="HR Phone Number" class="form-control"  type="text" autocomplete="off"/></div>
          </div>
       </div>
-       <div class="form-group">
+       <div class="form-group" style="display: none;">
          <label class="col-sm-12 control-label text-left">Comments</label>
          <div class="col-sm-12 inputGroupContainer">
             <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
@@ -207,6 +201,16 @@
       </div>
       
       
+</div>
+<div class="col-sm-12">
+
+<div class="form-group">
+            <label class="col-sm-12 control-label text-left">Address</label>
+            <div class="col-sm-12 inputGroupContainer">
+               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+               <textarea path="address" placeholder="Employee Address" class="form-control" required="true" rows="3"></textarea></div>
+            </div>
+         </div>
 </div>
 
 </div>

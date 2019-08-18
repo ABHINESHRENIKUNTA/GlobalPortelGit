@@ -26,7 +26,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <div class="panel with-nav-tabs">
+              <div class="panel">
                 <div class="panel-heading">
                   <h4>${tableval} 
                     <span class="pull-right">
@@ -36,17 +36,7 @@
                   </h4>
                   <jsp:useBean id="now" class="java.util.Date" />
                   <fmt:formatDate var="year" value="${now}" pattern="dd/MMM/yyyy" />
-                  <!-- <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
-                    <li class="active">
-                       <a href="#">Add</a>
-                    </li>
-                    <li >
-                       <a href="load-adminupdatestuinfo">Edit</a>
-                    </li>
-                    <li>
-                       <a href="load-admindeletestuinfo">Delete</a>
-                    </li>
-                    </ul> -->
+                 
                 </div>
                 <form:form method="post" id="submitform" action="adminaddstudenthomeinfo" modelAttribute="adminaddstuinfo"  enctype="multipart/form-data">
                   <div class="panel-body">

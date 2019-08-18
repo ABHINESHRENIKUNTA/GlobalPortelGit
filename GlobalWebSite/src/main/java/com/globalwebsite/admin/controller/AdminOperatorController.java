@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +23,15 @@ public class AdminOperatorController {
 	@Autowired
 	private AdminServiceInterfaceImpl adminservices;
 	
+	@Value("${superadmin.roleid}")
+	private int superadminid;
+	
 @RequestMapping("/view-operators")
-public ModelAndView viewAddedOperatorPage(){
+public ModelAndView viewAddedOperatorPage(Model model){
 	
-	
+	List<AdminOperatorModel> listofOperators = adminservices.getAllOperators();
+	model.addAttribute("listofOperators", listofOperators);
+	model.addAttribute("superadminid", superadminid);
 	return new ModelAndView("admin/adminViewOperators");
 	
 	

@@ -22,6 +22,7 @@ public class AdminOperatorModel {
 	private String comments;
 	private String createdby;
 	private boolean status;
+	private int rowid;
 
 
 	
@@ -177,6 +178,12 @@ public class AdminOperatorModel {
 	}
 	public void setRoleid(long roleid) {
 		this.roleid = roleid;
+	}
+	public int getRowid() {
+		return rowid;
+	}
+	public void setRowid(int rowid) {
+		this.rowid = rowid;
 	}
 	
 	

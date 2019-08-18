@@ -228,8 +228,7 @@
             	    </div>
                   </div>
                   <div class="box-footer">
-              
-            </div>
+            	  </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div>

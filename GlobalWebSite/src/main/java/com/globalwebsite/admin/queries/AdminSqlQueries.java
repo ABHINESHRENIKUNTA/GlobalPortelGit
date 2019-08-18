@@ -35,6 +35,7 @@ public class AdminSqlQueries {
 	public static final String FINDALLCOUNTRIES_QUERY = "select * from country order by name";
 	public static final String FINDALLSTATES_QUERY = "select * from states where status=? order by statename";
 	public static final String FINDALLINDUSTRYTYPES_QUERY = "select * from industry_type where status=? order by industry_name";
+	public static final String GETALLOPERATORS_QUERY = "select gal.*,rl.role_name from global_admin_login1 gal, roles rl where rl.role_id=gal.roleid;";
 	
 	
 	/*public static final String INSERTSUBMISSIONDATA_SQL = "insert into ?"

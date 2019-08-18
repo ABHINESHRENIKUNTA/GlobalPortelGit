@@ -22,6 +22,7 @@ import org.springframework.stereotype.Repository;
 
 import com.globalwebsite.admin.mapper.AdminDeleteUserImageMapper;
 import com.globalwebsite.admin.mapper.AdminLoginMapper;
+import com.globalwebsite.admin.mapper.AdminOperatorMapper;
 import com.globalwebsite.admin.mapper.AdminPermissionMapper;
 import com.globalwebsite.admin.mapper.AdminRoleMapper;
 import com.globalwebsite.admin.mapper.AdminRolePermissionMapper;
@@ -756,6 +757,20 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			
 		} catch (Exception e) {
 			logger.info("getAllViewAdminStateWiseDataById: "+ tablekey+": "+e);
+		}
+		return listdata;
+	}
+
+	public List<AdminOperatorModel> getAllOperators() {
+		String sql=AdminSqlQueries.GETALLOPERATORS_QUERY;
+		List<AdminOperatorModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new AdminOperatorMapper());
+			logger.info("getAllOperators: "+ sql);
+			
+		} catch (Exception e) {
+			logger.info("getAllOperators: "+ e);
+			logger.info("getAllOperators: "+ sql);
 		}
 		return listdata;
 	}

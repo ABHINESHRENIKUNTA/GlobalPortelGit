@@ -213,7 +213,9 @@ public List<AdminSubmissionModel> getAllViewAdminStateWiseDataById(String tablek
 	return admindaoimpl.getAllViewAdminStateWiseDataById(tablekey, rowId);
 }
 
-
+public List<AdminOperatorModel> getAllOperators(){
+	return admindaoimpl.getAllOperators();
+}
 
 
 }

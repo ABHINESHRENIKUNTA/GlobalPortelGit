@@ -16,7 +16,7 @@ $(document).ready(function() {
           "sNext": ""
         }
       },
-      "iDisplayLength": 5,
+      "iDisplayLength": 10,
       "aLengthMenu": [
         [5, 10, 25, 50, -1],
         [5, 10, 25, 50, "All"]

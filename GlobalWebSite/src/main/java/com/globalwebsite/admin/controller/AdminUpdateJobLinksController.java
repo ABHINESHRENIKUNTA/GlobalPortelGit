@@ -1,5 +1,7 @@
 package com.globalwebsite.admin.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,16 +27,20 @@ public class AdminUpdateJobLinksController extends DatabaseTableNames {
 	@Value("${admin.viewtype}")
 	private String viewType;
 	
-	@RequestMapping("/adminupdatestudenthomeinfo")
+	@RequestMapping(value="/adminupdatestudenthomeinfo")
 	public String adminCommonUpdateInfoPage(Model model, AdminSubmissionModel stdmodel,
-			@RequestParam(required=false, value="imagepath") MultipartFile file, FileUploadToTomcatController fut) throws Exception {
+			@RequestParam(required=false, value="imagepath") MultipartFile file, FileUploadToTomcatController fut,HttpSession sess) throws Exception {
 		String imageFolder = stdmodel.getTablekey();
 		String errormsg = "";
 		String susmsg = "";
 		int succsscnt = 0;
-		stdmodel.setLoggedowner("Prakash Varma");
 		String imgpath ="";
-		
+		if ((String)sess.getAttribute("username")!=null) {
+			stdmodel.setLoggedowner((String)sess.getAttribute("username"));
+		}else{
+			return "admin/somethingError";
+			
+		}
 		/*Job Consultants, Referral and Posted By Administrator Jobs*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_jobconsult_jobs")
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs"))

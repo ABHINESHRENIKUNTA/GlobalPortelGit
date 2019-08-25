@@ -5,7 +5,7 @@ var SessionTimeout = function () {
       message: "Your session is expiring soon.",
       redirUrl: "adminlogout",
       logoutUrl: "adminlogout",
-      warnAfter: 900e3,
+      warnAfter: 30000,
       redirAfter: 2e4,
       ignoreUserActivity: !0,
       countdownMessage: "Redirecting in {timer} seconds.",

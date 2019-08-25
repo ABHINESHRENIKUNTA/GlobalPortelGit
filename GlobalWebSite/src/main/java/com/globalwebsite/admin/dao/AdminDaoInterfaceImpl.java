@@ -162,6 +162,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 					ps.setBoolean(6, stdmodel.isIsactive());
 					ps.setString(7, getDateFromSimpleDateFormat());
 					ps.setString(8, getDateFromSimpleDateFormat());
+					ps.setInt(9, stdmodel.getLoginid());
 					return ps;
 				}
 			}, holder);
@@ -183,7 +184,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 			try {
 						isupdated = jdbctemplate.update(update_sql, new Object[]{stdmodel.getLinkname(),
 						stdmodel.getLinkaddress(), stdmodel.getLoggedowner(), stdmodel.getEmailid(),
-						stdmodel.getComments(), stdmodel.isIsactive(), getDateFromSimpleDateFormat()});
+						stdmodel.getComments(), stdmodel.isIsactive(), getDateFromSimpleDateFormat(), stdmodel.getRowid()});
 				logger.info("updateSubmissionData: "+isupdated);
 			}
 			catch (Exception e) {
@@ -229,6 +230,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 					ps.setBoolean(9, stdmodel.isIsactive());
 					ps.setString(10, getDateFromSimpleDateFormat());
 					ps.setString(11, getDateFromSimpleDateFormat());
+					ps.setInt(12, stdmodel.getLoginid());
 					return ps;
 				}
 			}, holder);
@@ -313,6 +315,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 				ps.setBoolean(8, stdmodel.isIsactive());
 				ps.setString(9, getDateFromSimpleDateFormat());
 				ps.setString(10, getDateFromSimpleDateFormat());
+				ps.setInt(11, stdmodel.getLoginid());
 				return ps;
 			}
 		}, holder);
@@ -538,7 +541,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 					stdmodel.getNoofpossitions(), stdmodel.getJobresponsibilities(),
 					stdmodel.getSkillreq(),stdmodel.getEmailid(), stdmodel.getContactnum(), 
 					stdmodel.getLocation(), stdmodel.isIsactive(), stdmodel.getLoggedowner(),  
-					getDateFromSimpleDateFormat(), stdmodel.getNoticeperiod(), stdmodel.getOtherinfo(), stdmodel.getJobtype()});
+					getDateFromSimpleDateFormat(), stdmodel.getNoticeperiod(), stdmodel.getOtherinfo(), stdmodel.getJobtype(), stdmodel.getLoginid()});
 			//System.out.println("adminAddJobConsultantInfo: "+ stdmodel.getTablekey()+": "+sql);
 			logger.info("insertAdminAddJobAllJobDetailsInfo_Query: "+ stdmodel.getTablekey()+": "+sql);
 		} catch (Exception e) {
@@ -656,6 +659,24 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		}
 	return isinserted;
 	}
+	@Override
+	public int updateOperatorById(AdminOperatorModel aom){
+		int isinserted=0;
+		try {
+			String sql=AdminSqlQueries.UPDATEOPERATORBYID_QUERY;
+			isinserted= jdbctemplate.update(sql,new Object[]{ aom.getUsername(), aom.getPassword(), aom.getFullname(),
+					aom.getQualification(), aom.getEmpdob(), aom.getEmail(), aom.getPhonenumber(), aom.getJobdescription(),
+					aom.getAddress(), aom.getReferrarname(), aom.getCompanyname(), aom.getCompanyurl(), aom.getHrname(),
+					aom.getHremail(), aom.getHrphonenumber(), aom.getRoleid(),
+					getDateFromSimpleDateFormat(), aom.isStatus(), aom.getRowid()});
+			//System.out.println("insertOperatorSubmissionData: "+ aom);
+			logger.info("insertOperatorSubmissionData: "+ aom);
+		} catch (Exception e) {
+			//System.out.println("insertOperatorSubmissionData: "+ aom+": "+e);
+			logger.info("insertOperatorSubmissionData: "+ aom+": "+e);
+		}
+		return isinserted;
+	}
 	
 	@Override
 	public List<CountryModel> findAllCountries(){
@@ -771,6 +792,20 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		} catch (Exception e) {
 			logger.info("getAllOperators: "+ e);
 			logger.info("getAllOperators: "+ sql);
+		}
+		return listdata;
+	}
+	
+	public List<AdminOperatorModel> getOperatorById(int rowId) {
+		String sql=AdminSqlQueries.GETOPERATORBYID_QUERY;
+		List<AdminOperatorModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{rowId}, new AdminOperatorMapper());
+			logger.info("getOperatorById: "+ sql);
+			
+		} catch (Exception e) {
+			logger.info("getOperatorById: "+ e);
+			logger.info("getOperatorById: "+ sql);
 		}
 		return listdata;
 	}

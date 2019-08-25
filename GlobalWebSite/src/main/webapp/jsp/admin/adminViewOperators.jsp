@@ -92,10 +92,26 @@
                                   <td> ${operatorList.rolename} </td>
                                   <td> ${operatorList.createdby} </td>
                                   <td> ${operatorList.status} </td>
-                                  <td><a href="#"><i class="fa fa-eye"
-                                    aria-hidden="true" style="padding-left: 10px;"></i></a> <a
-                                    href="#"><i class="fa fa-edit" aria-hidden="true"
-                                    style="padding-left: 10px;"></i></a></td>
+                                  <td>
+                                  <div class="col-sm-12">
+                                    <form:form action="load-viewoperatorsbyid" commandName="viewoperator">
+                                    <div class="col-sm-6">
+                                        <form:hidden path="rowid" value="${operatorList.rowid}"/>
+	                                    <button class="btn btn-info" title="VIEW">
+	                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+	                                    </button>
+	                                  </div> 
+                                    </form:form>
+                                    <form:form action="load-editoperatorsbyid" commandName="viewoperator">
+                                    <div class="col-sm-6">
+                                        <form:hidden path="rowid" value="${operatorList.rowid}"/>
+	                                    <button class="btn btn-warning" title="EDIT">
+	                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+	                                    </button>
+	                                    </div>
+                                    </form:form>
+                                    </div>
+                                  </td>
                                 </tr>
                                 </c:if>
                              </c:forEach>

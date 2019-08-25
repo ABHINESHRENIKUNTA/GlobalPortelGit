@@ -1,10 +1,10 @@
+
         <%if(session.isNew()||request.getSession(false) == null){
 		 response.sendRedirect("adminlogout");	
 	     System.out.print("****************session out**********************");
 	}
-	else{
-		
-	}
+	
+       
 	
 	%>
 <!-- Font CSS (Via CDN) -->

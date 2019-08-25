@@ -1,5 +1,5 @@
  <!-- header logo: style can be found in header.less -->
-      <header class="main-header">               
+      <header class="main-header" >               
         <nav class="navbar navbar-static-top">
           <div class="container-fluid">
           <div class="navbar-header">

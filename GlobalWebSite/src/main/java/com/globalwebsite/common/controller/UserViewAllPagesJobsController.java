@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.globalwebsite.admin.model.CountryModel;
+import com.globalwebsite.admin.model.IndustryTypeModel;
 import com.globalwebsite.admin.model.StatesModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 import com.globalwebsite.common.model.JobDetailCountModel;
@@ -59,9 +61,12 @@ public class UserViewAllPagesJobsController {
 	 }
 	 @RequestMapping("/view-userViewAbroadJobs")
 	 public ModelAndView userViewAbroadJobScreen(Model model, AdminSubmissionModel stdmodel){
+		 List<CountryModel> countryList = adminservices.findAllCountries();
+		 logger.info("countryList::: "+countryList);
 		 List<AdminSubmissionModel> jobsList = userserviceimpl.getActiveAbroadJobs(activenum);
 		 model.addAttribute("jobsList", jobsList);
-		 return new ModelAndView("user/userViewAbroadJobs", "listjobdetails", stdmodel);
+		 model.addAttribute("countryList", countryList);
+		 return new ModelAndView("user/userViewAbroadJobs", "abroadlist", stdmodel);
 	 }
 	
 	 @RequestMapping("/view-useritjobs")
@@ -91,6 +96,7 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_trainingandplace_jobs";
 		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
 		 model.addAttribute("jobsList", jobsList);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewTrainingPlacInst", "listjobdetails", stdmodel);
 	 }
 	 
@@ -101,6 +107,7 @@ public class UserViewAllPagesJobsController {
 		 model.addAttribute("listData", listData);
 		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
 		 model.addAttribute("industryList", industryList);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewConsultantJobs", "listjobdetails", stdmodel);
 	 }
 	 
@@ -111,6 +118,7 @@ public class UserViewAllPagesJobsController {
 		 model.addAttribute("listData", listData);
 		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
 		 model.addAttribute("industryList", industryList);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewReferralJobs", "listjobdetails", stdmodel);
 	 }
 	
@@ -121,6 +129,7 @@ public class UserViewAllPagesJobsController {
 		 model.addAttribute("listData", listData);
 		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
 		 model.addAttribute("industryList", industryList);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewJobsPostedByAdmin", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-useremployeepostedjobs")
@@ -130,6 +139,7 @@ public class UserViewAllPagesJobsController {
 		 model.addAttribute("listData", listData);
 		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
 		 model.addAttribute("industryList", industryList);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewEmployerPostedJobs", "listjobdetails", listData);
 	 }
 	

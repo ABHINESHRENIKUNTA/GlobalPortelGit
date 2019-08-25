@@ -73,6 +73,7 @@ public class AdminDashboardController {
 				ses.setAttribute("username", lm.getUsername());
 				ses.setAttribute("password", lm.getPassword());
 				ses.setAttribute("roleid", lm.getRoleid());
+				ses.setAttribute("loginid", lm.getGlobalid());
 				gid=lm.getGlobalid();
 		}
 		String OTP=String.valueOf(generatePin()) ; 

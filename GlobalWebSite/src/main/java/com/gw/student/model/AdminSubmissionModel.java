@@ -39,6 +39,7 @@ public class AdminSubmissionModel {
     private String qualification;
     private String noticeperiod;
     private String otherinfo;
+    private int loginid;
     
     
     public String getOtherinfo() {
@@ -350,6 +351,14 @@ public class AdminSubmissionModel {
 				+ ", countrystate=" + countrystate + ", location=" + location + ", experience=" + experience
 				+ ", company=" + company + ", qualification=" + qualification + ", noticeperiod=" + noticeperiod
 				+ ", otherinfo=" + otherinfo + "]";
+	}
+
+	public int getLoginid() {
+		return loginid;
+	}
+
+	public void setLoginid(int loginid) {
+		this.loginid = loginid;
 	}
 	
 	

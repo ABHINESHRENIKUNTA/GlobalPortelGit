@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,15 +41,25 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 	
 	@Value("${admin.viewtype}")
 	private String viewType;
+	
+	@Autowired
+	AdminRolePermissionController apr;
 
 	@RequestMapping("/load-adminaddstuinfo")
 	public ModelAndView adminCommonAddInfoPage(AdminSubmissionModel stdmodel, Model model, HttpServletRequest req)
 			throws Exception {
 		Map<String, String> mapvalues = tableReferenceData();
 		String selectpage = req.getParameter("selectedparam");
+		boolean rolenotnull = req.getSession().getAttribute("roleid") != null;
 		logger.info("Admin Selected Page: " + selectpage);
-		if (!mapvalues.containsKey(selectpage)) {
-			return new ModelAndView("admin/somethingError", "adminaddstuinfo", stdmodel);
+		if (!mapvalues.containsKey(selectpage) || rolenotnull==false) {
+			return new ModelAndView("admin/somethingError");
+		}
+		String ssroleid = (String)req.getSession().getAttribute("roleid");
+		int roleid = Integer.valueOf(ssroleid);
+		String permisaccess = apr.adminManagePermissions(roleid, req);
+		if(permisaccess == "accessdenied"){
+			return new ModelAndView("admin/somethingError");
 		}
 		
 		List<CountryModel> countryList = adminservices.findAllCountries();
@@ -76,24 +88,30 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 		return imageString1;
 	}
 
-	@RequestMapping("/adminaddstudenthomeinfo")
+	@RequestMapping(value="/adminaddstudenthomeinfo", method=RequestMethod.POST)
 	public String adminCommonSubmitInfoPage(Model model, AdminSubmissionModel stdmodel,
-			@RequestParam(required=false, value="imagepath") MultipartFile file, FileUploadToTomcatController fut) throws Exception {
+			@RequestParam(required=false, value="imagepath") MultipartFile file, FileUploadToTomcatController fut, HttpSession sess) throws Exception {
 
 		String imageFolder = stdmodel.getTablekey();
 		model.addAttribute("adminaddstuinfo", stdmodel);
 		String errormsg = "";
 		String susmsg = "";
 		int succsscnt = 0;
-		stdmodel.setLoggedowner("Prakash Varma");
 		String imgpath ="";
-		
+		if ((String)sess.getAttribute("username")!=null) {
+			stdmodel.setLoggedowner((String)sess.getAttribute("username"));
+			String globalloginid =(String)sess.getAttribute("loginid");
+			stdmodel.setLoginid(Integer.valueOf(globalloginid));
+		}else{
+			return "admin/somethingError";
+			
+		}
 		/*Job Consultants, Referral and Posted By Administrator Jobs*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_jobconsult_jobs")
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs"))
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_postedbyadmin_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_empposted_jobs"))) {
-				System.out.println("Entered in: " + stdmodel.getTablename());
+				//System.out.println("Entered in: " + stdmodel.getTablename());
 				logger.info("Entered in: " + stdmodel.getTablename());
 				succsscnt = adminservices.insertAdminAddJobAllJobDetailsInfo(stdmodel);
 		}
@@ -163,14 +181,6 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 		return imgpath;
 	}
 
-	@RequestMapping("/load-adminupdatestuinfo")
-	public String adminCommonEditInfoPage(Model model, AdminSubmissionModel stdmodel) {
-
-		model.addAttribute("adminupdatestuinfo", stdmodel);
-
-		return "studentadmin/adminUpdateJobInfo";
-
-	}
 
 
 	/**
@@ -189,6 +199,18 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 		DateFormat jspfmt = new SimpleDateFormat("dd/MMM/yyyy");
 		String currentdate=null;
 		String prevdate=null;
+		boolean rolenotnull = req.getSession().getAttribute("roleid") != null;
+		logger.info("Admin Selected Page: " + selectpage);
+		if (!mapvalues.containsKey(selectpage) || rolenotnull==false) {
+			return "admin/somethingError";
+		}
+		String ssroleid = (String)req.getSession().getAttribute("roleid");
+		int roleid = Integer.valueOf(ssroleid);
+		String permisaccess = apr.adminManagePermissions(roleid, req);
+		if(permisaccess == "accessdenied"){
+			return "admin/somethingError";
+		}
+		
 		if(null==stdmodel.getDaterange()){
 			    Date date = new Date();
 			    GregorianCalendar cal = new GregorianCalendar();

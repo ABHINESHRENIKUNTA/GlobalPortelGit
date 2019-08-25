@@ -27,7 +27,18 @@ public class AdminRolePermissionController {
 	private int superadminid;
 	
 	@RequestMapping("/view-rolepermissions")
-	public ModelAndView viewReolePermissionPage(Model model) {
+	public ModelAndView viewReolePermissionPage(Model model, HttpServletRequest req) {
+		boolean rolenotnull = req.getSession().getAttribute("roleid") != null;
+		logger.info("viewAddedOperatorPage");
+		if (rolenotnull==false) {
+			return new ModelAndView("admin/somethingError");
+		}
+		String ssroleid = (String)req.getSession().getAttribute("roleid");
+		int roleid = Integer.valueOf(ssroleid);
+		String permisaccess = adminManagePermissions(roleid, req);
+		if(permisaccess == "accessdenied"){
+			return new ModelAndView("admin/somethingError");
+		}
 		List<AdminRolePermissionModel> listallroles = adminservices.getAllRoles();
 		model.addAttribute("superadminid", superadminid);
 		return new ModelAndView("admin/adminAddPermissions", "listallroles", listallroles);
@@ -89,17 +100,34 @@ public class AdminRolePermissionController {
 	}
 	
 	
-	public String adminManagePermissions(int roleid,String permissionurl){
-		/*String permissionurl = req.getServletPath();
-		int roleid=2;
-		permissionurl=permissionurl.replaceFirst("/", "");
-		String permisaccess = adminManagePermissions(roleid, permissionurl);
-		System.out.println("***********************: "+permisaccess);*/
+	public String adminManagePermissions(int roleid, HttpServletRequest request){
+	
 		String permisaccess="";
+		String permissionurl = getQueryStringFromURL(request);
 		List<Map<String, Object>> getpermlst = adminservices.getPermissionIsAvailable(roleid,permissionurl);
-		permisaccess = getpermlst.size()==0 ?permisaccess = "accessdenied" : "grantpermission";
-		
+		if(roleid==superadminid){
+			permisaccess = "grantpermission";
+		}else{
+			permisaccess = getpermlst.size()==0 ?permisaccess = "accessdenied" : "grantpermission";
+		}
 		return permisaccess;
+	}
+	
+	public String getQueryStringFromURL(HttpServletRequest request) {
+		String getqryString = request.getQueryString();
+		String apndQryStr = "";
+		try {
+			if(getqryString.contains("selectedparam=")){
+				apndQryStr = "?selectedparam="+request.getParameter("selectedparam");
+			}
+		} catch (Exception e) {
+			logger.info("Query String is not found in the URL::"+request.getServletPath());
+			apndQryStr="";
+		}
+		String permissionurl = request.getServletPath();
+		permissionurl=permissionurl.replaceFirst("/", "");
+		permissionurl = permissionurl+""+apndQryStr;
+		return permissionurl;
 	}
 	
 	public List<AdminRolePermissionModel> getAllPermissionsBasedonRoleId(int roleid){

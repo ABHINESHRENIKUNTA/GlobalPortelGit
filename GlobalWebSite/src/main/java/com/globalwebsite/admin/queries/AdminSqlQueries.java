@@ -32,10 +32,18 @@ public class AdminSqlQueries {
 			+ "address, referrarname, companyname, companyurl, hrname, hremail, hrphonenumber, roleid, created_by, "
 			+ "created_date, modified_date, status) "
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public static final String UPDATEOPERATORBYID_QUERY = "update global_admin_login1 set "
+			+ " username=?, password=?, fullname=?, qualification=?, empdob=?, email=?, phonenumber=?, jobdescription=?, "
+			+ "address=?, referrarname=?, companyname=?, companyurl=?, hrname=?, hremail=?, hrphonenumber=?, "
+			+ "roleid=?, modified_date=?, status=? "
+			+ "where global_login_id=?";
 	public static final String FINDALLCOUNTRIES_QUERY = "select * from country order by name";
 	public static final String FINDALLSTATES_QUERY = "select * from states where status=? order by statename";
 	public static final String FINDALLINDUSTRYTYPES_QUERY = "select * from industry_type where status=? order by industry_name";
-	public static final String GETALLOPERATORS_QUERY = "select gal.*,rl.role_name from global_admin_login1 gal, roles rl where rl.role_id=gal.roleid;";
+	public static final String GETALLOPERATORS_QUERY = "select gal.*,rl.role_name from global_admin_login1 gal, "
+			+ "roles rl where rl.role_id=gal.roleid";
+	public static final String GETOPERATORBYID_QUERY = "select gal.*,rl.role_name from global_admin_login1 gal, "
+			+ "roles rl where rl.role_id=gal.roleid and gal.global_login_id=?";
 	
 	
 	/*public static final String INSERTSUBMISSIONDATA_SQL = "insert into ?"
@@ -43,8 +51,8 @@ public class AdminSqlQueries {
 			+ "values(?,?,?,?,?,?,?,?)";*/
 	public static String insertSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return  "insert into "+stdmodel.getTablekey()+""
-				+ "(link_name,link_address,link_owner,link_emailId,link_comments,is_active,created_date,modified_date) "
-				+ "values(?,?,?,?,?,?,?,?)";
+				+ "(link_name,link_address,link_owner,link_emailId,link_comments,is_active,created_date,modified_date,login_id) "
+				+ "values(?,?,?,?,?,?,?,?,?)";
 	}
 	public static String updateSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return  "update "+stdmodel.getTablekey()+" set "
@@ -53,8 +61,9 @@ public class AdminSqlQueries {
 	}
 	public static String insertAbroadSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return  "insert into "+stdmodel.getTablekey()+""
-				+ "(iso,statename,link_name,link_address,link_owner,link_emailId,file_name,link_comments,is_active,created_date,modified_date) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
+				+ "(iso,statename,link_name,link_address,link_owner,link_emailId,file_name,"
+				+ "link_comments,is_active,created_date,modified_date,login_id) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 	}
 	public static String updateAbroadSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return  "update "+stdmodel.getTablekey()+" set "
@@ -87,8 +96,8 @@ public class AdminSqlQueries {
 		return "INSERT INTO "+stdmodel.getTablekey()+" (job_title, industry_id, company,experience,qualification,"
 				+ " role_category, salary, no_of_positions, "
 				+ "job_responsibilities, skill_set, email_id,contact_num,location, status, created_by, "
-				+ "created_date,notice_period, other_info,jobtype) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+				+ "created_date,notice_period, other_info,jobtype, login_id) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 	}
 	public static String updateAdminAddJobAllJobDetailsInfo_Query(AdminSubmissionModel stdmodel) {
 		return "update "+stdmodel.getTablekey()+" set job_title=?, industry_id=?, company=?,experience=?,"
@@ -111,8 +120,8 @@ public class AdminSqlQueries {
 	public static String insertStateSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return  "insert into "+stdmodel.getTablekey()+""
 				+ "(state_id,link_name,link_address,link_owner,link_emailId,file_name,link_comments,"
-				+ "is_active,created_date,modified_date) "
-				+ "values(?,?,?,?,?,?,?,?,?,?)";
+				+ "is_active,created_date,modified_date,login_id) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
 	}
 	public static String updateStateSubmissionData_Query(AdminSubmissionModel stdmodel) {
 		return  "update "+stdmodel.getTablekey()+" set "

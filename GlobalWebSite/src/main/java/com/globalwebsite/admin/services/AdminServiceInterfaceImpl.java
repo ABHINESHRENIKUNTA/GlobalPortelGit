@@ -89,7 +89,7 @@ public int insertSubmissionData(AdminSubmissionModel stdmodel) {
 //Update Common Submission Data
 @Override
 public int updateSubmissionData(AdminSubmissionModel stdmodel) {
-	return admindaoimpl.insertSubmissionData(stdmodel);
+	return admindaoimpl.updateSubmissionData(stdmodel);
 }
 
 public int updateImageFileNameInTable(String tablename, String filename, int rowid){
@@ -215,6 +215,13 @@ public List<AdminSubmissionModel> getAllViewAdminStateWiseDataById(String tablek
 
 public List<AdminOperatorModel> getAllOperators(){
 	return admindaoimpl.getAllOperators();
+}
+
+public List<AdminOperatorModel> getOperatorById(int rowId){
+	return admindaoimpl.getOperatorById(rowId);
+}
+public int updateOperatorById(AdminOperatorModel aom) {
+	return admindaoimpl.updateOperatorById(aom);
 }
 
 

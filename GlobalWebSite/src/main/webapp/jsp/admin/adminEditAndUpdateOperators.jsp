@@ -28,17 +28,17 @@
 <div class="container">
   <div class = "panel panel-default">
    <div class = "panel-heading">
-      Add Operator
+      Edit Operator
        <span class="pull-right" style="padding-top: 10px">
 		<button type="button" class="btn btn-primary" onclick="location.href='view-operators'" >
-		<span class="glyphicon glyphicon-backward"></span>  
+		<span class="glyphicon glyphicon-backward"></span> 
 		Back To List</button></span>
 			               
    </div>
    
 <div class = "panel-body">
 <div class="tab-content">
-<form:form action="process-operatorinfo" commandName="addoperator" autocomplete="off">
+<form:form action="update-operatorinfo" commandName="updateoperator" autocomplete="off">
       <c:if test="${smsg!=null && smsg!=''}">
 	<div class="alert alert-success alert-dismissable">
 	   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -104,7 +104,7 @@
          </div>
         
          <div class="form-group">
-            <label class="col-sm-12 control-label text-left">Employee DOB</label>
+            <label class="col-sm-12 control-label text-left">Employee DOB(YYYY-MM-DD)</label>
             <div class="col-sm-12 inputGroupContainer">
                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                 <form:input type="text" path="empdob" placeholder="YYYY/MM/DD" class="form-control pull-right" id="reservation" readonly="true"/> </div>
@@ -137,13 +137,14 @@
          
    		<div class="col-sm-12 ">
          <div class="form-group">
-  		    <label for="happy" class="col-sm-12 col-sm-12 control-label text-right">Active / In-Active?</label>
-   			<div class="col-sm-12 col-sm-12 control-label text-right">
+            <br/>
+  		    <label for="happy" class="col-sm-6 control-label text-left">Active / In-Active?</label>
+   			<div class="col-sm-6 control-label text-left">
    				<div id="radioBtn" class="btn-group  text-right">
-   					<a class="btn btn-primary btn-sm active" data-toggle="isactive" data-title="true">YES</a>
-   					<a class="btn btn-primary btn-sm notActive" data-toggle="isactive" data-title="false">NO</a>
+   					<form:radiobutton path="status" value="true"/>YES
+   					<form:radiobutton path="status" value="false"/>NO
    				</div>
-   				<form:hidden path="status" />
+   				
    			</div>
    		</div>
    	</div>
@@ -213,15 +214,16 @@
             </div>
          </div>
 </div>
-
+<br>
+<form:hidden path="rowid"/>
 </div>
-<div class="col-sm-12">
+<div class="col-sm-12" style="display: ${viewoperator}">
    <div class="col-sm-6" align="left">
       <button type="reset" class="btn btn-danger">Clear</button>   
    </div>
    <div class="col-sm-6" align="right">
 
-      <button type="submit" class="btn btn-success submitdata">Submit</button>   
+      <button type="submit" class="btn btn-success submitdata" ${disabled}>Update</button>   
    </div>
 </div>
 

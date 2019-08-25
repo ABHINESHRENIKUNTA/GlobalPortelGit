@@ -173,7 +173,8 @@ a:hover, a:active, a:focus {
 .main-header {
 	position: relative;
 	max-height: 100px;
-	z-index: 1030
+	z-index: 1030;
+	box-shadow: #CCCFFF 20px 10px 20px
 }
 
 .main-header>.navbar {

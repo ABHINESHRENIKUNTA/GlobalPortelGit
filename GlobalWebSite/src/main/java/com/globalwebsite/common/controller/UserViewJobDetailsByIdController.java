@@ -30,6 +30,7 @@ public class UserViewJobDetailsByIdController {
 		 int jobdetailid=stdmodel.getRowid();
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
 		 model.addAttribute("listData", listData);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewConsultantJobsById", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-userreferraljobsid")
@@ -41,6 +42,7 @@ public class UserViewJobDetailsByIdController {
 		 int jobdetailid=stdmodel.getRowid();
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
 		 model.addAttribute("listData", listData);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewReferralJobsById", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-userpostedbyadminid")
@@ -52,6 +54,7 @@ public class UserViewJobDetailsByIdController {
 		 int jobdetailid=stdmodel.getRowid();
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
 		 model.addAttribute("listData", listData);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewJobsPostedByAdminById", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-useremployeepostedjobsid")
@@ -64,6 +67,7 @@ public class UserViewJobDetailsByIdController {
 		 List<AdminSubmissionModel> listData = userserviceimpl.findSelectedViewJobInfo(jobdetailid, tablekey);
 		 logger.info("userViewEmployerPostedJobsScreenId: "+listData);
 		 model.addAttribute("listData", listData);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewEmployerPostedJobsById", "listjobdetails", stdmodel);
 	 }
 

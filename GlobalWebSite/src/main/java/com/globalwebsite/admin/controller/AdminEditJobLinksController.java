@@ -32,6 +32,7 @@ public class AdminEditJobLinksController extends DatabaseTableNames {
 		model.addAttribute("adminupdatestuinfo", stdmodel);
 		Map<String, String> mapvalues = tableReferenceData();
 		String selectpage = stdmodel.getTablekey();
+		logger.info("adminViewTypeOneJspForUpdate:: "+selectpage);
 		int rowId = stdmodel.getRowid();
 		String retvalue = "studentadmin/adminEditOneJobInfo";
 		String retvalueCREP = "studentadmin/adminEditOneJobInfo";

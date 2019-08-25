@@ -23,22 +23,47 @@ public class AdminOperatorController {
 	@Autowired
 	private AdminServiceInterfaceImpl adminservices;
 	
+	@Autowired
+	AdminRolePermissionController apr;
+	
 	@Value("${superadmin.roleid}")
 	private int superadminid;
 	
 @RequestMapping("/view-operators")
-public ModelAndView viewAddedOperatorPage(Model model){
-	
+public ModelAndView viewAddedOperatorPage(Model model, AdminOperatorModel aom, HttpServletRequest req){
+	boolean rolenotnull = req.getSession().getAttribute("roleid") != null;
+	logger.info("viewAddedOperatorPage");
+	if (rolenotnull==false) {
+		return new ModelAndView("admin/somethingError");
+	}
+	String ssroleid = (String)req.getSession().getAttribute("roleid");
+	int roleid = Integer.valueOf(ssroleid);
+	String permisaccess = apr.adminManagePermissions(roleid, req);
+	if(permisaccess == "accessdenied"){
+		return new ModelAndView("admin/somethingError");
+	}
 	List<AdminOperatorModel> listofOperators = adminservices.getAllOperators();
 	model.addAttribute("listofOperators", listofOperators);
 	model.addAttribute("superadminid", superadminid);
-	return new ModelAndView("admin/adminViewOperators");
+	model.addAttribute("smsg", req.getParameter("smsg"));
+	model.addAttribute("emsg", req.getParameter("emsg"));
+	return new ModelAndView("admin/adminViewOperators","viewoperator", aom);
 	
 	
 }
 @RequestMapping("/load-addoperatorpage")
 public ModelAndView viewAddOperatorPage(Model model,AdminOperatorModel aom,HttpServletRequest req ){
-	
+	boolean rolenotnull = req.getSession().getAttribute("roleid") != null;
+	logger.info("viewAddedOperatorPage");
+	if (rolenotnull==false) {
+		return new ModelAndView("admin/somethingError");
+	}
+	String ssroleid = (String)req.getSession().getAttribute("roleid");
+	int roleid = Integer.valueOf(ssroleid);
+	String permisaccess = apr.adminManagePermissions(roleid, req);
+	if(permisaccess == "accessdenied"){
+		return new ModelAndView("admin/somethingError");
+	}
 	List<AdminRolePermissionModel> listallroles = adminservices.getAllRoles();
 	model.addAttribute("listallroles", listallroles);
 	model.addAttribute("smsg", req.getParameter("smsg"));

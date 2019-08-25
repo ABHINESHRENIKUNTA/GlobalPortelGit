@@ -129,9 +129,9 @@
 								<i class="fa fa-linkedin fa-3px" style="color:#0077B5; padding: 2px;cursor: pointer;font-size: 25px; "></i>
 							</span>
 							
-							<span onclick="mailToFun();">
+							<!-- <span onclick="mailToFun();">
 								<i class="fa fa-envelope fa-3px" style="color:#f1d592; padding: 2px;cursor: pointer;font-size: 25px; "></i>
-							</span>
+							</span> -->
         				</li>
                     </ul>
                    <button class="btn btn-warning"><i class="glyphicon glyphicon-thumbs-up" style="padding-right: 3px;"></i> Apply Now</button></div> 
@@ -140,11 +140,11 @@
               </div>
             </div>
              <h4><a href="#.">Skill Requirement</a></h4>
-            <p>${jobDetails.skillreq}</p>
+            <p style="white-space: pre-wrap;">${jobDetails.skillreq}</p>
              <h4><a href="#.">Job Responsibilities</a></h4>
-            <p>${jobDetails.jobresponsibilities}</p>
+            <p style="white-space: pre-wrap;">${jobDetails.jobresponsibilities}</p>
             <h4><a href="#.">Other Information</a></h4>
-            <p>${jobDetails.otherinfo}</p>
+            <p style="white-space: pre-wrap;">${jobDetails.otherinfo}</p>
             <h4><a href="#.">Contact Information</a></h4>
             <p>Email: ${jobDetails.emailid}</p>
             <p>Contact: ${jobDetails.contactnum}</p>
@@ -212,14 +212,14 @@
             url = "https://www.linkedin.com/shareArticle?mini=true&url=" + pageUrl;
             socialWindow(url);
         }
-        var pageTitle = encodeURIComponent(page.title);
+      /*   var pageTitle = encodeURIComponent(page.title);
         var body_message = $('#content-result').html();
         var email = 'test@mail.com';
         var subject = pageTitle;
         var mailto_link = 'mailto:' + email + '?subject=' + subject + '&body=' + body_message;
         function mailToFun() {
         	socialWindow(mailto_link);
-        }
+        } */
     </script>
     
   </body>

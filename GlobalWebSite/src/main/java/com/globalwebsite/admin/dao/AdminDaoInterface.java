@@ -92,6 +92,8 @@ public interface AdminDaoInterface {
 
 	int updateAdminAddJobAllJobDetailsInfo(AdminSubmissionModel stdmodel);
 
+	int updateOperatorById(AdminOperatorModel aom);
+
 
 
 

@@ -145,5 +145,8 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
 	public int getPostedbyEmpJobsCount(int activenum) {
 		return userdaoimpl.getPostedbyEmpJobsCount(activenum);
 	}
+	public List<AdminSubmissionModel> fetchJobDetailsByFilter(String tablekey, String wherecond, int activenum) {
+		return userdaoimpl.fetchJobDetailsByFilter(tablekey,wherecond, activenum);
+	}
 
 }

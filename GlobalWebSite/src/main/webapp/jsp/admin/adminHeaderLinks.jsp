@@ -1,7 +1,11 @@
 
-        <%if(session.isNew()||request.getSession(false) == null){
+        <%if((session.isNew()||request.getSession(false) == null)||(null==session.getAttribute("username"))){
 		 response.sendRedirect("adminlogout");	
 	     System.out.print("****************session out**********************");
+	}else{
+		 
+		 System.out.print("****************session not time out**********************");
+		 System.out.print("**************************************"+ session.getAttribute("username"));
 	}
 	
        

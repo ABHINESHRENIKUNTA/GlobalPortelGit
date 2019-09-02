@@ -343,5 +343,18 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 		
 		return totalcount;
 	}
+
+	public List<AdminSubmissionModel> fetchJobDetailsByFilter(String tablekey, String wherecond, int activenum) {
+		String sql=UserSqlQueries.fetchJobDetailsByFilter_query(tablekey, wherecond);
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{activenum},  new AdminViewConsuRefAdminPostSubmissionMapper());
+			logger.info("fetchJobDetailsByFilter: "+sql);
+			
+		} catch (Exception e) {
+			logger.info("fetchJobDetailsByFilter: "+e);
+		}
+		return listdata;
+	}
 	
 }

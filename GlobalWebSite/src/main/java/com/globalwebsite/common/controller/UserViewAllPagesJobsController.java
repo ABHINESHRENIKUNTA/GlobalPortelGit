@@ -3,6 +3,10 @@ package com.globalwebsite.common.controller;
 import java.util.Collection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,6 +44,7 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_popular_jobsites_page";
 		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
 		 model.addAttribute("jobsList", jobsList);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewPopularJobs", "listjobdetails", stdmodel);
 	 }
 	
@@ -48,6 +53,7 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_centralgov_jobs";
 		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
 		 model.addAttribute("jobsList", jobsList);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewCentralGovJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-userstatewisejobs")
@@ -55,14 +61,13 @@ public class UserViewAllPagesJobsController {
 		 List<StatesModel> stateList = adminservices.findAllStates();
 		 model.addAttribute("stateList", stateList);
 		 List<AdminSubmissionModel> jobsList = userserviceimpl.getActiveStatewiseJobs(activenum);
-		 logger.info("State List Size::: "+jobsList.size());
+		 logger.info("State List Size::: "+CollectionUtils.size(jobsList));
 		 model.addAttribute("jobsList", jobsList);
 		 return new ModelAndView("user/userViewStateWiseJobs", "statewise", stdmodel);
 	 }
 	 @RequestMapping("/view-userViewAbroadJobs")
 	 public ModelAndView userViewAbroadJobScreen(Model model, AdminSubmissionModel stdmodel){
 		 List<CountryModel> countryList = adminservices.findAllCountries();
-		 logger.info("countryList::: "+countryList);
 		 List<AdminSubmissionModel> jobsList = userserviceimpl.getActiveAbroadJobs(activenum);
 		 model.addAttribute("jobsList", jobsList);
 		 model.addAttribute("countryList", countryList);
@@ -74,6 +79,7 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_it_jobs";
 		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
 		 model.addAttribute("jobsList", jobsList);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewITJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-usernonitjobs")
@@ -81,6 +87,7 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_nonit_jobs";
 		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
 		 model.addAttribute("jobsList", jobsList);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userNonITJobs", "listjobdetails", stdmodel);
 	 }
 	
@@ -89,6 +96,7 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_freejobtraining_jobs";
 		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
 		 model.addAttribute("jobsList", jobsList);
+		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewFreeTrainingInstJobs", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-usertrainingplacinst")
@@ -101,46 +109,116 @@ public class UserViewAllPagesJobsController {
 	 }
 	 
 	 @RequestMapping("/view-userconsultantsjobs")
-	 public ModelAndView userViewConsultantJobScreen(Model model, AdminSubmissionModel stdmodel){
+	 public ModelAndView userViewConsultantJobScreen(Model model, AdminSubmissionModel stdmodel, HttpServletRequest request){
 		 String tablekey="global_jobconsult_jobs";
-		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
-		 model.addAttribute("listData", listData);
-		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
-		 model.addAttribute("industryList", industryList);
-		 model.addAttribute("tablekey", tablekey);
+		 boolean isFilterResults = filterJobDetailsData(model, stdmodel, request);
+		 fetchAllJobListDetails(model, tablekey, isFilterResults);
 		 return new ModelAndView("user/userViewConsultantJobs", "listjobdetails", stdmodel);
 	 }
+
 	 
 	 @RequestMapping("/view-userreferraljobs")
-	 public ModelAndView userViewReferralScreen(Model model, AdminSubmissionModel stdmodel){
+	 public ModelAndView userViewReferralScreen(Model model, AdminSubmissionModel stdmodel, HttpServletRequest request){
 		 String tablekey="global_refpost_jobs";
-		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
-		 model.addAttribute("listData", listData);
-		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
-		 model.addAttribute("industryList", industryList);
-		 model.addAttribute("tablekey", tablekey);
+		 boolean isFilterResults = filterJobDetailsData(model, stdmodel, request);
+		 fetchAllJobListDetails(model, tablekey, isFilterResults);
 		 return new ModelAndView("user/userViewReferralJobs", "listjobdetails", stdmodel);
 	 }
 	
 	 @RequestMapping("/view-userpostedbyadmin")
-	 public ModelAndView userViewPostedByAdminScreen(Model model, AdminSubmissionModel stdmodel){
+	 public ModelAndView userViewPostedByAdminScreen(Model model, AdminSubmissionModel stdmodel, HttpServletRequest request){
 		 String tablekey="global_postedbyadmin_jobs";
-		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
-		 model.addAttribute("listData", listData);
-		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
-		 model.addAttribute("industryList", industryList);
-		 model.addAttribute("tablekey", tablekey);
+		 boolean isFilterResults = filterJobDetailsData(model, stdmodel, request);
+		 fetchAllJobListDetails(model, tablekey, isFilterResults);
 		 return new ModelAndView("user/userViewJobsPostedByAdmin", "listjobdetails", stdmodel);
 	 }
 	 @RequestMapping("/view-useremployeepostedjobs")
-	 public ModelAndView userViewEmployerPostedJobsScreen(Model model, AdminSubmissionModel stdmodel){
+	 public ModelAndView userViewEmployerPostedJobsScreen(Model model, AdminSubmissionModel stdmodel, HttpServletRequest request){
 		 String tablekey="global_empposted_jobs";
-		 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
-		 model.addAttribute("listData", listData);
-		 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
-		 model.addAttribute("industryList", industryList);
-		 model.addAttribute("tablekey", tablekey);
-		 return new ModelAndView("user/userViewEmployerPostedJobs", "listjobdetails", listData);
+		 boolean isFilterResults = filterJobDetailsData(model, stdmodel, request);
+		 fetchAllJobListDetails(model, tablekey, isFilterResults);
+		 return new ModelAndView("user/userViewEmployerPostedJobs", "listjobdetails", stdmodel);
 	 }
+	 
+	 
+	 public boolean filterJobDetailsData(Model model,AdminSubmissionModel stdmodel, HttpServletRequest request){
+			String[] jobtypelist = request.getParameterValues("jobtype");
+			String[] industryidlist = request.getParameterValues("industryid");
+			String tablekey = request.getParameter("tablekey");
+			String wherecond = "";
+			String indulist="";
+			String joblist="";
+			boolean isFilterResults = false;
+			if(jobtypelist!=null && industryidlist!=null){
+					for (int i = 0; i < industryidlist.length; i++) {
+						indulist = industryidlist.length > 1? indulist += industryidlist[i]+",":industryidlist[i];
+					}
+					for (int j = 0; j < jobtypelist.length; j++) {
+						joblist = jobtypelist.length > 1? joblist += "'"+jobtypelist[j]+"'"+",":"'"+jobtypelist[j]+"'";
+					}
+					char replaceWith = ' ';
+					indulist= industryidlist.length > 1?replaceLastCharacter(indulist, replaceWith).trim():indulist;
+					joblist= jobtypelist.length > 1?replaceLastCharacter(joblist, replaceWith).trim():joblist;
+					wherecond = "and jd.industry_id in("+indulist+") and jd.jobtype in("+joblist+")";
+					logger.info("jobtypelist!=null && industryidlist!=null:: "+wherecond);
+					isFilterResults = true;
+					List<AdminSubmissionModel> listData = userserviceimpl.fetchJobDetailsByFilter(tablekey, wherecond, activenum);
+					model.addAttribute("listData", listData);
+				}else if(jobtypelist!=null && null==industryidlist){
+					for (int j = 0; j < jobtypelist.length; j++) {
+						joblist = jobtypelist.length > 1? joblist += "'"+jobtypelist[j]+"'"+",":"'"+jobtypelist[j]+"'";
+					}
+					char replaceWith = ' ';
+					joblist= jobtypelist.length > 1?replaceLastCharacter(joblist, replaceWith).trim():joblist;
+					wherecond = "and jd.jobtype in("+joblist+")";
+					logger.info("jobtypelist!=null && null==industryidlist:: "+wherecond);
+					List<AdminSubmissionModel> listData = userserviceimpl.fetchJobDetailsByFilter(tablekey, wherecond, activenum);
+					isFilterResults = true;
+					model.addAttribute("listData", listData);
+				}else if(industryidlist!=null && null==jobtypelist){
+					for (int i = 0; i < industryidlist.length; i++) {
+						indulist = industryidlist.length > 1? indulist += industryidlist[i]+",":industryidlist[i]+"";
+					}
+					char replaceWith = ' ';
+					indulist= industryidlist.length > 1?replaceLastCharacter(indulist, replaceWith).trim():indulist;
+					wherecond = "and jd.industry_id in("+indulist+")";
+					logger.info("industryidlist!=null && null==jobtypelist:: "+wherecond);
+					isFilterResults = true;
+					List<AdminSubmissionModel> listData = userserviceimpl.fetchJobDetailsByFilter(tablekey, wherecond, activenum);
+					model.addAttribute("listData", listData);
+				}else{
+					logger.info("Nothing is selected to filter job details:");
+				}
+			
+			
+			return  isFilterResults;
+			
+		}
+	 
+	 /**
+		 * @param model
+		 * @param tablekey
+		 * @param isFilterResults
+		 */
+		public void fetchAllJobListDetails(Model model, String tablekey, boolean isFilterResults) {
+			if(!isFilterResults){
+				 List<AdminSubmissionModel> listData = userserviceimpl.findAllViewJobInfo(activenum, tablekey);
+			     model.addAttribute("listData", listData);
+			 }
+			 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
+			 model.addAttribute("industryList", industryList);
+			 model.addAttribute("tablekey", tablekey);
+		}
+
+		/**
+		 * @param str
+		 * @param replaceWith
+		 * @return
+		 */
+		public String replaceLastCharacter(String str, char replaceWith) {
+			StringBuilder sBuilder = new StringBuilder(str);
+			sBuilder.setCharAt(sBuilder.length()-1, replaceWith);
+			return sBuilder.toString();
+		}
 	
 }

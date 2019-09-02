@@ -24,10 +24,7 @@
               Find your link
               <small>There is a way to do it better...find it</small>
             </h1>
-            <ol class="breadcrumb">
-              <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li class="active">Employer Posted Job Links</li>
-            </ol>
+
           </section>
 
           <!-- Main content -->

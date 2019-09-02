@@ -33,22 +33,22 @@
           <section class="content">
            <div class="col-md-12">
               <!-- Primary box -->
-              <div class="box box-solid box-primary">
+              <div class="box box-solid box-purple">
                 <div class="box-header">
                   <h3 class="box-title"><spring:eval expression="@viewPropertyConfigurer.getProperty('employee.jobs')" /></h3> <code>Find your best job..</code>
                   <div class="box-tools pull-right">
-                    <button class="btn btn-primary btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
-                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-purple btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
+                    <button class="btn btn-purple btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
                    <!--  <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button> -->
                   </div>
                 </div>
-                <div class="box-body">
-                  <div class="row">
-            <div class="col-md-3">
-              <a href="#" class="btn btn-primary btn-block margin-bottom">Select & Click Here to Filter Jobs</a>
-            <form action="#" id="industryform">
+                <div class="box-body" style="box-shadow: inset 0 0 2px grey;">
+                  <div class="row" >
+            <div class="col-md-3" >
+              <a href="#" class="btn btn-purple btn-block margin-bottom" onclick="location.href='view-useremployeepostedjobs'"><i style="color:white"> Clear Filters </i></a>
+            <form:form action="view-useremployeepostedjobs" id="industryform" commandName="filterdetails">
             <input type="hidden" name="tablekey" id="tablekey" value="${tablekey}">
-            <div class="widget">
+            <div class="widget" >
              <h4 class="widget-title">Jobs By Type</h4>
             <ul class="optionlist">
                 <li>
@@ -70,7 +70,7 @@
             </ul>
             <!-- title end --> 
            </div>
-              <div class="box box-solid">
+              <div class="box box-solid" >
 
                 <!-- <div class="box-header with-border">
                   <h3 class="box-title">Labels</h3>
@@ -89,7 +89,7 @@
              </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-            </form>
+            </form:form>
             </div><!-- /.col -->
             <div class="col-md-9">
               <div class="box box-primary">

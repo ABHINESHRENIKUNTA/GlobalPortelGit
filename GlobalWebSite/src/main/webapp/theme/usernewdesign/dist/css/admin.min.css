@@ -3902,7 +3902,17 @@ table.text-center, table.text-center td, table.text-center th {
 	{
 	color: #fff !important
 }
+.bg-white, .bg-white-active
 
+	{
+	color: #ae44b7!important
+}
+
+.bg-white {
+	color: #000;
+	background-color: #ffffff !important;
+	box-shadow: 10px 10px 10px;
+}
 .bg-gray {
 	color: #000;
 	background-color: #d2d6de !important
@@ -3975,6 +3985,16 @@ table.text-center, table.text-center td, table.text-center th {
 .bg-gray-active {
 	color: #000;
 	background-color: #b5bbc8 !important
+}
+.bg-gray-active {
+	color: #000;
+	background-color: #b5bbc8 !important
+}
+.bg-white:HOVER {
+	color: #fff !important;
+	background-color: #189ca3!important;
+	cursor: pointer;
+	box-shadow: 20px 20px 20px;
 }
 
 .bg-black-active {

@@ -23,6 +23,10 @@ public class UserSqlQueries {
 	public static String findAllViewJobInfo_query(String tablekey) {
 		return "select jd.*,it.industry_name from "+tablekey+" jd, industry_type it where jd.industry_id=it.id and jd.status=? ";
 	}
+	public static String fetchJobDetailsByFilter_query(String tablekey, String wherecond) {
+		return "select jd.*,it.industry_name from "+tablekey+" jd, industry_type it where jd.industry_id=it.id "
+				+ ""+wherecond+" and jd.status=?";
+	}
 	public static String findSelectedViewJobInfo_query(String tablekey) {
 		return "select jd.*,it.industry_name from "+tablekey+" jd, industry_type it where jd.id=? and jd.industry_id=it.id";
 	}

@@ -45,30 +45,33 @@
                 <div class="box-body">
                   <div class="row">
             <div class="col-md-3">
-              <a href="#" class="btn btn-primary btn-block margin-bottom">Select & Click Here to Filter Jobs</a>
+              <a href="#" class="btn btn-primary btn-block margin-bottom" onclick="location.href='view-userconsultantsjobs'">Clear Filters</a>
+            <form:form action="view-userconsultantsjobs" id="industryform" commandName="filterdetails">
+            <input type="hidden" name="tablekey" id="tablekey" value="${tablekey}">
             <div class="widget">
              <h4 class="widget-title">Jobs By Type</h4>
             <ul class="optionlist">
                 <li>
-                <input type="checkbox" name="jobtype" id="Contractor">
+                <input type="checkbox" name="jobtype" id="Contractor" class="filterjob" value="Contractor">
                 <label for="Contractor"></label>
                	Contractor <span></span> </li>
               <li>
-                <input type="checkbox" name="jobtype" id="Full-time">
+                <input type="checkbox" name="jobtype" id="Full-time" class="filterjob" value="Full-time">
                 <label for="Full-time"></label>
                	Full-time <span></span> </li>
               <li>
-                <input type="checkbox" name="jobtype" id="Internship">
+                <input type="checkbox" name="jobtype" id="Internship" class="filterjob" value="Internship">
                 <label for="Internship"></label>
                	Internship <span></span> </li>
               <li>
-                <input type="checkbox" name="jobtype" id="Part-time">
-                <label for="3dgraphic"></label>
-                3D Graphic Designer <span></span> </li>
+                <input type="checkbox" name="jobtype" id="Part-Time" class="filterjob" value="Part-Time">
+                <label for="Part-Time"></label>
+                Part-Time <span></span> </li>
             </ul>
             <!-- title end --> 
            </div>
               <div class="box box-solid">
+
                 <!-- <div class="box-header with-border">
                   <h3 class="box-title">Labels</h3>
                 </div> --> 
@@ -78,15 +81,15 @@
             <ul class="optionlist">
             <c:forEach items="${industryList}" var="industrydata">
               <li>
-                <input type="checkbox" name="industryid" id="${industrydata.jobname}">
+                <input type="checkbox" name="industryid" class="filterjob" id="${industrydata.jobname}" value="${industrydata.jobid}">
                 <label for="${industrydata.jobname}"></label>
                 ${industrydata.jobname} <span style="padding-right: 10px;">${industrydata.jobscount}</span> </li>
             </c:forEach>
-              
             </ul>
              </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
+            </form:form>
             </div><!-- /.col -->
             <div class="col-md-9">
               <div class="box box-primary">
@@ -178,7 +181,12 @@
 
    <%@include file="userNewFooterJsLinks.jsp" %>
    <%@include file="jobDetailsPaginationJS.jsp" %>
-     
+      <script type="text/javascript">
+	    $(".filterjob").on("change", function(){
+	        $("#industryform").submit();
+	        
+	});
+   </script>
     
   </body>
 </html>

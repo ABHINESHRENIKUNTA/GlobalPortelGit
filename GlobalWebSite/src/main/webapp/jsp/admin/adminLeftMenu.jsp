@@ -208,7 +208,7 @@
                 </a>
                </li>
              </c:if> 
-             <c:if test="${permissions == 'organization'}">
+             <c:if test="${organization == 'yespermission'}">
               <li>
               <a href="adminvieworg" >
                   <span class="fa fa-university"></span>

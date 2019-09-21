@@ -32,7 +32,7 @@ public class AdminOperatorMapper implements RowMapper<AdminOperatorModel> {
 		aom.setRolename(rs.getString("role_name"));
 		aom.setStatus(rs.getBoolean("status"));
 		aom.setRowid(rs.getInt("global_login_id"));
-		
+		aom.setOrgid(rs.getInt("org_id"));
 		return aom;
 	}
 

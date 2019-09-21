@@ -91,7 +91,16 @@
                                   <td> ${operatorList.username} </td>
                                   <td> ${operatorList.rolename} </td>
                                   <td> ${operatorList.createdby} </td>
-                                  <td> ${operatorList.status} </td>
+                                  <td> 
+                                  <c:choose>
+                                 		<c:when test="${operatorList.status==true}"> 
+                                   		<span class="label label-success arrowed"> Enabled </span> 
+                                 		</c:when>
+                                 		<c:otherwise> 
+                                   			<span class="label label-danger arrowed"> Disabled </span> 
+                                 		</c:otherwise>
+                               		</c:choose>
+                                  </td>
                                   <td>
                                   <div class="col-sm-12">
                                     <form:form action="load-viewoperatorsbyid" commandName="viewoperator">

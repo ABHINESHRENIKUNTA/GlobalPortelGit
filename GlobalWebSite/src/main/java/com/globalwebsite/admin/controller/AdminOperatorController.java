@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.globalwebsite.admin.model.AdminOperatorModel;
+import com.globalwebsite.admin.model.AdminOrganizationModel;
 import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 
@@ -44,6 +45,7 @@ public ModelAndView viewAddedOperatorPage(Model model, AdminOperatorModel aom, H
 	}
 	List<AdminOperatorModel> listofOperators = adminservices.getAllOperators();
 	model.addAttribute("listofOperators", listofOperators);
+	
 	model.addAttribute("superadminid", superadminid);
 	model.addAttribute("smsg", req.getParameter("smsg"));
 	model.addAttribute("emsg", req.getParameter("emsg"));
@@ -66,6 +68,10 @@ public ModelAndView viewAddOperatorPage(Model model,AdminOperatorModel aom,HttpS
 	}
 	List<AdminRolePermissionModel> listallroles = adminservices.getAllRoles();
 	model.addAttribute("listallroles", listallroles);
+	
+	List<AdminOrganizationModel> orgList = adminservices.findAllOrganizations();
+	model.addAttribute("orgList", orgList);
+	
 	model.addAttribute("smsg", req.getParameter("smsg"));
 	model.addAttribute("emsg", req.getParameter("emsg"));
 	return new ModelAndView("admin/adminAddOperators", "addoperator", aom);

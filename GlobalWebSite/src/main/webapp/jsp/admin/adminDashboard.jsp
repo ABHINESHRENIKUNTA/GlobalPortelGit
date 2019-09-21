@@ -597,5 +597,16 @@ element.style {
 		</section>
 
  <%@include file="/jsp/admin/adminBodyScriptLinks.jsp" %>
+ <script type="text/javascript">
+ $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
+ //jQuery UI sortable for the todo list
+ $(".todo-list").sortable({
+   placeholder: "sort-highlight",
+   handle: ".handle",
+   forcePlaceholderSize: true,
+   zIndex: 999999
+ });
+ 
+ </script>
 </body>
 </html>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.globalwebsite.admin.model.AdminOperatorModel;
+import com.globalwebsite.admin.model.AdminOrganizationModel;
 import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 
@@ -27,6 +28,10 @@ public class AdminViewOperatorByIdController {
 		logger.info("You are in adminViewOperatorsById:: "+aom.getRowid());
 		List<AdminRolePermissionModel> listallroles = adminservices.getAllRoles();
 		model.addAttribute("listallroles", listallroles);
+		
+		List<AdminOrganizationModel> orgList = adminservices.findAllOrganizations();
+		model.addAttribute("orgList", orgList);
+		
 		int rowId = aom.getRowid();
 		List<AdminOperatorModel> listofOperators = adminservices.getOperatorById(rowId);
 		for (AdminOperatorModel lop : listofOperators) {
@@ -50,6 +55,7 @@ public class AdminViewOperatorByIdController {
 			aom.setRolename(lop.getRolename());
 			aom.setStatus(lop.isStatus());
 			aom.setRowid(lop.getRowid());
+			aom.setOrgid(lop.getOrgid());
 			
 		}
 		model.addAttribute("listofOperators", listofOperators);
@@ -64,6 +70,10 @@ public class AdminViewOperatorByIdController {
 		logger.info("You are in adminViewEditOperatorsById:: "+aom.getRowid());
 		List<AdminRolePermissionModel> listallroles = adminservices.getAllRoles();
 		model.addAttribute("listallroles", listallroles);
+		
+		List<AdminOrganizationModel> orgList = adminservices.findAllOrganizations();
+		model.addAttribute("orgList", orgList);
+		
 		int rowId = aom.getRowid();
 		List<AdminOperatorModel> listofOperators = adminservices.getOperatorById(rowId);
 		for (AdminOperatorModel lop : listofOperators) {
@@ -87,6 +97,7 @@ public class AdminViewOperatorByIdController {
 			aom.setRolename(lop.getRolename());
 			aom.setStatus(lop.isStatus());
 			aom.setRowid(lop.getRowid());
+			aom.setOrgid(lop.getOrgid());
 		}
 		model.addAttribute("listofOperators", listofOperators);
 		model.addAttribute("disabled", "");

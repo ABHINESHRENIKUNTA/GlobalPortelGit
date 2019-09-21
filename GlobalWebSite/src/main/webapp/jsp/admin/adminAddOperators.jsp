@@ -54,6 +54,7 @@
 	</div>
 	</c:if>
 	<div class="col-sm-12">
+	<div class="col-sm-6">
 	<div class="form-group">
      <label class="col-sm-12 control-label text-left">Assign Role</label>
      <div class="col-sm-12 inputGroupContainer">
@@ -67,6 +68,23 @@
             </form:select>
         </div>
      </div>
+  </div>
+  </div>
+  <div class="col-sm-6">
+	<div class="form-group">
+     <label class="col-sm-12 control-label text-left">Organization</label>
+     <div class="col-sm-12 inputGroupContainer">
+        <div class="input-group">
+           <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <form:select path="orgid" class="select2-single form-control"  style="max-width:100%">
+               <form:option value="0" >Select Organization </form:option>
+               <c:forEach items="${orgList}" var="organizationList">
+               <form:option value="${organizationList.orgid}">${organizationList.orgname}</form:option>
+               </c:forEach>
+            </form:select>
+        </div>
+     </div>
+  </div>
   </div>
   <div class="col-sm-6">
          <div class="form-group">
@@ -263,10 +281,15 @@
       	     var selroleid = $("#roleid").val();	
       	     var username = $("#username").val();	
       	     var password = $("#password").val();	
+      	     var orgid = $("#orgid").val();	
       	     if(selroleid=="0"){
       	    	 alert("Please select role")
       	    	 return false;
       	     }
+      	   if(orgid=="0"){
+    	    	 alert("Please select organization");
+    	    	 return false;
+    	     }
       	     if(username == "" || username.trim()==""){
       	    	 alert("Please enter username")
       	    	 return false;

@@ -72,7 +72,11 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 		permissionurl = permissionurl+""+apndQryStr;
 		String clientipaddr = getClientIpAddress(request);
 		logger.info("Client IP ADDRESS:: "+clientipaddr);
-		
+		  String ipAddress = request.getHeader("X-FORWARDED-FOR");  
+	       if (ipAddress == null) {  
+	         ipAddress = request.getRemoteAddr();  
+	         logger.info("***Client IP ADDRESS:: "+ipAddress);
+	   }
 		// log it
 		if (logger.isDebugEnabled()) {
 			logger.debug("[" + handler + "] executeTime : " + executeTime + "ms");

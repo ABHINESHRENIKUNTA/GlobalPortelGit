@@ -23,9 +23,23 @@ public class AdminOperatorModel {
 	private String createdby;
 	private boolean status;
 	private int rowid;
-
+	private int orgid;
+	private String orgname;
+	
 
 	
+	public int getOrgid() {
+		return orgid;
+	}
+	public void setOrgid(int orgid) {
+		this.orgid = orgid;
+	}
+	public String getOrgname() {
+		return orgname;
+	}
+	public void setOrgname(String orgname) {
+		this.orgname = orgname;
+	}
 	public String getUsername() {
 		return username;
 	}

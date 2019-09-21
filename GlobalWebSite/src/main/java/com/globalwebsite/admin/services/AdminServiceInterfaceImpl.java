@@ -13,6 +13,7 @@ import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.model.AdminOperatorModel;
+import com.globalwebsite.admin.model.AdminOrganizationModel;
 import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
@@ -222,6 +223,18 @@ public List<AdminOperatorModel> getOperatorById(int rowId){
 }
 public int updateOperatorById(AdminOperatorModel aom) {
 	return admindaoimpl.updateOperatorById(aom);
+}
+public List<AdminOrganizationModel> findAllOrganizations() {
+	return admindaoimpl.findAllOrganizations();
+}
+public int insertOrganizationData(AdminOrganizationModel ao) {
+	return admindaoimpl.insertOrganizationData(ao);
+}
+public int updateOrganizationData(AdminOrganizationModel ao, int orgid) {
+	return admindaoimpl.updateOrganizationData(ao, orgid);
+}
+public List<AdminOrganizationModel> findOrganizationById(int orgid) {
+	return admindaoimpl.findOrganizationById(orgid);
 }
 
 

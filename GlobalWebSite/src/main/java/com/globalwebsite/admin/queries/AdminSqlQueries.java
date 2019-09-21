@@ -44,6 +44,11 @@ public class AdminSqlQueries {
 			+ "roles rl where rl.role_id=gal.roleid";
 	public static final String GETOPERATORBYID_QUERY = "select gal.*,rl.role_name from global_admin_login1 gal, "
 			+ "roles rl where rl.role_id=gal.roleid and gal.global_login_id=?";
+	public static final String FINDALLORGANIZATIONS_QUERY = "select * from global_organization order by org_name";
+	public static final String INSERTORGANIZATIONDATA_QUERY = "insert into global_organization (org_name,status) "
+			+ "VALUES(?, ?)";
+	public static final String UPDATEORGANIZATIONDATA_QUERY = "update global_organization set org_name=?, status=? where id=?";
+	public static final String FINDORGANIZATIONBYID_QUERY = "select * from global_organization where id=?";
 	
 	
 	/*public static final String INSERTSUBMISSIONDATA_SQL = "insert into ?"

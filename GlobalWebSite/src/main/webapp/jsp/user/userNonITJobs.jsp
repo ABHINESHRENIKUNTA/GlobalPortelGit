@@ -32,12 +32,12 @@
           <section class="content">
            <div class="col-md-12">
               <!-- Primary box -->
-              <div class="box box-solid box-purple">
+              <div class="box box-solid box-<spring:eval expression="@viewPropertyConfigurer.getProperty('box.header.color')" />">
                 <div class="box-header">
                   <h3 class="box-title"><spring:eval expression="@viewPropertyConfigurer.getProperty('nonit.jobs')" /></h3> <code>Find your best job..</code>
                   <div class="box-tools pull-right">
-                    <button class="btn btn-purple btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
-                    <button class="btn btn-purple btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-<spring:eval expression="@viewPropertyConfigurer.getProperty('box.header.color')" /> btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
+                    <button class="btn btn-<spring:eval expression="@viewPropertyConfigurer.getProperty('box.header.color')" /> btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
                    <!--  <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button> -->
                   </div>
                 </div>

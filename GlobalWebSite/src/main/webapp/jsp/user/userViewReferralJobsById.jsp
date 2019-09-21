@@ -34,12 +34,12 @@
           <section class="content">
            <div class="col-md-12">
               <!-- Primary box -->
-              <div class="box box-solid box-primary" >
+              <div class="box box-solid box-<spring:eval expression="@viewPropertyConfigurer.getProperty('box.header.color')" />" >
                 <div class="box-header">
                   <h3 class="box-title"><spring:eval expression="@viewPropertyConfigurer.getProperty('refpost.jobs')" /></h3> <code>Find your best job..</code>
                   <div class="box-tools pull-right">
-                    <button class="btn btn-primary btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
-                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-<spring:eval expression="@viewPropertyConfigurer.getProperty('box.header.color')" /> btn-sm" title="BACK" onclick="location.href='load-jobcategories'"><i class="fa fa-backward"></i></button>
+                    <button class="btn btn-<spring:eval expression="@viewPropertyConfigurer.getProperty('box.header.color')" /> btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
                    <!--  <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button> -->
                   </div>
                 </div>
@@ -134,7 +134,7 @@
 							</span> -->
         				</li>
                     </ul>
-                   <button class="btn btn-warning"><i class="glyphicon glyphicon-thumbs-up" style="padding-right: 3px;"></i> Apply Now</button></div> 
+                   <button class="btn btn-warning" id="myModel"><i class="glyphicon glyphicon-thumbs-up" style="padding-right: 3px;"></i> Apply Now</button></div> 
                 <form:hidden path="rowid" value="${jobDetails.rowid}"/>
                 </form:form>
               </div>
@@ -221,6 +221,5 @@
         	socialWindow(mailto_link);
         } */
     </script>
-    
   </body>
 </html>

@@ -149,7 +149,6 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 			adminservices.updateImageFileNameInTable(stdmodel.getTablekey(), imgpath, succsscnt);
 		}
 		
-		System.out.println("Image Path::: "+imgpath);
 		logger.info("Image Path::: "+imgpath);
 		if (succsscnt > 0) {
 			susmsg = stdmodel.getTablename() + " data successfully added.";

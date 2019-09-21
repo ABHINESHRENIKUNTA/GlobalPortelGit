@@ -94,6 +94,18 @@ public interface AdminDaoInterface {
 
 	int updateOperatorById(AdminOperatorModel aom);
 
+	List<AdminOperatorModel> getOperatorById(int rowId);
+
+	List<AdminOperatorModel> getAllOperators();
+
+	List<AdminSubmissionModel> getAllViewAdminStateWiseDataById(String tablekey, int rowId);
+
+	List<AdminSubmissionModel> getAllViewAdminAbroadDataById(String tablekey, int rowId);
+
+	List<AdminSubmissionModel> getAllViewSubmissionDataById(String tablekey, int rowId);
+
+	List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionDataById(String tablekey, int rowId);
+
 
 
 

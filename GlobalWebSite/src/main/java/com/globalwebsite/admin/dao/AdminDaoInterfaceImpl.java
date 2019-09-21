@@ -23,6 +23,7 @@ import org.springframework.stereotype.Repository;
 import com.globalwebsite.admin.mapper.AdminDeleteUserImageMapper;
 import com.globalwebsite.admin.mapper.AdminLoginMapper;
 import com.globalwebsite.admin.mapper.AdminOperatorMapper;
+import com.globalwebsite.admin.mapper.AdminOrganizationMapper;
 import com.globalwebsite.admin.mapper.AdminPermissionMapper;
 import com.globalwebsite.admin.mapper.AdminRoleMapper;
 import com.globalwebsite.admin.mapper.AdminRolePermissionMapper;
@@ -38,6 +39,7 @@ import com.globalwebsite.admin.model.AddScrollLink;
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.model.AdminOperatorModel;
+import com.globalwebsite.admin.model.AdminOrganizationModel;
 import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.model.CountryModel;
 import com.globalwebsite.admin.model.DeleteScrollLink;
@@ -730,7 +732,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		return listdata;
 		
 	}
-
+	@Override
 	public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionDataById(String tablekey, int rowId) {
 		String sql=AdminSqlQueries.getAllViewConsuRefAdminPostSubmissionDataById_Query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
@@ -743,6 +745,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		}
 		return listdata;
 	}
+	@Override
 	public List<AdminSubmissionModel> getAllViewSubmissionDataById(String tablekey, int rowId) {
 		String sql=AdminSqlQueries.getAllViewSubmissionDataById_Query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
@@ -755,7 +758,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		}
 		return listdata;
 	}
-
+	@Override
 	public List<AdminSubmissionModel> getAllViewAdminAbroadDataById(String tablekey, int rowId) {
 		String sql=AdminSqlQueries.getAllViewAdminAbroadDataById_Query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
@@ -768,7 +771,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		}
 		return listdata;
 	}
-
+	@Override
 	public List<AdminSubmissionModel> getAllViewAdminStateWiseDataById(String tablekey, int rowId) {
 		String sql=AdminSqlQueries.getAllViewAdminStateWiseDataById_Query(tablekey);
 		List<AdminSubmissionModel> listdata = null;
@@ -781,7 +784,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		}
 		return listdata;
 	}
-
+	@Override
 	public List<AdminOperatorModel> getAllOperators() {
 		String sql=AdminSqlQueries.GETALLOPERATORS_QUERY;
 		List<AdminOperatorModel> listdata = null;
@@ -795,7 +798,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		}
 		return listdata;
 	}
-	
+	@Override
 	public List<AdminOperatorModel> getOperatorById(int rowId) {
 		String sql=AdminSqlQueries.GETOPERATORBYID_QUERY;
 		List<AdminOperatorModel> listdata = null;
@@ -806,6 +809,60 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		} catch (Exception e) {
 			logger.info("getOperatorById: "+ e);
 			logger.info("getOperatorById: "+ sql);
+		}
+		return listdata;
+	}
+
+	public List<AdminOrganizationModel> findAllOrganizations() {
+		String sql=AdminSqlQueries.FINDALLORGANIZATIONS_QUERY;
+		List<AdminOrganizationModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql,new AdminOrganizationMapper());
+			logger.info("findAllOrganizations: "+ sql);
+			
+		} catch (Exception e) {
+			logger.info("findAllOrganizations: "+ e);
+			logger.info("findAllOrganizations: "+ sql);
+		}
+		return listdata;
+	}
+
+	public int insertOrganizationData(AdminOrganizationModel ao) {
+		int updatecnt=0;
+		String sql=AdminSqlQueries.INSERTORGANIZATIONDATA_QUERY;
+		try {
+			updatecnt = jdbctemplate.update(sql, new Object[]{ao.getOrgname(),ao.isIsactive()});
+			logger.info("insertOrganizationData: "+sql);
+			
+		} catch (Exception e) {
+			logger.info("insertOrganizationData: "+e);
+		}
+		return updatecnt;
+	}
+
+	public int updateOrganizationData(AdminOrganizationModel ao, int orgid) {
+		int updatecnt=0;
+		String sql=AdminSqlQueries.UPDATEORGANIZATIONDATA_QUERY;
+		try {
+			updatecnt = jdbctemplate.update(sql, new Object[]{ao.getOrgname(), ao.isIsactive(), orgid});
+			logger.info("updateOrganizationData: "+sql);
+			
+		} catch (Exception e) {
+			logger.info("updateOrganizationData: "+e);
+		}
+		return updatecnt;
+	}
+
+	public List<AdminOrganizationModel> findOrganizationById(int orgid) {
+		String sql=AdminSqlQueries.FINDORGANIZATIONBYID_QUERY;
+		List<AdminOrganizationModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{orgid}, new AdminOrganizationMapper());
+			logger.info("findOrganizationById: "+ sql);
+			
+		} catch (Exception e) {
+			logger.info("findOrganizationById: "+ e);
+			logger.info("findOrganizationById: "+ sql);
 		}
 		return listdata;
 	}

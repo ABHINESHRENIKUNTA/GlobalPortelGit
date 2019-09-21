@@ -33,7 +33,7 @@
           <section class="content">
            <div class="col-md-12">
               <!-- Primary box -->
-              <div class="box box-solid bg-purple" style="box-shadow: 10px 10px 5px;  border-radius: 15px">
+              <div class="box box-solid bg-gray" style="box-shadow: 10px 10px 5px #888888;  border-radius: 15px">
                <%--  <div class="box-header" style=" border-radius: 15px;">
                   <h3 class="box-title"><span class="glyphicon glyphicon-th"></span> Job Categories</h3> <code>Find your best job..</code>
                   <!-- <div class="box-tools pull-right">

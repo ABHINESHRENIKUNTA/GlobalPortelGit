@@ -78,6 +78,7 @@
         <ul class="nav sidebar-menu">
           <li class="sidebar-label pt20">Menu</li>
            <c:set value="nopermission" var="permissions"></c:set>
+           <c:set value="nopermission" var="organization"></c:set>
            <c:set value="nopermission" var="operators"></c:set>
            <c:set value="nopermission" var="abroadjobs"></c:set>
            <c:set value="nopermission" var="popularjobs"></c:set>
@@ -105,6 +106,10 @@
             
             <c:if test="${menulist.permname == 'VIEW_OPERATORS'  or menulist.permname == 'EDIT_OPERATORS'}">
             <c:set value="yespermission" var="operators"></c:set>
+            </c:if> 
+            
+            <c:if test="${menulist.permname == 'VIEW_ORGANIZATION'  or menulist.permname == 'EDIT_ORGANIZATION'}">
+            <c:set value="yespermission" var="organization"></c:set>
             </c:if> 
            
             <c:if test="${menulist.permname == 'VIEW_ABROAD_JOBS'  or menulist.permname == 'EDIT_ABROAD_JOBS'}">
@@ -200,6 +205,14 @@
               <a href="view-rolepermissions" >
                   <span class="fa fa-university"></span>
                   <span class="sidebar-title">Assign Permissions</span>
+                </a>
+               </li>
+             </c:if> 
+             <c:if test="${permissions == 'organization'}">
+              <li>
+              <a href="adminvieworg" >
+                  <span class="fa fa-university"></span>
+                  <span class="sidebar-title">View Organization</span>
                 </a>
                </li>
              </c:if> 

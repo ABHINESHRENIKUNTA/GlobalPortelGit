@@ -64,6 +64,9 @@
               </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
+            
+              <li><a href="#" class="btn btn-warning"> <span class="glyphicon glyphicon-user"></span> 
+              Jobseeker Login </a></li>
               <li><a href="view-adminLogin" class="btn btn-warning"> <span class="glyphicon glyphicon-user"></span> Employee Login </a></li>
               <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>

@@ -10,7 +10,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>View Operators</title>
+    <title>Organization</title>
     <meta path="keywords" content="GlobalWebsite" />
     <meta path="description" content="GlobalWebsite">
     <meta path="author" content="GlobalWebsite">
@@ -44,7 +44,7 @@
          <div class="form-group">
             <label class="col-sm-12 control-label text-left">Organization Name</label>
             <div class="col-sm-12 inputGroupContainer">
-               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-building"></i></span>
+               <div class="input-group"><span class="input-group-addon"><i class="fa fa-institution"></i></span>
                <form:input  path="orgname" placeholder="Organization Name" class="form-control" required="true" type="text" autocomplete="false" maxlength="499"/></div>
             </div>
          </div>

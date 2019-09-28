@@ -25,10 +25,10 @@
           <div class="col-lg-3 col-md-6 footer-contact">
             <h4>Contact Us</h4>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
+              101 Street <br>
+              665022<br>
+              States <br>
+              <strong>Phone:</strong> +91 0000 00000<br>
               <strong>Email:</strong> info@example.com<br>
             </p>
 
@@ -59,13 +59,7 @@
         &copy; Copyright <strong>Global Website</strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
-        -->
-       
+      
       </div>
     </div>
   </footer><!-- #footer -->

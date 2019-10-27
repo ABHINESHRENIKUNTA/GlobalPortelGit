@@ -30,8 +30,8 @@ public class AdminSqlQueries {
 	public static final String INSERTOPERATORSUBMISSIONDATA_QUERY = "INSERT INTO global_admin_login1 "
 			+ "(username, password, fullname, qualification, empdob, email, phonenumber, jobdescription, "
 			+ "address, referrarname, companyname, companyurl, hrname, hremail, hrphonenumber, roleid, created_by, "
-			+ "created_date, modified_date, status) "
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ "created_date, modified_date, status,org_id) "
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 	public static final String UPDATEOPERATORBYID_QUERY = "update global_admin_login1 set "
 			+ " username=?, password=?, fullname=?, qualification=?, empdob=?, email=?, phonenumber=?, jobdescription=?, "
 			+ "address=?, referrarname=?, companyname=?, companyurl=?, hrname=?, hremail=?, hrphonenumber=?, "

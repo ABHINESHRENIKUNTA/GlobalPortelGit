@@ -100,8 +100,8 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 		String imgpath ="";
 		if ((String)sess.getAttribute("username")!=null) {
 			stdmodel.setLoggedowner((String)sess.getAttribute("username"));
-			String globalloginid =(String)sess.getAttribute("loginid");
-			stdmodel.setLoginid(Integer.valueOf(globalloginid));
+			int globalloginid =(Integer)sess.getAttribute("loginid");
+			stdmodel.setLoginid(globalloginid);
 		}else{
 			return "admin/somethingError";
 			

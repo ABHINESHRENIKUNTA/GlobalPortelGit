@@ -77,8 +77,9 @@
 			  <c:forEach items="${jobsList}" var="jobsListData">
 			    <li class="result well">
 			        <!-- timeline icon -->
-			        <i class="fa fa-envelope bg-blue"></i>
+			        <i class="fa fa-globe bg-blue"></i>
 			        <div class="timeline-item">
+			        ${jobsListData.comments}<br> Please Visit The Web Site For More Info:<br>
 			       <span class="time"><label style="color:black;">COUNTRY: ${jobsListData.countryname}</label> <i class="fa fa-clock-o"></i>${curTime}</span>
 			
 			            <h3 class="timeline-header"><a href="${jobsListData.linkaddress}" target="_blank"> ${jobsListData.linkname}</a> ...</h3>

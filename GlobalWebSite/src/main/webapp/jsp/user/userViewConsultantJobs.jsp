@@ -52,19 +52,48 @@
              <h4 class="widget-title">Jobs By Type</h4>
             <ul class="optionlist">
                 <li>
-                <input type="checkbox" name="jobtype" id="Contractor" class="filterjob" value="Contractor">
+                <c:choose>
+                <c:when test="${jobtype eq 'Contractor'}">
+                <input type="checkbox" name="jobtype" id="Contractor" class="filterjob" value="Contractor" checked="checked" onclick="test('Contractor')">
+                </c:when>
+                 <c:otherwise>
+                <input type="checkbox" name="jobtype" id="Contractor" class="filterjob" value="Contractor" onclick="test('Contractor')">
+                </c:otherwise>
+                </c:choose>
                 <label for="Contractor"></label>
                	Contractor <span></span> </li>
               <li>
-                <input type="checkbox" name="jobtype" id="Full-time" class="filterjob" value="Full-time">
+               <c:choose>
+                <c:when test="${jobtype eq 'Full-time'}">
+                <input type="checkbox" name="jobtype" id="Full-time" class="filterjob" value="Full-time" checked="checked" onclick="test('Full-time')">
+                </c:when>
+                <c:otherwise>
+                <input type="checkbox" name="jobtype" id="Full-time" class="filterjob" value="Full-time" onclick="test('Full-time')">
+                
+                </c:otherwise>
+                </c:choose>
                 <label for="Full-time"></label>
                	Full-time <span></span> </li>
               <li>
-                <input type="checkbox" name="jobtype" id="Internship" class="filterjob" value="Internship">
+               <c:choose>
+                <c:when test="${jobtype eq 'Internship'}">
+                <input type="checkbox" name="jobtype" id="Internship" class="filterjob" value="Internship" checked="checked" onclick="test(this.value)">
+                </c:when>
+                <c:otherwise>
+                 <input type="checkbox" name="jobtype" id="Internship" class="filterjob" value="Internship" onclick="test(this.value)">
+                </c:otherwise>
+                </c:choose>
                 <label for="Internship"></label>
                	Internship <span></span> </li>
               <li>
-                <input type="checkbox" name="jobtype" id="Part-Time" class="filterjob" value="Part-Time">
+               <c:choose>
+                <c:when test="${jobtype eq 'Part-Time'}">
+                <input type="checkbox" name="jobtype" id="Part-Time" class="filterjob" value="Part-Time" checked="checked" onclick="test(this.value)">
+                </c:when>
+                <c:otherwise>
+                <input type="checkbox" name="jobtype" id="Part-Time" class="filterjob" value="Part-Time" onclick="test(this.value)">
+                </c:otherwise>
+                </c:choose>
                 <label for="Part-Time"></label>
                 Part-Time <span></span> </li>
             </ul>
@@ -130,7 +159,7 @@
           </c:forEach>
           <!-- job end --> 
           
-         
+        
           
           <!-- job start -->
           <!--  <li class="content-result">
@@ -153,7 +182,8 @@
           <!-- job end -->
           
         </ul>
-                  
+                   <input type="hidden" id="jobkey" value="${jobtype}"/>
+                    <input type="hidden" id="jobkeycount" value="${jobkeycount}"/>
                 </div><!-- /.box-body -->
      
               </div><!-- /. box -->
@@ -182,10 +212,33 @@
    <%@include file="userNewFooterJsLinks.jsp" %>
    <%@include file="jobDetailsPaginationJS.jsp" %>
       <script type="text/javascript">
-	    $(".filterjob").on("change", function(){
+	    $(".filterjob").on("click", function(){
+	    	/* var jobkey=$('.filterjob').val();
+	    	alert(jobkey);
+	  		document.getElementById('jobkey').value=jobkey; */
 	        $("#industryform").submit();
-	        
+	      
 	});
+	   function test(val){
+		  		   document.getElementById('jobkey').value=val;
+	   }
+	   /*  $(document).ready(function() {
+	    	ischeck();
+	    	
+	    }); */
+	    
+	   /*  function ischeck(){
+	    	var selectedchk=document.getElementById('jobkey').value;
+	    	var jobkeycount=document.getElementById('jobkeycount').value;
+	       	if(jobkeycount=='0'){
+	    		document.getElementById(selectedchk).checked=true;	
+	    		document.getElementById('jobkeycount').value='1';
+	    	}
+	    	else{
+	    		document.getElementById(selectedchk).checked=false;	
+	    		document.getElementById('jobkeycount').value='0';
+	    	}
+	    } */
    </script>
     
   </body>

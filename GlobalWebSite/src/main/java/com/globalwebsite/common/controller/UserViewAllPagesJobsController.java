@@ -111,8 +111,11 @@ public class UserViewAllPagesJobsController {
 	 @RequestMapping("/view-userconsultantsjobs")
 	 public ModelAndView userViewConsultantJobScreen(Model model, AdminSubmissionModel stdmodel, HttpServletRequest request){
 		 String tablekey="global_jobconsult_jobs";
+		 String jobtype=request.getParameter("jobtype");
 		 boolean isFilterResults = filterJobDetailsData(model, stdmodel, request);
+		 model.addAttribute("jobtype",jobtype);
 		 fetchAllJobListDetails(model, tablekey, isFilterResults);
+		
 		 return new ModelAndView("user/userViewConsultantJobs", "listjobdetails", stdmodel);
 	 }
 
@@ -208,6 +211,7 @@ public class UserViewAllPagesJobsController {
 			 List<JobDetailCountModel> industryList = userserviceimpl.getTotalIndustryCount(activenum, tablekey);
 			 model.addAttribute("industryList", industryList);
 			 model.addAttribute("tablekey", tablekey);
+			 
 		}
 
 		/**

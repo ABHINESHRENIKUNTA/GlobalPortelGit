@@ -49,7 +49,7 @@
                   	<div id="tabpage_1" class="tabContainer">
                   	<ul id="demoOne" class="demo">
                   	<c:forEach items="${jobsList}" var="jobsListData">
-					<li class="col-sm-4"><a href='${jobsListData.linkaddress}' target="_blank">${jobsListData.linkname}</a>
+					<li class="col-sm-4"><a href='${jobsListData.linkaddress}' target="_blank">${jobsListData.comments}<br>${jobsListData.linkname}</a>
 					<!-- <div class="image-parent">
 		              <img src="#" class="img-fluid" alt="quixote">
 		          </div> -->

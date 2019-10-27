@@ -39,6 +39,7 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 
 		long startTime = (Long) request.getAttribute("startTime");
+		
 
 		long endTime = System.currentTimeMillis();
 

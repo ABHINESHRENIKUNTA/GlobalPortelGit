@@ -651,7 +651,7 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 					aom.getQualification(), aom.getEmpdob(), aom.getEmail(), aom.getPhonenumber(), aom.getJobdescription(),
 					aom.getAddress(), aom.getReferrarname(), aom.getCompanyname(), aom.getCompanyurl(), aom.getHrname(),
 					aom.getHremail(), aom.getHrphonenumber(), aom.getRoleid(),aom.getCreatedby(), getDateFromSimpleDateFormat(),
-					getDateFromSimpleDateFormat(), aom.isStatus()  
+					getDateFromSimpleDateFormat(), aom.isStatus(),aom.getOrgid()  
 					});
 			//System.out.println("insertOperatorSubmissionData: "+ aom);
 			logger.info("insertOperatorSubmissionData: "+ aom);

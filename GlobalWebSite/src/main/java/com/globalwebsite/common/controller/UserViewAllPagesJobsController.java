@@ -112,8 +112,10 @@ public class UserViewAllPagesJobsController {
 	 public ModelAndView userViewConsultantJobScreen(Model model, AdminSubmissionModel stdmodel, HttpServletRequest request){
 		 String tablekey="global_jobconsult_jobs";
 		 String jobtype=request.getParameter("jobtype");
+		 String industryid=request.getParameter("industryid");
 		 boolean isFilterResults = filterJobDetailsData(model, stdmodel, request);
 		 model.addAttribute("jobtype",jobtype);
+		 model.addAttribute("industrydataval",industryid);
 		 fetchAllJobListDetails(model, tablekey, isFilterResults);
 		
 		 return new ModelAndView("user/userViewConsultantJobs", "listjobdetails", stdmodel);
@@ -125,6 +127,10 @@ public class UserViewAllPagesJobsController {
 		 String tablekey="global_refpost_jobs";
 		 boolean isFilterResults = filterJobDetailsData(model, stdmodel, request);
 		 fetchAllJobListDetails(model, tablekey, isFilterResults);
+		 String jobtype=request.getParameter("jobtype");
+		 String industryid=request.getParameter("industryid");
+		 model.addAttribute("jobtype",jobtype);
+		 model.addAttribute("industrydataval",industryid);
 		 return new ModelAndView("user/userViewReferralJobs", "listjobdetails", stdmodel);
 	 }
 	
@@ -132,6 +138,10 @@ public class UserViewAllPagesJobsController {
 	 public ModelAndView userViewPostedByAdminScreen(Model model, AdminSubmissionModel stdmodel, HttpServletRequest request){
 		 String tablekey="global_postedbyadmin_jobs";
 		 boolean isFilterResults = filterJobDetailsData(model, stdmodel, request);
+		 String jobtype=request.getParameter("jobtype");
+		 String industryid=request.getParameter("industryid");
+		 model.addAttribute("jobtype",jobtype);
+		 model.addAttribute("industrydataval",industryid);
 		 fetchAllJobListDetails(model, tablekey, isFilterResults);
 		 return new ModelAndView("user/userViewJobsPostedByAdmin", "listjobdetails", stdmodel);
 	 }
@@ -139,6 +149,10 @@ public class UserViewAllPagesJobsController {
 	 public ModelAndView userViewEmployerPostedJobsScreen(Model model, AdminSubmissionModel stdmodel, HttpServletRequest request){
 		 String tablekey="global_empposted_jobs";
 		 boolean isFilterResults = filterJobDetailsData(model, stdmodel, request);
+		 String jobtype=request.getParameter("jobtype");
+		 String industryid=request.getParameter("industryid");
+		 model.addAttribute("jobtype",jobtype);
+		 model.addAttribute("industrydataval",industryid);
 		 fetchAllJobListDetails(model, tablekey, isFilterResults);
 		 return new ModelAndView("user/userViewEmployerPostedJobs", "listjobdetails", stdmodel);
 	 }

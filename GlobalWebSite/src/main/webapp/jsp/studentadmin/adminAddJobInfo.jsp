@@ -7,6 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
+
     <meta charset="utf-8">
     <title>Add Job Info</title>
     <meta name="keywords" content="GlobalWebsite" />
@@ -14,7 +15,8 @@
     <meta name="author" content="GlobalWebsite">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@include file="/jsp/admin/adminHeaderLinks.jsp" %>
-
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/theme/build/css/intlTelInput.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/theme/build/css/demo.css">
   </head>
   <body class="dashboard-page theme-danger">
     <%@include file="/jsp/admin/adminThemeChange.jsp" %>
@@ -201,5 +203,32 @@
           }
       });
     </script>
+     <script src="${pageContext.request.contextPath}/theme/build/js/intlTelInput.js"></script>
+  <script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+      // allowDropdown: false,
+      // autoHideDialCode: false,
+      // autoPlaceholder: "off",
+      // dropdownContainer: document.body,
+      // excludeCountries: ["us"],
+       //formatOnDisplay: false,
+       geoIpLookup: function(callback) {
+         $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+           var countryCode = (resp && resp.country) ? resp.country : "";
+           callback(countryCode);
+         });
+       },
+      // hiddenInput: "full_number",
+      // initialCountry: "auto",
+      // localizedCountries: { 'de': 'Deutschland' },
+      nationalMode: false,
+      // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+      // placeholderNumberType: "MOBILE",
+      // preferredCountries: ['cn', 'jp'],
+      // separateDialCode: true,
+      utilsScript: "${pageContext.request.contextPath}/theme/build/js/utils.js",
+    });
+  </script>
   </body>
 </html>

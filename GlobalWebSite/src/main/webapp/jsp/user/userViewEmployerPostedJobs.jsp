@@ -9,6 +9,50 @@
     <title><spring:eval expression="@viewPropertyConfigurer.getProperty('employee.jobs')" /></title>
   <%@include file="userNewHeader.jsp" %>
 <%@include file="jobDetailsCss.jsp" %>
+<style>
+.filterjob {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+	position: relative;
+	background-color: #0275d8;
+	color: #FFFFFF;
+	top: 10px;
+	height: 30px;
+	width: 30px;
+	border: 0;
+	border-radius: 50px;
+	cursor: pointer;
+	margin-right: 7px;
+	outline: none;
+}
+
+.filterjob:checked::before {
+	position: absolute;
+	font: 13px/1 'Open Sans', sans-serif;
+	left: 11px;
+	top: 7px;
+	content: '\02143';
+	transform: rotate(40deg);
+}
+
+.filterjob:hover {
+	background-color: #5cb85c;
+}
+
+.filterjob:checked {
+	background-color: #0275d8;
+}
+
+label {
+	font: 15px/1.7 'Open Sans', sans-serif;
+	color: #FFFFFF;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	cursor: pointer;
+}
+</style>
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
   <body class="<spring:eval expression="@viewPropertyConfigurer.getProperty('topmenu.color')" /> layout-top-nav">
@@ -51,22 +95,53 @@
             <div class="widget" >
              <h4 class="widget-title">Jobs By Type</h4>
             <ul class="optionlist">
-                <li>
-                <input type="checkbox" name="jobtype" id="Contractor" class="filterjob" value="Contractor">
-                <label for="Contractor"></label>
-               	Contractor <span></span> </li>
-              <li>
-                <input type="checkbox" name="jobtype" id="Full-time" class="filterjob" value="Full-time">
-                <label for="Full-time"></label>
-               	Full-time <span></span> </li>
-              <li>
-                <input type="checkbox" name="jobtype" id="Internship" class="filterjob" value="Internship">
-                <label for="Internship"></label>
-               	Internship <span></span> </li>
-              <li>
-                <input type="checkbox" name="jobtype" id="Part-Time" class="filterjob" value="Part-Time">
-                <label for="Part-Time"></label>
-                Part-Time <span></span> </li>
+                <li><c:choose>
+															<c:when test="${jobtype eq 'Contractor'}">
+																<input type="radio" name="jobtype" id="Contractor"
+																	class="filterjob" value="Contractor" checked="checked"
+																	onclick="test('Contractor')">
+															</c:when>
+															<c:otherwise>
+																<input type="radio" name="jobtype" id="Contractor"
+																	class="filterjob" value="Contractor"
+																	onclick="test('Contractor')">
+															</c:otherwise>
+														</c:choose> <label for="Contractor"></label> Contractor <span></span>
+													</li>
+													<li><c:choose>
+															<c:when test="${jobtype eq 'Full-time'}">
+																<input type="radio" name="jobtype" id="Full-time"
+																	class="filterjob" value="Full-time" checked="checked"
+																	onclick="test('Full-time')">
+															</c:when>
+															<c:otherwise>
+																<input type="radio" name="jobtype" id="Full-time"
+																	class="filterjob" value="Full-time"
+																	onclick="test('Full-time')">
+
+															</c:otherwise>
+														</c:choose> <label for="Full-time"></label> Full-time <span></span></li>
+													<li><c:choose>
+															<c:when test="${jobtype eq 'Internship'}">
+																<input type="radio" name="jobtype" id="Internship"
+																	class="filterjob" value="Internship" checked="checked">
+															</c:when>
+															<c:otherwise>
+																<input type="radio" name="jobtype" id="Internship"
+																	class="filterjob" value="Internship">
+															</c:otherwise>
+														</c:choose> <label for="Internship"></label> Internship <span></span>
+													</li>
+													<li><c:choose>
+															<c:when test="${jobtype eq 'Part-Time'}">
+																<input type="radio" name="jobtype" id="Part-Time"
+																	class="filterjob" value="Part-Time" checked="checked">
+															</c:when>
+															<c:otherwise>
+																<input type="radio" name="jobtype" id="Part-Time"
+																	class="filterjob" value="Part-Time">
+															</c:otherwise>
+														</c:choose> <label for="Part-Time"></label> Part-Time <span></span></li>
             </ul>
             <!-- title end --> 
            </div>
@@ -81,7 +156,17 @@
             <ul class="optionlist">
             <c:forEach items="${industryList}" var="industrydata">
               <li>
-                <input type="checkbox" name="industryid" class="filterjob" id="${industrydata.jobname}" value="${industrydata.jobid}">
+               <c:choose><c:when test="${industrydataval eq industrydata.jobid}">
+																			<input type="radio" name="industryid"
+																				class="filterjob" id="${industrydata.jobname}"
+																				checked="checked" value="${industrydata.jobid}">
+																		</c:when>
+																		<c:otherwise>
+																			<input type="radio" name="industryid"
+																				class="filterjob" id="${industrydata.jobname}"
+																				value="${industrydata.jobid}">
+																		</c:otherwise>
+																	</c:choose> 
                 <label for="${industrydata.jobname}"></label>
                 ${industrydata.jobname} <span style="padding-right: 10px;">${industrydata.jobscount}</span> </li>
             </c:forEach>

@@ -1,3 +1,4 @@
+
                         <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-sm-6 pr-1">
@@ -97,7 +98,7 @@
                                                 <div class="form-group">
                                                     <label>Contact Number</label><span class="text-danger">*</span>
                                                     <label class="error" for="contactnum" id="contactnum_error">This field is required.</label>
-                                                    <form:input type="text" path="contactnum" class="form-control" placeholder="00000-0000"/>
+                                                    <form:input  path="contactnum" id="phone" name="phone" type="tel" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">

@@ -27,7 +27,7 @@ public class AdminDashboardController {
 	private final static Logger logger = Logger.getLogger(AdminDashboardController.class);
 	public int data=0;
 	int gid=0;
-	
+	String password="";
 	@Autowired
 	private AdminServiceInterfaceImpl adminservices;
 	
@@ -56,6 +56,59 @@ public class AdminDashboardController {
 		model.addAttribute("emsg", req.getParameter("emsg"));
 		logger.info("End  of Admin Login method....");
 		return "admin/adminLogin";
+	}
+	@RequestMapping("/load-forgotPassword")
+	public String forgotPassword(Model model,AdminLoginModel adm,HttpServletRequest req) {
+		logger.info("Entry of Forgot Password method....");
+		model.addAttribute("emsg", req.getParameter("emsg"));
+		model.addAttribute("smsg", req.getParameter("smsg"));
+		model.addAttribute("login", adm);
+		logger.info("End  of Forgot Password method....");
+		return "admin/forgotPassword";
+	}
+	
+	
+	
+	@RequestMapping("/validateForgotPassword")
+	public String validatePassword(Model model,AdminLoginModel lmodel, HttpSession ses, HttpServletRequest req) {
+		logger.info("Entry of Forgot Password method....");
+		logger.info("Start processLoginForm method....");
+		model.addAttribute("loginform", lmodel);
+		String emsg = null;
+		String redirecturl="";
+		
+		
+		List<AdminLoginModel> ldetails = adminservices.getAdminForgotPasswordDetails(lmodel);
+		if(ldetails.size()>0){
+		for (AdminLoginModel lm : ldetails) {
+			password+=lm.getPassword();
+				gid=lm.getGlobalid();
+		}
+		
+		mailSenderObj.send(new MimeMessagePreparator() {
+            public void prepare(MimeMessage mimeMessage) throws Exception {
+            	
+                MimeMessageHelper mimeMsgHelperObj = new MimeMessageHelper(mimeMessage, true, "UTF-8");             
+                mimeMsgHelperObj.setTo(lmodel.getUsername());
+                mimeMsgHelperObj.setFrom("globalwebsite001@gmail.com");               
+                mimeMsgHelperObj.setText("Your Password Is:"+password);
+                mimeMsgHelperObj.setSubject("Forgot Password");
+                
+             
+                }
+        });
+		  model.addAttribute("username", lmodel.getUsername());
+		redirecturl = "redirect:/load-forgotPassword";	
+		model.addAttribute("smsg", "Password has been shared with your email id.");
+		}
+		else{
+			redirecturl = "redirect:/load-forgotPassword";
+		emsg = "Please enter valid Username/Password";
+		model.addAttribute("emsg", emsg);
+		}
+		
+		
+		return redirecturl;
 	}
 	
 

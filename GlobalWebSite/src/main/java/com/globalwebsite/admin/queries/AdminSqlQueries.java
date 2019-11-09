@@ -49,6 +49,7 @@ public class AdminSqlQueries {
 			+ "VALUES(?, ?)";
 	public static final String UPDATEORGANIZATIONDATA_QUERY = "update global_organization set org_name=?, status=? where id=?";
 	public static final String FINDORGANIZATIONBYID_QUERY = "select * from global_organization where id=?";
+	public static final String GETADMINFORGOTPASSWORDDETAILS_QUERY = "select * from global_admin_login1 where username=? ";
 	
 	
 	/*public static final String INSERTSUBMISSIONDATA_SQL = "insert into ?"

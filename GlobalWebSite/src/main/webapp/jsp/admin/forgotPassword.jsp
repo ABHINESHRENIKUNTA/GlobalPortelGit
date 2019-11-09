@@ -23,31 +23,25 @@
        <b>GJB </b>Login</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
-        <form:form id="login-form" class="form" modelAttribute="login" action="ValidateAdmin" method="post">
+        <p class="login-box-msg">Enter your email id password will be shared to your email.	</p>
+        <form:form id="login-form" class="form" modelAttribute="login" action="validateForgotPassword" method="post">
          <c:if test="${emsg!=null}">
           <h5 style="color: red">${emsg}</h5>
+          </c:if>
+         <c:if test="${smsg!=null}">
+          <h5 style="color: green">${smsg}</h5>
           </c:if>
           <div class="form-group has-feedback">
             <form:input path="username"  type="email" required="required" class="form-control" placeholder="Email"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
-          <div class="form-group has-feedback">
-            <form:password path="password" required="required" class="form-control" placeholder="Password"/>
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          </div>
-          <div class="row">
-            <div class="col-xs-8">    
-              <div class="form-group">
-                <label style="font-weight: normal;">
-                  <input type="checkbox"> Remember Me
-                </label>
-              </div>                        
-            </div><!-- /.col -->
-            <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-            </div><!-- /.col -->
-          </div>
+            <div class="row">
+            <div class="col-xs-4">&nbsp;</div>
+       		<div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
+            </div>
+            </div>
+         
         </form:form>
 
      <!--    <div class="social-auth-links text-center">
@@ -56,8 +50,6 @@
           <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
         </div>/.social-auth-links -->
 
-        <a href="load-forgotPassword">I forgot my password</a><br>
-        <a href="#" class="text-center">Register a new membership</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

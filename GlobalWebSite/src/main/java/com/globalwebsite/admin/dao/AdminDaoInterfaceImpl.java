@@ -867,6 +867,12 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		return listdata;
 	}
 
+	public List<AdminLoginModel> getAdminForgotPasswordDetails(AdminLoginModel lmodel) {
+		String sql=AdminSqlQueries.GETADMINFORGOTPASSWORDDETAILS_QUERY;
+		return jdbctemplate.query(sql, new Object[]{lmodel.getUsername()}, new AdminLoginMapper()); 
+			
+	}
+
 	
 	
 }

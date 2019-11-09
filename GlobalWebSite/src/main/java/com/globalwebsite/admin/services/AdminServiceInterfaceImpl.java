@@ -236,6 +236,9 @@ public int updateOrganizationData(AdminOrganizationModel ao, int orgid) {
 public List<AdminOrganizationModel> findOrganizationById(int orgid) {
 	return admindaoimpl.findOrganizationById(orgid);
 }
+public List<AdminLoginModel> getAdminForgotPasswordDetails(AdminLoginModel lmodel) {
+	return admindaoimpl.getAdminForgotPasswordDetails(lmodel);
+}
 
 
 }

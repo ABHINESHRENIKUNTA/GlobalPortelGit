@@ -17,11 +17,12 @@
     <script type="text/javascript">
     var openLoginOrRegistrationModel = function(){
     	 var urlValue = "";
-   	  var sessIsLive = <%=session.getAttribute("useremil")!=null%>;
+   	  var sessIsLive = <%=session.getAttribute("useremailid")!=null%>;
    	  if(sessIsLive){
    		$("#loginModal").modal("toggle");
    	  }else{
-   		$("#regModal").modal("toggle");
+   		/* $("#regModal").modal("toggle"); */
+   		$("#loginModal").modal("toggle");
    	  }
     }
   var userApplyPostedJob = function(fnType){
@@ -316,19 +317,20 @@
                         <div class="col-xs-24">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="email" name="email" id="loginemail" class="form-control" placeholder="Your Email *" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="required"/>
+                                <input type="email" name="username" id="loginemail" class="form-control" placeholder="Your Email *" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="required"/>
                             </div>
                          </div>
                          <div class="col-xs-6">
                             <div class="form-group">
-                                <input name="userpwd" id="loginpwd" type="password" class="form-control" placeholder="Your Password *" />
+                                <input name="password" id="loginpwd" type="password" class="form-control" placeholder="Your Password *" />
                             </div>
                         </div>
                        </div>
                 	</div>
             </div>
             <!-- dialog buttons -->
-            <div class="modal-footer bg-purple"><button type="button" class="btn btn-primary" onclick="userApplyPostedJob('login');">Submit</button></div>
+            <div class="modal-footer bg-purple"><button type="button" class="btn btn-primary" onclick="userApplyPostedJob('login');">Login & Apply</button>
+           <button type="button" class="btn btn-primary pull-left" onclick="userApplyPostedJob('regisration');">Register & Apply</button></div>
         </div>
     </div>
 </div>

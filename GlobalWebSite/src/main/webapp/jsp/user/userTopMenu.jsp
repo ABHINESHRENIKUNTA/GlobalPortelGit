@@ -71,11 +71,22 @@
               <li><a href="view-adminLogin" class="btn btn-warning"> <span class="glyphicon glyphicon-user"></span> Employee Login </a></li>
             </ul>
             <% } else{%>
-             <ul class="nav navbar-nav navbar-right">
-              <li><%=session.getAttribute("userstuname") %></li>
-              <li> <a href="studentlogout" class="btn btn-warning"> <span class="glyphicon glyphicon-user"></span> 
+           <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                   <li><%=session.getAttribute("userstuname") %></li>
+                   <li class="divider"></li>
+                   <li><%=session.getAttribute("useremailid") %></li>
+              
+                  <li class="divider"></li>
+                  <li> <a href="studentlogout" class="btn btn-warning"> <span class="glyphicon glyphicon-user"></span> 
               Logout </a></li>
+                </ul>
+              </li>
             </ul>
+           
+             
             <%} %>
            
           </div><!-- /.navbar-collapse -->

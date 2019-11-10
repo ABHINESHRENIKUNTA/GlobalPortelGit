@@ -148,5 +148,8 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
 	public List<AdminSubmissionModel> fetchJobDetailsByFilter(String tablekey, String wherecond, int activenum) {
 		return userdaoimpl.fetchJobDetailsByFilter(tablekey,wherecond, activenum);
 	}
+	public List<StudentLoginModel> findUserIsAvailable(String username, String pwd) {
+		return userdaoimpl.findUserIsAvailable(username, pwd);
+	}
 
 }

@@ -53,6 +53,7 @@ public class UserSqlQueries {
 	public static final String GETPOSTEDBYREFERRALSJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_refpost_jobs where status=?";
 	public static final String GETPOSTEDBYAADMINJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_postedbyadmin_jobs where status=?";
 	public static final String GETPOSTEDBYEMPJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_empposted_jobs where status=?";
+	public static final String FINDUSERISAVAILABLE_QUERY = "select * from global_student_details where email_id=? and password=?";
 	
 	
 	

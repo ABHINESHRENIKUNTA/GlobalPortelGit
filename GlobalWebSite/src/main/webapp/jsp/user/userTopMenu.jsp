@@ -63,12 +63,21 @@
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
               </div>
             </form>
+            <% if((null==session.getAttribute("useremailid"))){ %>
+           
             <ul class="nav navbar-nav navbar-right">
-            
-              <li><a href="#" class="btn btn-warning"> <span class="glyphicon glyphicon-user"></span> 
+              <li><a href="viewuserloginpage" class="btn btn-warning"> <span class="glyphicon glyphicon-user"></span> 
               Jobseeker Login </a></li>
               <li><a href="view-adminLogin" class="btn btn-warning"> <span class="glyphicon glyphicon-user"></span> Employee Login </a></li>
             </ul>
+            <% } else{%>
+             <ul class="nav navbar-nav navbar-right">
+              <li><%=session.getAttribute("userstuname") %></li>
+              <li> <a href="studentlogout" class="btn btn-warning"> <span class="glyphicon glyphicon-user"></span> 
+              Logout </a></li>
+            </ul>
+            <%} %>
+           
           </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>

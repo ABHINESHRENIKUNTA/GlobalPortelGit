@@ -2,8 +2,7 @@ package com.globalwebsite.common.model;
 
 public class StudentLoginModel {
 	
-	private String username;
-	
+	private String username;	
 	private String name;
 	private String mobileno;
 	private String emailid;
@@ -16,6 +15,8 @@ public class StudentLoginModel {
 	
 	private String jobcategory;
 	private String otherjobcategory;
+	private int userloginid;
+	
 	
 	public int getJobcategoryid() {
 		return jobcategoryid;
@@ -91,5 +92,12 @@ public class StudentLoginModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public int getUserloginid() {
+		return userloginid;
+	}
+	public void setUserloginid(int userloginid) {
+		this.userloginid = userloginid;
+	}
+	
 
 }

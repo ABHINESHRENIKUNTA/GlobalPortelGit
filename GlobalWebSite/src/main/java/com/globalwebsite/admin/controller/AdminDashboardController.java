@@ -40,6 +40,15 @@ public class AdminDashboardController {
 	 @Autowired
 	 UserHomeController uhc;
 	
+	 @RequestMapping("/view-adminlandingscreen")
+     public String viewAdminLandingScreen(Model model, HttpSession ses) {
+	 
+	 logger.info("Entry of viewAdminLandingScreen method....");
+	 model.addAttribute("welcomemsg", "<b>"+ses.getAttribute("username")+ "</b>, welcome to Global Web Site. Thanks!");
+	 logger.info("End  of viewAdminLandingScreen method....");
+	 return "admin/adminLandingPage";
+ }
+	 
 	@RequestMapping("/view-admindashboard")
 	public String viewAdminDashboardWindow(Model model) {
 		

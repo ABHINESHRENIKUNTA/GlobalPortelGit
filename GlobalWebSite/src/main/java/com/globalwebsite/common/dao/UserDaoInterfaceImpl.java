@@ -15,6 +15,7 @@ import com.globalwebsite.admin.mapper.AdminCommonViewSubmitMapper;
 import com.globalwebsite.admin.mapper.AdminStateWiseMapper;
 import com.globalwebsite.admin.mapper.AdminViewConsuRefAdminPostSubmissionMapper;
 import com.globalwebsite.common.mapper.JobDetailCountMapper;
+import com.globalwebsite.common.mapper.StudentLoginMapper;
 import com.globalwebsite.common.mapper.getJobCategoriesMapper;
 import com.globalwebsite.common.model.EmployeeLoginModel;
 import com.globalwebsite.common.model.JobDetailCountModel;
@@ -353,6 +354,19 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 			
 		} catch (Exception e) {
 			logger.info("fetchJobDetailsByFilter: "+e);
+		}
+		return listdata;
+	}
+
+	public List<StudentLoginModel> findUserIsAvailable(String username, String pwd) {
+		String sql = UserSqlQueries.FINDUSERISAVAILABLE_QUERY;
+		List<StudentLoginModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{username, pwd},  new StudentLoginMapper());
+			logger.info("findUserIsAvailable: "+sql);
+			
+		} catch (Exception e) {
+			logger.info("findUserIsAvailable: "+e);
 		}
 		return listdata;
 	}

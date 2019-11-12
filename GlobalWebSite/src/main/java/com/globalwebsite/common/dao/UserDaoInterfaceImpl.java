@@ -362,7 +362,7 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 		String sql = UserSqlQueries.FINDUSERISAVAILABLE_QUERY;
 		List<StudentLoginModel> listdata = null;
 		try {
-			listdata = jdbctemplate.query(sql, new Object[]{username, pwd},  new StudentLoginMapper());
+			listdata = jdbctemplate.query(sql, new Object[]{username.trim(), pwd.trim()},  new StudentLoginMapper());
 			logger.info("findUserIsAvailable: "+sql);
 			
 		} catch (Exception e) {

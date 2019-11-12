@@ -38,8 +38,11 @@
       
       var loginEmailVal = $("#loginemail").val();
       var loginPwdVal = $("#loginpwd").val();
+      var rowid = $("#rowid").val();
+      var tablekey = $("#tablekey").val();
       var actionValue = "";
       var datParams="";
+      var encodeData="";
 	  if(fnType=="regisration"){
 		    actionValue = "register-applyjob?fullname="+fullNameVal+"&"+"phonenum="+phoneVal+"&"+"email="+emailaddressVal+"&"+"password="+userPwdVal;
 	        if(fullNameVal.trim()==''){
@@ -60,27 +63,46 @@
 	        }
 	        datParams = "fullname: "+fullNameVal+","+"phonenum: "+phoneVal+","+"email: "+emailaddressVal+","+"password: "+userPwdVal;
 	  }
+	  
 	  if(fnType=="login"){
-		  actionValue = "login-applyjob";
+		  actionValue = "login-applyjob?email= "+loginEmailVal+"&password= "+loginPwdVal+"&rowid="+rowid+"&tablekey="+tablekey;
+		  encodeData = encodeURI(actionValue);
 		  if(loginEmailVal.trim() == '') {
 	            $("#loginemail").after('<span class="error">Please enter your email address.</span>');
 	            hasError = true;
 	        }else if(!emailReg.test(loginEmailVal)) {
 	            $("#loginemail").after('<span class="error">Enter a valid email address.</span>');
 	            hasError = true;
-	        }else if(loginPwdVal.trim()=='' || loginPwdVal.length<6 ){
-	        	 $("#loginpwd").after('<span class="error">Please enter your valid password.And Minimum length is 6 characters. </span>');
+	        }else if(loginPwdVal.trim()=='' || loginPwdVal.length<4 ){
+	        	 $("#loginpwd").after('<span class="error">Please enter your valid password.And Minimum length is 4 characters. </span>');
 		            hasError = true;
 	        } 
+		  datParams = "email: "+loginEmailVal+","+"password: "+loginPwdVal;
 	  }
 	  if(hasError == true) { return false; }
 	    $.ajax({
-	            url : ""+actionValue,
-	            type: "GET",
+	            url : ""+encodeData,
+	            type: "POST",
 	            dataType: "json",
 	            success : 
 	            function(data) {
-	            	    alert(data);
+	            	var errorData=null;
+	            	var successData=null;
+	            	const userStr = JSON.stringify(data);
+	            	JSON.parse(userStr, function replacer(key, value) {
+	            		  if(key=="errormsg"){
+	            			  if(value!=null){
+	            				  errorData = value;
+	            				  
+	            			  }
+	            		  }
+	            		});
+	            	
+	            	if(null==errorData){
+	            		successData ="success";
+	            	}
+	            	alert(errorData);
+	            	alert(successData)
 	            }
 	    });
 	 
@@ -102,10 +124,7 @@
               Find your link
               <small>There is a way to do it better...find it</small>
             </h1>
-           <!--  <ol class="breadcrumb">
-              <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li class="active">Employer Posted Job Links</li>
-            </ol> -->
+         
           </section>
 
           <!-- Main content -->
@@ -136,10 +155,12 @@
                   </div><!-- /.box-tools -->
                 </div><!-- /.box-header -->
                 <div class="box-body no-padding">
+         		<input type="hidden" name="tablekey" id="tablekey" value="${tablekey}">
+         		
                 <ul class="searchList" id="content">
-         
           <!-- job start -->
           <c:forEach items="${listData}" var="jobDetails" varStatus="loop">
+          <input type="hidden" name="rowid" id="rowid" value="${jobDetails.rowid}">
           <li class="content-result">
             <div class="row">
               <div class="col-md-10 col-sm-10">

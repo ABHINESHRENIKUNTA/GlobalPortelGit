@@ -16,6 +16,9 @@ public class StudentLoginModel {
 	private String jobcategory;
 	private String otherjobcategory;
 	private int userloginid;
+	private String errorcode;
+	private String errormsg;
+	
 	
 	
 	public int getJobcategoryid() {
@@ -98,6 +101,19 @@ public class StudentLoginModel {
 	public void setUserloginid(int userloginid) {
 		this.userloginid = userloginid;
 	}
+	public String getErrorcode() {
+		return errorcode;
+	}
+	public void setErrorcode(String errorcode) {
+		this.errorcode = errorcode;
+	}
+	public String getErrormsg() {
+		return errormsg;
+	}
+	public void setErrormsg(String errormsg) {
+		this.errormsg = errormsg;
+	}
+
 	
 
 }

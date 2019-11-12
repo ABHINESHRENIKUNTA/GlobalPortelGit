@@ -45,9 +45,13 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 
 		long executeTime = endTime - startTime;
 
-		// modified the existing modelAndView
-		modelAndView.addObject("executeTime", executeTime);
-		logger.info("postHandle - > executeTime::: "+executeTime);
+		try {
+			// modified the existing modelAndView
+			modelAndView.addObject("executeTime", executeTime);
+			logger.info("postHandle - > executeTime::: "+executeTime);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+		}
 		
 		String apndQryStr = apr.getQueryStringFromURL(request);
 		String permissionurl = request.getServletPath();

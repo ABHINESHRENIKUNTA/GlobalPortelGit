@@ -1,21 +1,31 @@
 package com.globalwebsite.common.controller;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
+import org.springframework.http.HttpStatus;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 import com.globalwebsite.common.model.StudentLoginModel;
 import com.globalwebsite.common.services.UserServiceInterfaceImpl;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 @Controller
 public class UserRegisterORApplyJobController {
@@ -41,7 +51,33 @@ public class UserRegisterORApplyJobController {
 		return null;
 	}
 	
-	@RequestMapping(value="/viewuserloginpage", method=RequestMethod.GET)
+	@ResponseBody
+	@RequestMapping(value="/login-applyjob", method= RequestMethod.POST)
+	public String loginAndApplyJob(Model model, HttpSession session, HttpServletRequest req) {
+		
+		String username= req.getParameter("email");
+		String password= req.getParameter("password");
+		String tablekey= req.getParameter("tablekey");
+		String rowid= req.getParameter("rowid");
+
+		logger.info("Login and Apply: "+ username+ "pwd: "+password +" tablekey: "+tablekey +" rowId: "+rowid);
+		StudentLoginModel sl = new StudentLoginModel();
+		GsonBuilder gsonBuilder = new GsonBuilder();
+			List<StudentLoginModel> stdList = userserviceimpl.findUserIsAvailable(username, password);
+			Gson gson = gsonBuilder.create();
+			String JSONObject = gson.toJson(stdList);
+			if (CollectionUtils.isEmpty(stdList)) {
+				sl.setErrorcode("100");
+				sl.setErrormsg("Invalid credentials.");
+				
+				return gson.toJson(sl);
+			} 
+			logger.info("\nConverted JSONObject ==> " + JSONObject);
+			
+		return JSONObject;
+	}
+	
+	@RequestMapping(value="/viewuserloginpage", method=RequestMethod.GET, headers = { "application/json"} )
 	public String viewUserLoginScreen(Model model, HttpSession session, StudentLoginModel slm){
 		model.addAttribute("viewuserlogin", slm);
 		return "user/userLogin";

@@ -3,7 +3,6 @@ package com.globalwebsite.admin.services;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,6 +19,7 @@ import com.globalwebsite.admin.model.DeleteScrollLink;
 import com.globalwebsite.admin.model.EditScrollLink;
 import com.globalwebsite.admin.model.IndustryTypeModel;
 import com.globalwebsite.admin.model.StatesModel;
+import com.globalwebsite.common.model.StudentLoginModel;
 import com.gw.student.model.AdminSubmissionModel;
 
 
@@ -238,6 +238,9 @@ public List<AdminOrganizationModel> findOrganizationById(int orgid) {
 }
 public List<AdminLoginModel> getAdminForgotPasswordDetails(AdminLoginModel lmodel) {
 	return admindaoimpl.getAdminForgotPasswordDetails(lmodel);
+}
+public List<StudentLoginModel> getStudentForgotPasswordDetails(StudentLoginModel lmodel) {
+	return admindaoimpl.getStudentForgotPasswordDetails(lmodel);
 }
 
 

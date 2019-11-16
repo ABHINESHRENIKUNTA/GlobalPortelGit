@@ -50,7 +50,7 @@ public class JobsInfoContoller {
 		model.addAttribute("regsmsg", req.getParameter("regsmsg"));
 		model.addAttribute("smsg", req.getParameter("smsg"));
 		model.addAttribute("emsg", req.getParameter("emsg"));
-		return "user/studentLogin";
+		return "user/studentRegister";
 	}
 	
 	public int duplicateJobCategory(StudentLoginModel stud){
@@ -86,19 +86,18 @@ public class JobsInfoContoller {
 			stud.setUploadresume(filename);
 			if(stud.getJobcategory().equals("Others")){
 				stud.setJobcategory(stud.getOtherjobcategory());
-				
+				userserviceimpl.insertOtherJobCategory(stud);
+				int maxjobcatg=userserviceimpl.getmaxjocatid();
+				stud.setJobcategory(String.valueOf(maxjobcatg));
 			}
+			
 			int duplicatejobcate=duplicateJobCategory(stud);
 			if(duplicatejobcate>0){
 				regemsg="Duplicate Job Category Select From Job Category.";
 					model.addAttribute("regemsg", regemsg);
 					return "redirect:/studentLogin";
 			}
-			else{
-			userserviceimpl.insertOtherJobCategory(stud);
-			int maxjobcatg=userserviceimpl.getmaxjocatid();
-			stud.setJobcategory(String.valueOf(maxjobcatg));
-			}
+			
 			int insertdata=userserviceimpl.insertStudentRegistrationDetails(stud);
 			if(insertdata>0){
 				regsmsg="You Have Registered Successfully.";

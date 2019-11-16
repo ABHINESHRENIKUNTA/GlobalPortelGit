@@ -94,7 +94,8 @@
                               </p> -->
                            </div>
                            <div class="form-group">
-                              <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
+                              <p class="text-center">Don't have account? <a href="studentLogin" id="signup">Sign up here</a></p>
+                          <a href="load-studforgotPassword">I forgot my password</a>
                            </div>
                         </form>
                  

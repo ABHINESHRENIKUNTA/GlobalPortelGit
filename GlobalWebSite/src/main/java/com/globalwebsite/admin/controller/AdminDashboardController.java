@@ -20,6 +20,7 @@ import com.globalwebsite.admin.model.AdminLoginModel;
 import com.globalwebsite.admin.model.AdminRolePermissionModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 import com.globalwebsite.common.controller.UserHomeController;
+import com.globalwebsite.common.model.StudentLoginModel;
 
 @Controller
 public class AdminDashboardController {
@@ -75,8 +76,58 @@ public class AdminDashboardController {
 		logger.info("End  of Forgot Password method....");
 		return "admin/forgotPassword";
 	}
+	@RequestMapping("/load-studforgotPassword")
+	public String studforgotPassword(Model model,StudentLoginModel adm,HttpServletRequest req) {
+		logger.info("Entry of Forgot Password method....");
+		model.addAttribute("emsg", req.getParameter("emsg"));
+		model.addAttribute("smsg", req.getParameter("smsg"));
+		model.addAttribute("login", adm);
+		logger.info("End  of Forgot Password method....");
+		return "user/studForgotPassword";
+	}
 	
 	
+	
+	@RequestMapping("/load-forgotPasswordForStud")
+	public String loadForgotPasswordForStud(Model model,StudentLoginModel lmodel, HttpSession ses, HttpServletRequest req) {
+		logger.info("Entry of Forgot Password method....");
+		logger.info("Start processLoginForm method....");
+		model.addAttribute("loginform", lmodel);
+		String emsg = null;
+		String redirecturl="";
+		
+		
+		List<StudentLoginModel> ldetails = adminservices.getStudentForgotPasswordDetails(lmodel);
+		if(ldetails.size()>0){
+		for (StudentLoginModel lm : ldetails) {
+			password+=lm.getPassword();
+		}
+		
+		mailSenderObj.send(new MimeMessagePreparator() {
+            public void prepare(MimeMessage mimeMessage) throws Exception {
+            	
+                MimeMessageHelper mimeMsgHelperObj = new MimeMessageHelper(mimeMessage, true, "UTF-8");             
+                mimeMsgHelperObj.setTo(lmodel.getUsername());
+                mimeMsgHelperObj.setFrom("globalwebsite001@gmail.com");               
+                mimeMsgHelperObj.setText("Your Password Is:"+password);
+                mimeMsgHelperObj.setSubject("Forgot Password");
+                
+             
+                }
+        });
+		  model.addAttribute("username", lmodel.getUsername());
+		redirecturl = "redirect:/load-studforgotPassword";	
+		model.addAttribute("smsg", "Password has been shared with your email id.");
+		}
+		else{
+			redirecturl = "redirect:/load-studforgotPassword";
+		emsg = "Please enter valid Username/Password";
+		model.addAttribute("emsg", emsg);
+		}
+		
+		
+		return redirecturl;
+	}
 	
 	@RequestMapping("/validateForgotPassword")
 	public String validatePassword(Model model,AdminLoginModel lmodel, HttpSession ses, HttpServletRequest req) {

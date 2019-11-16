@@ -1,53 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-  <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <head>
+    <meta charset="UTF-8">
+    <title>Job Categories</title>
+  <%@include file="userNewHeader.jsp" %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <link rel="stylesheet" href="${pageContext.request.contextPath}/theme/build/css/intlTelInput.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/theme/build/css/demo.css">
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #17a2b8;
-  height: 100vh;
-}
-#login1 .container #login-row #login-column #login-box {
-  margin-top:80px;
-  max-width: 800px;
-  height: 320px;
-  border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
-
-}
-#login .container #login-row #login-column #login-box {
-  margin-top:80px;
-  max-width: 800px;
-  height: 1100px;
-  border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
-
-}
-#login .container #login-row #login-column #login-box #login-form {
-  padding: 20px;
-  
-}
-#login .container #login-row #login-column #login-box #login-form #register-link {
-  margin-top: -60px;
-}
-.intl-tel-input.allow-dropdown input, .intl-tel-input.allow-dropdown input[type=text], .intl-tel-input.allow-dropdown input[type=tel], .intl-tel-input.separate-dial-code input, .intl-tel-input.separate-dial-code input[type=text], .intl-tel-input.separate-dial-code input[type=tel] {
-    width: 725px
-}
-</style>
-<script type="text/javascript">
+	<style type="text/css">
+	  .myform{
+		position: relative;
+		display: -ms-flexbox;
+		display: flex;
+		padding: 1rem;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		width: 100%;
+		pointer-events: auto;
+		background-color: #fff;
+		background-clip: padding-box;
+		border: 1px solid rgba(0,0,0,.2);
+		border-radius: 1.1rem;
+		outline: 0;
+		max-width: 500px;
+		 }
+	</style>
+	<script type="text/javascript">
 
 var otp="";
 	var validateOTP = function(){
@@ -109,63 +90,59 @@ var otp="";
 	}
 
 </script>
-</head>
-<body>
-     <div >
-        <h3 class="text-center text-white pt-5">Global Web Site</h3>    
-    <div style="width: 100%; overflow: hidden;">
-    <div id="login1" style="width:450px; float: left;margin-left: 30px"> 
-     <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-12">
-   					 <div id="login-box" class="col-md-6">
-                        <form:form id="login-form" class="form" modelAttribute="login" action="ValidateStudent" method="post">
-                            <h3 class="text-center text-info">Student Login<i class="fa fa-lock"></i></h3>
-                            <c:if test="${emsg!=null}">
-                            <h4 style="color: red">${emsg}</h4>
-                            </c:if>
-                             <c:if test="${smsg!=null}">
-                            <h4 style="color: green">${smsg}</h4>
-                            </c:if>
-                            <div class="form-group">
-                                <label for="username" class="text-info"><i class="fa fa-user"></i><span style="color:red">*</span>Username:</label><br>
-                                <form:input path="username"  type="email" id="username" required="required" class="form-control"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="text-info"><i class="fa fa-unlock-alt"></i><span style="color:red">*</span>Password:</label><br>
-                                <form:password path="password" id="password" required="required" class="form-control"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
-                            </div>
-                         
-                        </form:form>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-     </div>
-    <div id="login" style="margin-left: 320px;"> 
-     <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-12">
-    				<div id="login-box" class="col-md-8">
-                        <form:form id="login-form" class="form" modelAttribute="login" action="registerStudent" method="post" enctype="multipart/form-data" onsubmit="return ValidateData()">
-                            <h3 class="text-center text-info">Student Registration</h3>
-                              <h4 style="color: green" id="otplabelspan"></h4>
-                            <c:if test="${regemsg!=null}">
+  </head>
+  <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+  <body class="<spring:eval expression="@viewPropertyConfigurer.getProperty('topmenu.color')" /> layout-top-nav">
+    <div class="wrapper">
+      <!-- header logo: style can be found in header.less -->
+       <%@include file="userTopMenu.jsp" %>
+      <!-- Full Width Column -->
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <!-- Content Header (Page header) -->
+          <section class="content-header">
+            <h1>
+            <i class="glyphicon glyphicon-th-large gly-spin"></i> Find your Jobs
+              <small>There is a way to do it better...find it</small>
+            </h1>
+
+          </section>
+
+          <!-- Main content -->
+          <section class="content">
+           <div class="col-md-12" id="jobcategories">
+              <!-- Primary box -->
+              <div class="box box-solid bg-gray" style="box-shadow: 10px 10px 5px #888888;  border-radius: 15px">
+                <div class="box-body">
+                 
+            
+        <div class="row">
+        <div class="col-sm-4"></div>
+			<div class="col-sm-7 text-center">
+			<div id="first">
+				<div class="myform form ">
+					 <div class="logo mb-3">
+						 <div class="col-md-12 text-center">
+							<h1>Register</h1>
+						 </div>
+						
+					</div>
+				
+                  <form:form id="login-form" class="form" modelAttribute="login" action="registerStudent" method="post" enctype="multipart/form-data" onsubmit="return ValidateData()">
+                         	 <c:if test="${regemsg!=null}">
                             <h4 style="color: red">${regemsg}</h4>
-                            </c:if>
-                               <c:if test="${regsmsg!=null}">
-                            <h4 style="color: green">${regsmsg}</h4>
-                            </c:if>
-                            <div class="form-group">
+                      </c:if>
+                       <c:if test="${regsmsg!=null}">
+                         <h4 style="color: green">${regsmsg}</h4>
+                      </c:if>
+                      <h4 style="color: green" id="otplabelspan"></h4>
+                           <div class="form-group">
                                 <label for="username" class="text-info"><span style="color:red">*</span>Name As Per S.S.C:</label><br>
                                 <form:input path="name"   id="username" required="required" class="form-control"/>
                             </div>
                              <div class="form-group">
                                 <label for="mobileno" class="text-info"><span style="color:red">*</span>Mobile No:</label><br>
-                                <form:input path="mobileno" id="phone"  type="tel" required="required" class="form-control" />
+                                <form:input path="mobileno" id="phone"  type="tel" required="required" class="form-control" style="width:480px"/>
                             </div>
                               <div class="form-group">
                                 <label for="emailid" class="text-info"><span style="color:red">*</span>Email Id:</label><br>
@@ -190,6 +167,7 @@ var otp="";
                              <div class="form-group">
                                 <label for="jobcategory" class="text-info"><span style="color:red">*</span>Job Category:</label><br>
                                 <form:select path="jobcategory" type="text" id="jobcategory" required="required" class="form-control" onchange="otherFunction(this.value)">
+                               <form:option value="0">---Select One---</form:option>
                                 <c:forEach items="${jobcat}" var="items">
                                 <form:option value="${items.jobcategoryid}">${items.jobcategory}</form:option>
                                 </c:forEach>
@@ -203,10 +181,10 @@ var otp="";
                             </div>
                              
 		                        <div class="section">
-		                        <label for="passingyear" class="text-info"><span style="color:red">*</span>Upload Resume:</label><br>
+		                        <label for="passingyear" class="text-primary"><span style="color:red">*</span>Upload Resume:</label><br>
 		                          <label class="field prepend-icon append-button file">
 		                         
-		                            <input type="file" class="btn btn-info btn-md " name="file1" id="file1" required="required" accept=".jpg,.jpeg,.png,.word,.pdf">
+		                            <input type="file" class="btn btn-primary btn-md " name="file1" id="file1" required="required" accept=".jpg,.jpeg,.png,.word,.pdf">
 		                            </label>
 		                        </div>
 		                                               
@@ -215,56 +193,74 @@ var otp="";
 		                        <input type="text" id="otptxt" class="form-control" >
 		                       </div>
 		             		<div>
-		             		<a href="#" class="btn btn-info btn-md" id="otpbtn" onclick="return validateOTP()">Submit</a>
+		             		<a href="#" class="btn btn-primary btn-md" id="otpbtn" onclick="return validateOTP()">Submit</a>
+		             		 <center><input type="submit" name="submit" id="submitbtn"  class="btn btn-primary" value="Register" style="display: none;width: 100px;text-align: center" ></center>
 		             		</div>
-		             		<div class="form-group">
-                                <input type="submit" name="submit" id="submitbtn"  class="btn btn-info btn-md" value="Register" style="display: none" >
-                            </div>
-
-                         
+		             		<div>
+		             		 <div class="col-md-12 text-left">
+							Existing User<a href="viewuserloginpage"  id="otpbtn" > Login Here...</a>
+						 </div>
+		             		
+		             		</div>
+		             		
                         </form:form>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    
-     </div>
-	</div>
-	</div>
-	<script src="${pageContext.request.contextPath}/theme/build/js/intlTelInput.js"></script>
-  <script>
+                 
+				</div>
+			</div>
+			</div>
+			</div>
+			
+            	    </div>
+                  </div>
+                  <div class="box-footer">
+            	  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+         
+
+          </section><!-- /.content -->
+       <%@include file="userNewFooter.jsp" %>
+    </div><!-- ./wrapper -->
+
+       <%@include file="userNewFooterJsLinks.jsp" %>
+       <script src="${pageContext.request.contextPath}/theme/build/js/intlTelInput.js"></script>
+   <script>
     var input = document.querySelector("#phone");
     window.intlTelInput(input, {
-    	
-    	geoIpLookup: function(callback) {
-    	      $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
-    	        var countryCode = (resp && resp.country) ? resp.country : "";
-    	         callback(countryCode);
-    	      });
-    	      },
-    	      separateDialCode: true,
       // allowDropdown: false,
       // autoHideDialCode: false,
       // autoPlaceholder: "off",
       // dropdownContainer: document.body,
       // excludeCountries: ["us"],
-      // formatOnDisplay: false,
-      // geoIpLookup: function(callback) {
-      //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
-      //     var countryCode = (resp && resp.country) ? resp.country : "";
-      //     callback(countryCode);
-      //   });
-      // },
+       //formatOnDisplay: false,
+       geoIpLookup: function(callback) {
+         $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+           var countryCode = (resp && resp.country) ? resp.country : "";
+           callback(countryCode);
+         });
+       },
       // hiddenInput: "full_number",
       // initialCountry: "auto",
       // localizedCountries: { 'de': 'Deutschland' },
-      // nationalMode: false,
+      nationalMode: false,
       // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
       // placeholderNumberType: "MOBILE",
       // preferredCountries: ['cn', 'jp'],
-       separateDialCode: true,
+      // separateDialCode: true,
       utilsScript: "${pageContext.request.contextPath}/theme/build/js/utils.js",
     });
   </script>
-</body>
+       <script type="text/javascript">
+       $(document).ready(function(){
+         $("#navbar-search-input").on("keyup", function() {
+           var value = $(this).val().toLowerCase();
+           $("#jobcategories div").filter(function() {
+             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+           });
+         });
+       });
+       </script>
+    
+  </body>
 </html>

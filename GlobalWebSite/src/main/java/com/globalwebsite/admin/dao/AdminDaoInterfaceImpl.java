@@ -12,7 +12,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -20,6 +19,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.globalwebsite.admin.mapper.AdminAbroadMapper;
+import com.globalwebsite.admin.mapper.AdminCommonViewSubmitMapper;
 import com.globalwebsite.admin.mapper.AdminDeleteUserImageMapper;
 import com.globalwebsite.admin.mapper.AdminLoginMapper;
 import com.globalwebsite.admin.mapper.AdminOperatorMapper;
@@ -31,8 +32,6 @@ import com.globalwebsite.admin.mapper.AdminStateWiseMapper;
 import com.globalwebsite.admin.mapper.AdminViewConsuRefAdminPostSubmissionMapper;
 import com.globalwebsite.admin.mapper.CountryMapper;
 import com.globalwebsite.admin.mapper.IndustryTypeMapper;
-import com.globalwebsite.admin.mapper.AdminAbroadMapper;
-import com.globalwebsite.admin.mapper.AdminCommonViewSubmitMapper;
 import com.globalwebsite.admin.mapper.ScrollLinksTableMapper;
 import com.globalwebsite.admin.mapper.StateMapper;
 import com.globalwebsite.admin.model.AddScrollLink;
@@ -47,6 +46,8 @@ import com.globalwebsite.admin.model.EditScrollLink;
 import com.globalwebsite.admin.model.IndustryTypeModel;
 import com.globalwebsite.admin.model.StatesModel;
 import com.globalwebsite.admin.queries.AdminSqlQueries;
+import com.globalwebsite.common.mapper.StudentLoginMapper;
+import com.globalwebsite.common.model.StudentLoginModel;
 import com.gw.student.model.AdminSubmissionModel;
 
 @Repository
@@ -871,6 +872,11 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		String sql=AdminSqlQueries.GETADMINFORGOTPASSWORDDETAILS_QUERY;
 		return jdbctemplate.query(sql, new Object[]{lmodel.getUsername()}, new AdminLoginMapper()); 
 			
+	}
+
+	public List<StudentLoginModel> getStudentForgotPasswordDetails(StudentLoginModel lmodel) {
+		String sql=AdminSqlQueries.GETSTUDENTFORGOTPASSWORDDETAILS_QUERY;
+		return jdbctemplate.query(sql, new Object[]{lmodel.getUsername()}, new StudentLoginMapper());
 	}
 
 	

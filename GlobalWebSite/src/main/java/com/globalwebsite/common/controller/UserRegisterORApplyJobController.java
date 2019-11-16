@@ -1,18 +1,13 @@
 package com.globalwebsite.common.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.springframework.http.HttpStatus;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +19,6 @@ import com.globalwebsite.common.model.StudentLoginModel;
 import com.globalwebsite.common.services.UserServiceInterfaceImpl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 @Controller
 public class UserRegisterORApplyJobController {
@@ -59,13 +52,17 @@ public class UserRegisterORApplyJobController {
 		String password= req.getParameter("password");
 		String tablekey= req.getParameter("tablekey");
 		String rowid= req.getParameter("rowid");
-
+		int userloginid = (String)session.getAttribute("useremailid")!=null ? (Integer) session.getAttribute("userloginid"):0;
+       
 		logger.info("Login and Apply: "+ username+ "pwd: "+password +" tablekey: "+tablekey +" rowId: "+rowid);
+		boolean isLoggedIn = (String)session.getAttribute("useremailid")!=null ? true: false;
 		StudentLoginModel sl = new StudentLoginModel();
 		GsonBuilder gsonBuilder = new GsonBuilder();
+		String JSONObject = null;
+		if(!isLoggedIn){
 			List<StudentLoginModel> stdList = userserviceimpl.findUserIsAvailable(username, password);
 			Gson gson = gsonBuilder.create();
-			String JSONObject = gson.toJson(stdList);
+			JSONObject = gson.toJson(stdList);
 			if (CollectionUtils.isEmpty(stdList)) {
 				sl.setErrorcode("100");
 				sl.setErrormsg("Invalid credentials.");
@@ -73,11 +70,20 @@ public class UserRegisterORApplyJobController {
 				return gson.toJson(sl);
 			} 
 			logger.info("\nConverted JSONObject ==> " + JSONObject);
-			
+			for (StudentLoginModel stList : stdList) {
+				username = stList.getEmailid();
+				userloginid = stList.getUserloginid();
+				session.setAttribute("useremailid", username);
+				session.setAttribute("userloginid", stList.getUserloginid());
+				session.setAttribute("userstuname", stList.getName());
+			}
+		}
+			userserviceimpl.applyUserJob(username.trim(), userloginid, tablekey.trim(), rowid.trim());
+            
 		return JSONObject;
 	}
 	
-	@RequestMapping(value="/viewuserloginpage", method=RequestMethod.GET, headers = { "application/json"} )
+	@RequestMapping(value="/viewuserloginpage", method=RequestMethod.GET)
 	public String viewUserLoginScreen(Model model, HttpSession session, StudentLoginModel slm){
 		model.addAttribute("viewuserlogin", slm);
 		return "user/userLogin";
@@ -112,6 +118,6 @@ public class UserRegisterORApplyJobController {
 	public String userLogout(HttpSession session, Model model){
 		session.invalidate();
 		model.addAttribute("smsg", "Your successfully logged out.");
-		return "redirect:/viewuserloginpage";
+		return "redirect:/load-jobcategories";
 	}
 }

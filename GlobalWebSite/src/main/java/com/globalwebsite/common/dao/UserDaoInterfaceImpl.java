@@ -370,5 +370,18 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 		}
 		return listdata;
 	}
+
+	public int applyUserJob(String username, int userloginid, String tablekey, String jobid) {
+		String sql = UserSqlQueries.APPLYUSERJOB_QUERY;
+		int stuData = 0;
+		try {
+			stuData = jdbctemplate.update(sql, new Object[]{username, userloginid,tablekey,jobid,getDateFromSimpleDateFormat()});
+			logger.info("applyUserJob: "+sql);
+			
+		} catch (Exception e) {
+			logger.info("applyUserJob: "+e);
+		}
+		return stuData;
+	}
 	
 }

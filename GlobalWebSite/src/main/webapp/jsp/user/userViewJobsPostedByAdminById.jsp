@@ -9,106 +9,9 @@
     <title><spring:eval expression="@viewPropertyConfigurer.getProperty('postedbyadmin.jobs')" /></title>
   <%@include file="userNewHeader.jsp" %>
   <%@include file="jobDetailsCss.jsp" %>
-  <style type="text/css">
-.error{
-    color: red;
-}
-  </style>
-    <script type="text/javascript">
-    var openLoginOrRegistrationModel = function(){
-    	 var urlValue = "";
-   	  var sessIsLive = <%=session.getAttribute("useremailid")!=null%>;
-   	  if(sessIsLive){
-   		$("#loginModal").modal("toggle");
-   	  }else{
-   		/* $("#regModal").modal("toggle"); */
-   		$("#loginModal").modal("toggle");
-   	  }
-    }
-  var userApplyPostedJob = function(fnType){
-	  $(".error").hide();
-      var hasError = false;
-      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-      var numberReg = /^[0-9-+()]*$/;
-
-      var fullNameVal = $("#userfullname").val();
-      var phoneVal = $("#userphone").val();
-      var emailaddressVal = $("#email").val();
-      var userPwdVal = $("#userpwd").val();
-      
-      var loginEmailVal = $("#loginemail").val();
-      var loginPwdVal = $("#loginpwd").val();
-      var rowid = $("#rowid").val();
-      var tablekey = $("#tablekey").val();
-      var actionValue = "";
-      var datParams="";
-      var encodeData="";
-	  if(fnType=="regisration"){
-		    actionValue = "register-applyjob?fullname="+fullNameVal+"&"+"phonenum="+phoneVal+"&"+"email="+emailaddressVal+"&"+"password="+userPwdVal;
-	        if(fullNameVal.trim()==''){
-	        	 $("#userfullname").after('<span class="error">Please enter your valid full name. </span>');
-		            hasError = true;
-	        }else if(phoneVal.trim()=='' || phoneVal.length<10 ){
-	        	 $("#userphone").after('<span class="error">Please enter your valid phone number. </span>');
-		            hasError = true;
-	        }else if(emailaddressVal.trim() == '') {
-	            $("#email").after('<span class="error">Please enter your email address.</span>');
-	            hasError = true;
-	        }else if(!emailReg.test(emailaddressVal)) {
-	            $("#email").after('<span class="error">Enter a valid email address.</span>');
-	            hasError = true;
-	        }else if(userPwdVal.trim()=='' || userPwdVal.length<6 ){
-	        	 $("#userpwd").after('<span class="error">Please enter your valid password.And Minimum length is 6 characters. </span>');
-		            hasError = true;
-	        }
-	        datParams = "fullname: "+fullNameVal+","+"phonenum: "+phoneVal+","+"email: "+emailaddressVal+","+"password: "+userPwdVal;
-	  }
-	  
-	  if(fnType=="login"){
-		  actionValue = "login-applyjob?email= "+loginEmailVal+"&password= "+loginPwdVal+"&rowid="+rowid+"&tablekey="+tablekey;
-		  encodeData = encodeURI(actionValue);
-		  if(loginEmailVal.trim() == '') {
-	            $("#loginemail").after('<span class="error">Please enter your email address.</span>');
-	            hasError = true;
-	        }else if(!emailReg.test(loginEmailVal)) {
-	            $("#loginemail").after('<span class="error">Enter a valid email address.</span>');
-	            hasError = true;
-	        }else if(loginPwdVal.trim()=='' || loginPwdVal.length<4 ){
-	        	 $("#loginpwd").after('<span class="error">Please enter your valid password.And Minimum length is 4 characters. </span>');
-		            hasError = true;
-	        } 
-		  datParams = "email: "+loginEmailVal+","+"password: "+loginPwdVal;
-	  }
-	  if(hasError == true) { return false; }
-	    $.ajax({
-	            url : ""+encodeData,
-	            type: "POST",
-	            dataType: "json",
-	            success : 
-	            function(data) {
-	            	var errorData=null;
-	            	var successData=null;
-	            	const userStr = JSON.stringify(data);
-	            	JSON.parse(userStr, function replacer(key, value) {
-	            		  if(key=="errormsg"){
-	            			  if(value!=null){
-	            				  errorData = value;
-	            				  
-	            			  }
-	            		  }
-	            		});
-	            	
-	            	if(null==errorData){
-	            		successData ="success";
-	            	}
-	            	alert(errorData);
-	            	alert(successData)
-	            }
-	    });
-	 
-	}
-  </script>
-
+<script src="${pageContext.request.contextPath}/theme/userhome/userLoginModelScript.js" type="text/javascript"></script>
+<%@include file="userLoginModelScripts.jsp" %>
+   
  
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
@@ -160,7 +63,6 @@
                 <ul class="searchList" id="content">
           <!-- job start -->
           <c:forEach items="${listData}" var="jobDetails" varStatus="loop">
-          <input type="hidden" name="rowid" id="rowid" value="${jobDetails.rowid}">
           <li class="content-result">
             <div class="row">
               <div class="col-md-10 col-sm-10">
@@ -233,7 +135,7 @@
         				</li>
                     </ul>
                    <button type="button" class="btn btn-warning" onclick="openLoginOrRegistrationModel();"><i class="glyphicon glyphicon-thumbs-up" style="padding-right: 3px;"></i> Apply Now</button></div> 
-                <input type="hidden" name="rowid" value="${jobDetails.rowid}"/>
+                   <input type="hidden" name="rowid" id="rowid" value="${jobDetails.rowid}"/>
               </div>
             </div>
              <h4><a href="#.">Skill Requirement</a></h4>
@@ -278,127 +180,9 @@
 
    <%@include file="userNewFooterJsLinks.jsp" %>
    
-   <!-- set up the modal to start hidden and fade in and out -->
-<div id="regModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        	<div class="modal-header bg-purple">
-        		Registration
-                <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
-        	</div>
-            <!-- dialog body -->
-            <div class="modal-body bg-gray">
-                <div class="note">
-                    <p>Register with us for latest jobs</p>
-                </div>
-                    <div class="row">
-                        <div class="col-xs-24">
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <input name="userfullname" id="userfullname" type="text" class="form-control" placeholder="Your Name *" />
-                            </div>
-                         </div>
-                         <div class="col-xs-6">
-                            <div class="form-group">
-                                <input name="userphone" id="userphone" type="number" class="form-control" placeholder="Phone Number *" step="0" />
-                            </div>
-                        </div>
-                       </div>
-                	</div>
-                    <div class="row">
-                        <div class="col-xs-24">
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <input type="email" name="email" id="email" class="form-control" placeholder="Your Email *" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="required"/>
-                            </div>
-                         </div>
-                         <div class="col-xs-6">
-                            <div class="form-group">
-                                <input name="userpwd" id="userpwd" type="password" class="form-control" placeholder="Your Password *" />
-                            </div>
-                        </div>
-                       </div>
-                	</div>
-            </div>
-            <!-- dialog buttons -->
-            <div class="modal-footer bg-purple"><button type="button" class="btn btn-primary" onclick="userApplyPostedJob('regisration');">Submit</button></div>
-        </div>
-    </div>
-</div>
-<div id="loginModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-        		Login
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-        	</div>
-            <!-- dialog body -->
-            <div class="modal-body">
-                <div class="row">
-                        <div class="col-xs-24">
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <input type="email" name="username" id="loginemail" class="form-control" placeholder="Your Email *" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="required"/>
-                            </div>
-                         </div>
-                         <div class="col-xs-6">
-                            <div class="form-group">
-                                <input name="password" id="loginpwd" type="password" class="form-control" placeholder="Your Password *" />
-                            </div>
-                        </div>
-                       </div>
-                	</div>
-            </div>
-            <!-- dialog buttons -->
-            <div class="modal-footer bg-purple"><button type="button" class="btn btn-primary" onclick="userApplyPostedJob('login');">Login & Apply</button>
-           <button type="button" class="btn btn-primary pull-left" onclick="userApplyPostedJob('regisration');">Register & Apply</button></div>
-        </div>
-    </div>
-</div>
-<script>
+    <%@include file="userLoginModel.jsp" %>
 
 
-      $("#regModal").modal('hide');
-      $("#loginModal").modal('hide');
-      
-    function socialWindow(url) {
-        var left = (screen.width - 570) / 2;
-        var top = (screen.height - 570) / 2;
-        var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
-        window.open(url,"NewWindow",params);
-    }
-
-        var pageUrl = encodeURIComponent(document.URL);
-        var tweet = encodeURIComponent(jQuery("meta[property='og:description']").attr("content"));
-        
-       function facebookFun() {
-            url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
-            alert(url);
-            socialWindow(url);
-        }
-
-        function twitterFun() {
-            url = "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + tweet;
-            socialWindow(url);
-        }
-        function googlePlusFun() {
-            url = "https://plus.google.com/share?url=" + pageUrl + "&text=" + tweet;
-            socialWindow(url);
-        }
-
-        function linkedinFun() {
-            url = "https://www.linkedin.com/shareArticle?mini=true&url=" + pageUrl;
-            socialWindow(url);
-        }
-       /*  var pageTitle = encodeURIComponent(page.title);
-        var body_message = $('#content-result').html();
-        var email = 'test@mail.com';
-        var subject = pageTitle;
-        var mailto_link = 'mailto:' + email + '?subject=' + subject + '&body=' + body_message;
-        function mailToFun() {
-        	socialWindow(mailto_link);
-        } */
-    </script>
     
   </body>
 </html>

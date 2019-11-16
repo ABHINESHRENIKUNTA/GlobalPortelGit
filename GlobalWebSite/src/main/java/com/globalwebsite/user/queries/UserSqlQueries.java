@@ -54,7 +54,8 @@ public class UserSqlQueries {
 	public static final String GETPOSTEDBYAADMINJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_postedbyadmin_jobs where status=?";
 	public static final String GETPOSTEDBYEMPJOBSCOUNT_QUERY = "SELECT count(ifnull(id,0)) as totalcount FROM global_empposted_jobs where status=?";
 	public static final String FINDUSERISAVAILABLE_QUERY = "select * from global_student_details where email_id=? and password=?";
-	
+	public static final String APPLYUSERJOB_QUERY = "INSERT INTO gb_user_applied_jobs (email_id,global_student_details_id,job_table, job_id, applied_on) "
+													+ "VALUES (?,?,?,?,?)";
 	
 	
 	

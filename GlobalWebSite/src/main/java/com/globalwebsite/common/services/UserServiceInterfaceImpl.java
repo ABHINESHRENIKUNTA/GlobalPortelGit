@@ -151,5 +151,8 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
 	public List<StudentLoginModel> findUserIsAvailable(String username, String pwd) {
 		return userdaoimpl.findUserIsAvailable(username, pwd);
 	}
+	public int applyUserJob(String username, int userloginid, String tablekey, String jobid) {
+		return userdaoimpl.applyUserJob(username, userloginid, tablekey, jobid);
+	}
 
 }

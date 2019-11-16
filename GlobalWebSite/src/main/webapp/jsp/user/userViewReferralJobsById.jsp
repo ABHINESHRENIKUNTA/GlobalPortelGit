@@ -9,7 +9,7 @@
     <title><spring:eval expression="@viewPropertyConfigurer.getProperty('refpost.jobs')" /></title>
   <%@include file="userNewHeader.jsp" %>
   <%@include file="jobDetailsCss.jsp" %>
- 
+	<%@include file="userLoginModelScripts.jsp" %>
   </head>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
   <body class="<spring:eval expression="@viewPropertyConfigurer.getProperty('topmenu.color')" /> layout-top-nav">
@@ -58,6 +58,7 @@
                   </div><!-- /.box-tools -->
                 </div><!-- /.box-header -->
                 <div class="box-body no-padding">
+                <input type="hidden" name="tablekey" id="tablekey" value="${tablekey}">
                 <ul class="searchList" id="content">
          
           <!-- job start -->
@@ -134,8 +135,8 @@
 							</span> -->
         				</li>
                     </ul>
-                   <button class="btn btn-warning" id="myModel"><i class="glyphicon glyphicon-thumbs-up" style="padding-right: 3px;"></i> Apply Now</button></div> 
-                <form:hidden path="rowid" value="${jobDetails.rowid}"/>
+                   <button type="button" class="btn btn-warning" onclick="openLoginOrRegistrationModel();"><i class="glyphicon glyphicon-thumbs-up" style="padding-right: 3px;"></i> Apply Now</button></div> 
+                   <input type="hidden" name="rowid" id="rowid" value="${jobDetails.rowid}"/>
                 </form:form>
               </div>
             </div>
@@ -181,45 +182,6 @@
 
    <%@include file="userNewFooterJsLinks.jsp" %>
     
-    <script>
-
-    function socialWindow(url) {
-        var left = (screen.width - 570) / 2;
-        var top = (screen.height - 570) / 2;
-        var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
-        window.open(url,"NewWindow",params);
-    }
-
-        var pageUrl = encodeURIComponent(document.URL);
-        var tweet = encodeURIComponent(jQuery("meta[property='og:description']").attr("content"));
-        
-       function facebookFun() {
-            url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
-            alert(url);
-            socialWindow(url);
-        }
-
-        function twitterFun() {
-            url = "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + tweet;
-            socialWindow(url);
-        }
-        function googlePlusFun() {
-            url = "https://plus.google.com/share?url=" + pageUrl + "&text=" + tweet;
-            socialWindow(url);
-        }
-
-        function linkedinFun() {
-            url = "https://www.linkedin.com/shareArticle?mini=true&url=" + pageUrl;
-            socialWindow(url);
-        }
-       /*  var pageTitle = encodeURIComponent(page.title);
-        var body_message = $('#content-result').html();
-        var email = 'test@mail.com';
-        var subject = pageTitle;
-        var mailto_link = 'mailto:' + email + '?subject=' + subject + '&body=' + body_message;
-        function mailToFun() {
-        	socialWindow(mailto_link);
-        } */
-    </script>
+  <%@include file="userLoginModel.jsp" %>
   </body>
 </html>

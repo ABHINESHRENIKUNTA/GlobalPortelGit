@@ -57,7 +57,7 @@
         </div>/.social-auth-links -->
 
         <a href="load-forgotPassword">I forgot my password</a><br>
-        <a href="#" class="text-center">Register a new membership</a>
+        <a href="loadEmployeeRegister" class="text-center">Register a new membership</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

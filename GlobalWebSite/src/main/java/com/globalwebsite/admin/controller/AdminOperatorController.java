@@ -102,4 +102,45 @@ public ModelAndView submitOperatorInformation(Model model,AdminOperatorModel aom
 	
 }
 
+@RequestMapping("/loadEmployeeRegister")
+public ModelAndView loadEmployeeRegister(Model model,AdminOperatorModel aom,HttpServletRequest req ){
+	logger.info("loadEmployeeRegister");
+	
+	List<AdminRolePermissionModel> listallroles = adminservices.getAllRoles();
+	model.addAttribute("listallroles", listallroles);
+	
+	List<AdminOrganizationModel> orgList = adminservices.findAllOrganizations();
+	model.addAttribute("orgList", orgList);
+	
+	model.addAttribute("smsg", req.getParameter("smsg"));
+	model.addAttribute("emsg", req.getParameter("emsg"));
+	return new ModelAndView("admin/employeeRegister", "addoperator", aom);
+	
+	
+}
+
+@RequestMapping("/process-registeroperatorinfo")
+public ModelAndView registeroperatorinfo(Model model,AdminOperatorModel aom ){
+	
+	String errormsg = "";
+	String susmsg = "";
+	aom.setCreatedby(aom.getUsername());
+	
+	int	succsscnt = adminservices.insertOperatorSubmissionData(aom);
+
+	if (succsscnt > 0) {
+		susmsg = "Your Registration Done Successfull.";
+		logger.info(susmsg);
+	} else {
+		errormsg = "There is a problem in Registration User Already Exist Or Please try with valid data or contact support team.";
+		logger.info(errormsg);
+	}
+	model.addAttribute("emsg", errormsg);
+	model.addAttribute("smsg", susmsg);
+	
+	return new ModelAndView("redirect:/loadEmployeeRegister", "addoperator", aom);
+	
+	
+}
+
 }

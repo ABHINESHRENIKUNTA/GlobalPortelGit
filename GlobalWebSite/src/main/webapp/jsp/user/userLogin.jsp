@@ -63,8 +63,8 @@
 					</div>
 					<c:if test="${emsg!=null}">
 			          <h5 style="color: red">${emsg}</h5>
-			          </c:if>
-			          <h5 style="color: green"><%=request.getParameter("smsg") %></h5>
+			          </c:if><% if(request.getParameter("smsg")!=null){ %>
+			          <h5 style="color: green"><%=request.getParameter("smsg")%></h5><%} %>
                    <form action="submituserLoginDetails" method="post">
                            <div class="form-group">
                               <label for="exampleInputEmail1">Email address</label>
@@ -94,8 +94,7 @@
                               </p> -->
                            </div>
                            <div class="form-group">
-                              <p class="text-center">Don't have account? <a href="studentLogin" id="signup">Sign up here</a></p>
-                          <a href="load-studforgotPassword">I forgot my password</a>
+                              <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
                            </div>
                         </form>
                  

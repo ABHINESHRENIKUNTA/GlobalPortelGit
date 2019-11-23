@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.globalwebsite.admin.model.AdminAddUserImagesModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
@@ -23,17 +24,27 @@ public class AdminAddUserDisplayImagesController {
 	
 	@Autowired
 	private AdminServiceInterfaceImpl adminservices;
-
+	@Autowired
+	AdminRolePermissionController apr;
 	
 	@RequestMapping("/AdminAddImagesForUser")
-	public String AdminAddImagesForUser(Model model,AdminAddUserImagesModel adm,HttpServletRequest req){
+	public ModelAndView AdminAddImagesForUser(Model model,AdminAddUserImagesModel adm,HttpServletRequest req){
 		
-		
+		boolean rolenotnull = req.getSession().getAttribute("roleid") != null;
+		if ( rolenotnull==false) {
+			return new ModelAndView("admin/somethingError");
+		}
+		String ssroleid = (String)req.getSession().getAttribute("roleid");
+		int roleid = Integer.valueOf(ssroleid);
+		String permisaccess = apr.adminManagePermissions(roleid, req);
+		if(permisaccess == "accessdenied"){
+			return new ModelAndView("admin/somethingError");
+		}
 		model.addAttribute("adm", adm);
 		model.addAttribute("smsg", req.getParameter("smsg"));
 		model.addAttribute("emsg",  req.getParameter("emsg"));
 		
-		return "admin/loadAddUserImages";
+		return new ModelAndView("admin/loadAddUserImages");
 	}
 	
 	
@@ -57,17 +68,25 @@ public class AdminAddUserDisplayImagesController {
 	}
 	
 	@RequestMapping("/AdminDeleteImagesForUser")
-	public String AdminDeleteImagesForUser(Model model,AdminAddUserImagesModel adm,HttpServletRequest req)
+	public ModelAndView AdminDeleteImagesForUser(Model model,AdminAddUserImagesModel adm,HttpServletRequest req)
 	{
 		List<AdminAddUserImagesModel> admdata= adminservices.getAdminDeleteUserImages();
-		System.out.println("Deleteing image");
-		System.out.println(admdata);
+		boolean rolenotnull = req.getSession().getAttribute("roleid") != null;
+		if ( rolenotnull==false) {
+			return new ModelAndView("admin/somethingError");
+		}
+		String ssroleid = (String)req.getSession().getAttribute("roleid");
+		int roleid = Integer.valueOf(ssroleid);
+		String permisaccess = apr.adminManagePermissions(roleid, req);
+		if(permisaccess == "accessdenied"){
+			return new ModelAndView("admin/somethingError");
+		}
 		model.addAttribute("admdata", admdata);
 		model.addAttribute("adm", adm);
 		model.addAttribute("smsg", req.getParameter("smsg"));
 		model.addAttribute("emsg",  req.getParameter("emsg"));
 		
-		return "admin/deleteUserImage";
+		return new ModelAndView("admin/deleteUserImage");
 	}
 	
 	@RequestMapping("/AdminDeleteUserPageImages")

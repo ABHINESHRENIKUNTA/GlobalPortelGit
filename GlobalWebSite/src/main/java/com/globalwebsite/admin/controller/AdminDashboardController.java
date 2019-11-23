@@ -244,7 +244,7 @@ public class AdminDashboardController {
 		lmodel.setUsername(username);
 		int validotp=adminservices.getValidateAdminOTP(lmodel);
 		if(validotp>0){
-			return "redirect:/view-admindashboard";
+			return "redirect:/view-adminlandingscreen";
 		}
 		else
 		{

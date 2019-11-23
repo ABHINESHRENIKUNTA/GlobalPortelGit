@@ -1,2 +1,2 @@
 <%-- <%response.sendRedirect("view-adminLogin"); %>
- --%><%response.sendRedirect("load-jobcategories"); %>
+ --%><%response.sendRedirect("GlobalSiteWelcomePage"); %>

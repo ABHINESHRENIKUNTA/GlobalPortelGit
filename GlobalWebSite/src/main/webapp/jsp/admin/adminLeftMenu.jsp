@@ -95,6 +95,7 @@
            <c:set value="nopermission" var="freetrainingjobs"></c:set>
            <c:set value="nopermission" var="admitcards"></c:set>
            <c:set value="nopermission" var="results"></c:set>
+           <c:set value="nopermission" var="userintro"></c:set>
            <%
            @SuppressWarnings("unchecked")
            ArrayList<AdminRolePermissionModel> list = (ArrayList<AdminRolePermissionModel>)request.getSession().getAttribute("leftMenuList");
@@ -106,6 +107,10 @@
             <c:if test="${menulist.permname == 'VIEW_ADMIN_DASHBOARD'}">
             <c:set value="yespermission" var="admindashboard"></c:set>
             </c:if> 
+            <c:if test="${menulist.permname == 'VIEW_HOMEIMAGE'  or menulist.permname == 'VIEW_HOMEIMAGE'}">
+            <c:set value="yespermission" var="userintro"></c:set>
+            </c:if>
+            
             
             <c:if test="${menulist.permname == 'VIEW_PERMISSIONS'  or menulist.permname == 'EDIT_PERMISSIONS'}">
             <c:set value="yespermission" var="permissions"></c:set>
@@ -174,7 +179,7 @@
             <c:if test="${menulist.permname == 'VIEW_RESULTS'  or menulist.permname == 'EDIT_RESULTS'}">
             <c:set value="yespermission" var="results"></c:set>
             </c:if>
-            
+          
           </c:forEach>  
          
           <!--  <li>
@@ -212,6 +217,15 @@
                <a class="" href="view-admindashboard">
               	<span class="fa fa-user"></span>
               	<span class="sidebar-title">Dash board</span>
+              	<span class="caret"></span>
+           		</a>
+               </li>
+           </c:if>
+           <c:if test="${userintro == 'yespermission'}">
+              <li>
+               <a class="" href="AdminAddImagesForUser">
+              	<span class="fa fa-user"></span>
+              	<span class="sidebar-title">User Home Images</span>
               	<span class="caret"></span>
            		</a>
                </li>

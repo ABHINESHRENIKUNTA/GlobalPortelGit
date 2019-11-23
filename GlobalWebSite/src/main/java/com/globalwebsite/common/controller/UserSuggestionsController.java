@@ -39,6 +39,23 @@ public class UserSuggestionsController {
 		return new ModelAndView("user/userSuggestions", "usersuggestion", usm);
 		
 	}
+	/**
+	 * @param model
+	 * @param usm
+	 * @return
+	 */
+	@RequestMapping(value="/view-aboutuspage", method=RequestMethod.GET)
+	public ModelAndView viewAboutUsPage(Model model){
+		logger.info("ViewAboutUsPage starts");
+		return new ModelAndView("user/userAboutUs");
+		
+	}
+	@RequestMapping(value="/comingSoonPage", method=RequestMethod.GET)
+	public ModelAndView comingSoonPage(Model model){
+		logger.info("comingSoonPage starts");
+		return new ModelAndView("user/comingSoonPage");
+		
+	}
 
 	@RequestMapping(value="/submit-usersuggestions", method=RequestMethod.GET)
 	public ModelAndView submitSuggestions(Model model, UserSuggestionsModel usm){

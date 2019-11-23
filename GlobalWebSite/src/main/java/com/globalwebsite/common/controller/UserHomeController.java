@@ -30,13 +30,7 @@ public class UserHomeController {
 		 
 		 return "user/welcomePage";
 	 }
-	 @RequestMapping("/landingpage")
-	 public String globalSiteLandingPage(Model model){
-		 List<AdminAddUserImagesModel> admdata= adminservices.getAdminDeleteUserImages();
-		 model.addAttribute("admdata", admdata);
-		 
-		 return "user/userLandingPage";
-	 }
+	
 	 @RequestMapping("/load-jobcategories")
 	 public String loadJobCategoriesPage(Model model){
 		 

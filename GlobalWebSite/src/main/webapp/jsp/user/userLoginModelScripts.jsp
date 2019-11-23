@@ -4,7 +4,9 @@ var openLoginOrRegistrationModel = function(){
 	 var urlValue = "";
 	  var sessIsLive = <%=session.getAttribute("useremailid")!=null%>;
 	  if(sessIsLive){
-		$("#loginModal").modal("toggle");
+		  var rowid = $("#rowid").val();
+		  var tablekey = $("#tablekey").val();
+		  window.location.href=encodeURI('user-applyselectedjob?pathname=/'+window.location.pathname.split("/")[2]+"&tablekey="+tablekey+"&rowid="+rowid);
 	  }else{
 		/* $("#regModal").modal("toggle"); */
 		$("#loginModal").modal("toggle");
@@ -13,7 +15,6 @@ var openLoginOrRegistrationModel = function(){
 var userApplyPostedJob = function(fnType){
  $(".error").hide();
  var hasError = false;
-alert(fnType);
  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
  var loginEmailVal = $("#loginemail").val();
  var loginPwdVal = $("#loginpwd").val();

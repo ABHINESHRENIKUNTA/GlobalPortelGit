@@ -55,6 +55,13 @@
                   <li><a href="<spring:eval expression="@viewPropertyConfigurer.getProperty('postedbyemp.url')" />">
                   <spring:eval expression="@viewPropertyConfigurer.getProperty('employee.jobs')" />
                   </a></li>
+                  <li class="divider"></li>
+                  <li><a href="<spring:eval expression="@viewPropertyConfigurer.getProperty('admitcard.url')" />">
+                  <spring:eval expression="@viewPropertyConfigurer.getProperty('admit.cards')" />
+                  </a></li>
+                  <li><a href="<spring:eval expression="@viewPropertyConfigurer.getProperty('result.url')" />">
+                  <spring:eval expression="@viewPropertyConfigurer.getProperty('results')" />
+                  </a></li>
                 </ul>
               </li>
             </ul>

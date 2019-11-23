@@ -242,6 +242,9 @@ public List<AdminLoginModel> getAdminForgotPasswordDetails(AdminLoginModel lmode
 public List<StudentLoginModel> getStudentForgotPasswordDetails(StudentLoginModel lmodel) {
 	return admindaoimpl.getStudentForgotPasswordDetails(lmodel);
 }
-
+public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionDataByLoginId(String tablekey, String prevdate,
+		String currentdate, int adminloginid) {
+	return admindaoimpl.getAllViewConsuRefAdminPostSubmissionDataByLoginId(tablekey, prevdate, currentdate,adminloginid);
+}
 
 }

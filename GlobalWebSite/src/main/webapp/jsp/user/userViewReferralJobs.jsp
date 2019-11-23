@@ -123,7 +123,7 @@
 					              </c:choose>
                
                                   <label for="${industrydata.jobname}"></label>
-                                  ${industrydata.jobname} <span style="padding-right: 10px;">${industrydata.jobscount}</span> 
+                                  ${industrydata.jobname} <span class="count-class">${industrydata.jobscount}</span> 
                                 </li>
                               </c:forEach>
                             </ul>

@@ -158,7 +158,9 @@
                             tablekey == 'global_trainingandplace_jobs' or
                             tablekey == 'global_freejobtraining_jobs' or
                             tablekey == 'global_abroad_jobs' or
-                            tablekey == 'global_statewisegovt_jobs' 
+                            tablekey == 'global_statewisegovt_jobs'  or
+                            tablekey == 'global_admit_cards' or
+                            tablekey == 'global_results'
                             }">
                             <thead>
                               <tr>

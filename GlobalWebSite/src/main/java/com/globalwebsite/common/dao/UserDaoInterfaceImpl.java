@@ -21,6 +21,7 @@ import com.globalwebsite.common.model.EmployeeLoginModel;
 import com.globalwebsite.common.model.JobDetailCountModel;
 import com.globalwebsite.common.model.ReferalLoginModel;
 import com.globalwebsite.common.model.StudentLoginModel;
+import com.globalwebsite.common.model.UserSuggestionsModel;
 import com.globalwebsite.user.queries.UserSqlQueries;
 import com.gw.student.model.AdminSubmissionModel;
 
@@ -380,6 +381,20 @@ public class UserDaoInterfaceImpl implements UserDaoInterface {
 			
 		} catch (Exception e) {
 			logger.info("applyUserJob: "+e);
+		}
+		return stuData;
+	}
+	
+	public int insertUserSuggestions(UserSuggestionsModel usm) {
+		String sql = UserSqlQueries.INSERTUSERSUGGESTIONS_QUERY;
+		int stuData = 0;
+		try {
+			stuData = jdbctemplate.update(sql, new Object[]{usm.getFristname(), usm.getLastname(),
+					  usm.getEmail(),usm.getPhoneno(),usm.getMessage(), getDateFromSimpleDateFormat()});
+			logger.info("insertUserSuggestions: "+sql);
+			
+		} catch (Exception e) {
+			logger.info("insertUserSuggestions: "+e);
 		}
 		return stuData;
 	}

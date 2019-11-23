@@ -42,6 +42,9 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 	@Value("${admin.viewtype}")
 	private String viewType;
 	
+	@Value("${superadmin.roleid}")
+	private int superadminroleid;
+	
 	@Autowired
 	AdminRolePermissionController apr;
 
@@ -121,14 +124,18 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_it_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_nonit_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_trainingandplace_jobs"))
-			    || (StringUtils.equals(stdmodel.getTablekey(), "global_freejobtraining_jobs"))) {
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_freejobtraining_jobs"))
+				|| (StringUtils.equals(stdmodel.getTablekey(), "global_admit_cards"))
+				|| (StringUtils.equals(stdmodel.getTablekey(), "global_results"))) {
 				
 			    //System.out.println("Entered in: " + stdmodel.getTablename());
 				logger.info("Entered in: " + stdmodel.getTablename());
 				/** Save Image in Selected Folder **/
 				succsscnt = adminservices.insertSubmissionData(stdmodel);
+				if(file!=null){
 				imgpath = saveImageInSelectedFolder(stdmodel, file, fut, imageFolder, succsscnt);
 				adminservices.updateImageFileNameInTable(stdmodel.getTablekey(), imgpath, succsscnt);
+				}
 		}
 		/*Abroad Jobs insert*/
 		if (StringUtils.equals(stdmodel.getTablekey(), "global_abroad_jobs")) {
@@ -173,7 +180,7 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 		// Get total count from selected table (SQL query)
 		//int tablecnt = adminservices.selectCountForSubmissionData(stdmodel);
 		// Create TOMCAT Directory Object
-		System.out.println(stdmodel.getTablename());
+		//System.out.println(stdmodel.getTablename());
 		// Save Image in TOMCAT directory
 		String imgpath = fut.saveImagesInTomcatDirectory(file, imageFolder, rowid);
 		stdmodel.setFilename(imgpath);
@@ -205,6 +212,8 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 		}
 		String ssroleid = (String)req.getSession().getAttribute("roleid");
 		int roleid = Integer.valueOf(ssroleid);
+		int adminloginid = (Integer)req.getSession().getAttribute("loginid");
+		
 		String permisaccess = apr.adminManagePermissions(roleid, req);
 		if(permisaccess == "accessdenied"){
 			return "admin/somethingError";
@@ -227,7 +236,7 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 		}
 		System.out.println("date range: "+currentdate);
 		System.out.println("date range: "+prevdate);
-		logger.info("Selected Page is:::::::: "+selectpage);
+		logger.info("Selected Page is:::::::: "+selectpage+", DateFrom:" +prevdate+ " DateTo: "+currentdate);
 		if (!mapvalues.containsKey(selectpage)) {
 			return "admin/somethingError";
 		}
@@ -240,7 +249,8 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_refpost_jobs"))
 				|| (StringUtils.equals(stdmodel.getTablekey(), "global_postedbyadmin_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_empposted_jobs"))) {
-		List<AdminSubmissionModel> alistdata = adminservices.getAllViewConsuRefAdminPostSubmissionData(stdmodel.getTablekey(),prevdate, currentdate);
+			List<AdminSubmissionModel> alistdata = superadminroleid==roleid? adminservices.getAllViewConsuRefAdminPostSubmissionData(stdmodel.getTablekey(),prevdate, currentdate) : 
+				adminservices.getAllViewConsuRefAdminPostSubmissionDataByLoginId(stdmodel.getTablekey(),prevdate, currentdate,adminloginid);
 		model.addAttribute("alistdata", alistdata);
 		}
 		/*popular, central, it and non it insert*/
@@ -249,7 +259,9 @@ public class AdminAddJobLinksController extends DatabaseTableNames {
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_it_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_nonit_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_trainingandplace_jobs"))
-			    || (StringUtils.equals(stdmodel.getTablekey(), "global_freejobtraining_jobs"))) {
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_freejobtraining_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_admit_cards"))
+				|| (StringUtils.equals(stdmodel.getTablekey(), "global_results"))) {
 			List<AdminSubmissionModel> alistdata = adminservices.getAllViewSubmissionData(stdmodel.getTablekey(), prevdate, currentdate, viewType);
 			model.addAttribute("alistdata", alistdata);
 		}

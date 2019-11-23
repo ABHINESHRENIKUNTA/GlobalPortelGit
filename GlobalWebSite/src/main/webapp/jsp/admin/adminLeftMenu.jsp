@@ -77,6 +77,7 @@
         <!-- Start: Sidebar Menu -->
         <ul class="nav sidebar-menu">
           <li class="sidebar-label pt20">Menu</li>
+           <c:set value="nopermission" var="admindashboard"></c:set>
            <c:set value="nopermission" var="permissions"></c:set>
            <c:set value="nopermission" var="organization"></c:set>
            <c:set value="nopermission" var="operators"></c:set>
@@ -92,6 +93,8 @@
            <c:set value="nopermission" var="employerpostedjobs"></c:set>
            <c:set value="nopermission" var="trainingplacejobs"></c:set>
            <c:set value="nopermission" var="freetrainingjobs"></c:set>
+           <c:set value="nopermission" var="admitcards"></c:set>
+           <c:set value="nopermission" var="results"></c:set>
            <%
            @SuppressWarnings("unchecked")
            ArrayList<AdminRolePermissionModel> list = (ArrayList<AdminRolePermissionModel>)request.getSession().getAttribute("leftMenuList");
@@ -100,6 +103,10 @@
            <c:set var="leftMenuList" value="${leftMenuListjsp}"></c:set>
           <c:forEach items="${leftMenuList}" var="menulist">
           
+            <c:if test="${menulist.permname == 'VIEW_ADMIN_DASHBOARD'}">
+            <c:set value="yespermission" var="admindashboard"></c:set>
+            </c:if> 
+            
             <c:if test="${menulist.permname == 'VIEW_PERMISSIONS'  or menulist.permname == 'EDIT_PERMISSIONS'}">
             <c:set value="yespermission" var="permissions"></c:set>
             </c:if> 
@@ -160,10 +167,18 @@
             <c:set value="yespermission" var="freetrainingjobs"></c:set>
             </c:if>
             
+            <c:if test="${menulist.permname == 'VIEW_ADMIT_CARDS'  or menulist.permname == 'EDIT_ADMIT_CARDS'}">
+            <c:set value="yespermission" var="admitcards"></c:set>
+            </c:if>
+            
+            <c:if test="${menulist.permname == 'VIEW_RESULTS'  or menulist.permname == 'EDIT_RESULTS'}">
+            <c:set value="yespermission" var="results"></c:set>
+            </c:if>
+            
           </c:forEach>  
          
-           <li>
-            <!-- <a class="accordion-toggle" href="#"> -->
+          <!--  <li>
+            <a class="accordion-toggle" href="#"> 
             <a class="" href="view-admindashboard">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Dash board</span>
@@ -190,8 +205,17 @@
                 </a>
                </li>
          
-             </ul> -->
-          </li>       
+             </ul> 
+          </li>  -->     
+           <c:if test="${admindashboard == 'yespermission'}">
+              <li>
+               <a class="" href="view-admindashboard">
+              	<span class="fa fa-user"></span>
+              	<span class="sidebar-title">Dash board</span>
+              	<span class="caret"></span>
+           		</a>
+               </li>
+           </c:if>
            <c:if test="${operators == 'yespermission'}">
               <li>
                 <a href="view-operators" >
@@ -321,6 +345,22 @@
                <a href="load-adminviewcommoninfo?selectedparam=global_freejobtraining_jobs">
               <span class="fa fa-user"></span>
               <span class="sidebar-title">Free Job Training Inst.</span>
+            </a>
+            </li> 
+            </c:if>
+            <c:if test="${admitcards == 'yespermission'}">
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_admit_cards">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Admit Cards</span>
+            </a>
+            </li> 
+            </c:if>
+            <c:if test="${results == 'yespermission'}">
+             <li>
+               <a href="load-adminviewcommoninfo?selectedparam=global_results">
+              <span class="fa fa-user"></span>
+              <span class="sidebar-title">Results</span>
             </a>
             </li> 
             </c:if>

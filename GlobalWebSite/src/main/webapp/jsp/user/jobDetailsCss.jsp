@@ -34,7 +34,10 @@
 .filterjob:checked {
 	background-color: #0275d8;
 }
+.count-class{
+padding-right: 10px;padding-top: 8px;
 
+}
 
 .optionlist li{
 padding-left: 0px !important;

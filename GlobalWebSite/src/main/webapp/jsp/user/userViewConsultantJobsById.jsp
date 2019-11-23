@@ -28,10 +28,7 @@ layout-top-nav">
     Find your link
     <small>There is a way to do it better...find it</small>
   </h1>
-  <!-- <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Employer Posted Job Links</li>
-    </ol> -->
+ 
 </section>
 <!-- Main content -->
 <section class="content">
@@ -55,6 +52,19 @@ layout-top-nav">
             <div class="box box-primary">
               <div class="box-header with-border">
                 <h3 class="box-title">Jobs Inbox</h3>
+                 <% if(request.getParameter("smsg")!=null) {%>
+                        <div class="alert alert-success alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                          <i class="fa fa-check pr10"></i>
+                          <strong>Well done!</strong><%=request.getParameter("smsg")%>
+                        </div>
+                   <% }  if(request.getParameter("emsg")!=null) {%>
+                        <div class="alert alert-danger alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                          <i class="fa fa-check pr10"></i>
+                          <strong></strong><%=request.getParameter("emsg")%>
+                        </div>
+                   <%} %>
                 <div class="box-tools pull-right">
                   <div class="has-feedback">
                     <input type="text" class="form-control input-sm" placeholder="Search Jobs">
@@ -160,14 +170,7 @@ layout-top-nav">
               <!-- /.box-body -->
             </div>
             <!-- /. box -->
-            <div class="box-footer">
-              <div class="col-md-4 col-sm-4">
-                <div id="showingInfo" ></div>
-              </div>
-              <div class="col-md-8 col-sm-8 text-right">
-                <div  id="pagination"></div>
-              </div>
-            </div>
+
           </div>
           <!-- /.col -->
         </div>

@@ -31,18 +31,6 @@ public class UserRegisterORApplyJobController {
 	private AdminServiceInterfaceImpl adminservices;
 	
 	private final int activenum =1;
-
-	
-	public String registerOrApplyJob(Model model, HttpSession session){
-		boolean isRegistered = (String)session.getAttribute("useremailid")!=null ? true: false;
-		
-		if(!isRegistered){
-			
-		}
-
-		
-		return null;
-	}
 	
 	@ResponseBody
 	@RequestMapping(value="/login-applyjob", method= RequestMethod.POST)
@@ -81,6 +69,26 @@ public class UserRegisterORApplyJobController {
 			userserviceimpl.applyUserJob(username.trim(), userloginid, tablekey.trim(), rowid.trim());
             
 		return JSONObject;
+	}
+	
+	@RequestMapping(value="/user-applyselectedjob", method= RequestMethod.GET)
+	public String ApplyJobForLoggedUser(Model model, HttpSession session, HttpServletRequest req) {
+		
+		int userloginid = (String)session.getAttribute("useremailid")!=null ? (Integer) session.getAttribute("userloginid"):0;
+		 if(userloginid==0){
+	        return "user/userLogin";
+	     }
+		String username= (String) session.getAttribute("useremailid");
+		String tablekey= req.getParameter("tablekey");
+		String rowid= req.getParameter("rowid");
+        String currPath = req.getParameter("pathname");
+		logger.info("Login and Apply: "+ username+" tablekey: "+tablekey +" rowId: "+rowid);
+		model.addAttribute("tablekey", tablekey);
+	    int insertData = userserviceimpl.applyUserJob(username.trim(), userloginid, tablekey.trim(), rowid.trim());
+	    if(insertData > 0 ){
+	    	model.addAttribute("smsg", "Successfully applied job."); }
+	       else{model.addAttribute("emsg", "Something went problem. Please try again later!");}
+		return "redirect:"+currPath+"?rowid="+rowid;
 	}
 	
 	@RequestMapping(value="/viewuserloginpage", method=RequestMethod.GET)

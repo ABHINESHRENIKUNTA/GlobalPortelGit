@@ -120,6 +120,10 @@ public class AdminSqlQueries {
 		return "select jd.*, it.industry_name from "+tablekey+" jd, industry_type it where "
 				+ "jd.industry_id=it.id and jd.created_date between ? and ?";
 	}
+	public static String getAllViewConsuRefAdminPostSubmissionDataByLoginId_Query(String tablekey) {
+		return "select jd.*, it.industry_name from "+tablekey+" jd, industry_type it where "
+				+ "jd.industry_id=it.id and jd.created_date between ? and ? and jd.login_id=?";
+	}
 	public static String getAllViewConsuRefAdminPostSubmissionDataById_Query(String tablekey) {
 		return "select jd.*, it.industry_name from "+tablekey+" jd, industry_type it "
 				+ "where jd.industry_id=it.id and jd.id=?";
@@ -155,7 +159,6 @@ public class AdminSqlQueries {
 		return "select sj.*, st.statename from "+tablekey+" sj, states st where "
 				+ "sj.state_id = st.id and sj.id= ?";
 	}
-	
 	
 
 }

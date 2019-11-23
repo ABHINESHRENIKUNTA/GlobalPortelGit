@@ -10,6 +10,7 @@ import com.globalwebsite.common.model.EmployeeLoginModel;
 import com.globalwebsite.common.model.JobDetailCountModel;
 import com.globalwebsite.common.model.ReferalLoginModel;
 import com.globalwebsite.common.model.StudentLoginModel;
+import com.globalwebsite.common.model.UserSuggestionsModel;
 import com.gw.student.model.AdminSubmissionModel;
 
 @Service("userServices")
@@ -153,6 +154,9 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
 	}
 	public int applyUserJob(String username, int userloginid, String tablekey, String jobid) {
 		return userdaoimpl.applyUserJob(username, userloginid, tablekey, jobid);
+	}
+	public int insertUserSuggestions(UserSuggestionsModel usm) {
+		return userdaoimpl.insertUserSuggestions(usm);
 	}
 
 }

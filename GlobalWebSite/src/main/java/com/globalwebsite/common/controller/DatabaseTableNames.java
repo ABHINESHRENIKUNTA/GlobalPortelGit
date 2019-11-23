@@ -28,6 +28,8 @@ public class DatabaseTableNames {
 		tablelist.put("global_empposted_jobs", "Employer Posted Jobs");
 		tablelist.put("global_trainingandplace_jobs", "Training & Placement Institutions");
 		tablelist.put("global_freejobtraining_jobs", "Free Job Training & Institute Links");
+		tablelist.put("global_admit_cards", "Admit Cards");
+		tablelist.put("global_results", "Results");
 		return tablelist;
 	}
 	

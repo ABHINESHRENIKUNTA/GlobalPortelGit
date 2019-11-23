@@ -1,22 +1,20 @@
 package com.globalwebsite.common.controller;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.globalwebsite.admin.model.CountryModel;
-import com.globalwebsite.admin.model.IndustryTypeModel;
 import com.globalwebsite.admin.model.StatesModel;
 import com.globalwebsite.admin.services.AdminServiceInterfaceImpl;
 import com.globalwebsite.common.model.JobDetailCountModel;
@@ -106,6 +104,23 @@ public class UserViewAllPagesJobsController {
 		 model.addAttribute("jobsList", jobsList);
 		 model.addAttribute("tablekey", tablekey);
 		 return new ModelAndView("user/userViewTrainingPlacInst", "listjobdetails", stdmodel);
+	 }
+	 
+	 @RequestMapping(value="/view-useradmitcards", method=RequestMethod.GET)
+	 public ModelAndView userViewAdmitCardsScreen(Model model, AdminSubmissionModel stdmodel){
+		 String tablekey="global_admit_cards";
+		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
+		 model.addAttribute("jobsList", jobsList);
+		 model.addAttribute("tablekey", tablekey);
+		 return new ModelAndView("user/userViewAdmitCards", "listjobdetails", stdmodel);
+	 }
+	 @RequestMapping(value="/view-userresults", method=RequestMethod.GET)
+	 public ModelAndView userViewResultsScreen(Model model, AdminSubmissionModel stdmodel){
+		 String tablekey="global_results";
+		 List<AdminSubmissionModel> jobsList = userserviceimpl.getCommonSubmissionJobsList(tablekey,activenum);
+		 model.addAttribute("jobsList", jobsList);
+		 model.addAttribute("tablekey", tablekey);
+		 return new ModelAndView("user/userViewResults", "listjobdetails", stdmodel);
 	 }
 	 
 	 @RequestMapping("/view-userconsultantsjobs")

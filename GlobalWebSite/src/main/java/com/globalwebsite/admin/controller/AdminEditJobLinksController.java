@@ -73,7 +73,9 @@ public class AdminEditJobLinksController extends DatabaseTableNames {
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_it_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_nonit_jobs"))
 			    || (StringUtils.equals(stdmodel.getTablekey(), "global_trainingandplace_jobs"))
-			    || (StringUtils.equals(stdmodel.getTablekey(), "global_freejobtraining_jobs"))) {
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_freejobtraining_jobs"))
+			    || (StringUtils.equals(stdmodel.getTablekey(), "global_admit_cards"))
+				|| (StringUtils.equals(stdmodel.getTablekey(), "global_results"))) {
 			logger.info("Selected Table: "+selectpage +" AND Selected Row: "+rowId );
 			List<AdminSubmissionModel> alistdata = adminservices.getAllViewSubmissionDataById(stdmodel.getTablekey(), rowId);
 			for (AdminSubmissionModel as1 : alistdata) {

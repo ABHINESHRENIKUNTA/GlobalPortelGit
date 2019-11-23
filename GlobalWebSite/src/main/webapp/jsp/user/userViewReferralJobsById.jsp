@@ -50,6 +50,20 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">Jobs Inbox</h3>
+                   <% if(request.getParameter("smsg")!=null) {%>
+                 
+                        <div class="alert alert-success alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                          <i class="fa fa-check pr10"></i>
+                          <strong>Well done!</strong><%=request.getParameter("smsg")%>
+                        </div>
+                   <% }  if(request.getParameter("emsg")!=null) {%>
+                        <div class="alert alert-danger alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                          <i class="fa fa-check pr10"></i>
+                          <strong></strong><%=request.getParameter("emsg")%>
+                        </div>
+                   <%} %>
                   <div class="box-tools pull-right">
                     <div class="has-feedback">
                       <input type="text" class="form-control input-sm" placeholder="Search Jobs">

@@ -57,6 +57,7 @@ public class UserSqlQueries {
 	public static final String APPLYUSERJOB_QUERY = "INSERT INTO gb_user_applied_jobs (email_id,global_student_details_id,job_table, job_id, applied_on) "
 													+ "VALUES (?,?,?,?,?)";
 	
-	
+	public static final String INSERTUSERSUGGESTIONS_QUERY = "insert into gb_user_suggestions (first_name, last_name, email_id, contact_no, user_message, submitted_date)"
+			+ "VALUES(?,?,?,?,?,?)";
 	
 }

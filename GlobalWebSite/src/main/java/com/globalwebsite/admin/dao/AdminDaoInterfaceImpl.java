@@ -880,5 +880,17 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 	}
 
 	
-	
+	public List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionDataByLoginId(String tablekey,
+			String prevdate, String currentdate, int adminloginid) {
+		String sql=AdminSqlQueries.getAllViewConsuRefAdminPostSubmissionDataByLoginId_Query(tablekey);
+		List<AdminSubmissionModel> listdata = null;
+		try {
+			listdata = jdbctemplate.query(sql, new Object[]{prevdate+" 00:00:00", currentdate+" 23:59:59",adminloginid}, new AdminViewConsuRefAdminPostSubmissionMapper());
+			logger.info("getAllViewConsuRefAdminPostSubmissionDataByLoginId: "+ tablekey+": "+sql);
+			
+		} catch (Exception e) {
+			logger.info("getAllViewConsuRefAdminPostSubmissionDataByLoginId: "+ tablekey+": "+e);
+		}
+		return listdata;
+	}
 }

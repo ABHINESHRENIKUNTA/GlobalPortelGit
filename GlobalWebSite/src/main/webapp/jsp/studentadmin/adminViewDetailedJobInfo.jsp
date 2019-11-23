@@ -93,7 +93,9 @@
                             tablekey == 'global_it_jobs' or 
                             tablekey == 'global_nonit_jobs' or
                             tablekey == 'global_trainingandplace_jobs' or
-                            tablekey == 'global_freejobtraining_jobs'
+                            tablekey == 'global_freejobtraining_jobs' or
+                            tablekey == 'global_admit_cards' or
+                            tablekey == 'global_results'
                             }">
                             <div class=" col-sm-9 col-sm-9">
                             <div class="row">
@@ -104,10 +106,10 @@
                                <div class="col-sm-3">Site URL: </div>
                                <div class="col-sm-9"><a href="${listdata.linkaddress}" target="_blank">${listdata.linkaddress}</a></div>
                               </div>
-                              <div class="row">
+                              <%-- <div class="row">
                                <div class="col-sm-3">Email: </div>
                                <div class="col-sm-9">${listdata.emailid}</div>
-                              </div>
+                              </div> --%>
                                <div class="row">
                                <div class="col-sm-3">Added By: </div>
                                <div class="col-sm-9">${listdata.addedby}</div>

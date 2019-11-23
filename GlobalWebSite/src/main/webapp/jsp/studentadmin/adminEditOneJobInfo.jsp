@@ -15,8 +15,8 @@
     <meta name="author" content="GlobalWebsite">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@include file="/jsp/admin/adminHeaderLinks.jsp" %>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/theme/build/css/intlTelInput.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/theme/build/css/demo.css">
+  <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/theme/build/css/intlTelInput.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/theme/build/css/demo.css"> --%>
   </head>
   <body class="dashboard-page theme-danger">
     <%@include file="/jsp/admin/adminThemeChange.jsp" %>

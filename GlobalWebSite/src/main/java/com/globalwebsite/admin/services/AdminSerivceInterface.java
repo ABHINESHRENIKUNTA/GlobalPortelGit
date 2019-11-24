@@ -92,6 +92,12 @@ public interface AdminSerivceInterface {
 
 	int updateAdminAddJobAllJobDetailsInfo(AdminSubmissionModel stdmodel);
 
+	List<AdminAddUserImagesModel> getAdminDeleteCompanyLogos();
+
+	int uploadAdminCompanyLogoData(AdminAddUserImagesModel adm);
+
+	int deleteAdminSelectedCompanyLogo(String admid);
+
 
 
 }

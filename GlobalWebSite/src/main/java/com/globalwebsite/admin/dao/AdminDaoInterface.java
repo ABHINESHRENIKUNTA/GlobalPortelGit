@@ -106,6 +106,12 @@ public interface AdminDaoInterface {
 
 	List<AdminSubmissionModel> getAllViewConsuRefAdminPostSubmissionDataById(String tablekey, int rowId);
 
+	List<AdminAddUserImagesModel> getAdminDeleteCompanyLogos();
+
+	int uploadAdminCompanyLogoData(AdminAddUserImagesModel adm);
+
+	int deleteAdminSelectedCompanyLogo(String admid);
+
 
 
 

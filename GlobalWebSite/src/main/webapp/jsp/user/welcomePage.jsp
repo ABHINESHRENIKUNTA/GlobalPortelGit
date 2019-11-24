@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
   <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
   <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<html lang="en">
+<head>
   <meta charset="utf-8">
   <title>Global Website</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -458,9 +459,10 @@
         <header class="section-header">
           <h3>Website Links</h3>
         </header>
-
         <div class="owl-carousel clients-carousel">
-          <img src="${pageContext.request.contextPath}/theme/userhome/img/clients/client-1.png" alt="">
+        <c:forEach items="${logosList}" var="logosList" varStatus="loop">
+          <img src="${pageContext.request.contextPath}/viewcompanylogs?userImage=${logosList.filename}" alt="">
+        </c:forEach>
           <img src="${pageContext.request.contextPath}/theme/userhome/img/clients/client-2.png" alt="">
           <img src="${pageContext.request.contextPath}/theme/userhome/img/clients/client-3.png" alt="">
           <img src="${pageContext.request.contextPath}/theme/userhome/img/clients/client-4.png" alt="">

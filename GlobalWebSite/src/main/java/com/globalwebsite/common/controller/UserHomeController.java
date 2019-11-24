@@ -3,6 +3,7 @@ package com.globalwebsite.common.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,11 +24,16 @@ public class UserHomeController {
 	
 	private int activenum=1;
 	
+	@Value("${companyLogoFolder.Name}")
+	private String companyLogoFolder;
+	
 	 @RequestMapping("/GlobalSiteWelcomePage")
 	 public String globalSiteWelcomePage(Model model){
 		 List<AdminAddUserImagesModel> admdata= adminservices.getAdminDeleteUserImages();
-			model.addAttribute("admdata", admdata);
-		 
+		 model.addAttribute("admdata", admdata);
+		 List<AdminAddUserImagesModel> logosList= adminservices.getAdminDeleteCompanyLogos();
+		 model.addAttribute("logosList", logosList);
+		 model.addAttribute("companyLogoFolder", companyLogoFolder);
 		 return "user/welcomePage";
 	 }
 	

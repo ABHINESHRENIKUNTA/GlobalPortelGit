@@ -22,6 +22,7 @@ import org.springframework.stereotype.Repository;
 import com.globalwebsite.admin.mapper.AdminAbroadMapper;
 import com.globalwebsite.admin.mapper.AdminCommonViewSubmitMapper;
 import com.globalwebsite.admin.mapper.AdminDeleteUserImageMapper;
+import com.globalwebsite.admin.mapper.AdminGetCompanyLogoMapper;
 import com.globalwebsite.admin.mapper.AdminLoginMapper;
 import com.globalwebsite.admin.mapper.AdminOperatorMapper;
 import com.globalwebsite.admin.mapper.AdminOrganizationMapper;
@@ -86,13 +87,28 @@ private final static Logger logger = Logger.getLogger(AdminDaoInterfaceImpl.clas
 		return jdbctemplate.update(sql,new Object[]{adm.getTitle(),adm.getFilename(),adm.getLinkname(),getDateFromSimpleDateFormat(),getDateFromSimpleDateFormat()});
 	}
 	@Override
+	public int uploadAdminCompanyLogoData(AdminAddUserImagesModel adm) {
+		String sql=AdminSqlQueries.UPLOADADMINCOMPANYLOGODATA_QUERY;
+		return jdbctemplate.update(sql,new Object[]{adm.getTitle(),adm.getFilename(),adm.getLinkname(),getDateFromSimpleDateFormat(),getDateFromSimpleDateFormat()});
+	}
+	@Override
 	public List<AdminAddUserImagesModel> getAdminDeleteUserImages() {
 		String sql=AdminSqlQueries.GETADMINDELETEUSERIMAGES_QUERY;
 		return jdbctemplate.query(sql, new AdminDeleteUserImageMapper());
 	}
 	@Override
+	public List<AdminAddUserImagesModel> getAdminDeleteCompanyLogos() {
+		String sql=AdminSqlQueries.GETADMINDELETECOMPANYLOGOS_QUERY;
+		return jdbctemplate.query(sql, new AdminGetCompanyLogoMapper());
+	}
+	@Override
 	public int deleteAdminSelectedImage(String admid) {
 		String sql=AdminSqlQueries.DELETEADMINSELECTEDIMAGE_QUERY;
+		return jdbctemplate.update(sql,new Object[]{admid});
+	}
+	@Override
+	public int deleteAdminSelectedCompanyLogo(String admid) {
+		String sql=AdminSqlQueries.DELETEADMINSELECTEDCOMPANYLOGO_QUERY;
 		return jdbctemplate.update(sql,new Object[]{admid});
 	}
 

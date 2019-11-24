@@ -44,8 +44,27 @@
     <div class="row">
 	  <div class="col-lg-1"> </div>
       <div class="col-lg-9 col-lg-offset-2">
-        
-       
+         <header class="section-header">
+          <h3>About Us</h3>
+        </header>
+       <ul style="line-height: 2.4em;">
+
+<li>
+A-Z focus Provides NavigationA to Z focus provides navigation to various services such as colleges coma universities results ticketing bill payments etc. 
+</li>
+
+<li>
+A to Z focus provide simple navigation to various hospitals, entertainment such as games, songs, movies etc. 
+</li>
+
+<li>
+We provide genuine Information about various job vacancies across the globe. 
+</li>
+
+<li>
+A to Z provides a to z results, provide navigation to download various  State level, National level and international level admit cards. 
+</li>
+</ul>
 
       </div>
 

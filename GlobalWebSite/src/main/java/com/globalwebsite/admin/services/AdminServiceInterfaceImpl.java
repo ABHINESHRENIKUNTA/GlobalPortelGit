@@ -52,12 +52,25 @@ public class AdminServiceInterfaceImpl implements AdminSerivceInterface {
 		return admindaoimpl.uploadAdminUserDahboardImagesData(adm);
 	}
 	@Override
+	public int uploadAdminCompanyLogoData(AdminAddUserImagesModel adm) {
+		return admindaoimpl.uploadAdminCompanyLogoData(adm);
+	}
+	@Override
 	public List<AdminAddUserImagesModel> getAdminDeleteUserImages() {
 		return admindaoimpl.getAdminDeleteUserImages();
 	}
 	@Override
+	public List<AdminAddUserImagesModel> getAdminDeleteCompanyLogos() {
+		return admindaoimpl.getAdminDeleteCompanyLogos();
+	}
+	@Override
 	public int deleteAdminSelectedImage(String admid) {
 		return admindaoimpl.deleteAdminSelectedImage(admid);
+	}
+	
+	@Override
+	public int deleteAdminSelectedCompanyLogo(String admid) {
+		return admindaoimpl.deleteAdminSelectedCompanyLogo(admid);
 	}
 
 @Override

@@ -12,7 +12,7 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="GlobalSiteWelcomePage">Home</a></li>
+          <li><a href="GlobalSiteWelcomePage">Home</a></li>
           <li><a href="view-aboutuspage">About Us</a></li>
           <li><a href="#services">Subscriptions</a></li>
           <li><a href="view-usersuggestions">Suggestions</a></li>
@@ -24,3 +24,5 @@
       </nav><!-- #nav-menu-container -->
     </div>
   </header><!-- #header -->
+  
+  

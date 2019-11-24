@@ -77,7 +77,7 @@
                             <input type="text" class="gui-input" id="uploader1" placeholder="Please Select A File"/>
                             <label class="field-icon">
                               <i class="fa fa-upload" style="margin-top: 15px;"></i>
-                            </label>
+                            </label><span style="color: green;"> <b>NOTE:</b> Please upload in the given size: Width: 300px, height: 75px; </span>
                           </label>
                         </div>
                       </div>
@@ -131,5 +131,34 @@
 </section>
 
 <%@include file="adminBodyScriptLinks.jsp" %>
+<script type="text/javascript">
+
+var _URL = window.URL || window.webkitURL;
+
+$("#file1").change(function(e) {
+    var file, img;
+	var maxWidth = 300;
+	var maxHeight = 70;
+
+    if ((file = this.files[0])) {
+        img = new Image();
+        img.onload = function() {
+        var selWidth = this.width; 
+        var selHeight = this.height;
+        if(selWidth>maxWidth || selHeight>maxHeight){
+        	alert("Warning! Please upload in the given Height and Width pixels.");
+        }
+        };
+        img.onerror = function() {
+            alert( "not a valid file: " + file.type);
+        };
+        img.src = _URL.createObjectURL(file);
+
+
+    }
+
+});
+
+</script>
 </body>
 </html>

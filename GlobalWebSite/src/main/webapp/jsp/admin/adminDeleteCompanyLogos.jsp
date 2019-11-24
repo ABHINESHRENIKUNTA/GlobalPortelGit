@@ -47,10 +47,6 @@
 
               <div class="panel heading-border panel-primary">
                 <div class="panel-body bg-light">
-                  
-                    <div class="section-divider mb40" id="spy1">
-                      <span>Delete Data</span>
-                    </div>
                     <c:if test="${smsg!=null && smsg!=''}">
                    
 	              <div class="alert alert-success alert-dismissable">
@@ -73,7 +69,7 @@
                		 <div class="col-md-12">
              
                 <div class="panel-body pn">
-                  <table class="table table-striped table-hover" id="datatable2" cellspacing="0" width="100%">
+                  <table class="table table-striped table-hover" id="example" cellspacing="0" width="100%">
                     <thead>
                       <tr>
                        	<th>File Name</th>
@@ -88,7 +84,7 @@
                         <td>${admdata.filename}</td>
                         <td>${admdata.title}</td>
                         <td>${admdata.linkname}</td>
-                        <td><button class="btn btn-success btn-gradient btn-alt btn-block item-active" name="admid" value="${admdata.filename}_${admdata.imageid}">Delete</button></td>
+                        <td><button class="btn btn-danger" name="admid" value="${admdata.filename}_${admdata.imageid}">Delete</button></td>
                        
                       </tr>
                       </c:forEach>
@@ -114,7 +110,8 @@
            </form:form>
 </section>
 
-<%@include file="adminBodyScriptLinks.jsp" %>
+  <%@include file="/jsp/admin/adminBodyScriptLinks.jsp"%>
+    <%@include file="/jsp/admin/adminDataTableJsLink.jsp"%>
 
 </body>
 </html>

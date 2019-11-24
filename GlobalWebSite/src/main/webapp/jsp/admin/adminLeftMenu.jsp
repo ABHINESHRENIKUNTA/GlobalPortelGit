@@ -78,6 +78,7 @@
         <ul class="nav sidebar-menu">
           <li class="sidebar-label pt20">Menu</li>
            <c:set value="nopermission" var="admindashboard"></c:set>
+           <c:set value="nopermission" var="adminaddcompanylogs"></c:set>
            <c:set value="nopermission" var="permissions"></c:set>
            <c:set value="nopermission" var="organization"></c:set>
            <c:set value="nopermission" var="operators"></c:set>
@@ -107,10 +108,14 @@
             <c:if test="${menulist.permname == 'VIEW_ADMIN_DASHBOARD'}">
             <c:set value="yespermission" var="admindashboard"></c:set>
             </c:if> 
+            
+            <c:if test="${menulist.permname == 'VIEW_COMPANYLOGO'  or menulist.permname == 'EDIT_COMPANYLOGO'}">
+            <c:set value="yespermission" var="adminaddcompanylogs"></c:set>
+            </c:if>
+             
             <c:if test="${menulist.permname == 'VIEW_HOMEIMAGE'  or menulist.permname == 'VIEW_HOMEIMAGE'}">
             <c:set value="yespermission" var="userintro"></c:set>
             </c:if>
-            
             
             <c:if test="${menulist.permname == 'VIEW_PERMISSIONS'  or menulist.permname == 'EDIT_PERMISSIONS'}">
             <c:set value="yespermission" var="permissions"></c:set>
@@ -224,9 +229,16 @@
            <c:if test="${userintro == 'yespermission'}">
               <li>
                <a class="" href="AdminAddImagesForUser">
-              	<span class="fa fa-user"></span>
+              	<span class="fa fa-plus"></span>
               	<span class="sidebar-title">User Home Images</span>
-              	<span class="caret"></span>
+           		</a>
+               </li>
+           </c:if>
+           <c:if test="${adminaddcompanylogs == 'yespermission'}">
+              <li>
+               <a class="" href="view-companylogopage">
+              	<span class="fa fa-minus"></span>
+              	<span class="sidebar-title">User Home Company Logos</span>
            		</a>
                </li>
            </c:if>

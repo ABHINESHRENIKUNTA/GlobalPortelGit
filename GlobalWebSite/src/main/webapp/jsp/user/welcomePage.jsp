@@ -6,37 +6,7 @@
 <head>
   <meta charset="utf-8">
   <title>Global Website</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-
-  <!-- Bootstrap CSS File -->
-  <link href="${pageContext.request.contextPath}/theme/userhome/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Libraries CSS Files -->
-  <link href="${pageContext.request.contextPath}/theme/userhome/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/theme/userhome/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/theme/userhome/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/theme/userhome/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/theme/userhome/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-  <!-- Main Stylesheet File -->
-  <link href="${pageContext.request.contextPath}/theme/userhome/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-    Theme Name: BizPage
-    Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
-	
+ <%@include file="userHomePageHeaderLinks.jsp" %>
 
 </head>
 
@@ -463,13 +433,6 @@
         <c:forEach items="${logosList}" var="logosList" varStatus="loop">
           <img src="${pageContext.request.contextPath}/viewcompanylogs?userImage=${logosList.filename}" alt="">
         </c:forEach>
-          <img src="${pageContext.request.contextPath}/theme/userhome/img/clients/client-2.png" alt="">
-          <img src="${pageContext.request.contextPath}/theme/userhome/img/clients/client-3.png" alt="">
-          <img src="${pageContext.request.contextPath}/theme/userhome/img/clients/client-4.png" alt="">
-          <img src="${pageContext.request.contextPath}/theme/userhome/img/clients/client-5.png" alt="">
-          <img src="${pageContext.request.contextPath}/theme/userhome/img/clients/client-6.png" alt="">
-          <img src="${pageContext.request.contextPath}/theme/userhome/img/clients/client-7.png" alt="">
-          <img src="${pageContext.request.contextPath}/theme/userhome/img/clients/client-8.png" alt="">
         </div>
 
       </div>
@@ -483,95 +446,95 @@
 
         <header class="section-header wow fadeInUp">
           <h3>Popular Sites</h3>
-          <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus, ad pro quaestio laboramus. Ei ubique vivendum pro. At ius nisl accusam lorenta zanos paradigno tridexa panatarel.</p>
+          <p> Find the below most of the popular websites information. </p>
         </header>
 
         <div class="row">
 
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
+            <div class="icon"><i class="ion-ios-analytics"></i></div>
             <h4 class="title"><a href="load-jobcategories">Jobs Info</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings. </p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
+            <div class="icon"><i class="ion-ios-bookmarks"></i></div>
             <h4 class="title"><a href="view-useradmitcards">Admit Cards</a></h4>
-            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-paper-outline"></i></div>
             <h4 class="title"><a href="view-userresults">Results</a></h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+            <div class="icon"><i class="ion-ios-people"></i></div>
             <h4 class="title"><a href="comingSoonPage">Educational Info</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
+            <div class="icon"><i class="ion-ios-paper"></i></div>
             <h4 class="title"><a href="comingSoonPage">Ticketing Info</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-people-outline"></i></div>
+            <div class="icon"><i class="ion-ios-musical-notes"></i></div>
             <h4 class="title"><a href="comingSoonPage">Entertainment Info</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+            <div class="icon"><i class="icon ion-card"></i></div>
             <h4 class="title"><a href="comingSoonPage">Id Cards Info</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
+            <div class="icon"><i class="icon ion-cash"></i></div>
             <h4 class="title"><a href="comingSoonPage">Banks/Payments</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-people-outline"></i></div>
+            <div class="icon"><i class="ion-ios-football"></i></div>
             <h4 class="title"><a href="comingSoonPage">Sports Info</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+            <div class="icon"><i class="icon ion-social-facebook"></i></div>
             <h4 class="title"><a href="comingSoonPage">Socail Networking</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
+            <div class="icon"><i class="ion-ios-medkit"></i></div>
             <h4 class="title"><a href="comingSoonPage">Health Info</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-people-outline"></i></div>
+            <div class="icon"><i class="icon ion-bag"></i></div>
             <h4 class="title"><a href="comingSoonPage">Shopping Info</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+            <div class="icon"><i class="icon ion-android-restaurant"></i></div>
             <h4 class="title"><a href="comingSoonPage">Food Info</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
+            <div class="icon"><i class="ion-ios-information"></i></div>
             <h4 class="title"><a href="comingSoonPage">Software Related Info</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-people-outline"></i></div>
             <h4 class="title"><a href="comingSoonPage">Marraige Related Info</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
+            <div class="icon"><i class="icon ion-android-plane"></i></div>
             <h4 class="title"><a href="comingSoonPage">Tours & Travels</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-people-outline"></i></div>
+            <div class="icon"><i class="icon ion-android-bus"></i></div>
             <h4 class="title"><a href="comingSoonPage">Packers & Movers</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+            <p class="description">We will provide you to search through many job boards / career sites and other sources of job postings.</p>
           </div>
 
         </div>
@@ -586,28 +549,7 @@
   <%@include file="userFooter.jsp" %>
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <!-- Uncomment below i you want to use a preloader -->
-  <!-- <div id="preloader"></div> -->
-
-  <!-- JavaScript Libraries -->
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/easing/easing.min.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/superfish/hoverIntent.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/superfish/superfish.min.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/wow/wow.min.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/waypoints/waypoints.min.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/counterup/counterup.min.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/lightbox/js/lightbox.min.js"></script>
-  <script src="${pageContext.request.contextPath}/theme/userhome/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="${pageContext.request.contextPath}/theme/userhome/contactform/contactform.js"></script>
-
-  <!-- Template Main Javascript File -->
-  <script src="${pageContext.request.contextPath}/theme/userhome/js/main.js"></script>
-
+ 
+ <%@include file="userHomePageFooterLinks.jsp" %>
 </body>
 </html>

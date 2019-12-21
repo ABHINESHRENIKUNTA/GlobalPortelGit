@@ -220,16 +220,17 @@
            <c:if test="${admindashboard == 'yespermission'}">
               <li>
                <a class="" href="view-admindashboard">
-              	<span class="fa fa-user"></span>
+              	<span class="fa fa-desktop"></span>
               	<span class="sidebar-title">Dash board</span>
               	<span class="caret"></span>
            		</a>
                </li>
            </c:if>
+          
            <c:if test="${userintro == 'yespermission'}">
               <li>
                <a class="" href="AdminAddImagesForUser">
-              	<span class="fa fa-plus"></span>
+              	<span class="fa fa-meh-o"></span>
               	<span class="sidebar-title">User Home Images</span>
            		</a>
                </li>
@@ -237,7 +238,7 @@
            <c:if test="${adminaddcompanylogs == 'yespermission'}">
               <li>
                <a class="" href="view-companylogopage">
-              	<span class="fa fa-minus"></span>
+              	<span class="fa fa-picture-o"></span>
               	<span class="sidebar-title">User Home Company Logos</span>
            		</a>
                </li>
@@ -245,7 +246,7 @@
            <c:if test="${operators == 'yespermission'}">
               <li>
                 <a href="view-operators" >
-                  <span class="fa fa-university"></span>
+                  <span class="fa fa-user-secret"></span>
                   <span class="sidebar-title">View Operators</span>
                 </a>
                </li>
@@ -253,7 +254,7 @@
              <c:if test="${permissions == 'yespermission'}">
               <li>
               <a href="view-rolepermissions" >
-                  <span class="fa fa-university"></span>
+                  <span class="fa fa-key"></span>
                   <span class="sidebar-title">Assign Permissions</span>
                 </a>
                </li>
@@ -270,7 +271,7 @@
            <c:if test="${abroadjobs == 'yespermission'}">
              <li>
               <a href="load-adminviewcommoninfo?selectedparam=global_abroad_jobs">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-plane"></span>
               <span class="sidebar-title">Abroad Jobs</span>
             </a>
             </li> 
@@ -279,7 +280,7 @@
            <c:if test="${popularjobs == 'yespermission'}">
              <li>
               <a href="load-adminviewcommoninfo?selectedparam=global_popular_jobsites_page">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-sitemap"></span>
               <span class="sidebar-title">Popular Job Sites</span>
             </a>
             </li> 
@@ -288,7 +289,7 @@
        	  <c:if test="${statewisejobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_statewisegovt_jobs">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-rss"></span>
               <span class="sidebar-title">State-wise Govt. Jobs</span>
             </a>
             </li> 
@@ -297,7 +298,7 @@
             <c:if test="${centralgovtjobs== 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_centralgov_jobs">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-globe"></span>
               <span class="sidebar-title">Central Govt. Jobs</span>
             </a>
             </li> 
@@ -306,7 +307,7 @@
             <c:if test="${itjobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_it_jobs">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-info-circle"></span>
               <span class="sidebar-title">IT Jobs</span>
             </a>
             </li> 
@@ -315,7 +316,7 @@
             <c:if test="${nonitjobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_nonit_jobs">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-cubes"></span>
               <span class="sidebar-title">Non IT Jobs</span>
             </a>
             </li> 
@@ -324,7 +325,7 @@
             <c:if test="${jobconsultants == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_jobconsult_jobs">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-crop"></span>
               <span class="sidebar-title">Job Consultants</span>
             </a>
             </li> 
@@ -333,7 +334,7 @@
             <c:if test="${referralpostjobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_refpost_jobs">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-street-view"></span>
               <span class="sidebar-title">Referral Posted Jobs</span>
             </a>
             </li> 
@@ -351,7 +352,7 @@
             <c:if test="${employerpostedjobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_empposted_jobs">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-star-o"></span>
               <span class="sidebar-title">Employer Posted Jobs</span>
             </a>
             </li> 
@@ -360,7 +361,7 @@
             <c:if test="${trainingplacejobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_trainingandplace_jobs">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-users"></span>
               <span class="sidebar-title">Training & Placement Inst.</span>
             </a>
             </li> 
@@ -369,7 +370,7 @@
             <c:if test="${freetrainingjobs == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_freejobtraining_jobs">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-thumbs-o-up"></span>
               <span class="sidebar-title">Free Job Training Inst.</span>
             </a>
             </li> 
@@ -377,7 +378,7 @@
             <c:if test="${admitcards == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_admit_cards">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-file"></span>
               <span class="sidebar-title">Admit Cards</span>
             </a>
             </li> 
@@ -385,7 +386,7 @@
             <c:if test="${results == 'yespermission'}">
              <li>
                <a href="load-adminviewcommoninfo?selectedparam=global_results">
-              <span class="fa fa-user"></span>
+              <span class="fa fa-pie-chart"></span>
               <span class="sidebar-title">Results</span>
             </a>
             </li> 

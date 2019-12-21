@@ -51,7 +51,7 @@
                   	<c:forEach items="${jobsList}" var="populardata">
                   	
                   	 
-					<li class="col-sm-12"><a href='${populardata.linkaddress}' target="_blank">${populardata.comments}<br>${populardata.linkname}</a>
+					<li class="col-sm-6"><a href='${populardata.linkaddress}' target="_blank">${populardata.comments}<br>${populardata.linkname}</a>
 					<!-- <div class="image-parent">
 		              <img src="https://static.naukimg.com/s/4/100/i/naukri_Logo.png" class="img-fluid" alt="quixote">
 		          </div> -->

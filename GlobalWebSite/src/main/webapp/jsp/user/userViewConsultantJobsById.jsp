@@ -142,9 +142,9 @@ layout-top-nav">
                                   <span onclick="linkedinFun();">							
                                   <i class="fa fa-linkedin fa-3px" style="color:#0077B5; padding: 2px;cursor: pointer;font-size: 25px; "></i>
                                   </span>
-                                  <!-- <span onclick="mailToFun();">
-                                    <i class="fa fa-envelope fa-3px" style="color:#f1d592; padding: 2px;cursor: pointer;font-size: 25px; "></i>
-                                    </span> -->
+                                   <span onclick="mailToFun();">
+                                    <i class="fa fa-whatsapp fa-3px" style="color:green; padding: 2px;cursor: pointer;font-size: 25px; "></i>
+                                    </span>
                                 </li>
                               </ul>
                               <button type="button" class="btn btn-warning" onclick="openLoginOrRegistrationModel();"><i class="glyphicon glyphicon-thumbs-up" style="padding-right: 3px;"></i> Apply Now</button>

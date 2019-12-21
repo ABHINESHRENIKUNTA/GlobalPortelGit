@@ -66,6 +66,15 @@
             url = "https://www.linkedin.com/shareArticle?mini=true&url=" + pageUrl;
             socialWindow(url);
         }
+        function mailToFun() {
+        	 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+               
+            url = "whatsapp://send?text=" + pageUrl;
+            socialWindow(url);
+        }else{
+            alert('You Are Not On A Mobile Device. Please Use This Button To Share On Mobile');
+       }
+        }
        /*  var pageTitle = encodeURIComponent(page.title);
         var body_message = $('#content-result').html();
         var email = 'test@mail.com';

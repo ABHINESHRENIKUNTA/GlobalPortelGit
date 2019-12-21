@@ -12,11 +12,13 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="view-userpopularjobs"><span class="glyphicon glyphicon-eye-open"></span> Popular Jobs</a></li>
+              <li class="active"><a href="GlobalSiteWelcomePage"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li><a href="view-userpopularjobs"><span class="glyphicon glyphicon-eye-open"></span> Popular Jobs</a></li>
               <li><a href="load-jobcategories"><span class="glyphicon glyphicon-globe"></span> Job Categories</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope"></span> More Jobs<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
+                 
                   <li><a href="<spring:eval expression="@viewPropertyConfigurer.getProperty('popular.url')" />">
                   <spring:eval expression="@viewPropertyConfigurer.getProperty('popular.jobs')" />
                   </a></li>

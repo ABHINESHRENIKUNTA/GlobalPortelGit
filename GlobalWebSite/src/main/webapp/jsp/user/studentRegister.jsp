@@ -6,10 +6,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Job Categories</title>
-  <%@include file="userNewHeader.jsp" %>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <link rel="stylesheet" href="${pageContext.request.contextPath}/theme/build/css/intlTelInput.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/theme/build/css/demo.css">
+    <%@include file="userNewHeader.jsp" %>
+
 	<style type="text/css">
 	  .myform{
 		position: relative;
@@ -25,7 +23,7 @@
 		border: 1px solid rgba(0,0,0,.2);
 		border-radius: 1.1rem;
 		outline: 0;
-		max-width: 500px;
+		
 		 }
 	</style>
 	<script type="text/javascript">
@@ -112,13 +110,13 @@ var otp="";
           <section class="content">
            <div class="col-md-12" id="jobcategories">
               <!-- Primary box -->
-              <div class="box box-solid bg-gray" style="box-shadow: 10px 10px 5px #888888;  border-radius: 15px">
+              <div class="box box-solid bg-gray" style="box-shadow: 10px 10px 5px #fff;  border-radius: 15px">
                 <div class="box-body">
                  
             
         <div class="row">
-        <div class="col-sm-4"></div>
-			<div class="col-sm-7 text-center">
+        
+			<div class="col-sm-12 text-center">
 			<div id="first">
 				<div class="myform form ">
 					 <div class="logo mb-3">
@@ -136,34 +134,49 @@ var otp="";
                          <h4 style="color: green">${regsmsg}</h4>
                       </c:if>
                       <h4 style="color: green" id="otplabelspan"></h4>
+                      <div class="col-sm-6">
                            <div class="form-group">
                                 <label for="username" class="text-info"><span style="color:red">*</span>Name As Per S.S.C:</label><br>
                                 <form:input path="name"   id="username" required="required" class="form-control"/>
                             </div>
+                       </div>
+                       <div class="col-sm-6">
                              <div class="form-group">
                                 <label for="mobileno" class="text-info"><span style="color:red">*</span>Mobile No:</label><br>
-                                <form:input path="mobileno" id="phone"  type="tel" required="required" class="form-control" style="width:480px"/>
+                                <form:input path="mobileno" id="phone"  type="tel" required="required" class="form-control" />
                             </div>
+                            </div>
+                        <div class="col-sm-6">    
                               <div class="form-group">
                                 <label for="emailid" class="text-info"><span style="color:red">*</span>Email Id:</label><br>
                                 <form:input path="emailid" type="email"   id="emailid" required="required" class="form-control"/>
                             </div>
+                            </div>
+                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="password" class="text-info"><span style="color:red">*</span>Password:</label><br>
                                 <form:password path="password" id="password1" required="required" class="form-control"/>
                             </div>
+                            </div>
+                         <div class="col-sm-6">
                              <div class="form-group">
                                 <label for="confirmpassword" class="text-info"><span style="color:red">*</span>Confirm Password:</label><br>
                                 <form:password path="confirmpassword" id="confirmpassword" required="required" class="form-control"/>
                             </div>
+                            </div>
+                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="passingyear" class="text-info"><span style="color:red">*</span>Highest Qualification:</label><br>
                                 <form:input path="qualification" id="qualification" required="required" class="form-control"/>
                             </div>
+                            </div>
+                          <div class="col-sm-6">
                               <div class="form-group">
                                 <label for="passingyear" class="text-info"><span style="color:red">*</span>Passing Year:</label><br>
                                 <form:input path="passingyear" type="number" id="passingyear" required="required" minlength="4"	 maxlength="4" class="form-control"/>
                             </div>
+                          </div>
+                        <div class="col-sm-6">
                              <div class="form-group">
                                 <label for="jobcategory" class="text-info"><span style="color:red">*</span>Job Category:</label><br>
                                 <form:select path="jobcategory" type="text" id="jobcategory" required="required" class="form-control" onchange="otherFunction(this.value)">
@@ -174,12 +187,15 @@ var otp="";
                                 <form:option value="Others">Others</form:option>
                                 </form:select>
                             </div>
+                            </div>
+                         <div class="col-sm-6">
                             
                              <div class="form-group" id="othercatgr" style="display: none">
                                 <label for="otherjobcategory" class="text-info"><span style="color:red">*</span>Job Category:</label><br>
                                 <form:input path="otherjobcategory" type="text" id="otherjobcategory"  class="form-control"/>
                             </div>
-                             
+                            </div>
+                            <div class="col-sm-6"> 
 		                        <div class="section">
 		                        <label for="passingyear" class="text-primary"><span style="color:red">*</span>Upload Resume:</label><br>
 		                          <label class="field prepend-icon append-button file">
@@ -187,7 +203,7 @@ var otp="";
 		                            <input type="file" class="btn btn-primary btn-md " name="file1" id="file1" required="required" accept=".jpg,.jpeg,.png,.word,.pdf">
 		                            </label>
 		                        </div>
-		                                               
+		                       </div>                       
 		                      <div class="form-group" id="otplabel" style="display: none">
                                 <label for="passingyear" class="text-info"><span style="color:red">*</span>OTP:</label><br>
 		                        <input type="text" id="otptxt" class="form-control" >
